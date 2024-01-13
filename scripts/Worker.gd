@@ -1,34 +1,41 @@
 extends Node2D
 class_name Worker
 
-@export var startingTemp:int = 50
-@export var startingTiredness:int = 50
-@export var startingStress:int = 0
-
-@export var defaultTirednessDecrease:int = 1
+@export_group("Temperature")
+@export var startingTemp:int = 0
 @export var defaultTempIncrease:int = 1
-@export var maxStressToQuit:int = 10
-@export var tiredShieldTickMax:int = 5
+
+@export_group("Energy")
+@export var startingEnergy:int = 50
+@export var defaultEnergyDecrease:int = 1
+@export var energyShieldTickCount:int = 5
+
+@export_group("Stress")
+@export var startingStress:int = 0
+@export var maxStressToQuit:int = 100
 @export var ticksUntilStressIncrease:int = 6
 
-@export var defaultMoney:int = 500
+@export_group("General Stats")
+@export var defaultMoney:int = 100
 
 # 0 -- 1 -- 2
+var curr_energy:int
+var ticks_since_last_cash:int
+var money_rate:int
+
 var workLifeBalance:float = 1.0
+var givePlayerMoneyTickCounter:int = 0
 
 var currTemp:int
-var currTiredness:int
 var currStress:int
 
-var twoTicksPassed:bool = false
-
-var tiredShield:bool = false
+var energy_shield:bool = false
 var ticksSinceShieldStarted:int = 0
 var ticksSinceOverstressed:int = 0
 
 func _ready():
 	currTemp = startingTemp
-	currTiredness = startingTiredness
+	curr_energy = startingEnergy
 	currStress = startingStress
 	
 	get_parent().connect("tick_update", tick_update_receiver)
@@ -36,60 +43,51 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("head_interaction"):
-		currTiredness += 20
-		tiredShield = true
+		curr_energy += 20
+		energy_shield = true
 		ticksSinceShieldStarted = 0
 		
-		if currTiredness > 100:
-			currTiredness = 100
+		if curr_energy > 100:
+			curr_energy = 100
 		##
 		
-		workLifeBalance = currTiredness / 100.0 * 2
+		workLifeBalance = curr_energy / 100.0 * 2
 	##
 ##
 
-func calculate_work_life_balance() -> float:
-	var result:float = 0
+func get_money_gen_rate() -> int:
+	var rate:int = 4
 	
+	if curr_energy >= 0 and curr_energy < 10:
+		rate = 0
+	elif curr_energy >= 10 and curr_energy < 25:
+		rate = 6
+	elif curr_energy >= 25 and curr_energy < 40:
+		rate = 5
+	elif curr_energy >= 61 and curr_energy < 75:
+		rate = 3
+	elif curr_energy >= 75:
+		rate = 2
+	##
 	
-	
-	return result
+	return rate
 ##
 
 func tick_update_receiver():
-	if tiredShield == false and currTiredness > 0:
-		currTiredness -= defaultTirednessDecrease
-		workLifeBalance = calculate_work_life_balance()
-	##
-	
-	if workLifeBalance > 1.5:
-		ticksSinceOverstressed += 1
-		
-		if ticksSinceOverstressed >= ticksUntilStressIncrease:
-			ticksSinceOverstressed = 0
-			currStress += 1
-		##
-	##
-	
-	print("curr tired:", currTiredness)
-	print("curr stress:", currStress)
-	print("new wlb:", workLifeBalance)
+	ticks_since_last_cash += 1
 	
 	# give the player money
-	if twoTicksPassed:
-		SignalBus.emit_signal("give_player_money", floor(defaultMoney * workLifeBalance))
+	if money_rate > 0 and ticks_since_last_cash >= money_rate:
+		ticks_since_last_cash = 0
+		SignalBus.emit_signal("give_player_money", floor(defaultMoney))
 	##
 	
-	twoTicksPassed = !twoTicksPassed
-	
-	if ticksSinceShieldStarted == tiredShieldTickMax:
-		ticksSinceShieldStarted = 0
-		tiredShield = false
+	if energy_shield == false and curr_energy > 0:
+		curr_energy -= defaultEnergyDecrease
+		money_rate = get_money_gen_rate()
 	##
 	
-	if tiredShield:
-		ticksSinceShieldStarted += 1
-	##
+	print("curr energy:", curr_energy)
 	
 	print("---")
 ##
