@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=5 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
-[ext_resource type="Texture2D" uid="uid://e752w4esba42" path="res://assets/temp_assets/tile_0084.png" id="2_yohsr"]
+[ext_resource type="Texture2D" uid="uid://cbsb6gyv5hab" path="res://assets/temp_assets/art_test/PC_Tile.png" id="2_muv3r"]
+[ext_resource type="Texture2D" uid="uid://ddu23os6g3cnv" path="res://assets/temp_assets/art_test/PC_Head_Tile.png" id="3_uxmvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfjwv"]
 size = Vector2(127, 125)
@@ -9,8 +10,13 @@ size = Vector2(127, 125)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kttiw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_yohsr")
+[node name="PC_Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_muv3r")
+
+[node name="PC_Head" type="Sprite2D" parent="PC_Body"]
+position = Vector2(3, -83)
+texture = ExtResource("3_uxmvg")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
@@ -18,4 +24,3 @@ shape = SubResource("RectangleShape2D_sfjwv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)
-zoom = Vector2(2, 2)
