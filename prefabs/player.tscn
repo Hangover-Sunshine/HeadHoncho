@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=7 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Texture2D" uid="uid://cbsb6gyv5hab" path="res://assets/temp_assets/art_test/PC_Tile.png" id="2_muv3r"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfjwv"]
 size = Vector2(127, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhd1"]
+size = Vector2(578, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0aei"]
+size = Vector2(206, 184)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kttiw")
@@ -24,3 +30,19 @@ shape = SubResource("RectangleShape2D_sfjwv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)
+
+[node name="Rotator" type="Node2D" parent="."]
+
+[node name="HeadPowerZone" type="Area2D" parent="Rotator"]
+position = Vector2(70, 0)
+collision_mask = 6
+
+[node name="BasicHeadZone" type="CollisionShape2D" parent="Rotator/HeadPowerZone"]
+position = Vector2(280, 0)
+shape = SubResource("RectangleShape2D_lrhd1")
+
+[node name="FuckHeadZone" type="CollisionShape2D" parent="Rotator/HeadPowerZone"]
+position = Vector2(90, 0)
+shape = SubResource("RectangleShape2D_p0aei")
+disabled = true
+debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
