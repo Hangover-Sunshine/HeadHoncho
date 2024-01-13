@@ -129,7 +129,6 @@ func _physics_process(delta):
 ##
 
 func _on_body_entered_area(body):
-	print("asd")
 	if body is Worker:
 		workers_in_path.append(body)
 	##
