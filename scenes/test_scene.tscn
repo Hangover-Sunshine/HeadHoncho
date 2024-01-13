@@ -24,6 +24,7 @@ layer_0/tile_data = PackedInt32Array(196608, 0, 0, 196609, 0, 0, 262146, 0, 0, 2
 
 [node name="Worker" type="Node2D" parent="Game"]
 script = ExtResource("2_sitqd")
+energyShieldTickCount = 600
 
 [node name="Tile0088" type="Sprite2D" parent="Game/Worker"]
 position = Vector2(126, -28)
