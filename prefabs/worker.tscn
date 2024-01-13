@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://vgk3p2kr1llq"]
+
+[ext_resource type="Script" path="res://scripts/Worker.gd" id="1_ddibx"]
+[ext_resource type="Texture2D" uid="uid://clqo34vtnwycg" path="res://assets/temp_assets/tile_0088.png" id="2_3x5us"]
+
+[node name="Worker" type="Node2D"]
+script = ExtResource("1_ddibx")
+energyShieldTickCount = 600
+
+[node name="Tile0088" type="Sprite2D" parent="."]
+position = Vector2(126, -28)
+texture = ExtResource("2_3x5us")
