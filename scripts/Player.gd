@@ -6,29 +6,34 @@ extends CharacterBody2D
 
 @export_group("Head Benefits")
 @export var ADD_ENERGY:int = 20
+@export var ADD_ENERGY_TR:int = 4
 @export var COOLDOWN_WORKER:int = 20
-@export var STRESS_TICK_COUNTDOWN:int = 8
+@export var COOLDOWN_TR:int = 4
+@export var DESTRESS_TICK_RATE:int = 2
 
 @onready var rotator = $Rotator
 
-@onready var head_power_zone = $Rotator/HeadPowerZone
-@onready var basic_head_zone = $Rotator/HeadPowerZone/BasicHeadZone
-@onready var fuck_head_zone = $Rotator/HeadPowerZone/FuckHeadZone
+@onready var basic_head_area = $Rotator/BasicHeadArea
+@onready var fuck_head_zone = $Rotator/FuckHeadArea
 
 enum Heads {
 	MONEY_HEAD,		# HR mode
 	FUCK_HEAD,		# relax head
 	BLOW_HEAD,		# ac head
-	COVEFE_HEAD,	# coffee head
+	COVEFE_HEAD		# coffee head
 }
 
 var curr_head:Heads = Heads.BLOW_HEAD
-var direction:Vector2 = Vector2.ZERO
 var use_head:bool = false
+var workers_in_path = []
+var dickheads_in_path = []
+var ticks_passed:int = 0
+
+var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
 
 func _ready():
-	pass
+	get_parent().connect("tick_update", _tick_update_receiver)
 ##
 
 func _input(event):
@@ -68,22 +73,29 @@ func _input(event):
 		use_head = true
 	elif event.is_action_released("head_interaction"):
 		use_head = false
+		ticks_passed = 0
 	##
 	
-	if event.is_action_pressed("blow_head_hk"):
+	if event.is_action_pressed("blow_head_hk") and use_head == false:
 		curr_head = Heads.BLOW_HEAD
-		basic_head_zone.disabled = false
-		fuck_head_zone.disabled = true
+		basic_head_area.monitoring = true
+		basic_head_area.monitorable = true
+		fuck_head_zone.monitoring = false
+		fuck_head_zone.monitorable = false
 	##
-	if event.is_action_pressed("coffee_head_hk"):
+	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
-		basic_head_zone.disabled = false
-		fuck_head_zone.disabled = true
+		basic_head_area.monitoring = true
+		basic_head_area.monitorable = true
+		fuck_head_zone.monitoring = false
+		fuck_head_zone.monitorable = false
 	##
-	if event.is_action_pressed("fuck_head_hk"):
+	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
-		basic_head_zone.disabled = true
-		fuck_head_zone.disabled = false
+		basic_head_area.monitoring = false
+		basic_head_area.monitorable = false
+		fuck_head_zone.monitoring = true
+		fuck_head_zone.monitorable = true
 	##
 ##
 
@@ -112,6 +124,49 @@ func _physics_process(delta):
 			rotator.rotation_degrees = 0
 		else:
 			rotator.rotation_degrees = 180
+		##
+	##
+##
+
+func _on_body_entered_area(body):
+	print("asd")
+	if body is Worker:
+		workers_in_path.append(body)
+	##
+##
+
+func _on_body_exited_area(body):
+	if body is Worker:
+		workers_in_path.remove_at(workers_in_path.find(body))
+	##
+##
+
+func _tick_update_receiver():
+	if use_head:
+		ticks_passed += 1
+		
+		if curr_head == Heads.BLOW_HEAD and ticks_passed >= COOLDOWN_TR:
+			ticks_passed = 0
+			
+			for worker in workers_in_path:
+				worker.decrease_temp(COOLDOWN_WORKER)
+			##
+		##
+		
+		if curr_head == Heads.COVEFE_HEAD and ticks_passed >= ADD_ENERGY_TR:
+			ticks_passed = 0
+			
+			for worker in workers_in_path:
+				worker.add_energy(ADD_ENERGY)
+			##
+		##
+		
+		if curr_head == Heads.FUCK_HEAD and ticks_passed >= DESTRESS_TICK_RATE:
+			ticks_passed = 0
+			
+			for worker in workers_in_path:
+				worker.destress()
+			##
 		##
 	##
 ##

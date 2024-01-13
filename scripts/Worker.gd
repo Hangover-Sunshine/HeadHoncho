@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 class_name Worker
 
 @export_group("Temperature")
@@ -43,20 +43,6 @@ func _ready():
 	curr_stress = startingStress
 	
 	get_parent().connect("tick_update", tick_update_receiver)
-##
-
-func _input(event):
-	if event.is_action_pressed("head_interaction"):
-		curr_energy += 20
-		energy_shield = true
-		shield_up_ticks = 0
-		
-		money_rate = get_money_gen_rate()
-		
-		if curr_energy > maxEnergy:
-			curr_energy = maxEnergy
-		##
-	##
 ##
 
 func get_money_gen_rate() -> int:
@@ -163,3 +149,30 @@ func tick_update_receiver():
 	##
 ##
 
+func add_energy(energy:int):
+	curr_energy += energy
+	energy_shield = true
+	shield_up_ticks = 0
+	
+	money_rate = get_money_gen_rate()
+	
+	if curr_energy > maxEnergy:
+		curr_energy = maxEnergy
+	##
+##
+
+func decrease_temp(temp:int):
+	curr_temp -= temp
+	
+	if curr_temp < 0:
+		curr_temp = 0
+	##
+##
+
+func destress():
+	curr_stress -= 1
+	
+	if curr_stress < 0:
+		curr_stress = 0
+	##
+##

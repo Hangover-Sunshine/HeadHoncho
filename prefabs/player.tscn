@@ -33,16 +33,25 @@ position = Vector2(0, 1)
 
 [node name="Rotator" type="Node2D" parent="."]
 
-[node name="HeadPowerZone" type="Area2D" parent="Rotator"]
+[node name="BasicHeadArea" type="Area2D" parent="Rotator"]
 position = Vector2(70, 0)
 collision_mask = 6
 
-[node name="BasicHeadZone" type="CollisionShape2D" parent="Rotator/HeadPowerZone"]
+[node name="BasicHeadZone" type="CollisionShape2D" parent="Rotator/BasicHeadArea"]
 position = Vector2(280, 0)
 shape = SubResource("RectangleShape2D_lrhd1")
 
-[node name="FuckHeadZone" type="CollisionShape2D" parent="Rotator/HeadPowerZone"]
-position = Vector2(90, 0)
+[node name="FuckHeadArea" type="Area2D" parent="Rotator"]
+collision_mask = 6
+monitoring = false
+monitorable = false
+
+[node name="FuckHeadZone" type="CollisionShape2D" parent="Rotator/FuckHeadArea"]
+position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_p0aei")
-disabled = true
 debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
+
+[connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]
+[connection signal="body_exited" from="Rotator/BasicHeadArea" to="." method="_on_body_exited_area"]
+[connection signal="body_entered" from="Rotator/FuckHeadArea" to="." method="_on_body_entered_area"]
+[connection signal="body_exited" from="Rotator/FuckHeadArea" to="." method="_on_body_exited_area"]
