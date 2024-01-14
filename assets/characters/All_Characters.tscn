@@ -260,3 +260,4 @@ position = Vector2(0, -99)
 texture = ExtResource("5_iya1l")
 hframes = 2
 vframes = 4
+frame = 7
