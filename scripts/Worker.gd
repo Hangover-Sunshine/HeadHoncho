@@ -5,12 +5,14 @@ class_name Worker
 @export var startingTemp:int = 0
 @export var defaultTempModification:int = 1
 @export var maxTempurate:int = 100
+@export var maxTempColor:Color = Color.ORANGE_RED
 
 @export_group("Energy")
 @export var startingEnergy:int = 50
 @export var defaultEnergyDecrease:int = 1
 @export var energyShieldTickCount:int = 5
 @export var maxEnergy:int = 100
+@export var minEnergyColor:Color = Color.BLUE_VIOLET
 
 @export_group("Stress")
 @export var startingStress:int = 0

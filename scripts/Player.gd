@@ -11,6 +11,14 @@ extends CharacterBody2D
 @export var COOLDOWN_TR:int = 4
 @export var DESTRESS_TICK_RATE:int = 2
 
+##########################################################################
+
+@onready var head = $CharacterSkeleton/Sprites/Head
+@onready var hands = $CharacterSkeleton/Sprites/Hands
+@onready var clothes = $CharacterSkeleton/Sprites/Clothes
+
+@onready var animation_player = $CharacterSkeleton/AnimationPlayer
+
 @onready var rotator = $Rotator
 
 @onready var basic_head_area = $Rotator/BasicHeadArea
@@ -31,42 +39,45 @@ var ticks_passed:int = 0
 
 var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
+var head_coords:Vector2i = Vector2i.ZERO
 
 func _ready():
 	get_parent().connect("tick_update", _tick_update_receiver)
 ##
 
 func _input(event):
-	if event.is_action_pressed("up"):
-		direction.y -= 1
-		last_key_dir.y = -1
-		last_key_dir.x = 0
-	elif event.is_action_released("up"):
-		direction.y += 1
-	##
-	
-	if event.is_action_pressed("down"):
-		direction.y += 1
-		last_key_dir.y = 1
-		last_key_dir.x = 0
-	elif event.is_action_released("down"):
-		direction.y -= 1
-	##
-	
-	if event.is_action_pressed("left"):
-		direction.x += 1
-		last_key_dir.y = 0
-		last_key_dir.x = 1
-	elif event.is_action_released("left"):
-		direction.x -= 1
-	##
-	
-	if event.is_action_pressed("right"):
-		direction.x -= 1
-		last_key_dir.y = 0
-		last_key_dir.x = -1
-	elif event.is_action_released("right"):
-		direction.x += 1
+	if use_head == false:
+		if event.is_action_pressed("up"):
+			direction.y -= 1
+			last_key_dir.y = -1
+			last_key_dir.x = 0
+		elif event.is_action_released("up"):
+			direction.y += 1
+		##
+		
+		if event.is_action_pressed("down"):
+			direction.y += 1
+			last_key_dir.y = 1
+			last_key_dir.x = 0
+		elif event.is_action_released("down"):
+			direction.y -= 1
+		##
+		
+		if event.is_action_pressed("left"):
+			direction.x += 1
+			last_key_dir.y = 0
+			last_key_dir.x = 1
+		elif event.is_action_released("left"):
+			direction.x -= 1
+		##
+		
+		if event.is_action_pressed("right"):
+			direction.x -= 1
+			last_key_dir.y = 0
+			last_key_dir.x = -1
+		elif event.is_action_released("right"):
+			direction.x += 1
+		##
 	##
 	
 	if event.is_action_pressed("head_interaction"):
@@ -74,10 +85,13 @@ func _input(event):
 	elif event.is_action_released("head_interaction"):
 		use_head = false
 		ticks_passed = 0
+		animation_player.stop()
 	##
 	
 	if event.is_action_pressed("blow_head_hk") and use_head == false:
 		curr_head = Heads.BLOW_HEAD
+		head_coords.x = 0
+		head_coords.y = 0
 		basic_head_area.monitoring = true
 		basic_head_area.monitorable = true
 		fuck_head_zone.monitoring = false
@@ -85,6 +99,8 @@ func _input(event):
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
+		head_coords.x = 1
+		head_coords.y = 1
 		basic_head_area.monitoring = true
 		basic_head_area.monitorable = true
 		fuck_head_zone.monitoring = false
@@ -92,6 +108,8 @@ func _input(event):
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
+		head_coords.x = 1
+		head_coords.y = 3
 		basic_head_area.monitoring = false
 		basic_head_area.monitorable = false
 		fuck_head_zone.monitoring = true
@@ -99,14 +117,26 @@ func _input(event):
 	##
 ##
 
+func _process(delta):
+	if use_head:
+		if curr_head == Heads.BLOW_HEAD:
+			animation_player.play("Blowing", -1, 2.5)
+		elif curr_head == Heads.COVEFE_HEAD:
+			animation_player.play("Energizing")
+		elif curr_head == Heads.FUCK_HEAD:
+			pass
+		elif curr_head == Heads.MONEY_HEAD:
+			pass
+		##
+	else:
+		head.frame_coords = head_coords
+	##
+##
+
 func _physics_process(delta):
 	velocity = direction * SPEED
 	if use_head:
-		if curr_head == Heads.FUCK_HEAD:
-			velocity = Vector2.ZERO
-		else:
-			velocity *= HEAD_MOVE_PENALTY
-		##
+		velocity = Vector2.ZERO
 	##
 	move_and_slide()
 	

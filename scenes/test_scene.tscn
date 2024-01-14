@@ -26,9 +26,11 @@ layer_0/tile_data = PackedInt32Array(196608, 0, 0, 196609, 0, 0, 262146, 0, 0, 2
 position = Vector2(333, -186)
 
 [node name="Player" parent="Game" instance=ExtResource("3_2ar0a")]
+collision_mask = 14
 DESTRESS_TICK_RATE = 8
 
 [node name="Dickhead" parent="Game" instance=ExtResource("5_3275s")]
+position = Vector2(-257, -270)
 
 [connection signal="timeout" from="Game/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]

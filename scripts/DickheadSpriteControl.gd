@@ -16,26 +16,14 @@ func generate_character():
 	clothes_id = randi() % 2
 	
 	hands.frame_coords = Vector2i(0, skin_color)
-	head.frame_coords = Vector2i(0, (skin_color * 3) + head_id)
-	clothes.frame_coords = Vector2i(1 + clothes_id, 0)
+	head.frame_coords = Vector2i(head_id * 2, skin_color)
+	clothes.frame_coords = Vector2i(clothes_id, 1)
 ##
 
-func crunch_face():
-	head.frame_coords.x = 3
+func rbf_face():
+	head.frame_coords.x = head_id * 2
 ##
 
-func snooze_face():
-	head.frame_coords.x = 2
-##
-
-func hot_face():
-	head.frame_coords.x = 1
-##
-
-func neutral_face():
-	head.frame_coords.x = 0
-##
-
-func change_hue(color):
-	sprites.modulate = color
+func best_boss_face():
+	head.frame_coords.x = head_id * 2 + 1
 ##
