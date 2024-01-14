@@ -228,7 +228,6 @@ _data = {
 }
 
 [node name="WorkerBody" type="StaticBody2D"]
-position = Vector2(286, 163)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ddibx")
