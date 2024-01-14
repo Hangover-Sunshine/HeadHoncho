@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpmj6vc1rtboe"]
+[gd_scene load_steps=4 format=3 uid="uid://bpmj6vc1rtboe"]
 
 [ext_resource type="Texture2D" uid="uid://ccw2c5tj7wwor" path="res://assets/temp_assets/tile_0111.png" id="1_0pveq"]
+[ext_resource type="Script" path="res://scripts/dickhead.gd" id="1_rhxo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0jp"]
 
 [node name="Dickhead" type="CharacterBody2D"]
 position = Vector2(26, -205)
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_rhxo6")
 
 [node name="Tile0111" type="Sprite2D" parent="."]
 texture = ExtResource("1_0pveq")
