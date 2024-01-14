@@ -41,7 +41,10 @@ var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
 var head_coords:Vector2i = Vector2i.ZERO
 
+var skin_color:int = 0
+
 func _ready():
+	hands.frame_coords = Vector2i(0, skin_color)
 	get_parent().connect("tick_update", _tick_update_receiver)
 ##
 
