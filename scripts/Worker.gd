@@ -43,6 +43,8 @@ func _ready():
 	curr_stress = startingStress
 	
 	get_parent().connect("tick_update", tick_update_receiver)
+	
+	$CharacterSkeleton.generate_character()
 ##
 
 func get_money_gen_rate() -> int:
