@@ -9,6 +9,7 @@ signal tick_update
 
 ############################################
 
+@onready var dickhead = load("res://prefabs/dickhead.tscn")
 @onready var tickTimer = $Timers/TickUpdateTimer
 @onready var dickhead_timer = $Timers/DickheadTimer
 
@@ -17,15 +18,12 @@ var quarterlyMoneyCounter:int = 0
 var total_qrtr_workers:int = 0
 var total_workers_quit:int = 0
 
+var workers = []
+
 func _ready():
 	tickTimer.start(tickUpdateTimer)
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 	SignalBus.connect("worker_quit", _worker_quit)
-##
-
-func _input(event):
-	if event.is_action_pressed("ui_left"):
-		$Dickhead.set_target($Worker13.global_position)
 ##
 
 func _on_tick_update_timer_timeout():
@@ -52,5 +50,8 @@ func _worker_quit():
 ##
 
 func _on_dickhead_timer_timeout():
-	pass # Replace with function body.
+	var dh_inst:Dickhead = dickhead.instantiate()
+	add_child(dh_inst)
+	
+	#dh_inst.set_target(Vector3.ZERO)
 ##

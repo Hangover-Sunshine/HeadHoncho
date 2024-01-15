@@ -281,7 +281,7 @@ size = Vector2(578, 126)
 size = Vector2(206, 184)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 14
+collision_mask = 10
 script = ExtResource("1_kttiw")
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
