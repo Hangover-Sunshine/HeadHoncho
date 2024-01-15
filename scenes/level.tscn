@@ -31,14 +31,12 @@ position = Vector2(-336, 554)
 
 [node name="Worker2" parent="Game" instance=ExtResource("3_o004g")]
 position = Vector2(-336, 266)
-collision_mask = 1
 
 [node name="Worker3" parent="Game" instance=ExtResource("3_o004g")]
 position = Vector2(-1008, 554)
 
 [node name="Worker4" parent="Game" instance=ExtResource("3_o004g")]
 position = Vector2(-1008, 266)
-collision_mask = 1
 
 [node name="Worker5" parent="Game" instance=ExtResource("3_o004g")]
 position = Vector2(-336, 1178)
