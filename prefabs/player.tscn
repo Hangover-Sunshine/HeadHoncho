@@ -281,6 +281,7 @@ size = Vector2(578, 126)
 size = Vector2(206, 184)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 14
 script = ExtResource("1_kttiw")
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
@@ -313,7 +314,8 @@ vframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0, 42)
+scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_sfjwv")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://84pr17208gvx"]
+[gd_scene load_steps=5 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
 [ext_resource type="TileSet" uid="uid://gnt6xwtf6oph" path="res://assets/temp_assets/TempTileSet.tres" id="2_2j7l5"]
