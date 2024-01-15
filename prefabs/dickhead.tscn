@@ -232,7 +232,7 @@ size = Vector2(253, 281)
 
 [node name="Dickhead" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 6
+collision_mask = 12
 script = ExtResource("1_la0yx")
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
@@ -266,7 +266,8 @@ texture = ExtResource("4_ns0ul")
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, 25)
+scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_2e0jp")
 
 [node name="WorkerAnnoyanceZone" type="Area2D" parent="."]
@@ -275,3 +276,12 @@ shape = SubResource("RectangleShape2D_2e0jp")
 position = Vector2(0, -17.5)
 shape = SubResource("RectangleShape2D_ydqxu")
 debug_color = Color(1, 0.619608, 0.933333, 0.419608)
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_max_distance = 250.0
+navigation_layers = 2
+avoidance_enabled = true
+radius = 60.0
+time_horizon_obstacles = 0.5
+avoidance_layers = 2
+avoidance_mask = 3

@@ -265,3 +265,7 @@ vframes = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, -27)
 shape = SubResource("RectangleShape2D_rrvmm")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -25)
+radius = 125.0

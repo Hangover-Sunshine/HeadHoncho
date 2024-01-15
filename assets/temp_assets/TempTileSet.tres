@@ -1,6 +1,13 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://gnt6xwtf6oph"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://gnt6xwtf6oph"]
 
 [ext_resource type="Texture2D" uid="uid://c5d1ttv4gn5c2" path="res://assets/temp_assets/tilemap.png" id="1_rt6rk"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yn1sn"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxe4y"]
 texture = ExtResource("1_rt6rk")
@@ -161,6 +168,7 @@ separation = Vector2i(1, 1)
 0:4/0 = 0
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
+0:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_yn1sn")
 1:4/0 = 0
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
@@ -294,4 +302,5 @@ separation = Vector2i(1, 1)
 [resource]
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 7
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_bxe4y")

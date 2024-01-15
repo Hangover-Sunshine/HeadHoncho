@@ -5,8 +5,12 @@ signal tick_update
 @export var tickUpdateTimer:float = 0.5
 @export var quarterTimer:float = 60
 @export var quitFailPercent:float = 0.6
+@export var dickheadTimerMinMax:Vector2 = Vector2(1, 8)
 
-@onready var tickTimer = $TickUpdateTimer
+############################################
+
+@onready var tickTimer = $Timers/TickUpdateTimer
+@onready var dickhead_timer = $Timers/DickheadTimer
 
 var quarterlyMoneyCounter:int = 0
 
@@ -17,6 +21,11 @@ func _ready():
 	tickTimer.start(tickUpdateTimer)
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 	SignalBus.connect("worker_quit", _worker_quit)
+##
+
+func _input(event):
+	if event.is_action_pressed("ui_left"):
+		$Dickhead.set_target($Worker13.global_position)
 ##
 
 func _on_tick_update_timer_timeout():
@@ -40,4 +49,8 @@ func _worker_quit():
 	if total_workers_quit / total_qrtr_workers > quitFailPercent:
 		pass
 	##
+##
+
+func _on_dickhead_timer_timeout():
+	pass # Replace with function body.
 ##
