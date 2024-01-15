@@ -39,9 +39,11 @@ var ticks_passed:int = 0
 
 var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
-var head_coords:Vector2i = Vector2i.ZERO
+var last_key_dir_save:Vector2
 
+var head_coords:Vector2i = Vector2i.ZERO
 var skin_color:int = 0
+
 
 func _ready():
 	hands.frame_coords = Vector2i(0, skin_color)
@@ -49,40 +51,6 @@ func _ready():
 ##
 
 func _input(event):
-	if use_head == false:
-		if event.is_action_pressed("up"):
-			direction.y -= 1
-			last_key_dir.y = -1
-			last_key_dir.x = 0
-		elif event.is_action_released("up"):
-			direction.y += 1
-		##
-		
-		if event.is_action_pressed("down"):
-			direction.y += 1
-			last_key_dir.y = 1
-			last_key_dir.x = 0
-		elif event.is_action_released("down"):
-			direction.y -= 1
-		##
-		
-		if event.is_action_pressed("left"):
-			direction.x += 1
-			last_key_dir.y = 0
-			last_key_dir.x = 1
-		elif event.is_action_released("left"):
-			direction.x -= 1
-		##
-		
-		if event.is_action_pressed("right"):
-			direction.x -= 1
-			last_key_dir.y = 0
-			last_key_dir.x = -1
-		elif event.is_action_released("right"):
-			direction.x += 1
-		##
-	##
-	
 	if event.is_action_pressed("head_interaction"):
 		use_head = true
 	elif event.is_action_released("head_interaction"):
@@ -95,28 +63,19 @@ func _input(event):
 		curr_head = Heads.BLOW_HEAD
 		head_coords.x = 0
 		head_coords.y = 0
-		basic_head_area.monitoring = true
-		basic_head_area.monitorable = true
-		fuck_head_zone.monitoring = false
-		fuck_head_zone.monitorable = false
+		swap_to_normal_head()
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
 		head_coords.x = 1
 		head_coords.y = 1
-		basic_head_area.monitoring = true
-		basic_head_area.monitorable = true
-		fuck_head_zone.monitoring = false
-		fuck_head_zone.monitorable = false
+		swap_to_normal_head()
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
 		head_coords.x = 1
 		head_coords.y = 3
-		basic_head_area.monitoring = false
-		basic_head_area.monitorable = false
-		fuck_head_zone.monitoring = true
-		fuck_head_zone.monitorable = true
+		swap_to_fuck_head()
 	##
 ##
 
@@ -137,28 +96,33 @@ func _process(delta):
 ##
 
 func _physics_process(delta):
-	velocity = direction * SPEED
+	var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
+	
+	if dir.length_squared() != 0:
+		if dir.x == 0:
+			if dir.y == 1:
+				rotator.rotation_degrees = 90
+			else:
+				rotator.rotation_degrees = 270
+			##
+		##
+		
+		if dir.y == 0:
+			if dir.x == 1:
+				rotator.rotation_degrees = 0
+			else:
+				rotator.rotation_degrees = 180
+			##
+		##
+	##
+	
+	velocity = dir * SPEED
+	
 	if use_head:
 		velocity = Vector2.ZERO
 	##
+	
 	move_and_slide()
-	
-	# now update the zones
-	if last_key_dir.x == 0:
-		if last_key_dir.y == 1:
-			rotator.rotation_degrees = 90
-		else:
-			rotator.rotation_degrees = 270
-		##
-	##
-	
-	if last_key_dir.y == 0:
-		if last_key_dir.x == 1:
-			rotator.rotation_degrees = 0
-		else:
-			rotator.rotation_degrees = 180
-		##
-	##
 ##
 
 func _on_body_entered_area(body):
@@ -171,6 +135,20 @@ func _on_body_exited_area(body):
 	if body is Worker:
 		workers_in_path.remove_at(workers_in_path.find(body))
 	##
+##
+
+func swap_to_normal_head():
+	basic_head_area.monitoring = true
+	basic_head_area.monitorable = true
+	fuck_head_zone.monitoring = false
+	fuck_head_zone.monitorable = false
+##
+
+func swap_to_fuck_head():
+	basic_head_area.monitoring = false
+	basic_head_area.monitorable = false
+	fuck_head_zone.monitoring = true
+	fuck_head_zone.monitorable = true
 ##
 
 func _tick_update_receiver():
