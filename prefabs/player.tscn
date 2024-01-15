@@ -111,6 +111,40 @@ tracks/3/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_clvuh"]
+resource_name = "Blowing"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Head:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7my7c"]
+resource_name = "Energizing"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Head:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(1, 1), Vector2i(0, 2)]
+}
+
 [sub_resource type="Animation" id="Animation_tg0l3"]
 resource_name = "No_Anim"
 length = 0.25
@@ -227,40 +261,6 @@ tracks/4/keys = {
 "values": [Vector2i(1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_clvuh"]
-resource_name = "Blowing"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprites/Head:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(1, 0), Vector2i(0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7my7c"]
-resource_name = "Energizing"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprites/Head:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(1, 1), Vector2i(0, 2)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c4ws5"]
 _data = {
 "All_Idle": SubResource("Animation_c2kgx"),
@@ -283,6 +283,7 @@ size = Vector2(206, 184)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 10
 script = ExtResource("1_kttiw")
+SPEED = 450.0
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
 

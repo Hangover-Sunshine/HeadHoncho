@@ -225,7 +225,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrvmm"]
-size = Vector2(147, 194)
+size = Vector2(147, 116)
 
 [node name="WorkerBody" type="StaticBody2D"]
 collision_layer = 2
@@ -263,7 +263,8 @@ texture = ExtResource("6_jqr27")
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -27)
+position = Vector2(0, 42)
+scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_rrvmm")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
