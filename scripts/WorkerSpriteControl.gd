@@ -10,6 +10,13 @@ var skin_color:int = 0
 var head_id:int = 0
 var clothes_id:int = 0
 
+func _ready():
+	sprites = $Sprites
+	head = $Sprites/Head
+	clothes = $Sprites/Clothes
+	hands = $Sprites/Hands
+##
+
 func generate_character():
 	skin_color = randi() % 3
 	head_id = randi() % 3

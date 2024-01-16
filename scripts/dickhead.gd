@@ -3,9 +3,14 @@ class_name Dickhead
 
 @export_group("Movement")
 @export var MOVEMENT_SPEED:float = 400.0
+
+@export_group("Being Blown")
 @export var BLOW_FORCE:float = 1500.0
-@export var BURN_FORCE:float = 600.0
 @export var DRAG:float = 200.0
+
+@export_group("Burning")
+@export var BURN_SPEED:float = 600.0
+@export var BURN_TICK_CD:int = 12
 
 #############################################################
 
@@ -17,14 +22,18 @@ var arrived:bool = false
 
 var interacting_with_player:bool = false
 var indisposed:bool = false
+
 var being_blown:bool = false
-var being_burned:bool = false
 var dir_from_player_to_me:Vector2
-var old_velocity:Vector2
+
+var being_burned:bool = false
+var burning_countdown:int = 0
 
 var leave_target:Vector2
 var unkind_leave:bool = false
 var kind_leave:bool = false
+
+var falling:bool = false
 
 func _ready():
 	nav_agent.path_desired_distance = 15
@@ -40,21 +49,58 @@ func _process(delta):
 ##
 
 func _tick_update():
-	if unkind_leave == false and kind_leave == false and _dist_to_target() < 25 \
-		and indisposed == false:
-		if arrived == false:
-			arrived = true
-			target.boss_arrived()
+	if falling == false:
+		if unkind_leave == false and kind_leave == false and _dist_to_target() < 25 \
+			and indisposed == false:
+			if arrived == false:
+				arrived = true
+				target.boss_arrived()
+			##
+		##
+		
+		if unkind_leave == true and nav_agent.is_navigation_finished():
+			SignalBus.emit_signal("dickhead_removed")
+			queue_free()
+		##
+		
+		if kind_leave == true and nav_agent.is_navigation_finished():
+			SignalBus.emit_signal("dickhead_left")
+			queue_free()
+		##
+		
+		if being_burned:
+			burning_countdown -= 1
+			
+			if burning_countdown <= 0:
+				being_burned = false
+				unkind_leave = true
+				indisposed = false
+				nav_agent.target_position = leave_target
+				burning_countdown = 0
+			##
 		##
 	##
-	if unkind_leave == true and nav_agent.is_navigation_finished():
-		SignalBus.emit_signal("dickhead_removed")
-		queue_free()
+##
+
+func burning():
+	if being_burned == false:
+		being_burned = true
+		indisposed = true
+		nav_agent.target_position = get_parent().pick_position()
 	##
-	if kind_leave == true and nav_agent.is_navigation_finished():
-		SignalBus.emit_signal("dickhead_left")
-		queue_free()
+	burning_countdown = BURN_TICK_CD
+##
+
+func fall():
+	if falling == false:
+		$CharacterSkeleton/AnimationPlayer.play("Falling")
+		falling = true
 	##
+	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
+		queue_free()
+		return true
+	##
+	return false
 ##
 
 func get_blown_away(player_pos):
@@ -93,27 +139,31 @@ func set_leave(leave_targ):
 ##
 
 func _physics_process(delta):
-	if being_blown:
-		if indisposed:
-			velocity = lerpf(0, BLOW_FORCE, 0.7) * dir_from_player_to_me
-		else:
-			if velocity.length() < 2:
-				being_blown = false
-				velocity = Vector2.ZERO
-				collision_mask &= 4
-				collision_mask |= 8
-				unkind_leave = true
-				nav_agent.target_position = leave_target
+	if falling == false:
+		if being_blown:
+			if indisposed:
+				velocity = lerpf(0, BLOW_FORCE, 0.7) * dir_from_player_to_me
 			else:
-				velocity /= 1 + lerpf(0, DRAG, 0.3)
+				if velocity.length() < 2:
+					being_blown = false
+					velocity = Vector2.ZERO
+					collision_mask &= 4
+					collision_mask |= 8
+					unkind_leave = true
+					nav_agent.target_position = leave_target
+				else:
+					velocity /= 1 + lerpf(0, DRAG, 0.3)
+				##
+			##
+		else:
+			velocity = _velocity_from_path()
+			if velocity.is_equal_approx(Vector2.ZERO) and being_burned:
+				nav_agent.target_position = get_parent().pick_position()
 			##
 		##
-	else:
-		velocity = _velocity_from_path()
 	##
 	
 	move_and_slide()
-	old_velocity = velocity
 ##
 
 func _dist_to_target():

@@ -16,8 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://scripts/SignalBus.gd"
-Utility="*res://scripts/Utility.gd"
+SignalBus="*res://autoloads/SignalBus.gd"
+Utility="*res://autoloads/Utility.gd"
 
 [display]
 
@@ -33,9 +33,10 @@ project/assembly_name="HeadHoncho"
 
 folder_colors={
 "res://assets/": "red",
-"res://prefabs/": "orange",
-"res://scenes/": "yellow",
-"res://scripts/": "green"
+"res://autoloads/": "orange",
+"res://prefabs/": "yellow",
+"res://scenes/": "green",
+"res://scripts/": "teal"
 }
 
 [input]

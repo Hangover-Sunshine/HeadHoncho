@@ -1,8 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=34 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
 [ext_resource type="TileSet" uid="uid://gnt6xwtf6oph" path="res://assets/temp_assets/TempTileSet.tres" id="2_2j7l5"]
 [ext_resource type="Texture2D" uid="uid://6uj7jlxvwh0p" path="res://assets/environment/room/Floor.png" id="2_px1y1"]
+[ext_resource type="Script" path="res://scripts/managers/DickheadManager.gd" id="2_tqoev"]
+[ext_resource type="Script" path="res://scripts/managers/WorkerManager.gd" id="2_xmiae"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="3_o004g"]
 [ext_resource type="Texture2D" uid="uid://cgg1pmjoqcah1" path="res://assets/environment/room/Wall.png" id="3_w7dad"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="4_2oady"]
@@ -24,15 +26,19 @@
 [ext_resource type="Texture2D" uid="uid://bofjbvcubyl4s" path="res://assets/environment/objects/cubicle/01Cubicle.png" id="20_2w5kg"]
 [ext_resource type="Texture2D" uid="uid://ckbnuap6y4w60" path="res://assets/environment/objects/cubicle/02Cubicle.png" id="21_eskuc"]
 [ext_resource type="Texture2D" uid="uid://6kauc4wm5u8c" path="res://assets/environment/objects/cubicle/03Cubicle.png" id="22_ahr54"]
+[ext_resource type="Script" path="res://scenes/WindowInteractions.gd" id="22_m1ygj"]
 [ext_resource type="Texture2D" uid="uid://dg1p05yktiekr" path="res://assets/environment/objects/cubicle/05Cubicle.png" id="23_h8eyv"]
 [ext_resource type="Texture2D" uid="uid://cthjcuhxaea3r" path="res://assets/environment/objects/cubicle/06Cubicle.png" id="24_c6yjq"]
 [ext_resource type="Texture2D" uid="uid://7ysta7e2sih2" path="res://assets/environment/objects/cubicle/07Cubicle.png" id="25_5xrco"]
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="26_e1h8f"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb0is"]
+size = Vector2(88, 385)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
-vertices = PackedVector2Array(612, 199, 84, 197, -66, 196, -614, 177, -1593, 21, 721, 179, 626, 681, 734, 673, 1291, 671, 1265, 821, 757, 806, 1636, 26, 1669, 1628, 1245, 1294, 1266, 186, -1616, 1622, 754, 1299, 584, 831, 576, 1292, 80, 685, 82, 829, -81, 799, 86, 1292, -593, 1294, -71, 1291, -746, 1301, -748, 675, -748, 189, -609, 677, -616, 799, -742, 800, -1283, 179, -1281, 679, -1291, 811, -70, 673, -1282, 1311)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 9, 8), PackedInt32Array(11, 8, 14), PackedInt32Array(4, 11, 14, 5), PackedInt32Array(13, 12, 15, 16), PackedInt32Array(17, 6, 10, 16, 18), PackedInt32Array(19, 6, 17, 20, 21), PackedInt32Array(18, 16, 15, 22), PackedInt32Array(23, 24, 22, 15, 25), PackedInt32Array(7, 6, 0, 5), PackedInt32Array(26, 27, 3, 28, 29, 30), PackedInt32Array(4, 3, 27, 31), PackedInt32Array(15, 4, 31, 32, 33), PackedInt32Array(20, 22, 24, 21), PackedInt32Array(2, 1, 19, 34), PackedInt32Array(28, 34, 19, 21, 29), PackedInt32Array(26, 30, 33, 32), PackedInt32Array(15, 33, 35), PackedInt32Array(25, 30, 29, 23), PackedInt32Array(15, 35, 25)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1633, -19, 1676, -13, 1710, 1669, -1657, 1662), PackedVector2Array(-1243, 220, -1241, 639, -788, 635, -788, 228), PackedVector2Array(-574, 218, -569, 637, -110, 633, -106, 235), PackedVector2Array(124, 237, 120, 645, 585, 641, 573, 239), PackedVector2Array(762, 220, 773, 633, 1249, 631, 1228, 226), PackedVector2Array(-1250, 850, -1243, 1270, -786, 1262, -782, 841), PackedVector2Array(-574, 839, -555, 1254, -112, 1251, -120, 839), PackedVector2Array(122, 869, 126, 1252, 537, 1252, 543, 871), PackedVector2Array(797, 847, 794, 1259, 1207, 1254, 1223, 860)])
+vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1636, 26, 1669, 1628, 1247, 1294, 1272, 155, -1593, 21, 726, 154, -1616, 1622, 754, 1299, 577, 1292, 86, 1292, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -73, 165, 612, 159, -617, 160, -72, 1291, -595, 1294, -746, 1301, -744, 790, -608, 677, -596, 785, -1283, 1311, -1283, 790, -1291, 164, -748, 675, -749, 174, -1280, 679)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(3, 2, 5, 6, 7), PackedInt32Array(5, 2, 8), PackedInt32Array(9, 5, 8, 10), PackedInt32Array(7, 6, 11, 12), PackedInt32Array(13, 12, 11, 14), PackedInt32Array(15, 16, 0, 4, 17, 18), PackedInt32Array(16, 15, 19, 20), PackedInt32Array(20, 19, 21), PackedInt32Array(1, 0, 22, 10), PackedInt32Array(9, 10, 22, 20), PackedInt32Array(9, 20, 21, 23), PackedInt32Array(4, 12, 13, 17), PackedInt32Array(24, 15, 18, 14), PackedInt32Array(25, 24, 14, 11, 26), PackedInt32Array(27, 28, 29, 25, 26), PackedInt32Array(30, 26, 11), PackedInt32Array(31, 30, 11, 9, 32), PackedInt32Array(23, 28, 27, 33, 34), PackedInt32Array(9, 23, 34, 32), PackedInt32Array(31, 32, 35), PackedInt32Array(27, 31, 35, 33), PackedInt32Array(29, 28, 19, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1633, -19, 1676, -13, 1710, 1669, -1657, 1662), PackedVector2Array(-1250, 205, -1241, 639, -788, 635, -789, 213), PackedVector2Array(-576, 200, -569, 637, -110, 633, -113, 205), PackedVector2Array(113, 188, 120, 645, 585, 641, 573, 198), PackedVector2Array(767, 194, 773, 633, 1249, 631, 1233, 195), PackedVector2Array(-1243, 830, -1243, 1270, -786, 1262, -784, 830), PackedVector2Array(-556, 825, -555, 1254, -112, 1251, -110, 828), PackedVector2Array(128, 837, 126, 1252, 537, 1252, 536, 837), PackedVector2Array(792, 828, 794, 1259, 1207, 1254, 1209, 828)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 40.0
 
@@ -41,9 +47,6 @@ agent_radius = 40.0
 [node name="Game" type="Node2D" parent="."]
 script = ExtResource("1_rjii0")
 tickUpdateTimer = 0.8
-
-[node name="DickheadSpawnLoc" type="Node2D" parent="Game"]
-position = Vector2(0, 96)
 
 [node name="Timers" type="Node" parent="Game"]
 
@@ -54,7 +57,140 @@ wait_time = 0.3
 
 [node name="DickheadTimer" type="Timer" parent="Game/Timers"]
 one_shot = true
-autostart = true
+
+[node name="DickheadManager" type="Node2D" parent="Game" node_paths=PackedStringArray("WORKER_MANAGER", "BURNING_NODES")]
+z_index = 8
+position = Vector2(0, 96)
+script = ExtResource("2_tqoev")
+WORKER_MANAGER = NodePath("../WorkerManager")
+BURNING_NODES = NodePath("../OnFireNodes")
+
+[node name="OnFireNodes" type="Node2D" parent="Game"]
+
+[node name="Marker1" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(0, 180)
+
+[node name="Marker2" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-689, 180)
+
+[node name="Marker3" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1354, 180)
+
+[node name="Marker4" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1681, 180)
+
+[node name="Marker5" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(665, 180)
+
+[node name="Marker6" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1430, 196)
+
+[node name="Marker7" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1679, 196)
+
+[node name="Marker8" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(0, 775)
+
+[node name="Marker9" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-689, 775)
+
+[node name="Marker10" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1354, 775)
+
+[node name="Marker11" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1681, 775)
+
+[node name="Marker12" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(665, 775)
+
+[node name="Marker13" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1430, 775)
+
+[node name="Marker14" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1679, 775)
+
+[node name="Marker15" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(0, 1450)
+
+[node name="Marker16" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-689, 1450)
+
+[node name="Marker17" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1354, 1450)
+
+[node name="Marker18" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(-1681, 1450)
+
+[node name="Marker19" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(665, 1450)
+
+[node name="Marker20" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1430, 1450)
+
+[node name="Marker21" type="Marker2D" parent="Game/OnFireNodes"]
+position = Vector2(1679, 1450)
+
+[node name="WorkerSeats" type="Node" parent="Game"]
+
+[node name="Seat0" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-1008, 266)
+
+[node name="Seat1" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-336, 266)
+
+[node name="Seat2" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(336, 242)
+
+[node name="Seat3" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(1008, 242)
+
+[node name="Seat4" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-1008, 554)
+
+[node name="Seat5" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-336, 554)
+
+[node name="Seat6" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(336, 554)
+
+[node name="Seat7" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(1008, 554)
+
+[node name="Seat8" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-1008, 866)
+
+[node name="Seat9" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-336, 866)
+
+[node name="Seat10" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(336, 866)
+
+[node name="Seat11" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(1008, 866)
+
+[node name="Seat12" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-1008, 1178)
+
+[node name="Seat13" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(-336, 1178)
+
+[node name="Seat14" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(336, 1178)
+
+[node name="Seat15" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(1008, 1178)
+
+[node name="WorkerManager" type="Node2D" parent="Game" node_paths=PackedStringArray("WORKER_SEATS")]
+script = ExtResource("2_xmiae")
+WORKER_SEATS = NodePath("../WorkerSeats")
+
+[node name="Worker" parent="Game/WorkerManager" instance=ExtResource("3_o004g")]
+z_index = 20
+position = Vector2(-1008, 266)
+
+[node name="Worker2" parent="Game/WorkerManager" instance=ExtResource("3_o004g")]
+z_index = 20
+position = Vector2(-336, 266)
 
 [node name="Env_Office" type="StaticBody2D" parent="Game"]
 position = Vector2(0, 3)
@@ -131,64 +267,77 @@ texture = ExtResource("17_fx3j2")
 [node name="Elevator" parent="Game" instance=ExtResource("12_7nmnj")]
 position = Vector2(0, -81)
 
-[node name="Env_Glass" type="StaticBody2D" parent="Game"]
+[node name="Glass" type="Node2D" parent="Game"]
 
-[node name="EnvGlassTest" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="Glass1" type="Area2D" parent="Game/Glass"]
 position = Vector2(-1608, 192)
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("22_m1ygj")
+
+[node name="EnvGlassTest" type="Sprite2D" parent="Game/Glass/Glass1"]
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest2" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Glass/Glass1"]
+position = Vector2(-40, -0.5)
+shape = SubResource("RectangleShape2D_nb0is")
+debug_color = Color(0.772549, 0.2, 0.960784, 0.419608)
+
+[node name="FallPosition" type="Marker2D" parent="Game/Glass/Glass1"]
+position = Vector2(-120, 0)
+
+[node name="EnvGlassTest2" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(-1608, 768)
 scale = Vector2(1, 10)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest3" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest3" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(-1608, 1344)
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest4" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest4" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(-1344, 1608)
 rotation = 1.5708
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest5" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest5" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(-672, 1608)
 rotation = 1.5708
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest6" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest6" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(0, 1608)
 rotation = 1.5708
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest7" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest7" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(672, 1608)
 rotation = 1.5708
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest8" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest8" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(1344, 1608)
 rotation = 1.5708
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest9" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest9" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(1608, 192)
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest10" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest10" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(1608, 768)
 scale = Vector2(1, 10)
 texture = ExtResource("4_xah6u")
 
-[node name="EnvGlassTest11" type="Sprite2D" parent="Game/Env_Glass"]
+[node name="EnvGlassTest11" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(1608, 1344)
 scale = Vector2(1, 8)
 texture = ExtResource("4_xah6u")
@@ -234,19 +383,9 @@ position = Vector2(994, 1046)
 texture = ExtResource("26_e1h8f")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Game"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_ukuds")
 navigation_layers = 2
-
-[node name="Workers" type="Node2D" parent="Game"]
-position = Vector2(-336, 554)
-
-[node name="Worker" parent="Game/Workers" instance=ExtResource("3_o004g")]
-z_index = 20
-position = Vector2(-672, -288)
-
-[node name="Worker2" parent="Game/Workers" instance=ExtResource("3_o004g")]
-z_index = 20
-position = Vector2(0, -288)
 
 [node name="OW" type="StaticBody2D" parent="Game"]
 visible = false
@@ -306,7 +445,16 @@ position = Vector2(672, 312)
 collision_mask = 1
 
 [node name="Player" parent="Game" instance=ExtResource("4_2oady")]
+z_index = 10
 DESTRESS_TICK_RATE = 8
+
+[node name="PauseUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/DickheadTimer" to="Game" method="_on_dickhead_timer_timeout"]
+[connection signal="body_entered" from="Game/Glass/Glass1" to="Game/Glass/Glass1" method="_on_body_entered"]
+[connection signal="body_exited" from="Game/Glass/Glass1" to="Game/Glass/Glass1" method="_on_body_exited"]

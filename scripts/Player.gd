@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export_group("Movement")
 @export var SPEED:float = 300.0
@@ -167,7 +168,6 @@ func _tick_update_receiver():
 			ticks_passed = 0
 			
 			for person in dickheads_in_path:
-				print("here22")
 				person.get_blown_away(global_position)
 			##
 			
@@ -181,8 +181,14 @@ func _tick_update_receiver():
 		if curr_head == Heads.COVEFE_HEAD and ticks_passed >= ADD_ENERGY_TR:
 			ticks_passed = 0
 			
-			for person in worker_in_path:
-				person.add_energy(ADD_ENERGY)
+			for person in dickheads_in_path:
+				person.burning()
+			##
+			
+			if len(dickheads_in_path) == 0:
+				for person in worker_in_path:
+					person.add_energy(ADD_ENERGY)
+				##
 			##
 		##
 		

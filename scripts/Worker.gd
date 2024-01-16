@@ -59,8 +59,6 @@ func _ready():
 	curr_stress = startingStress
 	
 	SignalBus.connect("tick_update", tick_update_receiver)
-	
-	$CharacterSkeleton.generate_character()
 ##
 
 func get_money_gen_rate() -> int:
@@ -174,7 +172,7 @@ func tick_update_receiver():
 		##
 		
 		if curr_stress >= maxStress:
-			SignalBus.emit_signal("worker_quit")
+			SignalBus.emit_signal("worker_quit", self)
 			SignalBus.disconnect("tick_update", tick_update_receiver)
 			print("I QUIT MOTHERFUCKER!")
 			# TODO: other things
@@ -225,6 +223,10 @@ func boss_gone():
 		curr_energy = saved_energy
 		increase_money = 0
 	##
+##
+
+func generate_character():
+	$CharacterSkeleton.generate_character()
 ##
 
 func add_energy(energy:int):
