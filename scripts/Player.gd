@@ -33,7 +33,7 @@ enum Heads {
 
 var curr_head:Heads = Heads.BLOW_HEAD
 var use_head:bool = false
-var workers_in_path = []
+var worker_in_path = []
 var dickheads_in_path = []
 var ticks_passed:int = 0
 
@@ -47,7 +47,7 @@ var skin_color:int = 0
 
 func _ready():
 	hands.frame_coords = Vector2i(0, skin_color)
-	get_parent().connect("tick_update", _tick_update_receiver)
+	SignalBus.connect("tick_update", _tick_update_receiver)
 ##
 
 func _input(event):
@@ -127,13 +127,21 @@ func _physics_process(delta):
 
 func _on_body_entered_area(body):
 	if body is Worker:
-		workers_in_path.append(body)
+		worker_in_path.append(body)
+	##
+	if body is Dickhead:
+		dickheads_in_path.append(body)
 	##
 ##
 
 func _on_body_exited_area(body):
 	if body is Worker:
-		workers_in_path.remove_at(workers_in_path.find(body))
+		worker_in_path.remove_at(worker_in_path.find(body))
+	##
+	if body is Dickhead:
+		if body.being_blown:
+			body.not_being_blown()
+		dickheads_in_path.remove_at(dickheads_in_path.find(body))
 	##
 ##
 
@@ -158,24 +166,38 @@ func _tick_update_receiver():
 		if curr_head == Heads.BLOW_HEAD and ticks_passed >= COOLDOWN_TR:
 			ticks_passed = 0
 			
-			for worker in workers_in_path:
-				worker.decrease_temp(COOLDOWN_WORKER)
+			for person in dickheads_in_path:
+				print("here22")
+				person.get_blown_away(global_position)
+			##
+			
+			if len(dickheads_in_path) == 0:
+				for person in worker_in_path:
+					person.decrease_temp(COOLDOWN_WORKER)
+				##
 			##
 		##
 		
 		if curr_head == Heads.COVEFE_HEAD and ticks_passed >= ADD_ENERGY_TR:
 			ticks_passed = 0
 			
-			for worker in workers_in_path:
-				worker.add_energy(ADD_ENERGY)
+			for person in worker_in_path:
+				person.add_energy(ADD_ENERGY)
 			##
 		##
 		
 		if curr_head == Heads.FUCK_HEAD and ticks_passed >= DESTRESS_TICK_RATE:
 			ticks_passed = 0
 			
-			for worker in workers_in_path:
-				worker.destress()
+			for person in worker_in_path:
+				person.destress()
+			##
+		##
+	else:
+		if curr_head == Heads.BLOW_HEAD and ticks_passed >= COOLDOWN_TR:
+			for person in dickheads_in_path:
+				print("in here asd")
+				person.not_being_blown()
 			##
 		##
 	##

@@ -14,3 +14,4 @@ signal dickhead_left
 signal dickhead_saw_asleep_employee
 
 # ENIVRONMENT SIGNALS
+signal tick_update

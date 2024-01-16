@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bvnufb32gw10t" path="res://assets/temp_assets/art_test/Env_Desk_TestB.png" id="5_tyqu3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
-vertices = PackedVector2Array(612, 199, 84, 197, -66, 196, -614, 177, -1592, 24, 721, 179, 626, 681, 734, 673, 1291, 671, 1265, 821, 757, 806, 1636, 26, 1669, 1628, 1245, 1294, 1266, 186, -1616, 1622, 754, 1299, 584, 831, 576, 1292, 80, 685, 82, 829, -81, 799, 86, 1292, -593, 1294, -71, 1291, -746, 1301, -748, 675, -748, 189, -609, 677, -616, 799, -742, 800, -1283, 179, -1281, 679, -1291, 811, -70, 673, -1282, 1311)
+vertices = PackedVector2Array(612, 199, 84, 197, -66, 196, -614, 177, -1593, 21, 721, 179, 626, 681, 734, 673, 1291, 671, 1265, 821, 757, 806, 1636, 26, 1669, 1628, 1245, 1294, 1266, 186, -1616, 1622, 754, 1299, 584, 831, 576, 1292, 80, 685, 82, 829, -81, 799, 86, 1292, -593, 1294, -71, 1291, -746, 1301, -748, 675, -748, 189, -609, 677, -616, 799, -742, 800, -1283, 179, -1281, 679, -1291, 811, -70, 673, -1282, 1311)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 9, 8), PackedInt32Array(11, 8, 14), PackedInt32Array(4, 11, 14, 5), PackedInt32Array(13, 12, 15, 16), PackedInt32Array(17, 6, 10, 16, 18), PackedInt32Array(19, 6, 17, 20, 21), PackedInt32Array(18, 16, 15, 22), PackedInt32Array(23, 24, 22, 15, 25), PackedInt32Array(7, 6, 0, 5), PackedInt32Array(26, 27, 3, 28, 29, 30), PackedInt32Array(4, 3, 27, 31), PackedInt32Array(15, 4, 31, 32, 33), PackedInt32Array(20, 22, 24, 21), PackedInt32Array(2, 1, 19, 34), PackedInt32Array(28, 34, 19, 21, 29), PackedInt32Array(26, 30, 33, 32), PackedInt32Array(15, 33, 35), PackedInt32Array(25, 30, 29, 23), PackedInt32Array(15, 35, 25)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1632, -16, 1676, -13, 1710, 1669, -1657, 1662), PackedVector2Array(-1243, 220, -1241, 639, -788, 635, -788, 228), PackedVector2Array(-574, 218, -569, 637, -110, 633, -106, 235), PackedVector2Array(124, 237, 120, 645, 585, 641, 573, 239), PackedVector2Array(762, 220, 773, 633, 1249, 631, 1228, 226), PackedVector2Array(-1250, 850, -1243, 1270, -786, 1262, -782, 841), PackedVector2Array(-574, 839, -555, 1254, -112, 1251, -120, 839), PackedVector2Array(122, 869, 126, 1252, 537, 1252, 543, 871), PackedVector2Array(797, 847, 794, 1259, 1207, 1254, 1223, 860)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1633, -19, 1676, -13, 1710, 1669, -1657, 1662), PackedVector2Array(-1243, 220, -1241, 639, -788, 635, -788, 228), PackedVector2Array(-574, 218, -569, 637, -110, 633, -106, 235), PackedVector2Array(124, 237, 120, 645, 585, 641, 573, 239), PackedVector2Array(762, 220, 773, 633, 1249, 631, 1228, 226), PackedVector2Array(-1250, 850, -1243, 1270, -786, 1262, -782, 841), PackedVector2Array(-574, 839, -555, 1254, -112, 1251, -120, 839), PackedVector2Array(122, 869, 126, 1252, 537, 1252, 543, 871), PackedVector2Array(797, 847, 794, 1259, 1207, 1254, 1223, 860)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 40.0
 
@@ -35,6 +35,7 @@ wait_time = 0.3
 
 [node name="DickheadTimer" type="Timer" parent="Game/Timers"]
 one_shot = true
+autostart = true
 
 [node name="Env_Office" type="StaticBody2D" parent="Game"]
 
@@ -155,63 +156,74 @@ position = Vector2(1008, 432)
 texture = ExtResource("5_tyqu3")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Game"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_ukuds")
 navigation_layers = 2
 
-[node name="Workers" type="StaticBody2D" parent="Game"]
+[node name="Workers" type="Node2D" parent="Game"]
 position = Vector2(-336, 554)
 
 [node name="Worker" parent="Game/Workers" instance=ExtResource("3_o004g")]
-
-[node name="Worker2" parent="Game/Workers" instance=ExtResource("3_o004g")]
-position = Vector2(0, -288)
-
-[node name="Worker3" parent="Game/Workers" instance=ExtResource("3_o004g")]
-position = Vector2(-672, 0)
-
-[node name="Worker4" parent="Game/Workers" instance=ExtResource("3_o004g")]
+z_index = 20
 position = Vector2(-672, -288)
 
-[node name="Worker5" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker2" parent="Game/Workers" instance=ExtResource("3_o004g")]
+z_index = 20
+position = Vector2(0, -288)
+
+[node name="OW" type="StaticBody2D" parent="Game"]
+visible = false
+position = Vector2(-336, 554)
+
+[node name="Worker" parent="Game/OW" instance=ExtResource("3_o004g")]
+
+[node name="Worker2" parent="Game/OW" instance=ExtResource("3_o004g")]
+position = Vector2(0, -288)
+
+[node name="Worker3" parent="Game/OW" instance=ExtResource("3_o004g")]
+position = Vector2(-672, 0)
+
+[node name="Worker4" parent="Game/OW" instance=ExtResource("3_o004g")]
+position = Vector2(-672, -288)
+
+[node name="Worker5" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(0, 624)
 
-[node name="Worker6" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker6" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(0, 336)
 collision_mask = 1
 
-[node name="Worker7" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker7" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(-672, 624)
 
-[node name="Worker8" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker8" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(-672, 336)
 collision_mask = 1
 
-[node name="Worker9" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker9" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(1344, 0)
 
-[node name="Worker10" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker10" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(1344, -288)
 collision_mask = 1
 
-[node name="Worker11" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker11" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(672, 0)
 
-[node name="Worker12" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker12" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(672, -288)
 collision_mask = 1
 
-[node name="Worker13" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker13" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(1344, 624)
 
-[node name="Worker14" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker14" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(1344, 336)
 collision_mask = 1
 
-[node name="Worker15" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker15" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(672, 624)
 
-[node name="Worker16" parent="Game/Workers" instance=ExtResource("3_o004g")]
+[node name="Worker16" parent="Game/OW" instance=ExtResource("3_o004g")]
 position = Vector2(672, 336)
 collision_mask = 1
 
