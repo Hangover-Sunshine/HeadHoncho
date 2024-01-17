@@ -100,33 +100,37 @@ func _process(delta):
 ##
 
 func _physics_process(delta):
-	var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
-	
-	if use_head:
-		dir = Vector2.ZERO
-	##
-	
-	if dir.length_squared() != 0:
-		if dir.x == 0:
-			if dir.y == 1:
-				rotator.rotation_degrees = 90
-			else:
-				rotator.rotation_degrees = 270
+	if can_be_controlled:
+		var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
+		
+		if use_head:
+			dir = Vector2.ZERO
+		##
+		
+		if dir.length_squared() != 0:
+			if dir.x == 0:
+				if dir.y == 1:
+					rotator.rotation_degrees = 90
+				else:
+					rotator.rotation_degrees = 270
+				##
+			##
+			
+			if dir.y == 0:
+				if dir.x == 1:
+					rotator.rotation_degrees = 0
+				else:
+					rotator.rotation_degrees = 180
+				##
 			##
 		##
 		
-		if dir.y == 0:
-			if dir.x == 1:
-				rotator.rotation_degrees = 0
-			else:
-				rotator.rotation_degrees = 180
-			##
+		velocity = dir * SPEED
+		
+		if use_head:
+			velocity = Vector2.ZERO
 		##
-	##
-	
-	velocity = dir * SPEED
-	
-	if use_head:
+	else:
 		velocity = Vector2.ZERO
 	##
 	
@@ -225,6 +229,7 @@ func fall():
 	if falling == false:
 		$CharacterSkeleton/AnimationPlayer.play("Falling")
 		falling = true
+		can_be_controlled = false
 	##
 	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
 		SignalBus.emit_signal("player_jumped_out_window")
