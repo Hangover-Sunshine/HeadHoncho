@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuv7yfdhbqfw1"]
+
+[ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="1_506aa"]
+
+[sub_resource type="Curve" id="Curve_1mvoa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.752809, 1), -0.0391211, -0.0391211, 0, 0, Vector2(0.99999, 0.659341), -3.73488, -3.73488, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_xx0c6"]
+offsets = PackedFloat32Array(0.00666667, 0.0933333, 0.306667, 0.426667, 0.613333, 0.793333, 1)
+colors = PackedColorArray(0.909804, 0.745098, 0.184314, 0, 1, 0.729412, 0, 1, 1, 0.729412, 0, 1, 0.878431, 0.356863, 0.180392, 1, 0.847059, 0.137255, 0.176471, 1, 0.498039, 0.137255, 0.176471, 1, 0, 0.137255, 0.176471, 0)
+
+[node name="Fire" type="CPUParticles2D"]
+amount = 25
+lifetime = 0.75
+speed_scale = 1.1
+texture = ExtResource("1_506aa")
+emission_shape = 3
+emission_rect_extents = Vector2(75, 20)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+scale_amount_min = 1.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_1mvoa")
+color_ramp = SubResource("Gradient_xx0c6")
