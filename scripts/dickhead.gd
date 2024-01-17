@@ -12,6 +12,9 @@ class_name Dickhead
 @export var BURN_SPEED:float = 600.0
 @export var BURN_TICK_CD:int = 12
 
+@export_group("Bloviation")
+@export var BLOVIATION_CD:Vector2 = Vector2i(6, 12)
+
 #############################################################
 
 @onready var nav_agent = $NavAgent
@@ -28,6 +31,9 @@ var dir_from_player_to_me:Vector2
 
 var being_burned:bool = false
 var burning_countdown:int = 0
+
+var being_bloviated:bool = false
+var bloviation_countdown:int = 4
 
 var leave_target:Vector2
 var unkind_leave:bool = false
@@ -79,7 +85,29 @@ func _tick_update():
 				burning_countdown = 0
 			##
 		##
+		
+		if being_bloviated:
+			bloviation_countdown -= 1
+			
+			if bloviation_countdown <= 0:
+				kind_leave = true
+				nav_agent.target_position = leave_target
+			##
+		##
 	##
+##
+
+func bloviate():
+	if being_bloviated == false:
+		indisposed = true
+		being_bloviated = true
+		bloviation_countdown = 4
+	##
+##
+
+func not_bloviating():
+	indisposed = false
+	being_bloviated = false
 ##
 
 func burning():

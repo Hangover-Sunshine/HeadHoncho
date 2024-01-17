@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=33 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
 [ext_resource type="TileSet" uid="uid://gnt6xwtf6oph" path="res://assets/temp_assets/TempTileSet.tres" id="2_2j7l5"]
@@ -26,14 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://bofjbvcubyl4s" path="res://assets/environment/objects/cubicle/01Cubicle.png" id="20_2w5kg"]
 [ext_resource type="Texture2D" uid="uid://ckbnuap6y4w60" path="res://assets/environment/objects/cubicle/02Cubicle.png" id="21_eskuc"]
 [ext_resource type="Texture2D" uid="uid://6kauc4wm5u8c" path="res://assets/environment/objects/cubicle/03Cubicle.png" id="22_ahr54"]
-[ext_resource type="Script" path="res://scenes/WindowInteractions.gd" id="22_m1ygj"]
+[ext_resource type="PackedScene" uid="uid://do5kh4libmny" path="res://prefabs/Window.tscn" id="22_xk8uw"]
 [ext_resource type="Texture2D" uid="uid://dg1p05yktiekr" path="res://assets/environment/objects/cubicle/05Cubicle.png" id="23_h8eyv"]
 [ext_resource type="Texture2D" uid="uid://cthjcuhxaea3r" path="res://assets/environment/objects/cubicle/06Cubicle.png" id="24_c6yjq"]
 [ext_resource type="Texture2D" uid="uid://7ysta7e2sih2" path="res://assets/environment/objects/cubicle/07Cubicle.png" id="25_5xrco"]
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="26_e1h8f"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb0is"]
-size = Vector2(88, 385)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
 vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1636, 26, 1669, 1628, 1247, 1294, 1272, 155, -1593, 21, 726, 154, -1616, 1622, 754, 1299, 577, 1292, 86, 1292, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -73, 165, 612, 159, -617, 160, -72, 1291, -595, 1294, -746, 1301, -744, 790, -608, 677, -596, 785, -1283, 1311, -1283, 790, -1291, 164, -748, 675, -749, 174, -1280, 679)
@@ -269,23 +266,7 @@ position = Vector2(0, -81)
 
 [node name="Glass" type="Node2D" parent="Game"]
 
-[node name="Glass1" type="Area2D" parent="Game/Glass"]
-position = Vector2(-1608, 192)
-collision_layer = 16
-collision_mask = 5
-script = ExtResource("22_m1ygj")
-
-[node name="EnvGlassTest" type="Sprite2D" parent="Game/Glass/Glass1"]
-scale = Vector2(1, 8)
-texture = ExtResource("4_xah6u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Glass/Glass1"]
-position = Vector2(-40, -0.5)
-shape = SubResource("RectangleShape2D_nb0is")
-debug_color = Color(0.772549, 0.2, 0.960784, 0.419608)
-
-[node name="FallPosition" type="Marker2D" parent="Game/Glass/Glass1"]
-position = Vector2(-120, 0)
+[node name="Window1" parent="Game/Glass" instance=ExtResource("22_xk8uw")]
 
 [node name="EnvGlassTest2" type="Sprite2D" parent="Game/Glass"]
 position = Vector2(-1608, 768)
@@ -456,5 +437,3 @@ offset_bottom = 40.0
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/DickheadTimer" to="Game" method="_on_dickhead_timer_timeout"]
-[connection signal="body_entered" from="Game/Glass/Glass1" to="Game/Glass/Glass1" method="_on_body_entered"]
-[connection signal="body_exited" from="Game/Glass/Glass1" to="Game/Glass/Glass1" method="_on_body_exited"]

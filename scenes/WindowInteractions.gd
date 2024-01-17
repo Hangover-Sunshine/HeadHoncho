@@ -8,7 +8,7 @@ var bodies_in_zone = []
 var glass_shattered:bool = false
 
 func _ready():
-	SignalBus.connect("dickhead_gone", _dickhead_gone)
+	pass
 ##
 
 func _process(delta):
@@ -26,6 +26,11 @@ func _process(delta):
 		
 		if USE_X:
 			var dist = abs(fall_pos.x) - abs(body.global_position.x)
+			if dist <= 10:
+				body.velocity = Vector2.ZERO
+			##
+		else:
+			var dist = abs(fall_pos.y) - abs(body.global_position.y)
 			if dist <= 10:
 				body.velocity = Vector2.ZERO
 			##
@@ -50,10 +55,4 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	pass # Replace with function body.
-##
-
-func _dickhead_gone(means:SignalBus.WhyDickheadLeft, _worker:Worker, dickhead:Dickhead):
-	if means == SignalBus.WhyDickheadLeft.KILLED and dickhead in bodies_in_zone:
-		pass
-	##
 ##

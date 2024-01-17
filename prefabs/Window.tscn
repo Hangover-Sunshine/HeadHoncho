@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://do5kh4libmny"]
+
+[ext_resource type="Script" path="res://scenes/WindowInteractions.gd" id="1_pmwaq"]
+[ext_resource type="Texture2D" uid="uid://16qaqioc0k4k" path="res://assets/temp_assets/art_test/Env_Glass_Test.png" id="2_8fcw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb0is"]
+size = Vector2(88, 385)
+
+[node name="Glass1" type="Area2D"]
+position = Vector2(-1608, 192)
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_pmwaq")
+
+[node name="EnvGlassTest" type="Sprite2D" parent="."]
+scale = Vector2(1, 8)
+texture = ExtResource("2_8fcw7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-40, -0.5)
+shape = SubResource("RectangleShape2D_nb0is")
+debug_color = Color(0.772549, 0.2, 0.960784, 0.419608)
+
+[node name="FallPosition" type="Marker2D" parent="."]
+position = Vector2(-120, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

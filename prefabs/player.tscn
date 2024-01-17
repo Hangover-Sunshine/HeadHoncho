@@ -278,7 +278,7 @@ size = Vector2(127, 125)
 size = Vector2(578, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0aei"]
-size = Vector2(206, 184)
+size = Vector2(430, 401)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 26
@@ -334,12 +334,10 @@ shape = SubResource("RectangleShape2D_lrhd1")
 
 [node name="FuckHeadArea" type="Area2D" parent="Rotator"]
 collision_mask = 6
-monitoring = false
-monitorable = false
 
 [node name="FuckHeadZone" type="CollisionShape2D" parent="Rotator/FuckHeadArea"]
-position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_p0aei")
+disabled = true
 debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
 
 [connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]

@@ -99,6 +99,10 @@ func _process(delta):
 func _physics_process(delta):
 	var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
 	
+	if use_head:
+		dir = Vector2.ZERO
+	##
+	
 	if dir.length_squared() != 0:
 		if dir.x == 0:
 			if dir.y == 1:
@@ -147,17 +151,13 @@ func _on_body_exited_area(body):
 ##
 
 func swap_to_normal_head():
-	basic_head_area.monitoring = true
-	basic_head_area.monitorable = true
-	fuck_head_zone.monitoring = false
-	fuck_head_zone.monitorable = false
+	$Rotator/BasicHeadArea/BasicHeadZone.disabled = false
+	$Rotator/FuckHeadArea/FuckHeadZone.disabled = true
 ##
 
 func swap_to_fuck_head():
-	basic_head_area.monitoring = false
-	basic_head_area.monitorable = false
-	fuck_head_zone.monitoring = true
-	fuck_head_zone.monitorable = true
+	$Rotator/BasicHeadArea/BasicHeadZone.disabled = true
+	$Rotator/FuckHeadArea/FuckHeadZone.disabled = false
 ##
 
 func _tick_update_receiver():
@@ -195,16 +195,25 @@ func _tick_update_receiver():
 		if curr_head == Heads.FUCK_HEAD and ticks_passed >= DESTRESS_TICK_RATE:
 			ticks_passed = 0
 			
-			for person in worker_in_path:
-				person.destress()
+			for person in dickheads_in_path:
+				person.bloviate()
+			##
+			
+			if len(dickheads_in_path) == 0:
+				for person in worker_in_path:
+					person.destress()
+				##
 			##
 		##
 	else:
-		if curr_head == Heads.BLOW_HEAD and ticks_passed >= COOLDOWN_TR:
+		if curr_head == Heads.BLOW_HEAD:
 			for person in dickheads_in_path:
-				print("in here asd")
 				person.not_being_blown()
 			##
 		##
+		
+		if curr_head == Heads.FUCK_HEAD:
+			for person in dickheads_in_path:
+				person.not_bloviating()
 	##
 ##

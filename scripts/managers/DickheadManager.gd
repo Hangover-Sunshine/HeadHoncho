@@ -15,7 +15,9 @@ var dickheads_removed:int = 0
 var positions:Array[Vector2]
 
 func _ready():
-	SignalBus.connect("dickhead_gone", _dickhead_gone)
+	SignalBus.connect("dickhead_left", _dickhead_left)
+	SignalBus.connect("dickhead_removed", _dickhead_removed)
+	SignalBus.connect("dickhead_died", _dickhead_died)
 	
 	var children = BURNING_NODES.get_children()
 	
@@ -36,14 +38,16 @@ func spawn_dickhead():
 	dh_inst.set_target(worker)
 ##
 
-func _dickhead_gone(means:SignalBus.WhyDickheadLeft, worker:Worker):
-	if means == SignalBus.WhyDickheadLeft.ATTACKED:
-		dickheads_removed += 1
-	elif means == SignalBus.WhyDickheadLeft.LEFT:
-		dickheads_satisified += 1
-	else:
-		dickheads_killed += 1
-	##
+func _dickhead_left():
+	dickheads_satisified += 1
+##
+
+func _dickhead_died():
+	dickheads_killed += 1
+##
+
+func _dickhead_removed():
+	dickheads_removed += 1
 ##
 
 func pick_position() -> Vector2:
