@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=17 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="5_4os4g"]
+[ext_resource type="PackedScene" uid="uid://cd6l7pl46k5b6" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
 [ext_resource type="Texture2D" uid="uid://dejfu1cvdy4o" path="res://assets/characters/PC_Head_Tile.png" id="6_l5rt7"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
@@ -145,6 +146,34 @@ tracks/0/keys = {
 "values": [Vector2i(1, 1), Vector2i(0, 2)]
 }
 
+[sub_resource type="Animation" id="Animation_50626"]
+resource_name = "Falling"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0941176, 0.0941176, 0.0941176, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_tg0l3"]
 resource_name = "No_Anim"
 length = 0.25
@@ -273,34 +302,6 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_50626"]
-resource_name = "Falling"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprites:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.25, 0.25)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprites:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.0941176, 0.0941176, 0.0941176, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c4ws5"]
 _data = {
 "All_Idle": SubResource("Animation_c2kgx"),
@@ -380,6 +381,10 @@ collision_mask = 6
 shape = SubResource("RectangleShape2D_p0aei")
 disabled = true
 debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
+
+[node name="Pointer" parent="Rotator" instance=ExtResource("5_vvehi")]
+position = Vector2(220, 0)
+rotation = 1.5708
 
 [connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]
 [connection signal="body_exited" from="Rotator/BasicHeadArea" to="." method="_on_body_exited_area"]
