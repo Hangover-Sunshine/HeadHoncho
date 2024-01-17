@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://iil88wk5shte"]
+[gd_scene load_steps=6 format=3 uid="uid://iil88wk5shte"]
 
 [ext_resource type="Texture2D" uid="uid://kibql713xou1" path="res://assets/particles/Drop.png" id="1_86nkp"]
 [ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="2_rode4"]
+[ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="3_t7ivi"]
+[ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="4_kpmi3"]
+[ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="5_dxygl"]
 
 [node name="covefe_splash" type="Node2D"]
 
@@ -28,6 +31,84 @@ radial_accel_max = -5.0
 damping_max = 1.0
 scale_amount_max = 1.3
 color = Color(0.243137, 0.0705882, 0.0705882, 1)
+color_ramp = ExtResource("2_rode4")
+
+[node name="dots" type="CPUParticles2D" parent="."]
+rotation = -1.5708
+amount = 50
+lifetime = 5.0
+speed_scale = 5.0
+local_coords = true
+texture = ExtResource("3_t7ivi")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 1)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.01
+angular_velocity_max = 0.01
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+radial_accel_min = -25.0
+radial_accel_max = -5.0
+damping_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+color = Color(0.878431, 0.647059, 0.482353, 0.388235)
+color_ramp = ExtResource("2_rode4")
+
+[node name="hugs" type="CPUParticles2D" parent="."]
+rotation = -1.5708
+amount = 50
+lifetime = 5.0
+speed_scale = 5.0
+local_coords = true
+texture = ExtResource("4_kpmi3")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 1)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.01
+angular_velocity_max = 0.01
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+radial_accel_min = -25.0
+radial_accel_max = -5.0
+damping_max = 1.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color = Color(0.878431, 0.647059, 0.482353, 0.388235)
+color_ramp = ExtResource("2_rode4")
+
+[node name="kisses" type="CPUParticles2D" parent="."]
+rotation = -1.5708
+amount = 50
+lifetime = 5.0
+speed_scale = 5.0
+local_coords = true
+texture = ExtResource("5_dxygl")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 1)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.01
+angular_velocity_max = 0.01
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+radial_accel_min = -25.0
+radial_accel_max = -5.0
+damping_max = 1.0
+scale_amount_min = 0.15
+scale_amount_max = 0.2
+color = Color(0.878431, 0.647059, 0.482353, 0.388235)
 color_ramp = ExtResource("2_rode4")
 
 [node name="covefe_front" type="CPUParticles2D" parent="."]

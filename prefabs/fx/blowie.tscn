@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://crr5vjn8ws1re"]
+
+[ext_resource type="Texture2D" uid="uid://japsvuwa8mlm" path="res://assets/particles/Square.png" id="1_3ymwt"]
+[ext_resource type="Texture2D" uid="uid://b1q8ss1msum2s" path="res://assets/particles/Sqiggle.png" id="2_3qir1"]
+[ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="3_7cgqq"]
+[ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="4_1s2jm"]
+[ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="5_us3jj"]
+[ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="6_y14pp"]
+
+[sub_resource type="Curve" id="Curve_4q7g1"]
+_data = [Vector2(0.426966, 0.802198), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_jaehx"]
+max_value = 5.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Blowie" type="Node2D"]
+position = Vector2(348, 46)
+
+[node name="Square" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.12549)
+position = Vector2(-6, 0)
+scale = Vector2(6.64583, 0.795)
+texture = ExtResource("1_3ymwt")
+offset = Vector2(48, 0)
+
+[node name="Stream" type="CPUParticles2D" parent="."]
+position = Vector2(49, -9)
+rotation = 1.5708
+amount = 20
+lifetime = 1.5
+speed_scale = 0.75
+local_coords = true
+texture = ExtResource("2_3qir1")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+split_scale = true
+scale_curve_x = SubResource("Curve_4q7g1")
+scale_curve_y = SubResource("Curve_jaehx")
+color = Color(1, 1, 1, 0.67451)
+color_ramp = ExtResource("3_7cgqq")
+
+[node name="Dots" type="CPUParticles2D" parent="."]
+position = Vector2(49, -9)
+rotation = 1.5708
+amount = 20
+lifetime = 1.5
+speed_scale = 0.75
+local_coords = true
+texture = ExtResource("4_1s2jm")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+color = Color(1, 1, 1, 0.67451)
+color_ramp = ExtResource("3_7cgqq")
+
+[node name="Kisses" type="CPUParticles2D" parent="."]
+position = Vector2(49, -9)
+rotation = 1.5708
+amount = 20
+lifetime = 1.5
+speed_scale = 0.75
+local_coords = true
+texture = ExtResource("5_us3jj")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.25
+color = Color(1, 1, 1, 0.67451)
+color_ramp = ExtResource("3_7cgqq")
+
+[node name="Hugs" type="CPUParticles2D" parent="."]
+position = Vector2(49, -9)
+rotation = 1.5708
+amount = 20
+lifetime = 1.5
+speed_scale = 0.75
+local_coords = true
+texture = ExtResource("6_y14pp")
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.25
+color = Color(1, 1, 1, 0.67451)
+color_ramp = ExtResource("3_7cgqq")

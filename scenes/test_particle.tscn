@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b8et6x1mjk2b1"]
+[gd_scene load_steps=29 format=3 uid="uid://b8et6x1mjk2b1"]
 
 [ext_resource type="Texture2D" uid="uid://6uj7jlxvwh0p" path="res://assets/environment/room/Floor.png" id="1_pgfss"]
 [ext_resource type="Texture2D" uid="uid://cgg1pmjoqcah1" path="res://assets/environment/room/Wall.png" id="2_q0wws"]
@@ -27,9 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="25_ypwu6"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="26_4a7ge"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="27_3li8d"]
-[ext_resource type="PackedScene" uid="uid://cuv7yfdhbqfw1" path="res://prefabs/fx/fire.tscn" id="27_rqd8u"]
-[ext_resource type="PackedScene" uid="uid://bjqryrsyliuct" path="res://prefabs/fx/speechbubble.tscn" id="29_iwdmc"]
-[ext_resource type="PackedScene" uid="uid://iil88wk5shte" path="res://prefabs/fx/covefe_splash.tscn" id="30_uqcsh"]
+[ext_resource type="PackedScene" uid="uid://crr5vjn8ws1re" path="res://prefabs/fx/blowie.tscn" id="28_0rlsn"]
 
 [node name="TestParticle" type="Node2D"]
 
@@ -211,15 +209,7 @@ texture = ExtResource("24_t7kuu")
 position = Vector2(994, 1046)
 texture = ExtResource("25_ypwu6")
 
-[node name="Fire" parent="." instance=ExtResource("27_rqd8u")]
-visible = false
-position = Vector2(-334, 250)
-
-[node name="speechbubble" parent="." instance=ExtResource("29_iwdmc")]
-visible = false
-
 [node name="WorkerBody" parent="." instance=ExtResource("27_3li8d")]
 position = Vector2(-335, 248)
 
-[node name="covefe_splash" parent="." instance=ExtResource("30_uqcsh")]
-visible = false
+[node name="Blowie" parent="." instance=ExtResource("28_0rlsn")]
