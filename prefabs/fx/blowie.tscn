@@ -17,7 +17,6 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 5), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Blowie" type="Node2D"]
-position = Vector2(348, 46)
 
 [node name="Square" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.12549)
