@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bxhoa3vqfceq"]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="MainMenuComponents" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HBoxContainer/MainMenuComponents"]
+layout_mode = 2
+text = "HEAD HONCHO"
+
+[node name="Play" type="Label" parent="HBoxContainer/MainMenuComponents"]
+layout_mode = 2
+text = "Press SPACE to Play"
+
+[node name="Quit" type="Label" parent="HBoxContainer/MainMenuComponents"]
+layout_mode = 2
+text = "Press ESC to Quit"
+
+[node name="Credits" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Version" type="Label" parent="HBoxContainer/Credits"]
+layout_mode = 2
+text = "V 1.0"
+
+[node name="Team" type="Label" parent="HBoxContainer/Credits"]
+layout_mode = 2
+text = "Team Hangover Sunshine"

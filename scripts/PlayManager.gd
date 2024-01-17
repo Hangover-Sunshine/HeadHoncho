@@ -17,6 +17,7 @@ var quarterlyMoneyCounter:int = 0
 
 func _ready():
 	tickTimer.start(tickUpdateTimer)
+	quarter_timer.start(quarterTimer)
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 ##
 
@@ -40,7 +41,26 @@ func _give_player_money_receiver(money:int):
 ##
 
 func _on_quarter_timer_timeout():
-	pass # Replace with function body.
+	stop_all_timers()
+	$Player.can_be_controlled = false
+##
+
+func stop_all_timers():
+	quarter_timer.stop()
+	tickTimer.stop()
+	dickhead_timer.stop()
+##
+
+func unpause_all_timers():
+	quarter_timer.paused = false
+	tickTimer.paused = false
+	dickhead_timer.paused = false
+##
+
+func pause_all_timers():
+	quarter_timer.paused = true
+	tickTimer.paused = true
+	dickhead_timer.paused = true
 ##
 
 func spawn_worker():

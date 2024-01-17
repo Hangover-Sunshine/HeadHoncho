@@ -32,6 +32,8 @@ enum Heads {
 	COVEFE_HEAD		# coffee head
 }
 
+var can_be_controlled:bool = true
+
 var curr_head:Heads = Heads.BLOW_HEAD
 var use_head:bool = false
 var worker_in_path = []
@@ -45,6 +47,7 @@ var last_key_dir_save:Vector2
 var head_coords:Vector2i = Vector2i.ZERO
 var skin_color:int = 0
 
+var falling:bool = false
 
 func _ready():
 	hands.frame_coords = Vector2i(0, skin_color)
@@ -216,4 +219,16 @@ func _tick_update_receiver():
 			for person in dickheads_in_path:
 				person.not_bloviating()
 	##
+##
+
+func fall():
+	if falling == false:
+		$CharacterSkeleton/AnimationPlayer.play("Falling")
+		falling = true
+	##
+	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
+		SignalBus.emit_signal("player_jumped_out_window")
+		return true
+	##
+	return false
 ##

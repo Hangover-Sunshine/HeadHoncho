@@ -46,7 +46,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body is Player:
-		pass
+		bodies_in_zone.append(body)
 	##
 	if body is Dickhead:
 		bodies_in_zone.append(body)

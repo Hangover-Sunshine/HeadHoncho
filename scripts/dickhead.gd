@@ -125,6 +125,7 @@ func fall():
 		falling = true
 	##
 	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
+		SignalBus.emit_signal("dickhead_died")
 		queue_free()
 		return true
 	##

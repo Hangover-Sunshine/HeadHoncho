@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=16 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
@@ -260,6 +260,46 @@ tracks/4/keys = {
 "update": 1,
 "values": [Vector2i(1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sprites:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50626"]
+resource_name = "Falling"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0941176, 0.0941176, 0.0941176, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c4ws5"]
 _data = {
@@ -267,6 +307,7 @@ _data = {
 "All_Walk": SubResource("Animation_j7b0f"),
 "Blowing": SubResource("Animation_clvuh"),
 "Energizing": SubResource("Animation_7my7c"),
+"Falling": SubResource("Animation_50626"),
 "No_Anim": SubResource("Animation_tg0l3"),
 "RESET": SubResource("Animation_r5r1s")
 }
