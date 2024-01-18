@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://co6yrwg3b2jbu"]
+
+[ext_resource type="Texture2D" uid="uid://qqonbtuuf3nv" path="res://assets/particles/Dollar.png" id="1_ltbol"]
+[ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="2_1aqqb"]
+
+[node name="Revenue" type="CPUParticles2D"]
+emitting = false
+amount = 15
+one_shot = true
+local_coords = true
+texture = ExtResource("1_ltbol")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+color_ramp = ExtResource("2_1aqqb")

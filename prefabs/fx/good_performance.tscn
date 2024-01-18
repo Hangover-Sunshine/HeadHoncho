@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5hajcni2nq5f"]
+
+[ext_resource type="Texture2D" uid="uid://ccuiq0s82uy11" path="res://assets/particles/HappyFace.png" id="1_y7qm6"]
+[ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="2_sap3x"]
+
+[node name="GoodPerformance" type="CPUParticles2D"]
+emitting = false
+amount = 15
+one_shot = true
+local_coords = true
+texture = ExtResource("1_y7qm6")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+color = Color(0.427451, 0.905882, 0.454902, 1)
+color_ramp = ExtResource("2_sap3x")
