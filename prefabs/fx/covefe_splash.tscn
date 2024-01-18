@@ -60,7 +60,6 @@ color = Color(0.878431, 0.647059, 0.482353, 0.388235)
 color_ramp = ExtResource("2_rode4")
 
 [node name="hugs" type="CPUParticles2D" parent="."]
-position = Vector2(327, 0)
 rotation = -1.5708
 amount = 50
 lifetime = 5.0

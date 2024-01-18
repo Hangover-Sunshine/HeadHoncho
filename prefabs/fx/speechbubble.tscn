@@ -1,7 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjqryrsyliuct"]
+[gd_scene load_steps=9 format=3 uid="uid://bjqryrsyliuct"]
 
 [ext_resource type="Texture2D" uid="uid://dm7edybck01p0" path="res://assets/particles/Convo_Player_Tile.png" id="1_whan7"]
+[ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="1_ximqg"]
 [ext_resource type="Texture2D" uid="uid://bn4evs6smm2jy" path="res://assets/particles/Convo_Dick_Tile.png" id="2_2i3qa"]
+[ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="2_o3hlx"]
+[ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="3_syssx"]
+
+[sub_resource type="Curve" id="Curve_63tyn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vgj3g"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yqep1"]
 particles_animation = true
@@ -9,12 +21,101 @@ particles_anim_h_frames = 2
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Gradient" id="Gradient_vgj3g"]
-offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-metadata/_snap_enabled = true
-
 [node name="speechbubble" type="Node2D"]
+
+[node name="Circles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("1_ximqg")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.431373)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles2" type="CPUParticles2D" parent="."]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("1_ximqg")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.603922)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles3" type="CPUParticles2D" parent="."]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("2_o3hlx")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.431373)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles4" type="CPUParticles2D" parent="."]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("3_syssx")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.603922)
+color_ramp = SubResource("Gradient_vgj3g")
 
 [node name="RightBubble2" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_yqep1")
