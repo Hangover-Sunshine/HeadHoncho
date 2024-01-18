@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="5_4os4g"]
-[ext_resource type="PackedScene" uid="uid://cd6l7pl46k5b6" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
+[ext_resource type="PackedScene" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
 [ext_resource type="Texture2D" uid="uid://dejfu1cvdy4o" path="res://assets/characters/PC_Head_Tile.png" id="6_l5rt7"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
@@ -361,9 +361,6 @@ position = Vector2(0, 42)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_sfjwv")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 1)
-
 [node name="Rotator" type="Node2D" parent="."]
 
 [node name="BasicHeadArea" type="Area2D" parent="Rotator"]
@@ -385,6 +382,8 @@ debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
 [node name="Pointer" parent="Rotator" instance=ExtResource("5_vvehi")]
 position = Vector2(220, 0)
 rotation = 1.5708
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]
 [connection signal="body_exited" from="Rotator/BasicHeadArea" to="." method="_on_body_exited_area"]

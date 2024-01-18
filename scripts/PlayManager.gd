@@ -1,8 +1,8 @@
 extends Node2D
 
 @export_group("Timer Control")
-@export var tickUpdateTimer:float = 0.5
-@export var quarterTimer:float = 60
+@export var SECONDS_PER_TICK:float = 0.5
+@export var SECONDS_PER_ROUND:float = 60
 
 @export_group("Dickhead Control")
 @export var dickheadTimerMinMax:Vector2 = Vector2(1, 8)
@@ -16,9 +16,11 @@ extends Node2D
 var quarterlyMoneyCounter:int = 0
 
 func _ready():
-	tickTimer.start(tickUpdateTimer)
-	quarter_timer.start(quarterTimer)
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
+	SignalBus.connect("round_start", _round_start)
+	
+	tickTimer.start(SECONDS_PER_TICK)
+	quarter_timer.start(SECONDS_PER_ROUND)
 ##
 
 func _input(event):
@@ -32,17 +34,26 @@ func _input(event):
 
 func _on_tick_update_timer_timeout():
 	SignalBus.emit_signal("tick_update")
-	tickTimer.start(tickUpdateTimer)
+	tickTimer.start(SECONDS_PER_TICK)
 ##
 
 func _give_player_money_receiver(money:int):
-	#quarterlyMoneyCounter += money
-	pass
+	quarterlyMoneyCounter += money
 ##
 
 func _on_quarter_timer_timeout():
 	stop_all_timers()
 	$Player.can_be_controlled = false
+	
+	var results = SignalBus.roundResults.duplicate()
+	
+	results["money"] = quarterlyMoneyCounter
+	
+	SignalBus.emit_signal("round_over", results)
+##
+
+func _round_start():
+	tickTimer.start(SECONDS_PER_TICK)
 ##
 
 func stop_all_timers():

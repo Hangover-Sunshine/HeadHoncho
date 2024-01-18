@@ -1,20 +1,157 @@
-[gd_scene format=3 uid="uid://cqg3xqvokwoxb"]
+[gd_scene load_steps=2 format=3 uid="uid://cqg3xqvokwoxb"]
 
-[node name="PostQuarter" type="MarginContainer"]
+[ext_resource type="Script" path="res://scripts/ui/QuarterController.gd" id="1_o10lk"]
+
+[node name="PostQuarter" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_o10lk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Report" type="VBoxContainer" parent="Background"]
+[node name="Report" type="VBoxContainer" parent="MarginContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopReport" type="VBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "QUARTERLY PERFORMANCE REVIEW"
+
+[node name="Pleebs" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "Pleebs Quit: "
+
+[node name="Insulted" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "Go-Getters Insulted:"
+
+[node name="Supported" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "Go-Getters Properly Supported:"
+
+[node name="Deaths" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "Casualties in the Line of Work:"
+
+[node name="Windows" type="Label" parent="MarginContainer/Background/Report/TopReport"]
+layout_mode = 2
+text = "Windows Broken:"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="QuotaStuff" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+
+[node name="Quota" type="Label" parent="MarginContainer/Background/Report/QuotaStuff"]
+layout_mode = 2
+text = "Quota:"
+
+[node name="Number" type="Label" parent="MarginContainer/Background/Report/QuotaStuff"]
+layout_mode = 2
+text = "$XXXXXXXXX"
+
+[node name="RevStuff" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+
+[node name="Revenue" type="Label" parent="MarginContainer/Background/Report/RevStuff"]
+layout_mode = 2
+text = "Revenue:"
+
+[node name="Number" type="Label" parent="MarginContainer/Background/Report/RevStuff"]
+layout_mode = 2
+text = "$XXXXXXXXXXX"
+
+[node name="ProfitStuff" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+
+[node name="Profit" type="Label" parent="MarginContainer/Background/Report/ProfitStuff"]
+layout_mode = 2
+text = "Profit:"
+
+[node name="Number" type="Label" parent="MarginContainer/Background/Report/ProfitStuff"]
+layout_mode = 2
+text = "$XXXXXXXXXXXX"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Appreciation" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Background/Report/Appreciation"]
+layout_mode = 2
+text = "APPRECIATION:"
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Background/Report/Appreciation"]
+custom_minimum_size = Vector2(600, 20)
+layout_mode = 2
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+text = "<FINAL MESSAGE GOES HERE>"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+
+[node name="Signed" type="Label" parent="MarginContainer/Background/Report/HBoxContainer"]
+layout_mode = 2
+text = "SIGNED:"
+
+[node name="BossSignature" type="TextureRect" parent="MarginContainer/Background/Report/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Background/Report"]
+layout_mode = 2
+alignment = 1
+
+[node name="Confirm" type="Button" parent="MarginContainer/Background/Report/HBoxContainer2"]
+layout_mode = 2
+text = "Confirm Report"
+
+[node name="EmployeeStuff" type="VBoxContainer" parent="MarginContainer/Background"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -23,198 +160,99 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopReport" type="VBoxContainer" parent="Background/Report"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Title" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "QUARTERLY PERFORMANCE REVIEW"
-
-[node name="Item1" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "Pleebs Quit: "
-
-[node name="Item2" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "Go-Getters Insulted:"
-
-[node name="Item3" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "Go-Getters Properly Supported:"
-
-[node name="Item4" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "Windows Broken:"
-
-[node name="Item5" type="Label" parent="Background/Report/TopReport"]
-layout_mode = 2
-text = "Casualties in the Line of Work:"
-
-[node name="HSeparator4" type="HSeparator" parent="Background/Report"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Quota" type="Label" parent="Background/Report"]
-layout_mode = 2
-text = "Quota"
-
-[node name="Revenue" type="Label" parent="Background/Report"]
-layout_mode = 2
-text = "Revenue:"
-
-[node name="Profit" type="Label" parent="Background/Report"]
-layout_mode = 2
-text = "Profit:"
-
-[node name="HSeparator3" type="HSeparator" parent="Background/Report"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Appreciation" type="HBoxContainer" parent="Background/Report"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Background/Report/Appreciation"]
-layout_mode = 2
-text = "APPRECIATION:"
-
-[node name="ProgressBar" type="ProgressBar" parent="Background/Report/Appreciation"]
-custom_minimum_size = Vector2(600, 20)
-layout_mode = 2
-step = 1.0
-value = 100.0
-show_percentage = false
-
-[node name="HSeparator2" type="HSeparator" parent="Background/Report"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Label" type="Label" parent="Background/Report"]
-layout_mode = 2
-text = "<FINAL MESSAGE GOES HERE>"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/Report"]
+[node name="Header" type="VBoxContainer" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 
-[node name="Signed" type="Label" parent="Background/Report/HBoxContainer"]
-layout_mode = 2
-text = "SIGNED:"
-
-[node name="BossSignature" type="TextureRect" parent="Background/Report/HBoxContainer"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="Background/Report"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Report"]
-layout_mode = 2
-alignment = 1
-
-[node name="Confirm" type="Button" parent="Background/Report/HBoxContainer2"]
-layout_mode = 2
-text = "Confirm Report"
-
-[node name="EmployeeStuff" type="VBoxContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Header" type="VBoxContainer" parent="Background/EmployeeStuff"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Background/EmployeeStuff/Header"]
+[node name="Label" type="Label" parent="MarginContainer/Background/EmployeeStuff/Header"]
 layout_mode = 2
 text = "Reward Your Employees!"
 
-[node name="Label2" type="Label" parent="Background/EmployeeStuff/Header"]
+[node name="Label2" type="Label" parent="MarginContainer/Background/EmployeeStuff/Header"]
 layout_mode = 2
 text = "if you want"
 
-[node name="HSeparator" type="HSeparator" parent="Background/EmployeeStuff"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PizzaParty" type="HBoxContainer" parent="Background/EmployeeStuff"]
+[node name="PizzaParty" type="HBoxContainer" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 
-[node name="PizzaParty" type="Label" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="PizzaParty" type="Label" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "Pizza Party"
 
-[node name="Button" type="Button" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="Button" type="Button" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "1/8 Slice"
 
-[node name="Button2" type="Button" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="Button2" type="Button" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "1/4 Slice"
 
-[node name="Button3" type="Button" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="Button3" type="Button" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "1/2 Slice"
 
-[node name="Button4" type="Button" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="Button4" type="Button" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "Full Slice"
 
-[node name="Button5" type="Button" parent="Background/EmployeeStuff/PizzaParty"]
+[node name="Button5" type="Button" parent="MarginContainer/Background/EmployeeStuff/PizzaParty"]
 layout_mode = 2
 text = "Individual Pizzas"
 
-[node name="GiftCards" type="HBoxContainer" parent="Background/EmployeeStuff"]
+[node name="GiftCards" type="HBoxContainer" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Label" type="Label" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "Gift Cards"
 
-[node name="Button" type="Button" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Button" type="Button" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "$5 Gift Card"
 
-[node name="Button2" type="Button" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Button2" type="Button" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "$10 Gift Card"
 
-[node name="Button3" type="Button" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Button3" type="Button" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "$15 Gift Card"
 
-[node name="Button4" type="Button" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Button4" type="Button" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "$25 Gift Card"
 
-[node name="Button5" type="Button" parent="Background/EmployeeStuff/GiftCards"]
+[node name="Button5" type="Button" parent="MarginContainer/Background/EmployeeStuff/GiftCards"]
 layout_mode = 2
 text = "$50 Gift Card"
 
-[node name="HSeparator2" type="HSeparator" parent="Background/EmployeeStuff"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="CurrentEmployees" type="VBoxContainer" parent="Background/EmployeeStuff"]
+[node name="CurrentEmployees" type="VBoxContainer" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/EmployeeStuff/CurrentEmployees"]
+[node name="Label" type="Label" parent="MarginContainer/Background/EmployeeStuff/CurrentEmployees"]
 layout_mode = 2
 text = "CURRENT EMPLOYEE REVIEW"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/EmployeeStuff/CurrentEmployees"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background/EmployeeStuff/CurrentEmployees"]
 layout_mode = 2
 
-[node name="HSeparator3" type="HSeparator" parent="Background/EmployeeStuff"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="NewEmployees" type="VBoxContainer" parent="Background/EmployeeStuff"]
+[node name="NewEmployees" type="VBoxContainer" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Background/EmployeeStuff"]
+[node name="BeginNextQuater" type="Button" parent="MarginContainer/Background/EmployeeStuff"]
 layout_mode = 2
 text = "Begin Next Quarter"
+
+[connection signal="pressed" from="MarginContainer/Background/Report/HBoxContainer2/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="MarginContainer/Background/EmployeeStuff/BeginNextQuater" to="." method="_on_begin_next_quater_pressed"]
