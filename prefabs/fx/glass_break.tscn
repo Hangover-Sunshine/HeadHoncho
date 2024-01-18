@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7jstt7hd0aqd"]
+
+[ext_resource type="Texture2D" uid="uid://japsvuwa8mlm" path="res://assets/particles/Square.png" id="1_u32k3"]
+
+[sub_resource type="Gradient" id="Gradient_e7uoe"]
+offsets = PackedFloat32Array(0.24, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Glass Break" type="CPUParticles2D"]
+emitting = false
+amount = 200
+one_shot = true
+speed_scale = 1.25
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("1_u32k3")
+emission_shape = 3
+emission_rect_extents = Vector2(24, 180)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+angle_max = 180.0
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color = Color(0.403922, 0.627451, 0.686275, 1)
+color_ramp = SubResource("Gradient_e7uoe")
