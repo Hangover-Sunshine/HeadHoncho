@@ -30,5 +30,25 @@ angular_velocity_max = 20.0
 damping_min = 10.0
 damping_max = 10.0
 scale_amount_curve = SubResource("Curve_q6pqm")
+color = Color(0.384314, 0.0823529, 0.0862745, 0.917647)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="grrrr2" type="CPUParticles2D" parent="."]
+amount = 1
+lifetime = 2.1
+preprocess = 6.6
+speed_scale = 1.5
+local_coords = true
+texture = ExtResource("1_hr5p7")
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+damping_min = 10.0
+damping_max = 10.0
+scale_amount_curve = SubResource("Curve_q6pqm")
 color = Color(0.866667, 0.278431, 0.27451, 0.917647)
 color_ramp = SubResource("Gradient_vgj3g")

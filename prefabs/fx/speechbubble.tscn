@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjqryrsyliuct"]
+[gd_scene load_steps=10 format=3 uid="uid://bjqryrsyliuct"]
 
 [ext_resource type="Texture2D" uid="uid://dm7edybck01p0" path="res://assets/particles/Convo_Player_Tile.png" id="1_whan7"]
 [ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="1_ximqg"]
@@ -20,6 +20,11 @@ particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 1
 particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_xapnj"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [node name="speechbubble" type="Node2D"]
 
@@ -133,7 +138,7 @@ initial_velocity_max = 20.0
 angular_velocity_min = -20.0
 damping_min = 10.0
 damping_max = 10.0
-color_ramp = SubResource("Gradient_vgj3g")
+color_ramp = SubResource("Gradient_xapnj")
 anim_speed_min = 2.0
 anim_speed_max = 2.0
 
@@ -153,7 +158,7 @@ initial_velocity_max = 20.0
 angular_velocity_max = 20.0
 damping_min = 10.0
 damping_max = 10.0
-color_ramp = SubResource("Gradient_vgj3g")
+color_ramp = SubResource("Gradient_xapnj")
 anim_speed_min = 2.0
 anim_speed_max = 2.0
 
@@ -175,7 +180,7 @@ initial_velocity_max = 20.0
 angular_velocity_max = 20.0
 damping_min = 10.0
 damping_max = 10.0
-color_ramp = SubResource("Gradient_vgj3g")
+color_ramp = SubResource("Gradient_xapnj")
 anim_speed_min = 2.0
 anim_speed_max = 2.0
 
@@ -196,6 +201,6 @@ initial_velocity_max = 20.0
 angular_velocity_min = -20.0
 damping_min = 10.0
 damping_max = 10.0
-color_ramp = SubResource("Gradient_vgj3g")
+color_ramp = SubResource("Gradient_xapnj")
 anim_speed_min = 2.0
 anim_speed_max = 2.0

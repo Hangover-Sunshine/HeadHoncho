@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b8et6x1mjk2b1"]
+[gd_scene load_steps=30 format=3 uid="uid://b8et6x1mjk2b1"]
 
 [ext_resource type="Texture2D" uid="uid://6uj7jlxvwh0p" path="res://assets/environment/room/Floor.png" id="1_pgfss"]
 [ext_resource type="Texture2D" uid="uid://cgg1pmjoqcah1" path="res://assets/environment/room/Wall.png" id="2_q0wws"]
@@ -27,7 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="25_ypwu6"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="26_4a7ge"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="27_3li8d"]
-[ext_resource type="PackedScene" uid="uid://crr5vjn8ws1re" path="res://prefabs/fx/blowie.tscn" id="28_0rlsn"]
+[ext_resource type="PackedScene" uid="uid://c80l62dlqnjm1" path="res://prefabs/fx/sleepy.tscn" id="28_8cmiv"]
+[ext_resource type="PackedScene" uid="uid://4gjlnqsxgjle" path="res://prefabs/fx/angry.tscn" id="29_ei0wr"]
 
 [node name="TestParticle" type="Node2D"]
 
@@ -212,4 +213,8 @@ texture = ExtResource("25_ypwu6")
 [node name="WorkerBody" parent="." instance=ExtResource("27_3li8d")]
 position = Vector2(-335, 248)
 
-[node name="Blowie" parent="." instance=ExtResource("28_0rlsn")]
+[node name="sleepy" parent="." instance=ExtResource("28_8cmiv")]
+position = Vector2(-316, 155)
+
+[node name="angry" parent="." instance=ExtResource("29_ei0wr")]
+position = Vector2(-356, 146)
