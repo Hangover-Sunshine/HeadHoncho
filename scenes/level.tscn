@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=36 format=3 uid="uid://cdpwvt5bh0s45"]
 
+[ext_resource type="Script" path="res://scripts/managers/Level.gd" id="1_mcort"]
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
 [ext_resource type="TileSet" uid="uid://gnt6xwtf6oph" path="res://assets/temp_assets/TempTileSet.tres" id="2_2j7l5"]
 [ext_resource type="Texture2D" uid="uid://6uj7jlxvwh0p" path="res://assets/environment/room/Floor.png" id="2_px1y1"]
@@ -32,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="26_e1h8f"]
 [ext_resource type="PackedScene" uid="uid://idpn7138vh6y" path="res://prefabs/seat.tscn" id="28_d7bge"]
 [ext_resource type="PackedScene" uid="uid://cqg3xqvokwoxb" path="res://prefabs/post_quarter.tscn" id="32_44aqo"]
+[ext_resource type="PackedScene" uid="uid://bgvu8xvfh7jjd" path="res://prefabs/pause_menu.tscn" id="32_nlyhd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
 vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1637, 26, 1685, 1723, 1247, 1294, 1272, 155, -1632, 12, 726, 154, -1667, 1714, 754, 1299, 577, 1292, 86, 1292, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -73, 165, 612, 159, -617, 160, -72, 1291, -595, 1294, -746, 1301, -744, 790, -608, 677, -596, 785, -1283, 1311, -1283, 790, -1291, 164, -748, 675, -749, 174, -1280, 679)
@@ -41,8 +43,11 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 40.0
 
 [node name="PizzaTower" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_mcort")
 
 [node name="Game" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("1_rjii0")
 SECONDS_PER_ROUND = 5.0
 
@@ -378,14 +383,9 @@ GROUP_DESTRESS = 90
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="PauseUI" type="Control" parent="UILayer"]
+[node name="PauseUI" parent="UILayer" instance=ExtResource("32_nlyhd")]
+process_mode = 2
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
 WINDOW_REPAIR_COST = 200

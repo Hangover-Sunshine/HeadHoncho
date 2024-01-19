@@ -1,0 +1,170 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgvu8xvfh7jjd"]
+
+[ext_resource type="Texture2D" uid="uid://r6rh7oi6ghwu" path="res://assets/temp_assets/report_bg.png" id="1_ati2x"]
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_pps3j"]
+[ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_f5lwm"]
+[ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="2_ukk43"]
+[ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="5_omud1"]
+
+[node name="PauseUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pps3j")
+
+[node name="DelayWhilePressedTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 60
+
+[node name="FadedBG" type="TextureRect" parent="MarginContainer"]
+modulate = Color(0, 0, 0, 0.235294)
+layout_mode = 2
+texture = ExtResource("1_ati2x")
+
+[node name="MainPauseMenu" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainPauseMenu"]
+layout_mode = 2
+theme = ExtResource("2_ukk43")
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MainPauseMenu"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="LandingMenu" type="HBoxContainer" parent="MarginContainer/MainPauseMenu"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainPauseMenu/LandingMenu"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = ">>>>>"
+
+[node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="Label4" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="MainSettings" type="VBoxContainer" parent="MarginContainer/MainPauseMenu/LandingMenu"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Resume" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = "RESUME"
+horizontal_alignment = 1
+
+[node name="Settings" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="QuitMenu" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = "QUIT TO MENU"
+horizontal_alignment = 1
+
+[node name="QuitGame" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = "QUIT GAME"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MainPauseMenu/LandingMenu"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+text = "<<<<<"
+
+[node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="Label4" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+theme_override_font_sizes/font_size = 36
+
+[node name="Settings" type="VBoxContainer" parent="MarginContainer/MainPauseMenu"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainPauseMenu/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/Settings/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+text = "BGM Level:"
+horizontal_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/MainPauseMenu/Settings/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme = ExtResource("5_omud1")
+placeholder_text = "100"
+editable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/MainPauseMenu/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/Settings/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_f5lwm")
+text = "SFX Level:"
+horizontal_alignment = 1
