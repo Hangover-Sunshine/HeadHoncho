@@ -20,11 +20,13 @@ extends Node2D
 var quota:int = 4000
 var quarterlyMoneyCounter:int = 0
 var appreciation:int = 100
+var broken_window_count:int = 0
 
 func _ready():
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 	SignalBus.connect("round_start", _round_start)
 	SignalBus.connect("aoe_heal", _aoe_heal)
+	SignalBus.connect("window_broken", _window_broken)
 	
 	tickTimer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
@@ -60,15 +62,31 @@ func _on_quarter_timer_timeout():
 	results["money"] = quarterlyMoneyCounter
 	results["quota"] = quota
 	results["appreciation"] = appreciation
-	results["broken_windows"] = 0
+	results["broken_windows"] = broken_window_count
 	results["worker_cost"] = WORKER_COST
+	results["dickheads_killed"] = $DickheadManager.dickheads_killed
+	results["dickheads_satisfied"] = $DickheadManager.dickheads_satisified
+	results["dickheads_removed"] = $DickheadManager.dickheads_removed
+	results["employees_quit"] = $WorkerManager.total_workers_quit
 	
 	SignalBus.emit_signal("round_over", results)
 ##
 
+func _window_broken():
+	broken_window_count += 1
+##
+
 func _round_start(starting:Dictionary):
+	broken_window_count = 0
+	$DickheadManager.dickheads_killed = 0
+	$DickheadManager.dickheads_satisified = 0
+	$DickheadManager.dickheads_removed = 0
+	$WorkerManager.total_workers_quit = 0
+	
+	quarterlyMoneyCounter = 0
 	quota = starting["quota"]
 	appreciation = starting["appreciation"]
+	
 	tickTimer.start(SECONDS_PER_TICK)
 ##
 

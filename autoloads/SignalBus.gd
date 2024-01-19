@@ -49,4 +49,4 @@ signal round_start(starting:Dictionary)
 signal round_over(results:Dictionary)
 signal too_many_workers_quit
 signal player_jumped_out_window
-
+signal window_broken

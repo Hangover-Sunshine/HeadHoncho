@@ -15,6 +15,7 @@ func _process(delta):
 	if len(bodies_in_zone) > 0 and glass_shattered == false:
 		glass_shattered = true
 		$EnvGlassTest.visible = false
+		SignalBus.emit_signal("window_broken")
 		# play shattering sfx
 		# play shattering particles
 	##
