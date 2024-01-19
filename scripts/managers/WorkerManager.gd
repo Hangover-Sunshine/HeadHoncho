@@ -29,6 +29,10 @@ func _ready():
 	WORKER_SEATS.get_child(0).player_can_interact(false)
 	WORKER_SEATS.get_child(1).player_can_interact(false)
 	
+	for seat in WORKER_SEATS.get_children():
+		seat.hide_icon()
+	##
+	
 	total_qrtr_workers = 2
 	
 	SignalBus.connect("dickhead_gone", _dickhead_gone)
@@ -118,9 +122,13 @@ func _dickhead_gone(_means:SignalBus.WhyDickheadLeft, worker:Worker):
 ##
 
 func _is_money_bags():
-	pass
+	for seat in WORKER_SEATS.get_children():
+		seat.show_icon()
+	##
 ##
 
 func _not_money_bags():
-	pass
+	for seat in WORKER_SEATS.get_children():
+		seat.hide_icon()
+	##
 ##

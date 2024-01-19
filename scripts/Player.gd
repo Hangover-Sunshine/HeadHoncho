@@ -71,18 +71,21 @@ func _input(event):
 		head_coords.x = 0
 		head_coords.y = 0
 		swap_to_normal_head()
+		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
 		head_coords.x = 1
 		head_coords.y = 1
 		swap_to_normal_head()
+		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
 		head_coords.x = 1
 		head_coords.y = 2
 		swap_to_fuck_head()
+		SignalBus.emit_signal("is_money_bags")
 	##
 ##
 
