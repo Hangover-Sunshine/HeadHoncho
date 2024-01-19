@@ -81,7 +81,7 @@ func _input(event):
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
 		head_coords.x = 1
-		head_coords.y = 3
+		head_coords.y = 2
 		swap_to_fuck_head()
 	##
 ##
