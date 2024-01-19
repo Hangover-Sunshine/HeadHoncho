@@ -1,5 +1,10 @@
 extends Node2D
 
+@export var maxTempColor:Color = Color.ORANGE_RED
+@export var minEnergyColor:Color = Color.BLUE_VIOLET
+
+########################################################################
+
 @onready var sprites = $Sprites
 @onready var head = $Sprites/Head
 @onready var clothes = $Sprites/Clothes
@@ -10,11 +15,37 @@ var skin_color:int = 0
 var head_id:int = 0
 var clothes_id:int = 0
 
+var default_color:Color = Color.WHITE
+
 func _ready():
 	sprites = $Sprites
 	head = $Sprites/Head
 	clothes = $Sprites/Clothes
 	hands = $Sprites/Hands
+##
+
+func control_display(stress, temp, energy, temp_color, energy_color):
+	if stress >= 40:
+		crunch_face()
+		modulate = default_color.blend(temp_color)
+	elif temp >= 25:
+		if temp > 40:
+			hot_face()
+		else:
+			neutral_face()
+		##
+		modulate = default_color.blend(temp_color)
+	elif energy < 40:
+		if energy <= 10:
+			snooze_face()
+		else:
+			neutral_face()
+		##
+		modulate = default_color.blend(energy_color)
+	else:
+		modulate = default_color
+		neutral_face()
+	##
 ##
 
 func generate_character():

@@ -52,3 +52,17 @@ static func number_to_string_formatter(number : int, separator : String = "") ->
 	# convert to single string and return 
 	return "".join(out_chars)
 ##
+
+func rand_rangei(min:int, max:int) -> int:
+	if min == max:
+		return min
+	##
+	
+	if min > max:
+		var t = min
+		min = max
+		max = t
+	##
+	
+	return randi() % (max + 1 - min) + min
+##

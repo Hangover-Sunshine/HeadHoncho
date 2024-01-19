@@ -26,6 +26,8 @@ class_name Worker
 
 #################################################################
 
+@onready var effect_bar = $EffectBar
+
 var default_color:Color = Color.WHITE
 var energy_color:Color = default_color
 var temp_color:Color = default_color
@@ -38,7 +40,7 @@ var shield_up_ticks:int = 0
 var ticks_since_last_cash:int
 var money_rate:int
 
-var curr_temp:int
+var curr_temp:int = 60
 var temp_ticks:int
 var temp_tick_rate:int
 var temp_dir:int
@@ -57,6 +59,8 @@ func _ready():
 	curr_temp = startingTemp
 	curr_energy = startingEnergy
 	curr_stress = startingStress
+	
+	$CharacterSkeleton.generate_character()
 	
 	SignalBus.connect("tick_update", tick_update_receiver)
 ##
@@ -110,6 +114,7 @@ func tick_update_receiver():
 	if money_rate > 0 and ticks_since_last_cash >= money_rate:
 		ticks_since_last_cash = 0
 		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1 + increase_money)))
+		# play particle effect
 	##
 	
 	# Only modify energy while the caffeine shield is down
@@ -141,27 +146,7 @@ func tick_update_receiver():
 		##
 	##
 	
-	if curr_stress >= 40:
-		$CharacterSkeleton.crunch_face()
-		$CharacterSkeleton.modulate = default_color.blend(temp_color)
-	elif curr_temp >= 25:
-		if curr_temp > 40:
-			$CharacterSkeleton.hot_face()
-		else:
-			$CharacterSkeleton.neutral_face()
-		##
-		$CharacterSkeleton.modulate = default_color.blend(temp_color)
-	elif curr_energy < 40:
-		if curr_energy <= 10:
-			$CharacterSkeleton.snooze_face()
-		else:
-			$CharacterSkeleton.neutral_face()
-		##
-		$CharacterSkeleton.modulate = default_color.blend(energy_color)
-	else:
-		$CharacterSkeleton.modulate = default_color
-		$CharacterSkeleton.neutral_face()
-	##
+	$CharacterSkeleton.control_display(curr_stress, curr_temp, curr_energy, temp_color, energy_color)
 	
 	if stress_tick_rate > 0:
 		stress_ticks += 1
@@ -194,6 +179,15 @@ func tick_update_receiver():
 			shield_up_ticks = 0
 		##
 	##
+	
+	$EnergyControlComponent.check_for_reset()
+	$TempControlComponent.check_for_reset()
+	$DestressControlComponent.check_for_reset()
+	
+	if $EnergyControlComponent.get_level() == 0 and $TempControlComponent.get_level() == 0 and\
+		$DestressControlComponent.get_level() == 0:
+		effect_bar.visible = false
+	##
 ##
 
 func boss_arrived():
@@ -225,34 +219,76 @@ func boss_gone():
 	##
 ##
 
-func generate_character():
-	$CharacterSkeleton.generate_character()
-##
-
 func add_energy(energy:int):
-	curr_energy += energy
-	energy_shield = true
-	shield_up_ticks = 0
+	if $EnergyControlComponent.get_level() == 0:
+		$EnergyControlComponent.generate_new_max(4, 4)
+		effect_bar.visible = true
+		effect_bar.value = 0
+	##
+	
+	var result:int = $EnergyControlComponent.tick()
+	
+	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
+	
+	if result >= 4:
+		$EnergyControlComponent.reset_tick_count()
+		$EnergyControlComponent.set_level(1)
+		
+		curr_energy += energy
+		
+		energy_shield = true
+		shield_up_ticks = 0
+		
+		if curr_energy > maxEnergy:
+			curr_energy = maxEnergy
+		##
+	##
 	
 	money_rate = get_money_gen_rate()
-	
-	if curr_energy > maxEnergy:
-		curr_energy = maxEnergy
-	##
 ##
 
 func decrease_temp(temp:int):
-	curr_temp -= temp
+	if $TempControlComponent.get_level() == 0:
+		$TempControlComponent.generate_new_max(4, 4)
+		effect_bar.visible = true
+		effect_bar.value = 0
+	##
 	
-	if curr_temp < 0:
-		curr_temp = 0
+	var result:int = $TempControlComponent.tick()
+	
+	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
+	
+	if result >= 4:
+		$TempControlComponent.reset_tick_count()
+		$TempControlComponent.set_level(1)
+		
+		curr_temp -= temp
+		
+		if curr_temp < 0:
+			curr_temp = 0
+		##
 	##
 ##
 
-func destress():
-	curr_stress -= 1
+func destress(destress:int):
+	if $DestressControlComponent.get_level() == 0:
+		$DestressControlComponent.generate_new_max(4, 4)
+		effect_bar.visible = true
+		effect_bar.value = 0
+	##
 	
-	if curr_stress < 0:
-		curr_stress = 0
+	var result:int = $DestressControlComponent.tick()
+	
+	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
+	
+	if result >= 4:
+		$DestressControlComponent.reset_tick_count()
+		$DestressControlComponent.set_level(1)
+		
+		curr_stress -= destress
+		
+		if curr_stress < 0:
+			curr_stress = 0
+		##
 	##
 ##

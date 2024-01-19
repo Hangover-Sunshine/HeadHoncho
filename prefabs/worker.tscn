@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://vgk3p2kr1llq"]
+[gd_scene load_steps=13 format=3 uid="uid://vgk3p2kr1llq"]
 
 [ext_resource type="Script" path="res://scripts/Worker.gd" id="1_ddibx"]
 [ext_resource type="Texture2D" uid="uid://dxmwparh4wkov" path="res://assets/characters/Work_Head_Tile.png" id="3_nu4uq"]
 [ext_resource type="Script" path="res://scripts/WorkerSpriteControl.gd" id="3_o3m30"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="5_6ntn5"]
+[ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="6_ejqos"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="6_jqr27"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
@@ -231,6 +232,18 @@ size = Vector2(147, 266)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ddibx")
+startingStress = 60
+
+[node name="EffectBar" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(150, 0)
+offset_left = -75.0
+offset_top = -160.0
+offset_right = 75.0
+offset_bottom = -135.0
+mouse_filter = 1
+step = 1.0
+show_percentage = false
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
 script = ExtResource("3_o3m30")
@@ -270,3 +283,12 @@ shape = SubResource("RectangleShape2D_rrvmm")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(0, -25)
 radius = 125.0
+
+[node name="EnergyControlComponent" type="Node2D" parent="."]
+script = ExtResource("6_ejqos")
+
+[node name="TempControlComponent" type="Node" parent="."]
+script = ExtResource("6_ejqos")
+
+[node name="DestressControlComponent" type="Node" parent="."]
+script = ExtResource("6_ejqos")

@@ -24,9 +24,7 @@ func _ready():
 	
 	# pre-load
 	workers[0] = $Worker
-	$Worker.generate_character()
 	workers[1] = $Worker2
-	$Worker2.generate_character()
 	
 	total_qrtr_workers = 2
 	
