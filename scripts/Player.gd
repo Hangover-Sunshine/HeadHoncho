@@ -38,7 +38,6 @@ var curr_head:Heads = Heads.BLOW_HEAD
 var use_head:bool = false
 var worker_in_path = []
 var dickheads_in_path = []
-var ticks_passed:int = 0
 
 var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
@@ -59,7 +58,6 @@ func _input(event):
 		use_head = true
 	elif event.is_action_released("head_interaction"):
 		use_head = false
-		ticks_passed = 0
 		animation_player.stop()
 	##
 	
@@ -151,8 +149,6 @@ func _on_body_exited_area(body):
 		worker_in_path.remove_at(worker_in_path.find(body))
 	##
 	if body is Dickhead:
-		if body.being_blown:
-			body.not_being_blown()
 		dickheads_in_path.remove_at(dickheads_in_path.find(body))
 	##
 ##
@@ -169,13 +165,9 @@ func swap_to_fuck_head():
 
 func _tick_update_receiver():
 	if use_head:
-		ticks_passed += 1
-		
-		if curr_head == Heads.BLOW_HEAD and ticks_passed >= COOLDOWN_TR:
-			ticks_passed = 0
-			
+		if curr_head == Heads.BLOW_HEAD:
 			for person in dickheads_in_path:
-				person.get_blown_away(global_position)
+				person.getting_blown(global_position)
 			##
 			
 			if len(dickheads_in_path) == 0:
@@ -185,9 +177,7 @@ func _tick_update_receiver():
 			##
 		##
 		
-		if curr_head == Heads.COVEFE_HEAD and ticks_passed >= ADD_ENERGY_TR:
-			ticks_passed = 0
-			
+		if curr_head == Heads.COVEFE_HEAD:
 			for person in dickheads_in_path:
 				person.burning()
 			##
@@ -199,9 +189,7 @@ func _tick_update_receiver():
 			##
 		##
 		
-		if curr_head == Heads.FUCK_HEAD and ticks_passed >= DESTRESS_TICK_RATE:
-			ticks_passed = 0
-			
+		if curr_head == Heads.FUCK_HEAD:
 			for person in dickheads_in_path:
 				person.bloviate()
 			##
@@ -212,16 +200,6 @@ func _tick_update_receiver():
 				##
 			##
 		##
-	else:
-		if curr_head == Heads.BLOW_HEAD:
-			for person in dickheads_in_path:
-				person.not_being_blown()
-			##
-		##
-		
-		if curr_head == Heads.FUCK_HEAD:
-			for person in dickheads_in_path:
-				person.not_bloviating()
 	##
 ##
 
