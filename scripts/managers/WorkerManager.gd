@@ -26,10 +26,16 @@ func _ready():
 	workers[0] = $Worker
 	workers[1] = $Worker2
 	
+	WORKER_SEATS.get_child(0).player_can_interact(false)
+	WORKER_SEATS.get_child(1).player_can_interact(false)
+	
 	total_qrtr_workers = 2
 	
 	SignalBus.connect("dickhead_gone", _dickhead_gone)
 	SignalBus.connect("worker_quit", _worker_quit)
+	SignalBus.connect("is_money_bags", _is_money_bags)
+	SignalBus.connect("not_money_bags", _not_money_bags)
+	SignalBus.connect("hire_worker", spawn_worker_at)
 ##
 
 func select_worker():
@@ -51,26 +57,21 @@ func select_worker():
 	return worker
 ##
 
-func spawn_worker():
-	var index:int = -1
-	for i in range(len(workers)):
-		if workers[i] == null:
-			index = i
-			break
+func spawn_worker_at(area):
+	var index: int = -1
+	for ci in range(len(WORKER_SEATS.get_children())):
+		if WORKER_SEATS.get_children()[ci] == area:
+			index = ci
 		##
-	##
-	
-	if index == -1:
-		return
 	##
 	
 	var wrk_inst:Worker = worker.instantiate()
 	add_child(wrk_inst)
 	
 	var seat = WORKER_SEATS.get_child(index)
-	wrk_inst.global_position = seat.global_position
+	seat.player_can_interact(false)
 	
-	wrk_inst.generate_character()
+	wrk_inst.global_position = seat.global_position
 	
 	workers[index] = wrk_inst
 	
@@ -90,6 +91,8 @@ func _worker_quit(worker:Worker):
 	var indx = workers.find(worker)
 	workers.remove_at(indx)
 	
+	WORKER_SEATS.get_child(indx).player_can_interact(true)
+	
 	total_workers_quit += 1
 	
 	if total_workers_quit / total_qrtr_workers >= quitFailPercent:
@@ -100,4 +103,12 @@ func _worker_quit(worker:Worker):
 func _dickhead_gone(_means:SignalBus.WhyDickheadLeft, worker:Worker):
 	var indx = workers.find(worker)
 	dickheads_per_worker[indx] -= 1
+##
+
+func _is_money_bags():
+	pass
+##
+
+func _not_money_bags():
+	pass
 ##

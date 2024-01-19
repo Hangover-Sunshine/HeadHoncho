@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://idpn7138vh6y"]
+
+[ext_resource type="Script" path="res://scripts/managers/SeatManager.gd" id="1_lqlbm"]
+[ext_resource type="Texture2D" uid="uid://cq7ghusepdngi" path="res://icon.svg" id="2_xaqjx"]
+[ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="3_lvql0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw4us"]
+size = Vector2(291, 205)
+
+[node name="Seat2" type="Marker2D"]
+position = Vector2(336, 242)
+script = ExtResource("1_lqlbm")
+
+[node name="HireHB" type="Area2D" parent="." groups=["seats"]]
+position = Vector2(0, 4)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HireHB"]
+position = Vector2(3.5, -33.5)
+shape = SubResource("RectangleShape2D_sw4us")
+debug_color = Color(0.432071, 2.74105e-05, 0.353608, 0.42)
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_xaqjx")
+
+[node name="EffectBar" type="ProgressBar" parent="."]
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = -73.0
+mouse_filter = 1
+step = 1.0
+show_percentage = false
+
+[node name="HireBarComponent" type="Node" parent="."]
+script = ExtResource("3_lvql0")

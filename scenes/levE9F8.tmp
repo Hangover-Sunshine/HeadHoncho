@@ -30,8 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://cthjcuhxaea3r" path="res://assets/environment/objects/cubicle/06Cubicle.png" id="24_c6yjq"]
 [ext_resource type="Texture2D" uid="uid://7ysta7e2sih2" path="res://assets/environment/objects/cubicle/07Cubicle.png" id="25_5xrco"]
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="26_e1h8f"]
-[ext_resource type="PackedScene" uid="uid://idpn7138vh6y" path="res://prefabs/seat.tscn" id="28_d7bge"]
 [ext_resource type="PackedScene" uid="uid://cqg3xqvokwoxb" path="res://prefabs/post_quarter.tscn" id="32_44aqo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw4us"]
+size = Vector2(291, 205)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
 vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1637, 26, 1685, 1723, 1247, 1294, 1272, 155, -1632, 12, 726, 154, -1667, 1714, 754, 1299, 577, 1292, 86, 1292, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -73, 165, 612, 159, -617, 160, -72, 1291, -595, 1294, -746, 1301, -744, 790, -608, 677, -596, 785, -1283, 1311, -1283, 790, -1291, 164, -748, 675, -749, 174, -1280, 679)
@@ -44,7 +46,7 @@ agent_radius = 40.0
 
 [node name="Game" type="Node2D" parent="."]
 script = ExtResource("1_rjii0")
-SECONDS_PER_ROUND = 500.0
+SECONDS_PER_ROUND = 5.0
 
 [node name="StaticEnv" type="Node2D" parent="Game"]
 
@@ -261,52 +263,82 @@ position = Vector2(1440, 1713)
 
 [node name="WorkerSeats" type="Node" parent="Game"]
 
-[node name="Seat0" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat0" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-1008, 266)
 
-[node name="Seat1" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat1" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-336, 266)
 
-[node name="Seat2" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat2" type="Marker2D" parent="Game/WorkerSeats"]
+position = Vector2(336, 242)
 
-[node name="Seat3" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat3" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(1008, 242)
 
-[node name="Seat4" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat4" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-1008, 554)
 
-[node name="Seat5" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat5" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-336, 554)
 
-[node name="Seat6" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat6" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(336, 554)
 
-[node name="Seat7" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat7" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(1008, 554)
 
-[node name="Seat8" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat8" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-1008, 866)
 
-[node name="Seat9" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat9" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-336, 866)
 
-[node name="Seat10" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat10" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(336, 866)
 
-[node name="Seat11" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat11" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(1008, 866)
 
-[node name="Seat12" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat12" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-1008, 1178)
 
-[node name="Seat13" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat13" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(-336, 1178)
 
-[node name="Seat14" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat14" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(336, 1178)
 
-[node name="Seat15" parent="Game/WorkerSeats" instance=ExtResource("28_d7bge")]
+[node name="Seat15" type="Marker2D" parent="Game/WorkerSeats"]
 position = Vector2(1008, 1178)
+
+[node name="Areas" type="Node2D" parent="Game/WorkerSeats"]
+
+[node name="Seat1" type="Area2D" parent="Game/WorkerSeats/Areas"]
+position = Vector2(-1012, 270)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/WorkerSeats/Areas/Seat1"]
+position = Vector2(3.5, -33.5)
+shape = SubResource("RectangleShape2D_sw4us")
+debug_color = Color(0.432071, 2.74105e-05, 0.353608, 0.42)
+
+[node name="Seat2" type="Area2D" parent="Game/WorkerSeats/Areas"]
+position = Vector2(-336, 270)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/WorkerSeats/Areas/Seat2"]
+position = Vector2(3.5, -33.5)
+shape = SubResource("RectangleShape2D_sw4us")
+debug_color = Color(0.432071, 2.74105e-05, 0.353608, 0.42)
+
+[node name="Seat3" type="Area2D" parent="Game/WorkerSeats/Areas"]
+position = Vector2(336, 270)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/WorkerSeats/Areas/Seat3"]
+position = Vector2(3.5, -33.5)
+shape = SubResource("RectangleShape2D_sw4us")
+debug_color = Color(0.432071, 2.74105e-05, 0.353608, 0.42)
 
 [node name="WorkerManager" type="Node2D" parent="Game" node_paths=PackedStringArray("WORKER_SEATS")]
 script = ExtResource("2_xmiae")
@@ -374,8 +406,10 @@ rotation = 4.71239
 
 [node name="Player" parent="Game" instance=ExtResource("4_2oady")]
 z_index = 10
+DESTRESS_TICK_RATE = 8
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="PauseUI" type="Control" parent="UILayer"]
 layout_mode = 3
@@ -388,7 +422,6 @@ grow_vertical = 2
 [node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
 visible = false
 WINDOW_REPAIR_COST = 200
-metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]

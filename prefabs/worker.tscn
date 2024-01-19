@@ -232,7 +232,6 @@ size = Vector2(147, 266)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ddibx")
-startingStress = 60
 
 [node name="EffectBar" type="ProgressBar" parent="."]
 visible = false

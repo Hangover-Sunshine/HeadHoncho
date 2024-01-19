@@ -29,6 +29,11 @@ signal worker_quit(worker:Worker)
 signal worker_asleep
 signal worker_awake
 
+# PLAYER SIGNALS
+signal is_money_bags
+signal not_money_bags
+signal hire_worker(area)
+
 # DICKHEAD SIGNALS
 signal dickhead_died
 signal dickhead_removed

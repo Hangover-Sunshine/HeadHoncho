@@ -7,10 +7,13 @@ class_name Player
 
 @export_group("Head Benefits")
 @export var ADD_ENERGY:int = 20
-@export var ADD_ENERGY_TR:int = 4
 @export var COOLDOWN_WORKER:int = 20
-@export var COOLDOWN_TR:int = 4
-@export var DESTRESS_TICK_RATE:int = 2
+@export var INDIV_DESTRESS:int = 20
+@export var GROUP_DESTRESS:int = 10
+
+@export_group("Head Drawbacks")
+@export var HEAL_WINDUP:Vector2i = Vector2i(6, 6)
+@export var HIRE_WINDUP:Vector2i = Vector2i(6, 8)
 
 ##########################################################################
 
@@ -25,8 +28,9 @@ class_name Player
 @onready var basic_head_area = $Rotator/BasicHeadArea
 @onready var fuck_head_zone = $Rotator/FuckHeadArea
 
+@onready var effect_bar = $EffectBar
+
 enum Heads {
-	MONEY_HEAD,		# HR mode
 	FUCK_HEAD,		# relax head
 	BLOW_HEAD,		# ac head
 	COVEFE_HEAD		# coffee head
@@ -38,6 +42,7 @@ var curr_head:Heads = Heads.BLOW_HEAD
 var use_head:bool = false
 var worker_in_path = []
 var dickheads_in_path = []
+var open_seats_nearby = []
 
 var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
@@ -88,8 +93,6 @@ func _process(delta):
 		elif curr_head == Heads.COVEFE_HEAD:
 			animation_player.play("Energizing")
 		elif curr_head == Heads.FUCK_HEAD:
-			pass
-		elif curr_head == Heads.MONEY_HEAD:
 			pass
 		##
 	else:
@@ -196,8 +199,18 @@ func _tick_update_receiver():
 			
 			if len(dickheads_in_path) == 0:
 				for person in worker_in_path:
-					person.destress()
+					person.destress(INDIV_DESTRESS)
 				##
+			##
+			
+			if len(dickheads_in_path) == 0 and len(worker_in_path) == 0:
+				for seat in open_seats_nearby:
+					seat.get_parent().hire_worker()
+				##
+			##
+			
+			if len(dickheads_in_path) == 0 and len(worker_in_path) == 0 and len(open_seats_nearby) == 0:
+				pass
 			##
 		##
 	##
@@ -214,4 +227,17 @@ func fall():
 		return true
 	##
 	return false
+##
+
+func _on_fuck_head_area_area_entered(area):
+	if area.is_in_group("seats"):
+		open_seats_nearby.append(area)
+	##
+##
+
+func _on_fuck_head_area_area_exited(area):
+	var indx = open_seats_nearby.find(area)
+	if indx != -1:
+		open_seats_nearby.remove_at(indx)
+	##
 ##
