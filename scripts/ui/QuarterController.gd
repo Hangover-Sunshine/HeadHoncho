@@ -15,7 +15,6 @@ class_name QuarterController
 #############################################################
 @onready var background = $Background
 @onready var report = $Background/Report
-@onready var employee_stuff = $Background/EmployeeStuff
 
 @onready var quit_number = $Background/Report/TopReport/HBoxContainer/Number
 @onready var insulted_number = $Background/Report/TopReport/HBoxContainer2/Number
@@ -40,7 +39,6 @@ var old_appreciation:int
 func _ready():
 	background.visible = false
 	report.visible = false
-	employee_stuff.visible = false
 	
 	SignalBus.connect("round_over", _round_over)
 ##
@@ -85,13 +83,11 @@ func _round_over(results:Dictionary):
 
 func _on_confirm_pressed():
 	report.visible = false
-	employee_stuff.visible = true
 	mouse_filter = Control.MOUSE_FILTER_PASS
 ##
 
 func _on_begin_next_quater_pressed():
 	background.visible = false
-	employee_stuff.visible = false
 	var roundStart = Utility.startingInfo.duplicate()
 	
 	roundStart["quota"] = new_quota

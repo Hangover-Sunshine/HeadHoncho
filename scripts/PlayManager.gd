@@ -26,9 +26,6 @@ func _ready():
 ##
 
 func _input(event):
-	if event.is_action_pressed("ui_right"):
-		spawn_worker()
-	##
 	if event.is_action_pressed("ui_left"):
 		_on_dickhead_timer_timeout()
 	##
