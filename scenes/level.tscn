@@ -44,7 +44,7 @@ agent_radius = 40.0
 
 [node name="Game" type="Node2D" parent="."]
 script = ExtResource("1_rjii0")
-SECONDS_PER_ROUND = 30.0
+SECONDS_PER_ROUND = 5.0
 
 [node name="StaticEnv" type="Node2D" parent="Game"]
 
