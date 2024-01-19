@@ -378,14 +378,17 @@ DESTRESS_TICK_RATE = 8
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
-WINDOW_REPAIR_COST = 200
-
-[node name="PauseUI" type="Control" parent="."]
+[node name="PauseUI" type="Control" parent="UILayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
+visible = false
+WINDOW_REPAIR_COST = 200
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]

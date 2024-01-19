@@ -329,3 +329,6 @@ layout_mode = 2
 [node name="BeginNextQuater" type="Button" parent="Background/EmployeeStuff"]
 layout_mode = 2
 text = "Begin Next Quarter"
+
+[connection signal="pressed" from="Background/Report/HBoxContainer2/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Background/EmployeeStuff/BeginNextQuater" to="." method="_on_begin_next_quater_pressed"]
