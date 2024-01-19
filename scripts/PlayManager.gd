@@ -7,6 +7,10 @@ extends Node2D
 @export_group("Dickhead Control")
 @export var dickheadTimerMinMax:Vector2 = Vector2(1, 8)
 
+@export_group("Costs")
+@export var AOE_HEAL_COST:int = 700
+@export var WORKER_COST:int = 400
+
 ############################################
 
 @onready var tickTimer = $Timers/TickUpdateTimer
@@ -20,6 +24,7 @@ var appreciation:int = 100
 func _ready():
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 	SignalBus.connect("round_start", _round_start)
+	SignalBus.connect("aoe_heal", _aoe_heal)
 	
 	tickTimer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
@@ -40,6 +45,12 @@ func _give_player_money_receiver(money:int):
 	quarterlyMoneyCounter += money
 ##
 
+func _aoe_heal(_amount:int):
+	var count:int = $WorkerManager.get_num_of_workers()
+	
+	quarterlyMoneyCounter -= 600 + AOE_HEAL_COST * count
+##
+
 func _on_quarter_timer_timeout():
 	stop_all_timers()
 	$Player.can_be_controlled = false
@@ -50,6 +61,7 @@ func _on_quarter_timer_timeout():
 	results["quota"] = quota
 	results["appreciation"] = appreciation
 	results["broken_windows"] = 0
+	results["worker_cost"] = WORKER_COST
 	
 	SignalBus.emit_signal("round_over", results)
 ##
@@ -76,10 +88,6 @@ func pause_all_timers():
 	quarter_timer.paused = true
 	tickTimer.paused = true
 	dickhead_timer.paused = true
-##
-
-func spawn_worker():
-	$WorkerManager.spawn_worker()
 ##
 
 func _on_dickhead_timer_timeout():

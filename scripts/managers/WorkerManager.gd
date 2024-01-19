@@ -82,6 +82,18 @@ func spawn_worker_at(area):
 	##
 ##
 
+func get_num_of_workers():
+	var count:int = 0
+	
+	for i in range(16):
+		if workers[i] != null:
+			count += 1
+		##
+	##
+	
+	return count
+##
+
 func _round_start():
 	total_qrtr_workers = get_child_count()
 	total_workers_quit = 0

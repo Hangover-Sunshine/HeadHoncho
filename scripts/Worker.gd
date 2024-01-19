@@ -63,6 +63,11 @@ func _ready():
 	$CharacterSkeleton.generate_character()
 	
 	SignalBus.connect("tick_update", tick_update_receiver)
+	SignalBus.connect("aoe_heal", _aoe_heal)
+##
+
+func _process(delta):
+	pass
 ##
 
 func get_money_gen_rate() -> int:
@@ -205,6 +210,16 @@ func boss_arrived():
 	if curr_temp < 40:
 		curr_temp = 40
 	##
+##
+
+func _aoe_heal(amount):
+	curr_stress -= amount
+	
+	if curr_stress < 0:
+		curr_stress = 0
+	##
+	
+	#curr_energy = 55
 ##
 
 func boss_gone():

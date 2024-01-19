@@ -14,7 +14,8 @@ var roundResults:Dictionary = {
 	"dickheads_satisfied":0,
 	"dickheads_removed":0,
 	"employees_quit":0,
-	"appreciation":0
+	"appreciation":0,
+	"worker_cost":0,
 }
 
 var startingInfo:Dictionary = {
@@ -33,6 +34,7 @@ signal worker_awake
 signal is_money_bags
 signal not_money_bags
 signal hire_worker(area)
+signal aoe_heal(amount)
 
 # DICKHEAD SIGNALS
 signal dickhead_died

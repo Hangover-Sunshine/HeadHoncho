@@ -13,7 +13,6 @@ class_name Player
 
 @export_group("Head Drawbacks")
 @export var HEAL_WINDUP:Vector2i = Vector2i(6, 6)
-@export var HIRE_WINDUP:Vector2i = Vector2i(6, 8)
 
 ##########################################################################
 
@@ -56,6 +55,7 @@ var falling:bool = false
 func _ready():
 	hands.frame_coords = Vector2i(0, skin_color)
 	SignalBus.connect("tick_update", _tick_update_receiver)
+	effect_bar.visible = false
 ##
 
 func _input(event):
@@ -210,9 +210,15 @@ func _tick_update_receiver():
 			##
 			
 			if len(dickheads_in_path) == 0 and len(worker_in_path) == 0 and len(open_seats_nearby) == 0:
-				pass
+				cure_three()
 			##
 		##
+	##
+	
+	$RaidwideHealComponent.check_for_reset()
+		
+	if $RaidwideHealComponent.get_level() == 0:
+		effect_bar.visible = false
 	##
 ##
 
@@ -239,5 +245,23 @@ func _on_fuck_head_area_area_exited(area):
 	var indx = open_seats_nearby.find(area)
 	if indx != -1:
 		open_seats_nearby.remove_at(indx)
+	##
+##
+
+func cure_three(): # is that a final fantasy reference?!
+	if $RaidwideHealComponent.get_level() == 0:
+		$RaidwideHealComponent.generate_new_max(4, 4)
+		effect_bar.visible = true
+		effect_bar.value = 0
+	##
+	
+	var result:int = $RaidwideHealComponent.tick()
+	
+	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
+	
+	if result >= 4:
+		$RaidwideHealComponent.reset_tick_count()
+		$RaidwideHealComponent.set_level(1)
+		SignalBus.emit_signal("aoe_heal", GROUP_DESTRESS)
 	##
 ##
