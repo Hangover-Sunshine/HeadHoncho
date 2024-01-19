@@ -379,6 +379,7 @@ DESTRESS_TICK_RATE = 8
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
+WINDOW_REPAIR_COST = 200
 
 [node name="PauseUI" type="Control" parent="."]
 layout_mode = 3

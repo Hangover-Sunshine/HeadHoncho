@@ -17,9 +17,10 @@ var roundResults:Dictionary = {
 	"appreciation":0
 }
 
-var roundBegins:Dictionary = {
+var startingInfo:Dictionary = {
 	"appreciation":0,
 	"new_quota":0,
+	"money":0
 }
 
 # WORKER SIGNALS
@@ -37,7 +38,7 @@ signal dickhead_saw_asleep_employee
 
 # ENIVRONMENT SIGNALS
 signal tick_update
-signal round_start
+signal round_start(starting:Dictionary)
 signal round_over(results:Dictionary)
 signal too_many_workers_quit
 signal player_jumped_out_window

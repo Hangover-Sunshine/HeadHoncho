@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bb3tu67ewp107"
-path="res://.godot/imported/Body_RobotoSerif-Medium.ttf-908975a123767fba07cbe684c7e931c6.fontdata"
+uid="uid://bmn2ym04oi33h"
+path="res://.godot/imported/Numbers_CourierPrime-Bold.ttf-a329b85449c4db0c828f20239ae8f217.fontdata"
 
 [deps]
 
-source_file="res://assets/text/text_body/Body_RobotoSerif-Medium.ttf"
-dest_files=["res://.godot/imported/Body_RobotoSerif-Medium.ttf-908975a123767fba07cbe684c7e931c6.fontdata"]
+source_file="res://assets/ui_assets/text/text_number/Numbers_CourierPrime-Bold.ttf"
+dest_files=["res://.godot/imported/Numbers_CourierPrime-Bold.ttf-a329b85449c4db0c828f20239ae8f217.fontdata"]
 
 [params]
 

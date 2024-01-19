@@ -13,7 +13,9 @@ extends Node2D
 @onready var dickhead_timer = $Timers/DickheadTimer
 @onready var quarter_timer = $Timers/QuarterTimer
 
+var quota:int = 4000
 var quarterlyMoneyCounter:int = 0
+var appreciation:int = 100
 
 func _ready():
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
@@ -48,11 +50,16 @@ func _on_quarter_timer_timeout():
 	var results = SignalBus.roundResults.duplicate()
 	
 	results["money"] = quarterlyMoneyCounter
+	results["quota"] = quota
+	results["appreciation"] = appreciation
+	results["broken_windows"] = 0
 	
 	SignalBus.emit_signal("round_over", results)
 ##
 
-func _round_start():
+func _round_start(starting:Dictionary):
+	quota = starting["quota"]
+	appreciation = starting["appreciation"]
 	tickTimer.start(SECONDS_PER_TICK)
 ##
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b27j73wad8wov"
-path="res://.godot/imported/Title_PatuaOne-Regular.ttf-ff6b13a9ef9e1805be565416d30178e3.fontdata"
+uid="uid://c8iuxvyixr8w3"
+path="res://.godot/imported/Body_RobotoSerif-MediumItalic.ttf-20a1f7eda5e16dfc30b0d5a1c2f8d812.fontdata"
 
 [deps]
 
-source_file="res://assets/text/text_title/Title_PatuaOne-Regular.ttf"
-dest_files=["res://.godot/imported/Title_PatuaOne-Regular.ttf-ff6b13a9ef9e1805be565416d30178e3.fontdata"]
+source_file="res://assets/ui_assets/text/text_body/Body_RobotoSerif-MediumItalic.ttf"
+dest_files=["res://.godot/imported/Body_RobotoSerif-MediumItalic.ttf-20a1f7eda5e16dfc30b0d5a1c2f8d812.fontdata"]
 
 [params]
 

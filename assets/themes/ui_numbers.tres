@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://daqp782utt6li"]
+
+[ext_resource type="FontFile" uid="uid://bmn2ym04oi33h" path="res://assets/ui_assets/text/text_number/Numbers_CourierPrime-Bold.ttf" id="1_iysml"]
+[ext_resource type="FontFile" uid="uid://cxeg4xkldgkqj" path="res://assets/ui_assets/text/text_number/Numbers_CourierPrime-Regular.ttf" id="1_wbyrl"]
+
+[resource]
+default_font = ExtResource("1_wbyrl")
+default_font_size = 24
+/fonts/bold = ExtResource("1_iysml")
+/fonts/regular = ExtResource("1_wbyrl")

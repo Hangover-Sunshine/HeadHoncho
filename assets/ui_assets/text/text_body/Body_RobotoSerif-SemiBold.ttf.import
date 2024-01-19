@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://d2x2mofr6urfj"
-path="res://.godot/imported/Body_RobotoSerif-SemiBoldItalic.ttf-820dbd4d8e14487e0f71ac3ca33d6db3.fontdata"
+uid="uid://0ieachuq6edo"
+path="res://.godot/imported/Body_RobotoSerif-SemiBold.ttf-63879cbbcfd4664c44bf1dc02aff3d2a.fontdata"
 
 [deps]
 
-source_file="res://assets/text/text_body/Body_RobotoSerif-SemiBoldItalic.ttf"
-dest_files=["res://.godot/imported/Body_RobotoSerif-SemiBoldItalic.ttf-820dbd4d8e14487e0f71ac3ca33d6db3.fontdata"]
+source_file="res://assets/ui_assets/text/text_body/Body_RobotoSerif-SemiBold.ttf"
+dest_files=["res://.godot/imported/Body_RobotoSerif-SemiBold.ttf-63879cbbcfd4664c44bf1dc02aff3d2a.fontdata"]
 
 [params]
 
