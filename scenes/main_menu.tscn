@@ -1,6 +1,125 @@
-[gd_scene format=3 uid="uid://bxhoa3vqfceq"]
+[gd_scene load_steps=13 format=3 uid="uid://bxhoa3vqfceq"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="1_6l7of"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_60ymw"]
+[ext_resource type="Texture2D" uid="uid://c08r3d8p443gq" path="res://assets/ui_assets/images/jam_logos/65-Overload.png" id="1_ynqc4"]
+[ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_7plfq"]
+[ext_resource type="Texture2D" uid="uid://0ib5s1uxvyu8" path="res://assets/ui_assets/images/jam_logos/good-end.png" id="2_v5lc0"]
+[ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="3_5j0ft"]
+[ext_resource type="Texture2D" uid="uid://kppdr81o1sgy" path="res://assets/ui_assets/images/jam_logos/pick-fighter.png" id="3_kx2jy"]
+[ext_resource type="Texture2D" uid="uid://b4mi13bawvmvg" path="res://assets/ui_assets/images/jam_logos/GWJ-Full-Logo-noBG.svg" id="4_lysx3"]
+[ext_resource type="Script" path="res://scripts/ui/WildJamAnim.gd" id="5_kevuc"]
+
+[sub_resource type="Animation" id="Animation_ji85k"]
+resource_name = "animation_swap"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WildJam:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JamInfo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JamInfo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WildJam:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hmln2"]
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JamInfo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JamInfo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WildJam:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WildJam:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uxqnu"]
+_data = {
+"swap_to_cards": SubResource("Animation_ji85k"),
+"swap_to_jam_logo": SubResource("Animation_hmln2")
+}
+
+[node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,6 +131,9 @@ theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
+script = ExtResource("1_60ymw")
+
+[node name="DelayWhilePressedTimer" type="Timer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -19,27 +141,173 @@ theme_override_constants/separation = 100
 
 [node name="MainMenuComponents" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Title" type="Label" parent="HBoxContainer/MainMenuComponents"]
 layout_mode = 2
+theme = ExtResource("1_6l7of")
 text = "HEAD HONCHO"
 
-[node name="Play" type="Label" parent="HBoxContainer/MainMenuComponents"]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MainMenuComponents"]
 layout_mode = 2
-text = "Press SPACE to Play"
 
-[node name="Quit" type="Label" parent="HBoxContainer/MainMenuComponents"]
+[node name="Menu" type="HBoxContainer" parent="HBoxContainer/MainMenuComponents"]
 layout_mode = 2
-text = "Press ESC to Quit"
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="LArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+text = ">>>>>"
+
+[node name="Label2" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
+layout_mode = 2
+
+[node name="Play" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Start Game"
+horizontal_alignment = 1
+
+[node name="Settings" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Quit" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Quit"
+horizontal_alignment = 1
+
+[node name="RArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
+layout_mode = 2
+text = "<<<<<"
+
+[node name="Label2" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
+layout_mode = 2
 
 [node name="Credits" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Version" type="Label" parent="HBoxContainer/Credits"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Credits"]
 layout_mode = 2
-text = "V 1.0"
+
+[node name="Version" type="Label" parent="HBoxContainer/Credits/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Version"
+
+[node name="VNum" type="Label" parent="HBoxContainer/Credits/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_5j0ft")
+text = "1.0"
 
 [node name="Team" type="Label" parent="HBoxContainer/Credits"]
 layout_mode = 2
-text = "Team Hangover Sunshine"
+theme = ExtResource("2_7plfq")
+text = "Hangover Sunshine"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="WildJamStuff" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("5_kevuc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/WildJamStuff"]
+libraries = {
+"": SubResource("AnimationLibrary_uxqnu")
+}
+
+[node name="AnimSwapTimer" type="Timer" parent="HBoxContainer/WildJamStuff"]
+wait_time = 8.0
+autostart = true
+
+[node name="WildJam" type="VBoxContainer" parent="HBoxContainer/WildJamStuff"]
+layout_mode = 2
+alignment = 1
+
+[node name="MadeDuring" type="Label" parent="HBoxContainer/WildJamStuff/WildJam"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Made During"
+horizontal_alignment = 1
+
+[node name="WildJamLogo" type="TextureRect" parent="HBoxContainer/WildJamStuff/WildJam"]
+custom_minimum_size = Vector2(600, 450)
+layout_mode = 2
+texture = ExtResource("4_lysx3")
+expand_mode = 1
+
+[node name="Date" type="Label" parent="HBoxContainer/WildJamStuff/WildJam"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Jan. 12 - Jan 21, 2024"
+horizontal_alignment = 1
+
+[node name="JamInfo" type="VBoxContainer" parent="HBoxContainer/WildJamStuff"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="ThemeLabel" type="Label" parent="HBoxContainer/WildJamStuff/JamInfo"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Theme:"
+horizontal_alignment = 1
+
+[node name="ThemeCard" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo"]
+custom_minimum_size = Vector2(600, 168)
+layout_mode = 2
+texture = ExtResource("1_ynqc4")
+expand_mode = 1
+
+[node name="SupportedCards" type="Label" parent="HBoxContainer/WildJamStuff/JamInfo"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+text = "Wildcards Added:"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="HBoxContainer/WildJamStuff/JamInfo"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Card1" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo/Cards"]
+clip_contents = true
+custom_minimum_size = Vector2(284, 400)
+layout_mode = 2
+texture = ExtResource("2_v5lc0")
+expand_mode = 1
+
+[node name="Card2" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo/Cards"]
+clip_contents = true
+custom_minimum_size = Vector2(284, 400)
+layout_mode = 2
+texture = ExtResource("3_kx2jy")
+expand_mode = 1
+
+[connection signal="timeout" from="HBoxContainer/WildJamStuff/AnimSwapTimer" to="HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]

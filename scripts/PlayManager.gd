@@ -55,7 +55,6 @@ func _aoe_heal(_amount:int):
 
 func _on_quarter_timer_timeout():
 	stop_all_timers()
-	$Player.can_be_controlled = false
 	
 	var results = SignalBus.roundResults.duplicate()
 	
@@ -69,6 +68,7 @@ func _on_quarter_timer_timeout():
 	results["dickheads_removed"] = $DickheadManager.dickheads_removed
 	results["employees_quit"] = $WorkerManager.total_workers_quit
 	
+	get_tree().paused = true
 	SignalBus.emit_signal("round_over", results)
 ##
 

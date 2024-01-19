@@ -87,6 +87,7 @@ func _on_confirm_pressed():
 ##
 
 func _on_begin_next_quater_pressed():
+	get_tree().paused = false
 	background.visible = false
 	var roundStart = Utility.startingInfo.duplicate()
 	

@@ -3,6 +3,8 @@ extends Control
 @onready var landing_menu = $MarginContainer/MainPauseMenu/LandingMenu
 @onready var quit_game = $MarginContainer/MainPauseMenu/LandingMenu/MainSettings/QuitGame
 
+var paused:bool = false
+
 var arrows = []
 
 var platform = ""
@@ -24,6 +26,8 @@ func _ready():
 		arrows.append([left[ai], right[ai]])
 	##
 	
+	visible = false
+	
 	# hide quit game on web -- doesn't really make sense
 	if platform == "Web":
 		quit_game.visible = false
@@ -40,6 +44,10 @@ func pause_pressed():
 ##
 
 func _input(event):
+	if paused == false:
+		return
+	##
+	
 	if event.is_action_pressed("up"):
 		up_pressed = true
 		$DelayWhilePressedTimer.stop()
@@ -55,6 +63,10 @@ func _input(event):
 ##
 
 func _process(_delta):
+	if paused == false:
+		return
+	##
+	
 	if up_pressed and $DelayWhilePressedTimer.is_stopped():
 		move_arrows_up()
 		$DelayWhilePressedTimer.start()
