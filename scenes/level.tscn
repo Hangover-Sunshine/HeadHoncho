@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=37 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/managers/Level.gd" id="1_mcort"]
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://idpn7138vh6y" path="res://prefabs/seat.tscn" id="28_d7bge"]
 [ext_resource type="PackedScene" uid="uid://cqg3xqvokwoxb" path="res://prefabs/post_quarter.tscn" id="32_44aqo"]
 [ext_resource type="PackedScene" uid="uid://bgvu8xvfh7jjd" path="res://prefabs/pause_menu.tscn" id="32_nlyhd"]
+[ext_resource type="PackedScene" uid="uid://c768x53t75yj2" path="res://prefabs/game_over_screen.tscn" id="35_rvdem"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
 vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1637, 26, 1685, 1723, 1247, 1294, 1272, 155, -1632, 12, 726, 154, -1667, 1714, 754, 1299, 577, 1292, 86, 1292, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -73, 165, 612, 159, -617, 160, -72, 1291, -595, 1294, -746, 1301, -744, 790, -608, 677, -596, 785, -1283, 1311, -1283, 790, -1291, 164, -748, 675, -749, 174, -1280, 679)
@@ -391,6 +392,8 @@ visible = false
 process_mode = 2
 WINDOW_REPAIR_COST = 200
 metadata/_edit_use_anchors_ = true
+
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("35_rvdem")]
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]

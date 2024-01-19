@@ -13,7 +13,7 @@ extends Node2D
 
 ############################################
 
-@onready var tickTimer = $Timers/TickUpdateTimer
+@onready var tick_timer = $Timers/TickUpdateTimer
 @onready var dickhead_timer = $Timers/DickheadTimer
 @onready var quarter_timer = $Timers/QuarterTimer
 
@@ -28,19 +28,13 @@ func _ready():
 	SignalBus.connect("aoe_heal", _aoe_heal)
 	SignalBus.connect("window_broken", _window_broken)
 	
-	tickTimer.start(SECONDS_PER_TICK)
+	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
-##
-
-func _input(event):
-	if event.is_action_pressed("ui_left"):
-		_on_dickhead_timer_timeout()
-	##
 ##
 
 func _on_tick_update_timer_timeout():
 	SignalBus.emit_signal("tick_update")
-	tickTimer.start(SECONDS_PER_TICK)
+	tick_timer.start(SECONDS_PER_TICK)
 ##
 
 func _give_player_money_receiver(money:int):
@@ -87,24 +81,25 @@ func _round_start(starting:Dictionary):
 	quota = starting["quota"]
 	appreciation = starting["appreciation"]
 	
-	tickTimer.start(SECONDS_PER_TICK)
+	tick_timer.start(SECONDS_PER_TICK)
+	quarter_timer.start(SECONDS_PER_ROUND)
 ##
 
 func stop_all_timers():
 	quarter_timer.stop()
-	tickTimer.stop()
+	tick_timer.stop()
 	dickhead_timer.stop()
 ##
 
 func unpause_all_timers():
 	quarter_timer.paused = false
-	tickTimer.paused = false
+	tick_timer.paused = false
 	dickhead_timer.paused = false
 ##
 
 func pause_all_timers():
 	quarter_timer.paused = true
-	tickTimer.paused = true
+	tick_timer.paused = true
 	dickhead_timer.paused = true
 ##
 

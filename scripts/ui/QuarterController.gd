@@ -2,6 +2,7 @@ extends Control
 class_name QuarterController
 
 @export var QUOTA_GROWTH:float = 0.4
+@export var QUOTAS_TO_SURVIVE:int = 4
 
 @export_group("Monetary Costs")
 @export var WINDOW_REPAIR_COST:int = 400
@@ -35,6 +36,8 @@ var round_results:Dictionary
 var new_quota:int
 var new_appreciation:int
 var old_appreciation:int
+
+var quotas_survived:int = 0
 
 func _ready():
 	background.visible = false
@@ -83,18 +86,25 @@ func _round_over(results:Dictionary):
 
 func _on_confirm_pressed():
 	report.visible = false
-	mouse_filter = Control.MOUSE_FILTER_PASS
-##
-
-func _on_begin_next_quater_pressed():
 	get_tree().paused = false
 	background.visible = false
-	var roundStart = Utility.startingInfo.duplicate()
+	
+	var roundStart = SignalBus.startingInfo.duplicate()
 	
 	roundStart["quota"] = new_quota
 	roundStart["appreciation"] = new_appreciation
 	
-	SignalBus.emit_signal("round_start", roundStart)
+	quotas_survived += 1
+	
+	if new_appreciation != 0 and quotas_survived < QUOTAS_TO_SURVIVE:
+		SignalBus.emit_signal("round_start", roundStart)
+	elif new_appreciation == 0:
+		SignalBus.emit_signal("player_fired")
+	elif quotas_survived == QUOTAS_TO_SURVIVE:
+		SignalBus.emit_signal("player_survived")
+	##
+	
+	mouse_filter = Control.MOUSE_FILTER_PASS
 ##
 
 func _grow_quota(curr_quota:int) -> int:

@@ -47,6 +47,9 @@ signal dickhead_saw_asleep_employee
 signal tick_update
 signal round_start(starting:Dictionary)
 signal round_over(results:Dictionary)
+signal window_broken
+
 signal too_many_workers_quit
 signal player_jumped_out_window
-signal window_broken
+signal player_fired
+signal player_survived
