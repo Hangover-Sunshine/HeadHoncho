@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://cye47hnqb5ern"]
+
+[ext_resource type="PackedScene" uid="uid://cuv7yfdhbqfw1" path="res://prefabs/fx/fire.tscn" id="1_fwcou"]
+[ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="2_quium"]
+[ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="3_l5eq2"]
+
+[node name="Fireball" type="Node2D"]
+
+[node name="Fire" parent="." instance=ExtResource("1_fwcou")]
+emitting = false
+amount = 40
+one_shot = true
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+tangential_accel_min = -200.0
+tangential_accel_max = 200.0
+
+[node name="Dots" parent="." instance=ExtResource("1_fwcou")]
+emitting = false
+amount = 40
+one_shot = true
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+tangential_accel_min = -200.0
+tangential_accel_max = 200.0
+scale_amount_min = 0.1
+
+[node name="Kisses" parent="." instance=ExtResource("1_fwcou")]
+position = Vector2(0, -25)
+emitting = false
+amount = 50
+one_shot = true
+texture = ExtResource("2_quium")
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+tangential_accel_min = -200.0
+tangential_accel_max = 200.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+
+[node name="Hugs" parent="." instance=ExtResource("1_fwcou")]
+position = Vector2(0, -25)
+emitting = false
+amount = 50
+one_shot = true
+texture = ExtResource("3_l5eq2")
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+tangential_accel_min = -200.0
+tangential_accel_max = 200.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+
+[node name="Dots2" parent="." instance=ExtResource("1_fwcou")]
+position = Vector2(0, 10)
+emitting = false
+amount = 40
+one_shot = true
+emission_rect_extents = Vector2(50, 20)
+spread = 180.0
+tangential_accel_min = -200.0
+tangential_accel_max = 200.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5

@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhpgxgattwfkv"]
+
+[ext_resource type="Texture2D" uid="uid://bxd6u5nan8yq" path="res://assets/particles/HireMe.png" id="1_mac4j"]
+
+[sub_resource type="Animation" id="Animation_3fyxg"]
+resource_name = "No_Anime"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HireMe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q1ptv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HireMe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iw7t8"]
+resource_name = "Hover"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HireMe:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -15), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_in8im"]
+_data = {
+"Hover": SubResource("Animation_iw7t8"),
+"No_Anime": SubResource("Animation_3fyxg"),
+"RESET": SubResource("Animation_q1ptv")
+}
+
+[node name="HireMe" type="Node2D"]
+
+[node name="HireMe" type="Sprite2D" parent="."]
+texture = ExtResource("1_mac4j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_in8im")
+}
