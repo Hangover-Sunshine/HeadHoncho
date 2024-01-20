@@ -1,0 +1,273 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmr1knn1uva5v"]
+
+[ext_resource type="Texture2D" uid="uid://dad3n67m44arx" path="res://assets/particles/Cloud1.png" id="1_nwjxm"]
+[ext_resource type="Texture2D" uid="uid://ci2k4bqcuf07y" path="res://assets/particles/Cloud2.png" id="2_xhksj"]
+[ext_resource type="Texture2D" uid="uid://3og6gdfeixu7" path="res://assets/particles/Cloud3.png" id="3_qmd53"]
+[ext_resource type="Texture2D" uid="uid://8q06cfk7l1uj" path="res://assets/particles/Cloud4.png" id="4_k8x2j"]
+
+[sub_resource type="Animation" id="Animation_epqk3"]
+resource_name = "No_Anim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.67451, 0.843137, 0.886275, 1), Color(0.67451, 0.843137, 0.886275, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_thq17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.67451, 0.843137, 0.886275, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7y723"]
+resource_name = "Skybox"
+length = 120.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20, 40, 80, 120),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.745098, 0.611765, 1), Color(0.945098, 0.866667, 0.764706, 1), Color(0.67451, 0.843137, 0.886275, 1), Color(0.160784, 0.117647, 0.270588, 1), Color(1, 0.745098, 0.611765, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cu713"]
+_data = {
+"No_Anim": SubResource("Animation_epqk3"),
+"RESET": SubResource("Animation_thq17"),
+"Skybox": SubResource("Animation_7y723")
+}
+
+[node name="Sky" type="StaticBody2D"]
+show_behind_parent = true
+position = Vector2(-3000, -1400)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 6000.0
+offset_bottom = 4000.0
+color = Color(0.67451, 0.843137, 0.886275, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-364, 151)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("1_nwjxm")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(-992, 529)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("2_xhksj")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(-365, 906)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("3_qmd53")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2(-949, 1305)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("4_k8x2j")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+position = Vector2(-364, 1654)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("1_nwjxm")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D6" type="CPUParticles2D" parent="."]
+position = Vector2(-992, 2032)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("2_xhksj")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D7" type="CPUParticles2D" parent="."]
+position = Vector2(-365, 2409)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("3_qmd53")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D8" type="CPUParticles2D" parent="."]
+position = Vector2(-949, 2808)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("4_k8x2j")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D9" type="CPUParticles2D" parent="."]
+position = Vector2(-375, 3106)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("1_nwjxm")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D10" type="CPUParticles2D" parent="."]
+position = Vector2(-1003, 3484)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("2_xhksj")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CPUParticles2D11" type="CPUParticles2D" parent="."]
+position = Vector2(-376, 3861)
+amount = 5
+lifetime = 75.0
+preprocess = 75.0
+speed_scale = 2.0
+local_coords = true
+texture = ExtResource("3_qmd53")
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 100.0
+angular_velocity_min = -0.5
+angular_velocity_max = 0.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cu713")
+}

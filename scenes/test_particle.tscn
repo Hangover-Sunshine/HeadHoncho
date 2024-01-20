@@ -28,14 +28,13 @@
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="26_4a7ge"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="27_3li8d"]
 [ext_resource type="PackedScene" uid="uid://co6yrwg3b2jbu" path="res://prefabs/fx/revenue.tscn" id="28_ev53r"]
-[ext_resource type="Texture2D" uid="uid://xjy2unfmoteu" path="res://assets/particles/Clouds.png" id="29_j5dby"]
+[ext_resource type="PackedScene" uid="uid://cmr1knn1uva5v" path="res://prefabs/sky.tscn" id="29_rlen1"]
 
 [node name="TestParticle" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("26_4a7ge")]
 z_index = 10
 position = Vector2(326, 152)
-DESTRESS_TICK_RATE = 8
 
 [node name="Env" type="StaticBody2D" parent="."]
 
@@ -215,38 +214,5 @@ position = Vector2(-335, 248)
 
 [node name="Revenue" parent="." instance=ExtResource("28_ev53r")]
 
-[node name="Sky" type="StaticBody2D" parent="."]
-show_behind_parent = true
-position = Vector2(-3000, -1400)
-
-[node name="ColorRect" type="ColorRect" parent="Sky"]
-offset_right = 6000.0
-offset_bottom = 4000.0
-color = Color(0.67451, 0.843137, 0.886275, 1)
-
-[node name="Clouds1" type="Sprite2D" parent="Sky"]
-position = Vector2(917, 1715)
-texture = ExtResource("29_j5dby")
-hframes = 2
-vframes = 2
-
-[node name="Clouds2" type="Sprite2D" parent="Sky"]
-position = Vector2(1088, 1548)
-texture = ExtResource("29_j5dby")
-hframes = 2
-vframes = 2
-frame = 1
-
-[node name="Clouds3" type="Sprite2D" parent="Sky"]
-position = Vector2(1134, 1841)
-texture = ExtResource("29_j5dby")
-hframes = 2
-vframes = 2
-frame = 2
-
-[node name="Clouds4" type="Sprite2D" parent="Sky"]
-position = Vector2(917, 1987)
-texture = ExtResource("29_j5dby")
-hframes = 2
-vframes = 2
-frame = 3
+[node name="Sky" parent="." instance=ExtResource("29_rlen1")]
+visible = false
