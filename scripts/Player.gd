@@ -24,9 +24,6 @@ class_name Player
 
 @onready var rotator = $Rotator
 
-@onready var basic_head_area = $Rotator/BasicHeadArea
-@onready var fuck_head_zone = $Rotator/FuckHeadArea
-
 @onready var effect_bar = $EffectBar
 
 enum Heads {
@@ -70,21 +67,18 @@ func _input(event):
 		curr_head = Heads.BLOW_HEAD
 		head_coords.x = 0
 		head_coords.y = 0
-		swap_to_normal_head()
 		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
 		head_coords.x = 1
 		head_coords.y = 1
-		swap_to_normal_head()
 		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
 		head_coords.x = 1
 		head_coords.y = 2
-		swap_to_fuck_head()
 		SignalBus.emit_signal("is_money_bags")
 	##
 ##
@@ -157,16 +151,6 @@ func _on_body_exited_area(body):
 	if body is Dickhead:
 		dickheads_in_path.remove_at(dickheads_in_path.find(body))
 	##
-##
-
-func swap_to_normal_head():
-	$Rotator/BasicHeadArea/BasicHeadZone.disabled = false
-	$Rotator/FuckHeadArea/FuckHeadZone.disabled = true
-##
-
-func swap_to_fuck_head():
-	$Rotator/BasicHeadArea/BasicHeadZone.disabled = true
-	$Rotator/FuckHeadArea/FuckHeadZone.disabled = false
 ##
 
 func _tick_update_receiver():

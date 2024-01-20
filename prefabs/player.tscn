@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=17 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
@@ -320,9 +320,6 @@ size = Vector2(127, 125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhd1"]
 size = Vector2(578, 126)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0aei"]
-size = Vector2(430, 401)
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 26
 script = ExtResource("1_kttiw")
@@ -380,14 +377,6 @@ collision_mask = 6
 position = Vector2(280, 0)
 shape = SubResource("RectangleShape2D_lrhd1")
 
-[node name="FuckHeadArea" type="Area2D" parent="Rotator"]
-collision_mask = 6
-
-[node name="FuckHeadZone" type="CollisionShape2D" parent="Rotator/FuckHeadArea"]
-shape = SubResource("RectangleShape2D_p0aei")
-disabled = true
-debug_color = Color(0.898039, 0.298039, 0.262745, 0.419608)
-
 [node name="Pointer" parent="Rotator" instance=ExtResource("5_vvehi")]
 position = Vector2(220, 0)
 rotation = 1.5708
@@ -399,7 +388,3 @@ script = ExtResource("6_a8d5x")
 
 [connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]
 [connection signal="body_exited" from="Rotator/BasicHeadArea" to="." method="_on_body_exited_area"]
-[connection signal="area_entered" from="Rotator/FuckHeadArea" to="." method="_on_fuck_head_area_area_entered"]
-[connection signal="area_exited" from="Rotator/FuckHeadArea" to="." method="_on_fuck_head_area_area_exited"]
-[connection signal="body_entered" from="Rotator/FuckHeadArea" to="." method="_on_body_entered_area"]
-[connection signal="body_exited" from="Rotator/FuckHeadArea" to="." method="_on_body_exited_area"]
