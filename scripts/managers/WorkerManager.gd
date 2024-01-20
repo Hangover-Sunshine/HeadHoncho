@@ -9,6 +9,7 @@ class_name WorkerManager
 ####################################################
 
 @onready var worker = load("res://prefabs/worker.tscn")
+@onready var explosion = load("res://prefabs/fx/explosion.tscn")
 
 var total_qrtr_workers:int = 0
 var total_workers_quit:int = 0
@@ -114,9 +115,16 @@ func get_num_of_workers():
 
 func _worker_quit(worker:Worker):
 	var indx = workers.find(worker)
-	workers.remove_at(indx)
+	workers[indx] = null
 	
 	WORKER_SEATS.get_child(indx).player_can_interact(true)
+	
+	worker.queue_free()
+	
+	var expl_inst = explosion.instantiate()
+	get_parent().add_child(expl_inst)
+	expl_inst.global_position = WORKER_SEATS.get_child(indx).global_position
+	expl_inst.emit()
 	
 	total_workers_quit += 1
 	

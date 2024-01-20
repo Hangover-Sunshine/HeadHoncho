@@ -20,12 +20,25 @@ func _ready():
 	SignalBus.connect("dickhead_removed", _dickhead_removed)
 	SignalBus.connect("dickhead_died", _dickhead_died)
 	SignalBus.connect("round_start", _round_start)
+	SignalBus.connect("request_new_target", _request_new_target)
 	
 	var children = BURNING_NODES.get_children()
 	
 	for child in children:
 		positions.append(child.global_position)
 	##
+##
+
+func _request_new_target(dickhead:Dickhead):
+	var worker = WORKER_MANAGER.select_worker()
+	
+	# if no workers available, leave and count as removed
+	if worker == null:
+		dickheads_removed += 1
+		dickhead.unkind_leave = true
+	##
+	
+	dickhead.set_target(worker)
 ##
 
 func _round_start(_startInfo):

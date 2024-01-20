@@ -42,6 +42,7 @@ signal dickhead_removed
 signal dickhead_left
 signal dickhead_gone(means:WhyDickheadLeft, worker:Worker, dickhead:Dickhead)
 signal dickhead_saw_asleep_employee
+signal request_new_target(dickhead:Dickhead)
 
 # ENIVRONMENT SIGNALS
 signal tick_update

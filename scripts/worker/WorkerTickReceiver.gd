@@ -126,7 +126,8 @@ func tick_update_receiver():
 		##
 		
 		if curr_stress == maxStress:
-			SignalBus.emit_signal("worker_quit", self)
+			print("I QUIT!")
+			SignalBus.emit_signal("worker_quit", get_parent())
 			SignalBus.disconnect("tick_update", tick_update_receiver)
 			return
 		##

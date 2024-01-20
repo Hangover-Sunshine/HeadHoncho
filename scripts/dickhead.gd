@@ -44,6 +44,7 @@ func _ready():
 	$CharacterSkeleton.generate_character()
 	
 	SignalBus.connect("tick_update", _tick_update)
+	SignalBus.connect("worker_quit", _worker_quit)
 	
 	effect_bar.visible = false
 	effect_bar.value = 0
@@ -55,6 +56,12 @@ func leaving():
 
 func is_interacting_with_player():
 	return effect_bar.visible
+##
+
+func _worker_quit(worker:Worker):
+	if target == worker:
+		emit_signal("request_new_target", self)
+	##
 ##
 
 func _tick_update():
