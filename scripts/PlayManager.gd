@@ -33,6 +33,12 @@ func _ready():
 	quarter_timer.start(SECONDS_PER_ROUND)
 ##
 
+func _input(event):
+	if event.is_action_pressed("ui_left"):
+		$DickheadManager.spawn_dickhead()
+	##
+##
+
 func _on_tick_update_timer_timeout():
 	SignalBus.emit_signal("tick_update")
 	tick_timer.start(SECONDS_PER_TICK)

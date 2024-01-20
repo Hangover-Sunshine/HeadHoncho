@@ -70,12 +70,17 @@ func _ready():
 
 func _tick_update():
 	if falling == false:
-		#if unkind_leave == false and kind_leave == false and _dist_to_target() < 25 \
-			#and indisposed == false:
-			##if arrived == false:
-				##arrived = true
-				##target.boss_arrived()
+		if nav_agent.is_navigation_finished():
+			print('hello there')
+		if nav_agent.is_navigation_finished() and blow_level == 0 and burning_level == 0 and\
+			bloviating_level == 0:
+			if arrived == false:
+				arrived = true
+				target.boss_arrived()
 			##
+		elif blow_level != 0 or burning_level != 0 or bloviating_level != 0 and arrived:
+			target.boss_gone()
+			arrived = false
 		##
 		
 		if unkind_leave == true and nav_agent.is_navigation_finished():
