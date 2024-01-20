@@ -8,6 +8,10 @@ extends Node
 @onready var temperature_processor:AbilityTickProcessor = $TemperatureProcessor
 @onready var stress_processor:AbilityTickProcessor = $StressProcessor
 
+@onready var sleepy = $"../Sleepy"
+@onready var bad_performance = $"../BadPerformance"
+@onready var good_performance = $"../GoodPerformance"
+
 ##################################################
 
 var default_color:Color = Color.WHITE
@@ -55,7 +59,21 @@ func _ready():
 	maxTempColor = get_parent().maxTempColor
 	minEnergyColor = get_parent().minEnergyColor
 	
+	money_processor.set_max(_get_money_gen_rate())
+	
 	SignalBus.connect("tick_update", tick_update_receiver)
+##
+
+func _process(_delta):
+	if money_processor.get_max() == 0:
+		if sleepy.is_emitting() == false:
+			sleepy.emit()
+		##
+	else:
+		if sleepy.is_emitting():
+			sleepy.stop_emitting()
+		##
+	##
 ##
 
 func tick_update_receiver():
@@ -97,17 +115,23 @@ func tick_update_receiver():
 		##
 	##
 	
-	character_skeleton.control_display(curr_stress, curr_temp, curr_energy, temp_color, energy_color)
-	
 	if stress_processor.get_max() > 0 and stress_processor.tick():
-		SignalBus.emit_signal("worker_quit", self)
-		SignalBus.disconnect("tick_update", tick_update_receiver)
+		stress_processor.reset_tick_count()
 		
-		# TODO: other things
+		curr_stress += 1
 		
-		# BAIL! --> worker does nothing else and leaves
-		return
+		if curr_stress % 4 == 0:
+			$"../BadPerformance".emitting = true
+		##
+		
+		if curr_stress == maxStress:
+			SignalBus.emit_signal("worker_quit", self)
+			SignalBus.disconnect("tick_update", tick_update_receiver)
+			return
+		##
 	##
+	
+	character_skeleton.control_display(curr_stress, curr_temp, curr_energy, temp_color, energy_color)
 	
 	stress_processor.set_max(_get_stress_rate())
 	
@@ -117,6 +141,10 @@ func tick_update_receiver():
 		energy_shield = false
 		shield_processor.reset_tick_count()
 	##
+##
+
+func covefe_fed():
+	money_processor.set_max(_get_money_gen_rate())
 ##
 
 func _get_stress_rate() -> int:

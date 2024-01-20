@@ -136,6 +136,7 @@ func apply_blowie_effect():
 
 func apply_covefe_effect():
 	$TickReceiver.curr_energy += ENERGY_INCREASE_EFFECT
+	$TickReceiver.covefe_fed()
 	
 	$TickReceiver.energy_shield = true
 	
@@ -146,6 +147,10 @@ func apply_covefe_effect():
 
 func apply_moneybags_effect():
 	$TickReceiver.curr_stress -= 1
+	
+	if $TickReceiver.curr_stress > 0 and $TickReceiver.curr_stress % 4 == 0:
+		$GoodPerformance.emitting = true
+	##
 	
 	if $TickReceiver.curr_stress < 0:
 		$TickReceiver.curr_stress = 0

@@ -5,10 +5,14 @@ extends Node2D
 
 ########################################################################
 
+@onready var animation_player = $AnimationPlayer
 @onready var sprites = $Sprites
 @onready var head = $Sprites/Head
 @onready var clothes = $Sprites/Clothes
 @onready var hands = $Sprites/Hands
+@onready var tick_receiver = $"../TickReceiver"
+
+########################################################################
 
 # 0 = white, 1 = pink, 2 = brown
 var skin_color:int = 0
@@ -22,6 +26,29 @@ func _ready():
 	head = $Sprites/Head
 	clothes = $Sprites/Clothes
 	hands = $Sprites/Hands
+##
+
+func _process(_delta):
+	if tick_receiver.curr_energy > 24:
+		if animation_player.current_animation != "All_Walk":
+			animation_player.play("All_Walk")
+		##
+	else:
+		if animation_player.current_animation != "All_Idle":
+			animation_player.play("All_Idle")
+		##
+	##
+	
+	if tick_receiver.curr_energy >= 25 and tick_receiver.curr_energy <= 39:
+		animation_player.speed_scale = 0.25
+	if tick_receiver.curr_energy >= 40 and tick_receiver.curr_energy <= 60:
+		animation_player.speed_scale = 0.5
+	elif (tick_receiver.curr_energy >= 61 and tick_receiver.curr_energy <= 74) or\
+		tick_receiver.curr_energy <= 10:
+		animation_player.speed_scale = 1.0
+	elif tick_receiver.curr_energy >= 75:
+		animation_player.speed_scale = 1.5
+	##
 ##
 
 func control_display(stress, temp, energy, temp_color, energy_color):
