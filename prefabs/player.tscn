@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=20 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
+[ext_resource type="Script" path="res://scripts/player/CharAnimControl.gd" id="2_yl17p"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="5_4os4g"]
-[ext_resource type="PackedScene" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
+[ext_resource type="PackedScene" uid="uid://b4bgd0lei1akk" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
 [ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="6_a8d5x"]
+[ext_resource type="Script" path="res://scripts/player/Rotator.gd" id="6_i0pko"]
 [ext_resource type="Texture2D" uid="uid://dejfu1cvdy4o" path="res://assets/characters/PC_Head_Tile.png" id="6_l5rt7"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
@@ -111,23 +113,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_clvuh"]
-resource_name = "Blowing"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprites/Head:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(1, 0), Vector2i(0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7my7c"]
@@ -307,11 +292,31 @@ tracks/5/keys = {
 _data = {
 "All_Idle": SubResource("Animation_c2kgx"),
 "All_Walk": SubResource("Animation_j7b0f"),
-"Blowing": SubResource("Animation_clvuh"),
 "Energizing": SubResource("Animation_7my7c"),
 "Falling": SubResource("Animation_50626"),
 "No_Anim": SubResource("Animation_tg0l3"),
 "RESET": SubResource("Animation_r5r1s")
+}
+
+[sub_resource type="Animation" id="Animation_oh24e"]
+resource_name = "blowie"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Head:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.2, 0),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm3ut"]
+_data = {
+"blowie": SubResource("Animation_oh24e")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfjwv"]
@@ -334,6 +339,7 @@ step = 1.0
 show_percentage = false
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
+script = ExtResource("2_yl17p")
 
 [node name="AllCharacters" type="Node" parent="CharacterSkeleton"]
 
@@ -341,6 +347,11 @@ show_percentage = false
 root_node = NodePath("../AllCharacters")
 libraries = {
 "": SubResource("AnimationLibrary_c4ws5")
+}
+
+[node name="HeadAnims" type="AnimationPlayer" parent="CharacterSkeleton"]
+libraries = {
+"": SubResource("AnimationLibrary_jm3ut")
 }
 
 [node name="Sprites" type="Node2D" parent="CharacterSkeleton"]
@@ -368,9 +379,11 @@ scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_sfjwv")
 
 [node name="Rotator" type="Node2D" parent="."]
+position = Vector2(0, -96)
+script = ExtResource("6_i0pko")
 
 [node name="BasicHeadArea" type="Area2D" parent="Rotator"]
-position = Vector2(70, 0)
+position = Vector2(75, 0)
 collision_mask = 6
 
 [node name="BasicHeadZone" type="CollisionShape2D" parent="Rotator/BasicHeadArea"]
@@ -378,7 +391,8 @@ position = Vector2(280, 0)
 shape = SubResource("RectangleShape2D_lrhd1")
 
 [node name="Pointer" parent="Rotator" instance=ExtResource("5_vvehi")]
-position = Vector2(220, 0)
+z_index = 100
+position = Vector2(137, 0)
 rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]

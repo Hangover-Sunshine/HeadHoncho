@@ -20,8 +20,6 @@ class_name Player
 @onready var hands = $CharacterSkeleton/Sprites/Hands
 @onready var clothes = $CharacterSkeleton/Sprites/Clothes
 
-@onready var animation_player = $CharacterSkeleton/AnimationPlayer
-
 @onready var rotator = $Rotator
 
 @onready var effect_bar = $EffectBar
@@ -42,14 +40,13 @@ var open_seats_nearby = []
 
 var direction:Vector2 = Vector2.ZERO
 var last_key_dir:Vector2 = Vector2(1, 0)
-var last_key_dir_save:Vector2
 
-var head_coords:Vector2i = Vector2i.ZERO
 var skin_color:int = 0
 
 var falling:bool = false
 
 func _ready():
+	$CharacterSkeleton.set_head(curr_head)
 	hands.frame_coords = Vector2i(0, skin_color)
 	SignalBus.connect("tick_update", _tick_update_receiver)
 	effect_bar.visible = false
@@ -60,40 +57,22 @@ func _input(event):
 		use_head = true
 	elif event.is_action_released("head_interaction"):
 		use_head = false
-		animation_player.stop()
 	##
 	
 	if event.is_action_pressed("blow_head_hk") and use_head == false:
 		curr_head = Heads.BLOW_HEAD
-		head_coords.x = 0
-		head_coords.y = 0
+		$CharacterSkeleton.set_head(curr_head)
 		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		curr_head = Heads.COVEFE_HEAD
-		head_coords.x = 1
-		head_coords.y = 1
+		$CharacterSkeleton.set_head(curr_head)
 		SignalBus.emit_signal("not_money_bags")
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		curr_head = Heads.FUCK_HEAD
-		head_coords.x = 1
-		head_coords.y = 2
+		$CharacterSkeleton.set_head(curr_head)
 		SignalBus.emit_signal("is_money_bags")
-	##
-##
-
-func _process(delta):
-	if use_head:
-		if curr_head == Heads.BLOW_HEAD:
-			animation_player.play("Blowing", -1, 2.5)
-		elif curr_head == Heads.COVEFE_HEAD:
-			animation_player.play("Energizing")
-		elif curr_head == Heads.FUCK_HEAD:
-			pass
-		##
-	else:
-		head.frame_coords = head_coords
 	##
 ##
 
@@ -101,33 +80,12 @@ func _physics_process(delta):
 	if can_be_controlled:
 		var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
 		
-		if use_head:
-			dir = Vector2.ZERO
-		##
-		
-		if dir.length_squared() != 0:
-			if dir.x == 0:
-				if dir.y == 1:
-					rotator.rotation_degrees = 90
-				else:
-					rotator.rotation_degrees = 270
-				##
-			##
-			
-			if dir.y == 0:
-				if dir.x == 1:
-					rotator.rotation_degrees = 0
-				else:
-					rotator.rotation_degrees = 180
-				##
-			##
-		##
-		
 		velocity = dir * SPEED
 		
 		if use_head:
 			velocity = Vector2.ZERO
 		##
+		
 	else:
 		velocity = Vector2.ZERO
 	##
