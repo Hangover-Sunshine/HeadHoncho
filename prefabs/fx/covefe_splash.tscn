@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://iil88wk5shte"]
+[gd_scene load_steps=7 format=3 uid="uid://cihm3us2i6yna"]
 
 [ext_resource type="Texture2D" uid="uid://kibql713xou1" path="res://assets/particles/Drop.png" id="1_86nkp"]
-[ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="2_rode4"]
+[ext_resource type="Script" path="res://scripts/fx_control/CovefeSplashControl.gd" id="1_yd1iy"]
+[ext_resource type="Gradient" path="res://assets/particles/SplashGradiant.tres" id="2_rode4"]
 [ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="3_t7ivi"]
 [ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="4_kpmi3"]
 [ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="5_dxygl"]
 
 [node name="covefe_splash" type="Node2D"]
+script = ExtResource("1_yd1iy")
 
 [node name="covefe_back" type="CPUParticles2D" parent="."]
 rotation = -1.5708

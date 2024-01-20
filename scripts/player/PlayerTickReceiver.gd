@@ -68,6 +68,7 @@ func _coffee_head_process():
 	##
 	
 	covefe.reset_tick_count()
+	character_skeleton.spill = true
 	
 	# Notify it's time to apply the effect
 	for thing in curr_tick_array:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjqryrsyliuct"]
+[gd_scene load_steps=11 format=3 uid="uid://bplucsmub3rh"]
 
+[ext_resource type="Script" path="res://scripts/fx_control/SpeechBubbleControl.gd" id="1_qr321"]
 [ext_resource type="Texture2D" uid="uid://dm7edybck01p0" path="res://assets/particles/Convo_Player_Tile.png" id="1_whan7"]
 [ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="1_ximqg"]
 [ext_resource type="Texture2D" uid="uid://bn4evs6smm2jy" path="res://assets/particles/Convo_Dick_Tile.png" id="2_2i3qa"]
@@ -27,6 +28,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 
 metadata/_snap_enabled = true
 
 [node name="speechbubble" type="Node2D"]
+script = ExtResource("1_qr321")
 
 [node name="Circles" type="CPUParticles2D" parent="."]
 position = Vector2(0, 20)

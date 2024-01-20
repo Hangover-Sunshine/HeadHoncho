@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=27 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Script" path="res://scripts/player/PlayerTickReceiver.gd" id="2_dh1dv"]
@@ -10,7 +10,11 @@
 [ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="6_a8d5x"]
 [ext_resource type="Script" path="res://scripts/player/Rotator.gd" id="6_i0pko"]
 [ext_resource type="Texture2D" uid="uid://dejfu1cvdy4o" path="res://assets/characters/PC_Head_Tile.png" id="6_l5rt7"]
+[ext_resource type="PackedScene" uid="uid://bprkv5jjdshm6" path="res://prefabs/fx/revenue.tscn" id="8_ealyo"]
+[ext_resource type="PackedScene" uid="uid://bplucsmub3rh" path="res://prefabs/fx/speechbubble.tscn" id="9_rhubg"]
 [ext_resource type="PackedScene" uid="uid://bntoutgm3b5dd" path="res://prefabs/fx/blowie.tscn" id="10_kowgg"]
+[ext_resource type="PackedScene" uid="uid://dsw0qvad2cwpn" path="res://prefabs/fx/cooking.tscn" id="11_llhnj"]
+[ext_resource type="PackedScene" uid="uid://cihm3us2i6yna" path="res://prefabs/fx/covefe_splash.tscn" id="12_i4itq"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
 resource_name = "All_Idle"
@@ -356,6 +360,10 @@ show_percentage = false
 [node name="CharacterSkeleton" type="Node2D" parent="."]
 script = ExtResource("2_yl17p")
 
+[node name="SpillTimer" type="Timer" parent="CharacterSkeleton"]
+wait_time = 0.7
+one_shot = true
+
 [node name="AllCharacters" type="Node" parent="CharacterSkeleton"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterSkeleton"]
@@ -393,6 +401,14 @@ position = Vector2(0, 42)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_sfjwv")
 
+[node name="Revenue" parent="." instance=ExtResource("8_ealyo")]
+
+[node name="Smoke" parent="." instance=ExtResource("11_llhnj")]
+position = Vector2(0, -160)
+
+[node name="SpeechBubble" parent="." instance=ExtResource("9_rhubg")]
+position = Vector2(0, -160)
+
 [node name="Rotator" type="Node2D" parent="."]
 position = Vector2(0, -96)
 script = ExtResource("6_i0pko")
@@ -413,11 +429,15 @@ rotation = 1.5708
 [node name="Blowie" parent="Rotator" instance=ExtResource("10_kowgg")]
 position = Vector2(49, 0)
 
+[node name="CovefeSplash" parent="Rotator" instance=ExtResource("12_i4itq")]
+position = Vector2(70, 0)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="RaidwideHealComponent" type="Node" parent="."]
 script = ExtResource("6_a8d5x")
 
+[connection signal="timeout" from="CharacterSkeleton/SpillTimer" to="CharacterSkeleton" method="_on_spill_timer_timeout"]
 [connection signal="area_entered" from="Rotator/BasicHeadArea" to="." method="_on_basic_head_area_entered"]
 [connection signal="area_exited" from="Rotator/BasicHeadArea" to="." method="_on_basic_head_area_exited"]
 [connection signal="body_entered" from="Rotator/BasicHeadArea" to="." method="_on_body_entered_area"]
