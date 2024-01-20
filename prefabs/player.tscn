@@ -1,14 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://clr22c4ljd5n0"]
+[gd_scene load_steps=23 format=3 uid="uid://clr22c4ljd5n0"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_kttiw"]
 [ext_resource type="Script" path="res://scripts/player/PlayerTickReceiver.gd" id="2_dh1dv"]
 [ext_resource type="Script" path="res://scripts/player/CharAnimControl.gd" id="2_yl17p"]
+[ext_resource type="Script" path="res://scripts/player/AbilityTickProcessor.gd" id="3_0ey3f"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="4_j6a7m"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="5_4os4g"]
 [ext_resource type="PackedScene" uid="uid://b4bgd0lei1akk" path="res://prefabs/fx/pointer.tscn" id="5_vvehi"]
 [ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="6_a8d5x"]
 [ext_resource type="Script" path="res://scripts/player/Rotator.gd" id="6_i0pko"]
 [ext_resource type="Texture2D" uid="uid://dejfu1cvdy4o" path="res://assets/characters/PC_Head_Tile.png" id="6_l5rt7"]
+[ext_resource type="PackedScene" uid="uid://bntoutgm3b5dd" path="res://prefabs/fx/blowie.tscn" id="10_kowgg"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
 resource_name = "All_Idle"
@@ -334,6 +336,15 @@ SPEED = 450.0
 [node name="TickReceiver" type="Node2D" parent="."]
 script = ExtResource("2_dh1dv")
 
+[node name="Blowie" type="Node" parent="TickReceiver"]
+script = ExtResource("3_0ey3f")
+
+[node name="Covefe" type="Node" parent="TickReceiver"]
+script = ExtResource("3_0ey3f")
+
+[node name="Moneybags" type="Node" parent="TickReceiver"]
+script = ExtResource("3_0ey3f")
+
 [node name="EffectBar" type="ProgressBar" parent="."]
 offset_left = -75.0
 offset_top = -180.0
@@ -398,6 +409,9 @@ shape = SubResource("RectangleShape2D_lrhd1")
 z_index = 100
 position = Vector2(137, 0)
 rotation = 1.5708
+
+[node name="Blowie" parent="Rotator" instance=ExtResource("10_kowgg")]
+position = Vector2(49, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

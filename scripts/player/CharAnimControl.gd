@@ -7,8 +7,16 @@ extends Node2D
 
 @onready var parent = get_parent()
 
+## Particles
+@onready var blowie = $"../Rotator/Blowie"
+##
+
 var curr_head:Player.Heads
 var head_coords:Vector2i = Vector2i.ZERO
+
+func _ready():
+	pass
+##
 
 func play_animation(flag):
 	pass
@@ -42,6 +50,7 @@ func _process(delta):
 	if parent.use_head:
 		if curr_head == Player.Heads.BLOW_HEAD:
 			head_anims.play("blowie", -1, 2.5)
+			blowie.emit()
 		elif curr_head == Player.Heads.COVEFE_HEAD:
 			pass
 		elif curr_head == Player.Heads.FUCK_HEAD:
@@ -49,5 +58,8 @@ func _process(delta):
 		##
 	else:
 		head.frame_coords = head_coords
+		if curr_head == Player.Heads.BLOW_HEAD:
+			blowie.stop_emitting()
+		##
 	##
 ##

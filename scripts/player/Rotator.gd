@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var player = get_parent()
 @onready var pointer = $Pointer
 
 var up:bool = false
@@ -55,6 +56,10 @@ func _facing(curr_facing):
 ##
 
 func _process(_delta):
+	if player.use_head or player.can_be_controlled == false:
+		return
+	##
+	
 	var prev_facing = facing
 	facing = _facing(facing)
 	

@@ -5,9 +5,11 @@ class_name Worker
 @export var startingTemp:int = 0
 @export var defaultTempModification:int = 1
 @export var maxTempurate:int = 100
+@export var TEMPERATURE_DECREASE_EFFECT:int = 20
 @export var maxTempColor:Color = Color.ORANGE_RED
 
 @export_group("Energy")
+@export var ENERGY_INCREASE_EFFECT:int = 20
 @export var startingEnergy:int = 50
 @export var defaultEnergyDecrease:int = 1
 @export var energyShieldTickCount:int = 5
@@ -64,10 +66,6 @@ func _ready():
 	
 	SignalBus.connect("tick_update", tick_update_receiver)
 	SignalBus.connect("aoe_heal", _aoe_heal)
-##
-
-func _process(delta):
-	pass
 ##
 
 func reset_worker():
@@ -191,15 +189,6 @@ func tick_update_receiver():
 			shield_up_ticks = 0
 		##
 	##
-	
-	$EnergyControlComponent.check_for_reset()
-	$TempControlComponent.check_for_reset()
-	$DestressControlComponent.check_for_reset()
-	
-	if $EnergyControlComponent.get_level() == 0 and $TempControlComponent.get_level() == 0 and\
-		$DestressControlComponent.get_level() == 0:
-		effect_bar.visible = false
-	##
 ##
 
 func boss_arrived():
@@ -225,8 +214,6 @@ func _aoe_heal(amount):
 	if curr_stress < 0:
 		curr_stress = 0
 	##
-	
-	#curr_energy = 55
 ##
 
 func boss_gone():
@@ -241,76 +228,42 @@ func boss_gone():
 	##
 ##
 
-func add_energy(energy:int):
-	if $EnergyControlComponent.get_level() == 0:
-		$EnergyControlComponent.generate_new_max(4, 4)
-		effect_bar.visible = true
-		effect_bar.value = 0
-	##
-	
-	var result:int = $EnergyControlComponent.tick()
-	
-	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
-	
-	if result >= 4:
-		$EnergyControlComponent.reset_tick_count()
-		$EnergyControlComponent.set_level(1)
-		
-		curr_energy += energy
-		
-		energy_shield = true
-		shield_up_ticks = 0
-		
-		if curr_energy > maxEnergy:
-			curr_energy = maxEnergy
-		##
-	##
-	
-	money_rate = get_money_gen_rate()
+func show_effect_bar():
+	effect_bar.visible = true
 ##
 
-func decrease_temp(temp:int):
-	if $TempControlComponent.get_level() == 0:
-		$TempControlComponent.generate_new_max(4, 4)
-		effect_bar.visible = true
-		effect_bar.value = 0
-	##
+func hide_effect_bar():
+	effect_bar.value = 0
+	effect_bar.visible = false
+##
+
+func update_effect_bar(curr_val:int, max_val:int):
+	effect_bar.value = clampi((curr_val / float(max_val)) * 100, 0, 100)
+##
+
+func apply_blowie_effect():
+	curr_temp -= TEMPERATURE_DECREASE_EFFECT
 	
-	var result:int = $TempControlComponent.tick()
-	
-	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
-	
-	if result >= 4:
-		$TempControlComponent.reset_tick_count()
-		$TempControlComponent.set_level(1)
-		
-		curr_temp -= temp
-		
-		if curr_temp < 0:
-			curr_temp = 0
-		##
+	if curr_temp < 0:
+		curr_temp = 0
 	##
 ##
 
-func destress(destress:int):
-	if $DestressControlComponent.get_level() == 0:
-		$DestressControlComponent.generate_new_max(4, 4)
-		effect_bar.visible = true
-		effect_bar.value = 0
+func apply_covefe_effect():
+	curr_energy += ENERGY_INCREASE_EFFECT
+	
+	energy_shield = true
+	shield_up_ticks = 0
+	
+	if curr_energy > maxEnergy:
+		curr_energy = maxEnergy
 	##
+##
+
+func apply_moneybags_effect():
+	curr_stress -= 1
 	
-	var result:int = $DestressControlComponent.tick()
-	
-	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
-	
-	if result >= 4:
-		$DestressControlComponent.reset_tick_count()
-		$DestressControlComponent.set_level(1)
-		
-		curr_stress -= destress
-		
-		if curr_stress < 0:
-			curr_stress = 0
-		##
+	if curr_stress < 0:
+		curr_stress = 0
 	##
 ##
