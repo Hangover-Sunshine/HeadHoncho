@@ -22,6 +22,8 @@ var arrows = []
 
 var out_of_reading:bool = false
 
+var first_signal:bool = false
+
 func _ready():
 	SignalBus.connect("player_jumped_out_window", player_dies_end)
 	SignalBus.connect("player_fired", player_fired_end)
@@ -83,6 +85,11 @@ func _process(_delta):
 ##
 
 func player_dies_end():
+	if first_signal == false:
+		first_signal = true
+		return
+	##
+	
 	visible = true
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
 				"or some other reason will not be investigated. In fact, before the coroner could " +\

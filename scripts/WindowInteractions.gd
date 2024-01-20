@@ -36,6 +36,11 @@ func _process(delta):
 				body.velocity = Vector2.ZERO
 			##
 		##
+		
+		if body is Player:
+			var pos = Vector2($FallPosition.global_position.x, body.global_position.y)
+			body.global_position = lerp(body.global_position, pos, 0.2)
+		##
 	##
 	
 	for r in range(len(res)):

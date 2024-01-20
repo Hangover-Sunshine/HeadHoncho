@@ -27,6 +27,7 @@ func _ready():
 	SignalBus.connect("round_start", _round_start)
 	SignalBus.connect("aoe_heal", _aoe_heal)
 	SignalBus.connect("window_broken", _window_broken)
+	SignalBus.connect("player_jumped_out_window", _player_died)
 	
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
@@ -45,6 +46,10 @@ func _aoe_heal(_amount:int):
 	var count:int = $WorkerManager.get_num_of_workers()
 	
 	quarterlyMoneyCounter -= 600 + AOE_HEAL_COST * count
+##
+
+func _player_died():
+	stop_all_timers()
 ##
 
 func _on_quarter_timer_timeout():

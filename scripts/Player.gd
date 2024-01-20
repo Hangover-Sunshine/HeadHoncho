@@ -227,6 +227,7 @@ func _tick_update_receiver():
 
 func fall():
 	if falling == false:
+		SignalBus.emit_signal("player_jumped_out_window")
 		$CharacterSkeleton/AnimationPlayer.play("Falling")
 		falling = true
 		can_be_controlled = false

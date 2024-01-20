@@ -390,7 +390,6 @@ visible = false
 
 [node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
 process_mode = 2
-visible = false
 WINDOW_REPAIR_COST = 200
 metadata/_edit_use_anchors_ = true
 
