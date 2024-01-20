@@ -70,6 +70,13 @@ func _process(delta):
 	pass
 ##
 
+func reset_worker():
+	money_rate = 0
+	bosses_nearby = 0
+	curr_temp = saved_temp
+	curr_energy = saved_energy
+##
+
 func get_money_gen_rate() -> int:
 	var rate:int = 4
 	
@@ -118,7 +125,7 @@ func tick_update_receiver():
 	# give the player money every so often :)
 	if money_rate > 0 and ticks_since_last_cash >= money_rate:
 		ticks_since_last_cash = 0
-		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1 + increase_money)))
+		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1.0 + increase_money)))
 		# play particle effect
 	##
 	

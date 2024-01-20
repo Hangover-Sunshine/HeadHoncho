@@ -48,6 +48,7 @@ func _on_tick_update_timer_timeout():
 ##
 
 func _give_player_money_receiver(money:int):
+	print(money)
 	quarterlyMoneyCounter += money
 	PLAYER_INFO_UI.set_revenue(quarterlyMoneyCounter)
 ##

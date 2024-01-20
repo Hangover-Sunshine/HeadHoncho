@@ -48,9 +48,8 @@ func _ready():
 
 func _round_start(_startInfo):
 	for dh in range(16):
-		for dh2 in range(dickheads_per_worker[dh]):
-			workers[dh].boss_gone()
-		
+		if workers[dh] != null:
+			workers[dh].reset_worker()
 		dickheads_per_worker[dh] = 0
 	##
 	total_workers_quit = 0
