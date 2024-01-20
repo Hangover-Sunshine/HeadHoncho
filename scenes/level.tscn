@@ -52,7 +52,7 @@ script = ExtResource("1_mcort")
 process_mode = 1
 script = ExtResource("1_rjii0")
 PLAYER_INFO_UI = NodePath("../UILayer/PlayerInformation")
-SECONDS_PER_ROUND = 20.0
+SECONDS_PER_ROUND = 300.0
 
 [node name="StaticEnv" type="Node2D" parent="Game"]
 
@@ -180,12 +180,13 @@ wait_time = 0.3
 [node name="DickheadTimer" type="Timer" parent="Game/Timers"]
 one_shot = true
 
-[node name="DickheadManager" type="Node2D" parent="Game" node_paths=PackedStringArray("WORKER_MANAGER", "BURNING_NODES")]
+[node name="DickheadManager" type="Node2D" parent="Game" node_paths=PackedStringArray("WORKER_MANAGER", "BURNING_NODES", "PLAYER")]
 z_index = 8
 position = Vector2(0, 96)
 script = ExtResource("2_tqoev")
 WORKER_MANAGER = NodePath("../WorkerManager")
 BURNING_NODES = NodePath("../OnFireNodes")
+PLAYER = NodePath("../Player")
 
 [node name="OnFireNodes" type="Node2D" parent="Game"]
 

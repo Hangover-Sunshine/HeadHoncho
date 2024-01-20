@@ -37,7 +37,6 @@ func set_head(new_head):
 	##
 ##
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if parent.velocity.length_squared() != 0 and animation_player.current_animation != "All_Walk":
 		animation_player.play("All_Walk")

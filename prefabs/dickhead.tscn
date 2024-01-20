@@ -277,9 +277,9 @@ collision_layer = 4
 collision_mask = 24
 script = ExtResource("1_la0yx")
 BLOW_FORCE = 1100.0
-DRAG = 0.08
+DRAG = 0.05
 
-[node name="EffectProgress" type="ProgressBar" parent="."]
+[node name="EffectBar" type="ProgressBar" parent="."]
 visible = false
 z_index = 100
 z_as_relative = false

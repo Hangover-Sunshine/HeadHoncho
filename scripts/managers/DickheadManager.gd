@@ -3,6 +3,7 @@ class_name DickheadManager
 
 @export var WORKER_MANAGER:WorkerManager
 @export var BURNING_NODES:Node2D
+@export var PLAYER:Player
 
 ##########################################################################
 
@@ -41,6 +42,7 @@ func spawn_dickhead():
 	##
 	
 	var dh_inst:Dickhead = dickhead.instantiate()
+	dh_inst.player = PLAYER
 	add_child(dh_inst)
 	dh_inst.set_target(worker)
 ##
