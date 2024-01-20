@@ -23,9 +23,6 @@ var annoy_worker:bool = false
 var target:Worker
 var arrived:bool = false
 
-var interacting_with_player:bool = false
-var indisposed:bool = false
-
 var blowing_away:bool = false
 var dir_from_player_to_me:Vector2
 
@@ -57,7 +54,7 @@ func leaving():
 ##
 
 func is_interacting_with_player():
-	return false
+	return effect_bar.visible
 ##
 
 func _tick_update():
@@ -67,7 +64,7 @@ func _tick_update():
 				arrived = true
 				target.boss_arrived()
 			##
-		elif arrived:
+		elif is_interacting_with_player() and arrived:
 			target.boss_gone()
 			arrived = false
 		##
