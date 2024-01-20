@@ -10,6 +10,10 @@ extends Node2D
 var curr_head:Player.Heads
 var head_coords:Vector2i = Vector2i.ZERO
 
+func play_animation(flag):
+	pass
+##
+
 func set_head(new_head):
 	curr_head = new_head
 	

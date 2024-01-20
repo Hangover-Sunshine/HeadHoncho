@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl3xj7xa2klwj"]
+[gd_scene load_steps=5 format=3 uid="uid://cl3xj7xa2klwj"]
 
-[ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_hqi64"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="3_2ar0a"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="3_7c73n"]
 [ext_resource type="TileSet" uid="uid://gnt6xwtf6oph" path="res://assets/temp_assets/TempTileSet.tres" id="4_y6qi1"]
@@ -9,18 +8,11 @@
 [node name="GameScene" type="Node2D"]
 
 [node name="Game" type="Node2D" parent="."]
-script = ExtResource("1_hqi64")
-tickUpdateTimer = 0.8
 
 [node name="Timers" type="Node" parent="Game"]
 
 [node name="TickUpdateTimer" type="Timer" parent="Game/Timers"]
 wait_time = 0.3
-
-[node name="QuarterTimer" type="Timer" parent="Game/Timers"]
-
-[node name="DickheadTimer" type="Timer" parent="Game/Timers"]
-one_shot = true
 
 [node name="TileMap" type="TileMap" parent="Game"]
 tile_set = ExtResource("4_y6qi1")
@@ -31,11 +23,9 @@ layer_0/tile_data = PackedInt32Array(-786471, 0, 4, -720935, 0, 4, -655399, 0, 4
 position = Vector2(333, -186)
 
 [node name="Player" parent="Game" instance=ExtResource("3_2ar0a")]
-DESTRESS_TICK_RATE = 8
 
 [node name="Dickhead" parent="Game" instance=ExtResource("5_3275s")]
+visible = false
 position = Vector2(-257, -270)
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
-[connection signal="timeout" from="Game/Timers/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]
-[connection signal="timeout" from="Game/Timers/DickheadTimer" to="Game" method="_on_dickhead_timer_timeout"]

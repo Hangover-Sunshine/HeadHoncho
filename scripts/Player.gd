@@ -11,7 +11,7 @@ class_name Player
 @export var INDIV_DESTRESS:int = 20
 @export var GROUP_DESTRESS:int = 10
 
-@export_group("Head Drawbacks")
+@export_group("Head Windups")
 @export var HEAL_WINDUP:Vector2i = Vector2i(6, 6)
 
 ##########################################################################
@@ -19,8 +19,6 @@ class_name Player
 @onready var head = $CharacterSkeleton/Sprites/Head
 @onready var hands = $CharacterSkeleton/Sprites/Hands
 @onready var clothes = $CharacterSkeleton/Sprites/Clothes
-
-@onready var rotator = $Rotator
 
 @onready var effect_bar = $EffectBar
 
@@ -38,9 +36,6 @@ var worker_in_path = []
 var dickheads_in_path = []
 var open_seats_nearby = []
 
-var direction:Vector2 = Vector2.ZERO
-var last_key_dir:Vector2 = Vector2(1, 0)
-
 var skin_color:int = 0
 
 var falling:bool = false
@@ -48,7 +43,6 @@ var falling:bool = false
 func _ready():
 	$CharacterSkeleton.set_head(curr_head)
 	hands.frame_coords = Vector2i(0, skin_color)
-	SignalBus.connect("tick_update", _tick_update_receiver)
 	effect_bar.visible = false
 ##
 
@@ -85,7 +79,6 @@ func _physics_process(delta):
 		if use_head:
 			velocity = Vector2.ZERO
 		##
-		
 	else:
 		velocity = Vector2.ZERO
 	##
@@ -109,62 +102,7 @@ func _on_body_exited_area(body):
 	if body is Dickhead:
 		dickheads_in_path.remove_at(dickheads_in_path.find(body))
 	##
-##
-
-func _tick_update_receiver():
-	if use_head:
-		if curr_head == Heads.BLOW_HEAD:
-			for person in dickheads_in_path:
-				person.getting_blown(global_position)
-			##
-			
-			if len(dickheads_in_path) == 0:
-				for person in worker_in_path:
-					person.decrease_temp(COOLDOWN_WORKER)
-				##
-			##
-		##
-		
-		if curr_head == Heads.COVEFE_HEAD:
-			for person in dickheads_in_path:
-				person.burning()
-			##
-			
-			if len(dickheads_in_path) == 0:
-				for person in worker_in_path:
-					person.add_energy(ADD_ENERGY)
-				##
-			##
-		##
-		
-		if curr_head == Heads.FUCK_HEAD:
-			for person in dickheads_in_path:
-				person.bloviate()
-			##
-			
-			if len(dickheads_in_path) == 0:
-				for person in worker_in_path:
-					person.destress(INDIV_DESTRESS)
-				##
-			##
-			
-			if len(dickheads_in_path) == 0 and len(worker_in_path) == 0:
-				for seat in open_seats_nearby:
-					seat.get_parent().hire_worker()
-				##
-			##
-			
-			if len(dickheads_in_path) == 0 and len(worker_in_path) == 0 and len(open_seats_nearby) == 0:
-				cure_three()
-			##
-		##
-	##
 	
-	$RaidwideHealComponent.check_for_reset()
-		
-	if $RaidwideHealComponent.get_level() == 0:
-		effect_bar.visible = false
-	##
 ##
 
 func fall():
@@ -181,13 +119,13 @@ func fall():
 	return false
 ##
 
-func _on_fuck_head_area_area_entered(area):
+func _on_basic_head_area_entered(area):
 	if area.is_in_group("seats"):
 		open_seats_nearby.append(area)
 	##
 ##
 
-func _on_fuck_head_area_area_exited(area):
+func _on_basic_head_area_exited(area):
 	var indx = open_seats_nearby.find(area)
 	if indx != -1:
 		open_seats_nearby.remove_at(indx)
