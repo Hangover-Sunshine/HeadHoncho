@@ -97,12 +97,12 @@ func _on_body_exited_area(body):
 
 func _on_basic_head_area_entered(area):
 	if area.is_in_group("seats"):
-		open_seats_nearby.append(area)
+		open_seats_nearby.append(area.get_parent())
 	##
 ##
 
 func _on_basic_head_area_exited(area):
-	var indx = open_seats_nearby.find(area)
+	var indx = open_seats_nearby.find(area.get_parent())
 	if indx != -1:
 		open_seats_nearby.remove_at(indx)
 	##

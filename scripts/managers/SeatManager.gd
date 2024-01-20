@@ -11,33 +11,23 @@ var should_show:bool = false
 
 func _ready():
 	effect_bar.visible = false
-	SignalBus.connect("tick_update", _tick_update)
 ##
 
-func _tick_update():
-	if can_show:
-		$HireBarComponent.check_for_reset()
-		
-		if $HireBarComponent.get_level() == 0:
-			effect_bar.visible = false
-		##
-	##
+func show_effect_bar():
+	effect_bar.visible = true
 ##
 
-func hire_worker():
-	if $HireBarComponent.get_level() == 0:
-		$HireBarComponent.generate_new_max(4, 4)
-		effect_bar.visible = true
-		effect_bar.value = 0
-	##
-	
-	var result:int = $HireBarComponent.tick()
-	
-	effect_bar.value = clampi((result / float(4)) * 100, 0, 100)
-	
-	if result >= 4:
-		SignalBus.emit_signal("hire_worker", self)
-	##
+func hide_effect_bar():
+	effect_bar.value = 0
+	effect_bar.visible = false
+##
+
+func update_effect_bar(curr_val:int, max_val:int):
+	effect_bar.value = clampi((curr_val / float(max_val)) * 100, 0, 100)
+##
+
+func apply_moneybags_effect():
+	SignalBus.emit_signal("hire_worker", self)
 ##
 
 func show_icon():
