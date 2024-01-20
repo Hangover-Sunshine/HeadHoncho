@@ -160,7 +160,7 @@ alignment = 1
 
 [node name="LArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
 layout_mode = 2
@@ -195,7 +195,7 @@ horizontal_alignment = 1
 
 [node name="RArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
 layout_mode = 2
