@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhgltxv5swoit"]
+
+[ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="1_12xnb"]
+[ext_resource type="Script" path="res://scripts/ui/RoundInformation.gd" id="1_dr7kd"]
+[ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="2_mtuvy"]
+
+[node name="PlayerInformation" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 52.0
+grow_horizontal = 2
+alignment = 1
+script = ExtResource("1_dr7kd")
+
+[node name="RevLabel" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_12xnb")
+text = "REVENUE:"
+
+[node name="RevenueNumber" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("2_mtuvy")
+text = "$????????"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="QuotaLabel" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_12xnb")
+text = "QUOTA:"
+
+[node name="QuotaNumber" type="Label" parent="."]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme = ExtResource("2_mtuvy")
+text = "$?????????"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="WorkersQuitLabel" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_12xnb")
+text = "WORKERS QUIT:"
+
+[node name="WQNumber" type="Label" parent="."]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme = ExtResource("2_mtuvy")
+text = "???"
+horizontal_alignment = 1

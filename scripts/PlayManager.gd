@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var PLAYER_INFO_UI:HBoxContainer
+
 @export_group("Timer Control")
 @export var SECONDS_PER_TICK:float = 0.5
 @export var SECONDS_PER_ROUND:float = 60
@@ -31,6 +33,9 @@ func _ready():
 	
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
+	
+	PLAYER_INFO_UI.set_revenue(0)
+	PLAYER_INFO_UI.set_quota(quota)
 ##
 
 func _input(event):
@@ -46,12 +51,14 @@ func _on_tick_update_timer_timeout():
 
 func _give_player_money_receiver(money:int):
 	quarterlyMoneyCounter += money
+	PLAYER_INFO_UI.set_revenue(quarterlyMoneyCounter)
 ##
 
 func _aoe_heal(_amount:int):
 	var count:int = $WorkerManager.get_num_of_workers()
 	
 	quarterlyMoneyCounter -= 600 + AOE_HEAL_COST * count
+	PLAYER_INFO_UI.set_revenue(quarterlyMoneyCounter)
 ##
 
 func _player_died():
@@ -91,6 +98,9 @@ func _round_start(starting:Dictionary):
 	quarterlyMoneyCounter = 0
 	quota = starting["quota"]
 	appreciation = starting["appreciation"]
+	
+	PLAYER_INFO_UI.set_revenue(quarterlyMoneyCounter)
+	PLAYER_INFO_UI.set_quota(quota)
 	
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)

@@ -1,6 +1,7 @@
 extends Node2D
 class_name WorkerManager
 
+@export var PLAYER_INFORMATION_UI:HBoxContainer
 @export var WORKER_SEATS:Node
 @export var MAX_DICKHEADS_PER:int = 3
 @export var quitTotalPerQuota = 10
@@ -33,6 +34,8 @@ func _ready():
 		seat.hide_icon()
 	##
 	
+	PLAYER_INFORMATION_UI.set_workers_quit(0)
+	
 	total_qrtr_workers = 2
 	
 	SignalBus.connect("dickhead_gone", _dickhead_gone)
@@ -50,8 +53,8 @@ func _round_start(_startInfo):
 		
 		dickheads_per_worker[dh] = 0
 	##
-	
 	total_workers_quit = 0
+	PLAYER_INFORMATION_UI.set_workers_quit(total_workers_quit)
 ##
 
 func select_worker():
@@ -117,6 +120,8 @@ func _worker_quit(worker:Worker):
 	WORKER_SEATS.get_child(indx).player_can_interact(true)
 	
 	total_workers_quit += 1
+	
+	PLAYER_INFORMATION_UI.set_workers_quit(total_workers_quit)
 	
 	if total_workers_quit >= quitTotalPerQuota:
 		SignalBus.emit_signal("too_many_workers_quit")
