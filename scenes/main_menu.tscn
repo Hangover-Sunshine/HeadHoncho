@@ -1,26 +1,32 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxhoa3vqfceq"]
+[gd_scene load_steps=25 format=3 uid="uid://bxhoa3vqfceq"]
 
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="1_6l7of"]
 [ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_60ymw"]
+[ext_resource type="Texture2D" uid="uid://dijygevdu4o3t" path="res://assets/ui_assets/images/guide/Palm.png" id="1_upwds"]
 [ext_resource type="Texture2D" uid="uid://c08r3d8p443gq" path="res://assets/ui_assets/images/jam_logos/65-Overload.png" id="1_ynqc4"]
 [ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_7plfq"]
 [ext_resource type="Texture2D" uid="uid://0ib5s1uxvyu8" path="res://assets/ui_assets/images/jam_logos/good-end.png" id="2_v5lc0"]
-[ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="3_5j0ft"]
 [ext_resource type="Texture2D" uid="uid://kppdr81o1sgy" path="res://assets/ui_assets/images/jam_logos/pick-fighter.png" id="3_kx2jy"]
+[ext_resource type="FontFile" uid="uid://b27j73wad8wov" path="res://assets/ui_assets/text/text_title/Title_PatuaOne-Regular.ttf" id="4_ky84w"]
 [ext_resource type="Texture2D" uid="uid://b4mi13bawvmvg" path="res://assets/ui_assets/images/jam_logos/GWJ-Full-Logo-noBG.svg" id="4_lysx3"]
 [ext_resource type="Script" path="res://scripts/ui/WildJamAnim.gd" id="5_kevuc"]
+[ext_resource type="FontFile" uid="uid://0ieachuq6edo" path="res://assets/ui_assets/text/text_body/Body_RobotoSerif-SemiBold.ttf" id="5_r7n62"]
+[ext_resource type="Texture2D" uid="uid://cselclna2elat" path="res://assets/ui_assets/images/jam_logos/HS_Logo_White.png" id="6_gd0ha"]
+[ext_resource type="Texture2D" uid="uid://hn3mrbdr7v57" path="res://assets/ui_assets/images/guide/Guide_AllIcons.png" id="12_yvdef"]
+[ext_resource type="Texture2D" uid="uid://cf51jltoj1nrx" path="res://assets/ui_assets/images/guide/Thumb.png" id="14_7kmk3"]
 
-[sub_resource type="Animation" id="Animation_ji85k"]
-resource_name = "animation_swap"
-length = 2.5
+[sub_resource type="Animation" id="Animation_nfp23"]
+resource_name = "Slide1>2"
+length = 2.0
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WildJam:modulate")
+tracks/0/path = NodePath("Slide1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -28,288 +34,1301 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("JamInfo:visible")
+tracks/1/path = NodePath("Slide1:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("JamInfo:modulate")
+tracks/2/path = NodePath("Slide1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("WildJam:visible")
+tracks/3/path = NodePath("Slide2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slide2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Slide3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Slide4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_hmln2"]
-length = 2.5
+[sub_resource type="Animation" id="Animation_wdb7a"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("JamInfo:visible")
+tracks/0/path = NodePath("Slide1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("JamInfo:modulate")
+tracks/1/path = NodePath("Slide1:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WildJam:visible")
+tracks/2/path = NodePath("Slide1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("WildJam:modulate")
+tracks/3/path = NodePath("Slide2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slide2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Slide3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Slide4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Slide4:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Slide3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jbx5v"]
+resource_name = "Slide2>3"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slide1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slide2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slide2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Slide3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slide4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Slide4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Slide3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_igk8s"]
+resource_name = "Slide3>4"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slide1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slide2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slide2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Slide3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slide4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Slide4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Slide3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h610l"]
+resource_name = "Slide4>1"
+length = 2.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slide1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slide2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Slide3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Slide4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Slide4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Slide1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uxqnu"]
 _data = {
-"swap_to_cards": SubResource("Animation_ji85k"),
-"swap_to_jam_logo": SubResource("Animation_hmln2")
+"RESET": SubResource("Animation_wdb7a"),
+"Slide1>2": SubResource("Animation_nfp23"),
+"Slide2>3": SubResource("Animation_jbx5v"),
+"Slide3>4": SubResource("Animation_igk8s"),
+"Slide4>1": SubResource("Animation_h610l")
 }
 
-[node name="MainMenu" type="MarginContainer"]
+[sub_resource type="Animation" id="Animation_0erfc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand/Thumb:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, 1594)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Thumb:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Palm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-957, 1602)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Palm:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hand/BusinessCard:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hand/BusinessCard:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hand/BusinessCard:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Hand:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wq5gv"]
+resource_name = "No_Anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand/Thumb:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-500, 1594)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Thumb:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand/Palm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-957, 1602)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Palm:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hand/BusinessCard:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hand/BusinessCard:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hand/BusinessCard:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Hand:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1ol01"]
+resource_name = "PlaceCard"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand/BusinessCard:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/BusinessCard:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(242, 117), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand/Palm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(149, 990), Vector2(-957, 1602)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Thumb:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(606, 979), Vector2(-500, 1594)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1359, -1001), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0472, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfsxm"]
+_data = {
+"No_Anim": SubResource("Animation_wq5gv"),
+"PlaceCard": SubResource("Animation_1ol01"),
+"RESET": SubResource("Animation_0erfc")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="Hand" type="Control" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Palm" type="Sprite2D" parent="Hand"]
+position = Vector2(-957, 1602)
+texture = ExtResource("1_upwds")
+
+[node name="BusinessCard" type="Control" parent="Hand"]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.890196, 0.945098, 0.996078, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 1080.0
+color = Color(0.0235294, 0.105882, 0.223529, 1)
+
+[node name="Menu" type="MarginContainer" parent="Hand/BusinessCard"]
+show_behind_parent = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 script = ExtResource("1_60ymw")
 
-[node name="DelayWhilePressedTimer" type="Timer" parent="."]
+[node name="DelayWhilePressedTimer" type="Timer" parent="Hand/BusinessCard/Menu"]
 wait_time = 0.1
 one_shot = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
 layout_mode = 2
-theme_override_constants/separation = 100
+size_flags_horizontal = 8
+alignment = 2
 
-[node name="MainMenuComponents" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Title" type="Label" parent="HBoxContainer/MainMenuComponents"]
-layout_mode = 2
-theme = ExtResource("1_6l7of")
-text = "HEAD HONCHO"
-
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MainMenuComponents"]
-layout_mode = 2
-
-[node name="Menu" type="HBoxContainer" parent="HBoxContainer/MainMenuComponents"]
-layout_mode = 2
-theme_override_constants/separation = 5
-alignment = 1
-
-[node name="LArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
-layout_mode = 2
-text = ">>>>>"
-
-[node name="Label2" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/LArrow"]
-layout_mode = 2
-
-[node name="Labels" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
-layout_mode = 2
-
-[node name="Play" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-text = "Start Game"
-horizontal_alignment = 1
-
-[node name="Settings" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="Quit" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/Labels"]
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-text = "Quit"
-horizontal_alignment = 1
-
-[node name="RArrow" type="VBoxContainer" parent="HBoxContainer/MainMenuComponents/Menu"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Label" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
-layout_mode = 2
-text = "<<<<<"
-
-[node name="Label2" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="HBoxContainer/MainMenuComponents/Menu/RArrow"]
-layout_mode = 2
-
-[node name="Credits" type="VBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Credits"]
 layout_mode = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Credits"]
-layout_mode = 2
-
-[node name="Version" type="Label" parent="HBoxContainer/Credits/HBoxContainer"]
+[node name="Version" type="Label" parent="Hand/BusinessCard/Menu/Credits/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
-text = "Version"
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Version 1.0"
 
-[node name="VNum" type="Label" parent="HBoxContainer/Credits/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_5j0ft")
-text = "1.0"
-
-[node name="Team" type="Label" parent="HBoxContainer/Credits"]
+[node name="Music2" type="Label" parent="Hand/BusinessCard/Menu/Credits"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
-text = "Hangover Sunshine"
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_fonts/font = ExtResource("5_r7n62")
+theme_override_font_sizes/font_size = 30
+text = "*This game is not suitable for all ages."
+horizontal_alignment = 2
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="Music" type="Label" parent="Hand/BusinessCard/Menu/Credits"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_fonts/font = ExtResource("5_r7n62")
+theme_override_font_sizes/font_size = 30
+text = "Developer - HangoverSunshine | Music - Scott Buckley"
+horizontal_alignment = 2
 
-[node name="WildJamStuff" type="VBoxContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="WildJamStuff" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("5_kevuc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/WildJamStuff"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
 libraries = {
 "": SubResource("AnimationLibrary_uxqnu")
 }
 
-[node name="AnimSwapTimer" type="Timer" parent="HBoxContainer/WildJamStuff"]
+[node name="AnimSwapTimer" type="Timer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
 wait_time = 8.0
 autostart = true
 
-[node name="WildJam" type="VBoxContainer" parent="HBoxContainer/WildJamStuff"]
+[node name="Slide1" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="MadeDuring" type="Label" parent="HBoxContainer/WildJamStuff/WildJam"]
+[node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide1"]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+texture = ExtResource("6_gd0ha")
+
+[node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="MadeDuring" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide2"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
-text = "Made During"
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_fonts/font = ExtResource("4_ky84w")
+theme_override_font_sizes/font_size = 50
+text = "CONTENT WARNING:"
 horizontal_alignment = 1
 
-[node name="WildJamLogo" type="TextureRect" parent="HBoxContainer/WildJamStuff/WildJam"]
-custom_minimum_size = Vector2(600, 450)
-layout_mode = 2
-texture = ExtResource("4_lysx3")
-expand_mode = 1
-
-[node name="Date" type="Label" parent="HBoxContainer/WildJamStuff/WildJam"]
+[node name="Date" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide2"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
-text = "Jan. 12 - Jan 21, 2024"
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "1) Cartoon violence
+2) Crude and adult humor
+3) Death and or dying
+4) Themes of suicide
+5) Themes of classism and
+hostile work environments
+"
 horizontal_alignment = 1
 
-[node name="JamInfo" type="VBoxContainer" parent="HBoxContainer/WildJamStuff"]
+[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="ThemeLabel" type="Label" parent="HBoxContainer/WildJamStuff/JamInfo"]
+[node name="MadeDuring" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide3"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+text = "Made During"
+horizontal_alignment = 1
+
+[node name="WildJamLogo" type="TextureRect" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide3"]
+custom_minimum_size = Vector2(600, 450)
+layout_mode = 2
+texture = ExtResource("4_lysx3")
+expand_mode = 1
+
+[node name="Date" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide3"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+text = "Jan. 12 - Jan 21, 2024"
+horizontal_alignment = 1
+
+[node name="Slide4" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="ThemeLabel" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 text = "Theme:"
 horizontal_alignment = 1
 
-[node name="ThemeCard" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo"]
+[node name="ThemeCard" type="TextureRect" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4"]
 custom_minimum_size = Vector2(600, 168)
 layout_mode = 2
 texture = ExtResource("1_ynqc4")
 expand_mode = 1
 
-[node name="SupportedCards" type="Label" parent="HBoxContainer/WildJamStuff/JamInfo"]
+[node name="SupportedCards" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 text = "Wildcards Added:"
 horizontal_alignment = 1
 
-[node name="Cards" type="HBoxContainer" parent="HBoxContainer/WildJamStuff/JamInfo"]
+[node name="Cards" type="HBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Card1" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo/Cards"]
+[node name="Card1" type="TextureRect" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4/Cards"]
 clip_contents = true
 custom_minimum_size = Vector2(284, 400)
 layout_mode = 2
 texture = ExtResource("2_v5lc0")
 expand_mode = 1
 
-[node name="Card2" type="TextureRect" parent="HBoxContainer/WildJamStuff/JamInfo/Cards"]
+[node name="Card2" type="TextureRect" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/Slide4/Cards"]
 clip_contents = true
 custom_minimum_size = Vector2(284, 400)
 layout_mode = 2
 texture = ExtResource("3_kx2jy")
 expand_mode = 1
 
-[connection signal="timeout" from="HBoxContainer/WildJamStuff/AnimSwapTimer" to="HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]
+[node name="Divider" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="MainMenuComponents" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme = ExtResource("1_6l7of")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 140
+text = "HEAD HONCHO"
+
+[node name="Title2" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+custom_minimum_size = Vector2(0, 175)
+layout_mode = 2
+theme = ExtResource("1_6l7of")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_fonts/font = ExtResource("5_r7n62")
+text = "Accounting Senior
+Supervisor"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+color = Color(0.0235294, 0.105882, 0.223529, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.0235294, 0.105882, 0.223529, 0)
+
+[node name="Menu" type="HBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LArrow" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 20
+text = "▶"
+
+[node name="Label2" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Label4" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Label3" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Labels" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu"]
+layout_mode = 2
+
+[node name="Play" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+
+[node name="Settings" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="Settings2" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Guide"
+
+[node name="Quit" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Guide" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="WildJamStuff" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("5_kevuc")
+
+[node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff"]
+layout_mode = 2
+alignment = 1
+
+[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_fonts/font = ExtResource("4_ky84w")
+theme_override_font_sizes/font_size = 50
+text = "SUMMARY"
+
+[node name="Body" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "With the power of detachable heads,
+play as Senior Accounting Supervisor,
+Head Honcho, and lead your analyst
+team to success. 
+
+By keeping your workers happy and 
+caffeinated, by ridding your environment
+of hostile supervisors, and by meeting
+each quarter's revenue quarter, you can
+be the agile lead to change the face of 
+your company, MLM Corp."
+
+[node name="MadeDuring5" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_fonts/font = ExtResource("4_ky84w")
+theme_override_font_sizes/font_size = 50
+vertical_alignment = 2
+
+[node name="MadeDuring4" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_fonts/font = ExtResource("4_ky84w")
+theme_override_font_sizes/font_size = 50
+text = "PRESS SPACE TO GO BACK"
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/Guide"]
+custom_minimum_size = Vector2(0, 1080)
+layout_mode = 2
+texture = ExtResource("12_yvdef")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide"]
+layout_mode = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Each worker at a desk makes
+revenue. Make sure to gauge
+their emotions to ensure their
+success.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Bosses are distracting. They
+will stress your workers out.
+Use one of your heads to get
+rid of them.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "If a worker works too hard,
+they will burnout. Use your
+AC Head to blow them back
+to a healthy work speed.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Your workers may fall asleep,
+use coffee to wake them up.
+Watch out! Too much coffee 
+may burn them out.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Your briefcase knows how to
+talk money. Use it to appease
+your bosses, getting rid of
+them safely, and to destress
+your workers."
+horizontal_alignment = 1
+
+[node name="Thumb" type="Sprite2D" parent="Hand"]
+position = Vector2(-500, 1594)
+texture = ExtResource("14_7kmk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_yfsxm")
+}
+
+[connection signal="timeout" from="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/AnimSwapTimer" to="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]

@@ -13,12 +13,11 @@ var down_pressed:bool = false
 
 func _ready():
 	var left = $HBoxContainer/MainMenuComponents/Menu/LArrow.get_children()
-	var right = $HBoxContainer/MainMenuComponents/Menu/RArrow.get_children()
 	
 	$DelayWhilePressedTimer.start()
 	
 	for ai in range(len(left)):
-		arrows.append([left[ai], right[ai]])
+		arrows.append([left[ai]])
 	##
 ##
 
@@ -61,20 +60,16 @@ func _process(_delta):
 
 func move_arrows_up():
 	arrows[curr_pos][0].text = ""
-	arrows[curr_pos][1].text = ""
 	
 	curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
 	
-	arrows[curr_pos][0].text = ">>>>>"
-	arrows[curr_pos][1].text = "<<<<<"
+	arrows[curr_pos][0].text = "▶"
 ##
 
 func move_arrows_down():
 	arrows[curr_pos][0].text = ""
-	arrows[curr_pos][1].text = ""
 	
 	curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
 	
-	arrows[curr_pos][0].text = ">>>>>"
-	arrows[curr_pos][1].text = "<<<<<"
+	arrows[curr_pos][0].text = "▶"
 ##
