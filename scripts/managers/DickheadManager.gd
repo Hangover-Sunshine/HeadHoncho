@@ -18,11 +18,18 @@ func _ready():
 	SignalBus.connect("dickhead_left", _dickhead_left)
 	SignalBus.connect("dickhead_removed", _dickhead_removed)
 	SignalBus.connect("dickhead_died", _dickhead_died)
+	SignalBus.connect("round_start", _round_start)
 	
 	var children = BURNING_NODES.get_children()
 	
 	for child in children:
 		positions.append(child.global_position)
+	##
+##
+
+func _round_start(_startInfo):
+	for child in get_children():
+		child.queue_free()
 	##
 ##
 

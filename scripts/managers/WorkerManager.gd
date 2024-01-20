@@ -3,7 +3,7 @@ class_name WorkerManager
 
 @export var WORKER_SEATS:Node
 @export var MAX_DICKHEADS_PER:int = 3
-@export var quitFailPercent:float = 0.6
+@export var quitTotalPerQuota = 10
 
 ####################################################
 
@@ -40,6 +40,18 @@ func _ready():
 	SignalBus.connect("is_money_bags", _is_money_bags)
 	SignalBus.connect("not_money_bags", _not_money_bags)
 	SignalBus.connect("hire_worker", spawn_worker_at)
+	SignalBus.connect("round_start", _round_start)
+##
+
+func _round_start(_startInfo):
+	for dh in range(16):
+		for dh2 in range(dickheads_per_worker[dh]):
+			workers[dh].boss_gone()
+		
+		dickheads_per_worker[dh] = 0
+	##
+	
+	total_workers_quit = 0
 ##
 
 func select_worker():
@@ -98,11 +110,6 @@ func get_num_of_workers():
 	return count
 ##
 
-func _round_start():
-	total_qrtr_workers = get_child_count()
-	total_workers_quit = 0
-##
-
 func _worker_quit(worker:Worker):
 	var indx = workers.find(worker)
 	workers.remove_at(indx)
@@ -111,7 +118,7 @@ func _worker_quit(worker:Worker):
 	
 	total_workers_quit += 1
 	
-	if total_workers_quit / total_qrtr_workers >= quitFailPercent:
+	if total_workers_quit >= quitTotalPerQuota:
 		SignalBus.emit_signal("too_many_workers_quit")
 	##
 ##

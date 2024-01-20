@@ -84,6 +84,12 @@ func _round_over(results:Dictionary):
 	mouse_filter = Control.MOUSE_FILTER_STOP
 ##
 
+func _input(event):
+	if visible and event.is_action_pressed("head_interaction"):
+		_on_confirm_pressed()
+	##
+##
+
 func _on_confirm_pressed():
 	report.visible = false
 	get_tree().paused = false

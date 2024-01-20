@@ -68,12 +68,17 @@ func _ready():
 	effect_progress.value = 0
 ##
 
+func leaving():
+	return unkind_leave or kind_leave
+##
+
+func is_interacting_with_player():
+	return blow_level > 0 or burning_level > 0 or bloviating_level > 0
+##
+
 func _tick_update():
 	if falling == false:
-		if nav_agent.is_navigation_finished():
-			print('hello there')
-		if nav_agent.is_navigation_finished() and blow_level == 0 and burning_level == 0 and\
-			bloviating_level == 0:
+		if nav_agent.is_navigation_finished() and !leaving() and !is_interacting_with_player():
 			if arrived == false:
 				arrived = true
 				target.boss_arrived()

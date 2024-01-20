@@ -219,12 +219,17 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Report"]
+[node name="SignYourName" type="Label" parent="Background/Report"]
 layout_mode = 2
-alignment = 1
+theme = ExtResource("3_5idfy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sign Your Name to Confirm Accuracy of Report"
+horizontal_alignment = 1
 
-[node name="Confirm" type="Button" parent="Background/Report/HBoxContainer2"]
+[node name="Hint" type="Label" parent="Background/Report"]
 layout_mode = 2
-text = "Confirm Report"
-
-[connection signal="pressed" from="Background/Report/HBoxContainer2/Confirm" to="." method="_on_confirm_pressed"]
+theme = ExtResource("3_5idfy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Press SPACE to continue to next quota"
+horizontal_alignment = 1

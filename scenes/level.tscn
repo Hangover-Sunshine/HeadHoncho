@@ -50,6 +50,7 @@ script = ExtResource("1_mcort")
 [node name="Game" type="Node2D" parent="."]
 process_mode = 1
 script = ExtResource("1_rjii0")
+SECONDS_PER_ROUND = 5.0
 
 [node name="StaticEnv" type="Node2D" parent="Game"]
 
