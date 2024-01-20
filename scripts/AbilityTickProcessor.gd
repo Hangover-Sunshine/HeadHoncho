@@ -18,6 +18,14 @@ func get_is_active() -> bool:
 	return _is_active
 ##
 
+func set_max(nmax):
+	_max_ticks = nmax
+##
+
+func get_max() -> int:
+	return _max_ticks
+##
+
 func get_new_max() -> int:
 	_max_ticks = randi_range(_min, _max)
 	return _max_ticks

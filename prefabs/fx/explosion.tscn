@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cye47hnqb5ern"]
+[gd_scene load_steps=4 format=3 uid="uid://mklgoqvqeg72"]
 
 [ext_resource type="PackedScene" uid="uid://cuv7yfdhbqfw1" path="res://prefabs/fx/fire.tscn" id="1_fwcou"]
 [ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="2_quium"]

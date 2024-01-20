@@ -42,7 +42,7 @@ var shield_up_ticks:int = 0
 var ticks_since_last_cash:int
 var money_rate:int
 
-var curr_temp:int = 60
+var curr_temp:int
 var temp_ticks:int
 var temp_tick_rate:int
 var temp_dir:int
@@ -58,173 +58,58 @@ var bosses_nearby:int = 0
 var increase_money:float = 0
 
 func _ready():
-	curr_temp = startingTemp
-	curr_energy = startingEnergy
-	curr_stress = startingStress
+	$TickReceiver.curr_temp = startingTemp
+	$TickReceiver.curr_energy = startingEnergy
+	$TickReceiver.curr_stress = startingStress
+	
+	$TickReceiver.shield_processor.set_max(energyShieldTickCount)
 	
 	$CharacterSkeleton.generate_character()
 	
-	SignalBus.connect("tick_update", tick_update_receiver)
 	SignalBus.connect("aoe_heal", _aoe_heal)
 ##
 
 func reset_worker():
-	money_rate = 0
-	bosses_nearby = 0
-	curr_temp = saved_temp
-	curr_energy = saved_energy
-##
-
-func get_money_gen_rate() -> int:
-	var rate:int = 4
-	
-	if curr_energy >= 0 and curr_energy < 10:
-		rate = 0
-		energy_color = minEnergyColor
-	elif curr_energy >= 10 and curr_energy < 25:
-		rate = 6
-		energy_color = minEnergyColor / 2.0
-	elif curr_energy >= 25 and curr_energy < 40:
-		rate = 5
-		energy_color = minEnergyColor / 4.0
-	elif curr_energy >= 61 and curr_energy < 75:
-		rate = 3
-		energy_color = default_color
-	elif curr_energy >= 75:
-		rate = 2
-		energy_color = default_color
-	##
-	
-	return rate
-##
-
-func get_stress_rate() -> int:
-	var rate:int = 0
-	temp_color = default_color
-	
-	if curr_temp >= 25 and curr_temp < 50:
-		rate = 4
-		temp_color = maxTempColor / 4
-	elif curr_temp >= 50 and curr_temp < 75:
-		rate = 3
-		temp_color = maxTempColor / 2
-	elif curr_temp >= 75:
-		rate = 2
-		temp_color = maxTempColor
-	##
-	
-	return rate
-##
-
-func tick_update_receiver():
-	ticks_since_last_cash += 1
-	temp_ticks += 1
-	
-	# give the player money every so often :)
-	if money_rate > 0 and ticks_since_last_cash >= money_rate:
-		ticks_since_last_cash = 0
-		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1.0 + increase_money)))
-		# play particle effect
-	##
-	
-	# Only modify energy while the caffeine shield is down
-	if energy_shield == false and curr_energy > 0:
-		curr_energy -= defaultEnergyDecrease
-		money_rate = get_money_gen_rate()
-	##
-	
-	# If our energy is over 60, it's time to start overheating...
-	if curr_energy >= 75:
-		temp_dir = 1
-		temp_tick_rate = 2
-	elif curr_energy > 60:
-		temp_dir = 1
-		temp_tick_rate = 4
-	else:
-		temp_dir = -1
-		temp_tick_rate = 8
-	##
-	
-	if temp_ticks >= temp_tick_rate:
-		temp_ticks = 0
-		curr_temp += ceil(defaultTempModification * temp_dir * (1 + dickheadTempMod))
-		
-		if curr_temp < 0:
-			curr_temp = 0
-		elif curr_temp > maxTempurate:
-			curr_temp = maxTempurate
-		##
-	##
-	
-	$CharacterSkeleton.control_display(curr_stress, curr_temp, curr_energy, temp_color, energy_color)
-	
-	if stress_tick_rate > 0:
-		stress_ticks += 1
-		
-		if stress_ticks >= stress_tick_rate:
-			curr_stress += 1
-			stress_ticks = 0
-		##
-		
-		if curr_stress >= maxStress:
-			SignalBus.emit_signal("worker_quit", self)
-			SignalBus.disconnect("tick_update", tick_update_receiver)
-			print("I QUIT MOTHERFUCKER!")
-			# TODO: other things
-			
-			# BAIL! --> worker does nothing else and leaves
-			return
-		##
-	##
-	
-	stress_tick_rate = get_stress_rate()
-	
-	# Shield tracker --> only enter if the worker has their shield active;
-	#	otherwise, ignore the block
-	if energy_shield:
-		shield_up_ticks += 1
-		
-		if shield_up_ticks >= energyShieldTickCount:
-			energy_shield = false
-			shield_up_ticks = 0
-		##
-	##
+	$TickReceiver.money_rate = 0
+	$TickReceiver.bosses_nearby = 0
+	$TickReceiver.curr_temp = $TickReceiver.saved_temp
+	$TickReceiver.curr_energy = $TickReceiver.saved_energy
 ##
 
 func boss_arrived():
-	bosses_nearby += 1
+	$TickReceiver.bosses_nearby += 1
 	
-	if saved == false:
-		saved = true
-		saved_temp = curr_temp
-		saved_energy = curr_energy
+	if $TickReceiver.saved == false:
+		$TickReceiver.saved = true
+		$TickReceiver.saved_temp = curr_temp
+		$TickReceiver.saved_energy = curr_energy
 	##
 	
-	increase_money += 0.2
-	curr_energy = 100
+	$TickReceiver.increase_money += 0.2
+	$TickReceiver.curr_energy = 100
 	
-	if curr_temp < 40:
-		curr_temp = 40
-	##
-##
-
-func _aoe_heal(amount):
-	curr_stress -= amount
-	
-	if curr_stress < 0:
-		curr_stress = 0
+	if $TickReceiver.curr_temp < 40:
+		$TickReceiver.curr_temp = 40
 	##
 ##
 
 func boss_gone():
-	bosses_nearby -= 1
-	increase_money -= 0.2
+	$TickReceiver.bosses_nearby -= 1
+	$TickReceiver.increase_money -= 0.2
 	
 	if bosses_nearby == 0:
-		saved = false
-		curr_temp = saved_temp
-		curr_energy = saved_energy
-		increase_money = 0
+		$TickReceiver.saved = false
+		$TickReceiver.curr_temp = $TickReceiver.saved_temp
+		$TickReceiver.curr_energy = $TickReceiver.saved_energy
+		$TickReceiver.increase_money = 0
+	##
+##
+
+func _aoe_heal(amount):
+	$TickReceiver.curr_stress -= amount
+	
+	if $TickReceiver.curr_stress < 0:
+		$TickReceiver.curr_stress = 0
 	##
 ##
 
@@ -242,28 +127,27 @@ func update_effect_bar(curr_val:int, max_val:int):
 ##
 
 func apply_blowie_effect():
-	curr_temp -= TEMPERATURE_DECREASE_EFFECT
+	$TickReceiver.curr_temp -= TEMPERATURE_DECREASE_EFFECT
 	
-	if curr_temp < 0:
-		curr_temp = 0
+	if $TickReceiver.curr_temp < 0:
+		$TickReceiver.curr_temp = 0
 	##
 ##
 
 func apply_covefe_effect():
-	curr_energy += ENERGY_INCREASE_EFFECT
+	$TickReceiver.curr_energy += ENERGY_INCREASE_EFFECT
 	
-	energy_shield = true
-	shield_up_ticks = 0
+	$TickReceiver.energy_shield = true
 	
-	if curr_energy > maxEnergy:
-		curr_energy = maxEnergy
+	if $TickReceiver.curr_energy > maxEnergy:
+		$TickReceiver.curr_energy = maxEnergy
 	##
 ##
 
 func apply_moneybags_effect():
-	curr_stress -= 1
+	$TickReceiver.curr_stress -= 1
 	
-	if curr_stress < 0:
-		curr_stress = 0
+	if $TickReceiver.curr_stress < 0:
+		$TickReceiver.curr_stress = 0
 	##
 ##
