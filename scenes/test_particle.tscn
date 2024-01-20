@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cyl4padr3mwiq" path="res://assets/environment/objects/cubicle/08Cubicle.png" id="25_ypwu6"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="26_4a7ge"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="27_3li8d"]
-[ext_resource type="PackedScene" uid="uid://bprkv5jjdshm6" path="res://prefabs/fx/revenue.tscn" id="28_ev53r"]
+[ext_resource type="PackedScene" uid="uid://co6yrwg3b2jbu" path="res://prefabs/fx/revenue.tscn" id="28_ev53r"]
 [ext_resource type="PackedScene" uid="uid://cmr1knn1uva5v" path="res://prefabs/sky.tscn" id="29_rlen1"]
 
 [node name="TestParticle" type="Node2D"]
