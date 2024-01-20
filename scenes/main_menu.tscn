@@ -32,19 +32,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slide1:self_modulate")
+tracks/1/path = NodePath("Slide1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Slide1:visible")
+tracks/2/path = NodePath("Slide2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -56,31 +56,31 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Slide2:visible")
+tracks/3/path = NodePath("Slide2:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Slide2:modulate")
+tracks/4/path = NodePath("Slide3:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Slide3:visible")
+tracks/5/path = NodePath("Slide4:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -92,34 +92,22 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Slide4:visible")
+tracks/6/path = NodePath("Slide4:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Slide4:modulate")
+tracks/7/path = NodePath("Slide3:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Slide3:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -897,6 +885,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
@@ -931,6 +920,7 @@ text = "Developer - HangoverSunshine | Music - Scott Buckley"
 horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -949,7 +939,6 @@ wait_time = 8.0
 autostart = true
 
 [node name="Slide1" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
-visible = false
 layout_mode = 2
 alignment = 1
 
@@ -959,6 +948,7 @@ layout_mode = 2
 texture = ExtResource("6_gd0ha")
 
 [node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 alignment = 1
@@ -1135,7 +1125,7 @@ layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Start Game"
+text = "Start"
 
 [node name="Settings" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
 layout_mode = 2
@@ -1149,7 +1139,7 @@ layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Guide"
+text = "Tips"
 
 [node name="Quit" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
 layout_mode = 2
@@ -1158,21 +1148,20 @@ theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 
-[node name="Guide" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
-visible = false
+[node name="Tips" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="WildJamStuff" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide"]
+[node name="WildJamStuff" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("5_kevuc")
 
-[node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff"]
+[node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff"]
 layout_mode = 2
 alignment = 1
 
-[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff/Slide2"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
@@ -1181,7 +1170,7 @@ theme_override_fonts/font = ExtResource("4_ky84w")
 theme_override_font_sizes/font_size = 50
 text = "SUMMARY"
 
-[node name="Body" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+[node name="Body" type="Label" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff/Slide2"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
@@ -1198,7 +1187,7 @@ each quarter's revenue quarter, you can
 be the agile lead to change the face of 
 your company, MLM Corp."
 
-[node name="MadeDuring5" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+[node name="MadeDuring5" type="Label" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff/Slide2"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -1208,7 +1197,7 @@ theme_override_fonts/font = ExtResource("4_ky84w")
 theme_override_font_sizes/font_size = 50
 vertical_alignment = 2
 
-[node name="MadeDuring4" type="Label" parent="Hand/BusinessCard/Menu/Guide/WildJamStuff/Slide2"]
+[node name="MadeDuring4" type="Label" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff/Slide2"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -1219,23 +1208,23 @@ theme_override_font_sizes/font_size = 50
 text = "PRESS SPACE TO GO BACK"
 vertical_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/Guide"]
+[node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/Tips"]
 custom_minimum_size = Vector2(0, 1080)
 layout_mode = 2
 texture = ExtResource("12_yvdef")
 expand_mode = 3
 stretch_mode = 3
 
-[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Guide"]
+[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips"]
 layout_mode = 2
 alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
-custom_minimum_size = Vector2(0, 50)
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
@@ -1248,12 +1237,12 @@ success.
 "
 horizontal_alignment = 1
 
-[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
@@ -1266,12 +1255,12 @@ rid of them.
 "
 horizontal_alignment = 1
 
-[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
@@ -1284,12 +1273,12 @@ to a healthy work speed.
 "
 horizontal_alignment = 1
 
-[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
@@ -1297,17 +1286,17 @@ theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
 text = "Your workers may fall asleep,
 use coffee to wake them up.
-Watch out! Too much coffee 
-may burn them out.
+Need them to work, harder?
+Coffee can also help!
 "
 horizontal_alignment = 1
 
-[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Guide/Slide3"]
+[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")

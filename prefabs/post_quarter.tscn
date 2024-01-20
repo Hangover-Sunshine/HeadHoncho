@@ -32,6 +32,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -52,7 +56,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Pleebs Quit: "
+text = "Employee Retention (Quit Total): "
 
 [node name="Number" type="Label" parent="Background/Report/TopReport/HBoxContainer"]
 layout_mode = 2
@@ -66,7 +70,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Go-Getters Insulted:"
+text = "Innapropriate Supervisor Relation Infractions: "
 
 [node name="Number" type="Label" parent="Background/Report/TopReport/HBoxContainer2"]
 layout_mode = 2
@@ -80,7 +84,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Go-Getters Properly Supported:"
+text = "Staff Support and Assistance Tally: "
 
 [node name="Number" type="Label" parent="Background/Report/TopReport/HBoxContainer3"]
 layout_mode = 2
@@ -94,7 +98,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Casualties in the Line of Work:"
+text = "Casualties in the Line of Work: "
 
 [node name="Number" type="Label" parent="Background/Report/TopReport/HBoxContainer4"]
 layout_mode = 2
@@ -108,7 +112,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Windows Broken:"
+text = "Proprety Maintenance Issues (Windows Broken): "
 
 [node name="Number" type="Label" parent="Background/Report/TopReport/HBoxContainer5"]
 layout_mode = 2
@@ -181,6 +185,7 @@ text = "APPRECIATION:"
 [node name="ProgressBar" type="ProgressBar" parent="Background/Report/Appreciation"]
 custom_minimum_size = Vector2(600, 20)
 layout_mode = 2
+size_flags_vertical = 4
 step = 1.0
 show_percentage = false
 

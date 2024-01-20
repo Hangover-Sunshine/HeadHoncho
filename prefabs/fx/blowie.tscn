@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bntoutgm3b5dd"]
+[gd_scene load_steps=10 format=3 uid="uid://crr5vjn8ws1re"]
 
 [ext_resource type="Texture2D" uid="uid://japsvuwa8mlm" path="res://assets/particles/Square.png" id="1_3ymwt"]
 [ext_resource type="Script" path="res://scripts/fx_control/BlowieControl.gd" id="1_j6uuj"]
 [ext_resource type="Texture2D" uid="uid://b1q8ss1msum2s" path="res://assets/particles/Sqiggle.png" id="2_3qir1"]
-[ext_resource type="Gradient" path="res://assets/particles/SplashGradiant.tres" id="3_7cgqq"]
+[ext_resource type="Gradient" uid="uid://d2i40vcxdvycw" path="res://assets/particles/SplashGradiant.tres" id="3_7cgqq"]
 [ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="4_1s2jm"]
 [ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="5_us3jj"]
 [ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="6_y14pp"]
@@ -21,7 +21,7 @@ point_count = 2
 script = ExtResource("1_j6uuj")
 
 [node name="Square" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.12549)
+modulate = Color(1, 1, 1, 0.0392157)
 position = Vector2(-6, 0)
 scale = Vector2(6.64583, 0.795)
 texture = ExtResource("1_3ymwt")
@@ -30,9 +30,8 @@ offset = Vector2(48, 0)
 [node name="Stream" type="CPUParticles2D" parent="."]
 position = Vector2(49, -9)
 rotation = 1.5708
+emitting = false
 amount = 20
-lifetime = 1.5
-speed_scale = 0.75
 local_coords = true
 texture = ExtResource("2_3qir1")
 emission_shape = 3
@@ -50,9 +49,8 @@ color_ramp = ExtResource("3_7cgqq")
 [node name="Dots" type="CPUParticles2D" parent="."]
 position = Vector2(49, -9)
 rotation = 1.5708
+emitting = false
 amount = 20
-lifetime = 1.5
-speed_scale = 0.75
 local_coords = true
 texture = ExtResource("4_1s2jm")
 emission_shape = 3
@@ -69,9 +67,8 @@ color_ramp = ExtResource("3_7cgqq")
 [node name="Kisses" type="CPUParticles2D" parent="."]
 position = Vector2(49, -9)
 rotation = 1.5708
+emitting = false
 amount = 20
-lifetime = 1.5
-speed_scale = 0.75
 local_coords = true
 texture = ExtResource("5_us3jj")
 emission_shape = 3
@@ -90,9 +87,8 @@ color_ramp = ExtResource("3_7cgqq")
 [node name="Hugs" type="CPUParticles2D" parent="."]
 position = Vector2(49, -9)
 rotation = 1.5708
+emitting = false
 amount = 20
-lifetime = 1.5
-speed_scale = 0.75
 local_coords = true
 texture = ExtResource("6_y14pp")
 emission_shape = 3
