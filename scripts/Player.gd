@@ -124,15 +124,23 @@ func fall():
 
 func get_list_to_iterate(curr_head) -> Array:
 	if len(dickheads_in_path) > 0:
+		$CharacterSkeleton.talking = true
+		$CharacterSkeleton.aoe_healing = false
 		return dickheads_in_path
 	elif len(worker_in_path) > 0:
+		$CharacterSkeleton.talking = true
+		$CharacterSkeleton.aoe_healing = false
 		return worker_in_path
 	elif curr_head == Heads.BLOW_HEAD or curr_head == Heads.COVEFE_HEAD:
 		# if we're either blowie or covefe, don't look at the open seats
 		return []
 	elif len(open_seats_nearby) > 0:
+		$CharacterSkeleton.talking = true
+		$CharacterSkeleton.aoe_healing = false
 		return open_seats_nearby
 	##
 	
+	$CharacterSkeleton.talking = false
+	$CharacterSkeleton.aoe_healing = true
 	return []
 ##

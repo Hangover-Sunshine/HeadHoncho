@@ -100,6 +100,8 @@ func _moneybags_head_process():
 	##
 	
 	if result == false:
+		character_skeleton.aoe_healing_done = false
+		character_skeleton.spawned_particles = false
 		return
 	##
 	
@@ -111,6 +113,7 @@ func _moneybags_head_process():
 			thing.apply_moneybags_effect()
 		##
 	else:
+		character_skeleton.aoe_healing_done = true
 		SignalBus.emit_signal("aoe_heal", player.GROUP_DESTRESS)
 	##
 ##
@@ -161,6 +164,7 @@ func _tick_update_receiver():
 		
 		if moneybags.get_is_active():
 			moneybags.factory_reset()
+			character_skeleton.aoe_healing_done = false
 		##
 		
 		if effect_bar.visible:

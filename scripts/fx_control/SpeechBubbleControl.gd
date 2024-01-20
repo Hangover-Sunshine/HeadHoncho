@@ -20,6 +20,10 @@ func _ready():
 	left_bubble_2.emitting = false
 ##
 
+func is_emitting():
+	return circles.emitting
+##
+
 func emit():
 	circles.emitting = true
 	circles_2.visible = true
