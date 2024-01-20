@@ -39,7 +39,8 @@ func _ready():
 	
 	total_qrtr_workers = 2
 	
-	SignalBus.connect("dickhead_gone", _dickhead_gone)
+	#SignalBus.connect("dickhead_gone", _dickhead_gone)
+	
 	SignalBus.connect("worker_quit", _worker_quit)
 	SignalBus.connect("is_money_bags", _is_money_bags)
 	SignalBus.connect("not_money_bags", _not_money_bags)
@@ -116,6 +117,7 @@ func get_num_of_workers():
 func _worker_quit(worker:Worker):
 	var indx = workers.find(worker)
 	workers[indx] = null
+	dickheads_per_worker[indx] = 0
 	
 	WORKER_SEATS.get_child(indx).player_can_interact(true)
 	

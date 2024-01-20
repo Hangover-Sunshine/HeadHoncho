@@ -57,14 +57,14 @@ func boss_arrived():
 	bosses_nearby += 1
 	$TickReceiver.save_stats()
 	
-	$TickReceiver.increase_money = 0.2 * bosses_nearby
+	$TickReceiver.money_increase_perc = 0.2 * bosses_nearby
 	$TickReceiver.curr_energy = 100
 	$TickReceiver.covefe_fed()
 ##
 
 func boss_gone():
 	bosses_nearby -= 1
-	$TickReceiver.increase_money = 0.2 * bosses_nearby
+	$TickReceiver.money_increase_perc = 0.2 * bosses_nearby
 	$TickReceiver.dickheadTempMod = dickheadTempMod * bosses_nearby
 	
 	if bosses_nearby == 0:

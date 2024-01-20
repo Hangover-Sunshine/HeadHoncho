@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vgk3p2kr1llq"]
+[gd_scene load_steps=28 format=3 uid="uid://vgk3p2kr1llq"]
 
 [ext_resource type="Script" path="res://scripts/Worker.gd" id="1_ddibx"]
 [ext_resource type="Script" path="res://scripts/worker/WorkerTickReceiver.gd" id="2_qv6vi"]
@@ -10,6 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://yp8a06yynvb0" path="res://prefabs/fx/sleepy.tscn" id="7_v5ivi"]
 [ext_resource type="PackedScene" path="res://prefabs/fx/bad_performance.tscn" id="8_47olx"]
 [ext_resource type="PackedScene" path="res://prefabs/fx/good_performance.tscn" id="9_7ureq"]
+[ext_resource type="Script" path="res://scripts/fx_control/SpeechBubbleControl.gd" id="11_h3yik"]
+[ext_resource type="Texture2D" uid="uid://di1iaoekvmd71" path="res://assets/particles/Circle.png" id="12_pqveb"]
+[ext_resource type="Texture2D" uid="uid://cwlb50cbpp7lj" path="res://assets/particles/Doughnut.png" id="13_btxlv"]
+[ext_resource type="Texture2D" uid="uid://426fy67421h" path="res://assets/particles/X.png" id="14_he1of"]
+[ext_resource type="Texture2D" uid="uid://dm7edybck01p0" path="res://assets/particles/Convo_Player_Tile.png" id="15_7f7w3"]
+[ext_resource type="Texture2D" uid="uid://bn4evs6smm2jy" path="res://assets/particles/Convo_Dick_Tile.png" id="16_blvgh"]
+[ext_resource type="PackedScene" uid="uid://cxr15uonsdsg" path="res://prefabs/fx/fireball.tscn" id="17_swc4g"]
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
 resource_name = "All_Idle"
@@ -232,13 +239,31 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrvmm"]
 size = Vector2(147, 342)
 
+[sub_resource type="Curve" id="Curve_63tyn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vgj3g"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yqep1"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_xapnj"]
+offsets = PackedFloat32Array(0, 0.1, 0.6, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
 [node name="WorkerBody" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ddibx")
-startingTemp = 20
-startingEnergy = 100
-startingStress = 9
+startingEnergy = 0
 maxStress = 10
 
 [node name="TickReceiver" type="Node" parent="."]
@@ -266,6 +291,8 @@ offset_bottom = -135.0
 mouse_filter = 1
 step = 1.0
 show_percentage = false
+
+[node name="Fireball" parent="." instance=ExtResource("17_swc4g")]
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
 script = ExtResource("3_o3m30")
@@ -314,3 +341,188 @@ position = Vector2(-15, -36)
 
 [node name="GoodPerformance" parent="." instance=ExtResource("9_7ureq")]
 position = Vector2(-15, -36)
+
+[node name="SpeechBubble" type="Node2D" parent="."]
+position = Vector2(0, -142)
+script = ExtResource("11_h3yik")
+
+[node name="Circles" type="CPUParticles2D" parent="SpeechBubble"]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("12_pqveb")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles2" type="CPUParticles2D" parent="SpeechBubble"]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("12_pqveb")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles3" type="CPUParticles2D" parent="SpeechBubble"]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("13_btxlv")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="Circles4" type="CPUParticles2D" parent="SpeechBubble"]
+position = Vector2(0, 20)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 10
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("14_he1of")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 50)
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_63tyn")
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_vgj3g")
+
+[node name="RightBubble2" type="CPUParticles2D" parent="SpeechBubble"]
+material = SubResource("CanvasItemMaterial_yqep1")
+position = Vector2(90, 40)
+amount = 1
+lifetime = 2.1
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("15_7f7w3")
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+damping_min = 10.0
+damping_max = 10.0
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_xapnj")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="RightBubble" type="CPUParticles2D" parent="SpeechBubble"]
+material = SubResource("CanvasItemMaterial_yqep1")
+position = Vector2(50, -40)
+amount = 1
+lifetime = 2.1
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("16_blvgh")
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_max = 20.0
+damping_min = 10.0
+damping_max = 10.0
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_xapnj")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="LeftBubble2" type="CPUParticles2D" parent="SpeechBubble"]
+material = SubResource("CanvasItemMaterial_yqep1")
+position = Vector2(-50, -40)
+rotation = 3.14159
+scale = Vector2(1, -1)
+amount = 1
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("15_7f7w3")
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_max = 20.0
+damping_min = 10.0
+damping_max = 10.0
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_xapnj")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="LeftBubble" type="CPUParticles2D" parent="SpeechBubble"]
+material = SubResource("CanvasItemMaterial_yqep1")
+position = Vector2(-90, 40)
+scale = Vector2(-1, 1)
+amount = 1
+lifetime = 2.2
+preprocess = 6.6
+local_coords = true
+texture = ExtResource("16_blvgh")
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+damping_min = 10.0
+damping_max = 10.0
+color = Color(1, 1, 1, 0.294118)
+color_ramp = SubResource("Gradient_xapnj")
+anim_speed_min = 2.0
+anim_speed_max = 2.0

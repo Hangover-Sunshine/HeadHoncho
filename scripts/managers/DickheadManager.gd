@@ -32,10 +32,10 @@ func _ready():
 func _request_new_target(dickhead:Dickhead):
 	var worker = WORKER_MANAGER.select_worker()
 	
-	# if no workers available, leave and count as removed
+	# if no workers available, dickhead chuffed
 	if worker == null:
-		dickheads_removed += 1
 		dickhead.unkind_leave = true
+		return # stop
 	##
 	
 	dickhead.set_target(worker)

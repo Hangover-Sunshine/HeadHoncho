@@ -60,30 +60,38 @@ func is_interacting_with_player():
 
 func _worker_quit(worker:Worker):
 	if target == worker:
-		emit_signal("request_new_target", self)
+		SignalBus.emit_signal("request_new_target", self)
 	##
 ##
 
 func _tick_update():
 	if falling == false:
 		if nav_agent.is_navigation_finished() and !leaving() and !is_interacting_with_player():
-			if arrived == false:
+			if arrived == false and target != null:
 				arrived = true
 				target.boss_arrived()
 			##
 		elif is_interacting_with_player() and arrived:
-			target.boss_gone()
+			if target != null:
+				target.boss_gone()
+			##
+			
 			arrived = false
 		##
 		
-		if unkind_leave == true and nav_agent.is_navigation_finished():
+		if unkind_leave == true and target != null and nav_agent.is_navigation_finished():
 			SignalBus.emit_signal("dickhead_removed")
-			queue_free()
+			#queue_free()
+		##
+		
+		if unkind_leave == true and target == null:
+			nav_agent.target_position = leave_target
+			return
 		##
 		
 		if kind_leave == true and nav_agent.is_navigation_finished():
 			SignalBus.emit_signal("dickhead_left")
-			queue_free()
+			#queue_free()
 		##
 		
 		if being_burned:
@@ -112,8 +120,12 @@ func fall():
 ##
 
 func set_target(targ_worker):
-	target = targ_worker
-	nav_agent.target_position = target.global_position
+	if targ_worker != null:
+		target = targ_worker
+		nav_agent.target_position = target.global_position
+	else:
+		SignalBus.emit_signal("request_new_target", self)
+	##
 ##
 
 func set_leave(leave_targ):

@@ -36,7 +36,8 @@ func _ready():
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
 	
-	dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
+	#dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
+	dickhead_timer.start(1)
 	
 	PLAYER_INFO_UI.set_revenue(0)
 	PLAYER_INFO_UI.set_quota(quota)

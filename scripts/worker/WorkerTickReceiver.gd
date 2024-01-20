@@ -11,6 +11,8 @@ extends Node
 @onready var sleepy = $"../Sleepy"
 @onready var bad_performance = $"../BadPerformance"
 @onready var good_performance = $"../GoodPerformance"
+@onready var speechbubble = $"../SpeechBubble"
+@onready var fireball = $"../Fireball"
 
 ##################################################
 
@@ -92,10 +94,21 @@ func tick_update_receiver():
 	if curr_energy >= 75:
 		temp_dir = 1
 		temperature_processor.set_max(2)
+		
+		if fireball.is_emitting() == false:
+			fireball.emit()
+		##
 	elif curr_energy > 60:
+		if fireball.is_emitting():
+			fireball.stop_emit()
+		##
 		temp_dir = 1
 		temperature_processor.set_max(4)
 	else:
+		if fireball.is_emitting():
+			fireball.stop_emit()
+		##
+		
 		if money_increase_perc == 0:
 			temp_dir = -1
 		else:
@@ -194,12 +207,16 @@ func save_stats():
 	if saved:
 		return
 	##
+	saved = true
 	saved_energy = curr_energy
+	speechbubble.emit()
 ##
 
 func load_stats():
 	if saved == false:
 		return
 	##
+	saved = false
 	curr_energy = saved_energy
+	speechbubble.stop_emitting()
 ##
