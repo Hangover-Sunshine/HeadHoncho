@@ -390,10 +390,12 @@ visible = false
 
 [node name="QuarterReview" parent="UILayer" instance=ExtResource("32_44aqo")]
 process_mode = 2
+visible = false
 WINDOW_REPAIR_COST = 200
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOverScreen" parent="UILayer" instance=ExtResource("35_rvdem")]
+visible = false
 
 [connection signal="timeout" from="Game/Timers/TickUpdateTimer" to="Game" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="Game/Timers/QuarterTimer" to="Game" method="_on_quarter_timer_timeout"]

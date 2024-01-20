@@ -15,6 +15,8 @@ func _ready():
 	var left = $HBoxContainer/MainMenuComponents/Menu/LArrow.get_children()
 	var right = $HBoxContainer/MainMenuComponents/Menu/RArrow.get_children()
 	
+	$DelayWhilePressedTimer.start()
+	
 	for ai in range(len(left)):
 		arrows.append([left[ai], right[ai]])
 	##
@@ -46,7 +48,7 @@ func _process(_delta):
 		$DelayWhilePressedTimer.start()
 	##
 	
-	if Input.is_action_pressed("head_interaction"):
+	if Input.is_action_pressed("head_interaction") and $DelayWhilePressedTimer.is_stopped():
 		if curr_pos == 0:
 			get_tree().change_scene_to_file("res://scenes/level.tscn")
 		elif curr_pos == 1:

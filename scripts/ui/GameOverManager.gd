@@ -1,11 +1,26 @@
 extends Control
 
-@onready var label = $TextBG/MarginContainer/Label
+@onready var label = $TextBG/MarginContainer/VBoxContainer/Label
+@onready var text_bg = $TextBG
 
 @onready var survive_all_quotas = $Jpegs/SurviveAllQuotas
 @onready var fall_out = $Jpegs/FallOut
 @onready var unionization = $Jpegs/Unionization
 @onready var fired = $Jpegs/Fired
+
+@onready var to_game_menu = $ToGameMenu
+@onready var replay_arrow = $ToGameMenu/ReplayArrow
+@onready var mid_arrow = $ToGameMenu/MidArrow
+@onready var menu_arrow = $ToGameMenu/MenuArrow
+
+var curr_pos:int = 0
+
+var up_pressed:bool = false
+var down_pressed:bool = false
+
+var arrows = []
+
+var out_of_reading:bool = false
 
 func _ready():
 	SignalBus.connect("player_jumped_out_window", player_dies_end)
@@ -13,6 +28,58 @@ func _ready():
 	SignalBus.connect("player_survived", survive_end)
 	SignalBus.connect("too_many_workers_quit", unionization_end)
 	visible = false
+##
+
+func _input(event):
+	if visible == false:
+		return
+	##
+	
+	if event.is_action_pressed("up") or event.is_action_pressed("left"):
+		up_pressed = true
+		$ToGameMenu/DelayWhilePressedTimer.stop()
+	elif event.is_action_released("up") or event.is_action_released("left"):
+		up_pressed = false
+	##
+	if event.is_action_pressed("down") or event.is_action_pressed("right"):
+		down_pressed = true
+		$ToGameMenu/DelayWhilePressedTimer.stop()
+	elif event.is_action_released("down") or event.is_action_released("right"):
+		down_pressed = false
+	##
+##
+
+func _process(_delta):
+	if visible == false:
+		return
+	##
+	
+	if out_of_reading == false:
+		if Input.is_action_pressed("head_interaction"):
+			text_bg.visible = false
+			to_game_menu.visible = true
+			out_of_reading = true
+			$ToGameMenu/DelayWhilePressedTimer.start()
+		##
+		return
+	##
+	
+	if up_pressed and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
+		move_arrows_up()
+		$ToGameMenu/DelayWhilePressedTimer.start()
+	##
+	if down_pressed and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
+		move_arrows_down()
+		$ToGameMenu/DelayWhilePressedTimer.start()
+	##
+	
+	if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
+		if curr_pos == 0:
+			get_tree().change_scene_to_file("res://scenes/level.tscn")
+		elif curr_pos == 1:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		##
+	##
 ##
 
 func player_dies_end():
@@ -46,4 +113,40 @@ func survive_end():
 				"Yes, you might've been the reason the stock prices are now worth 180% more, but you " +\
 				"weren't born with a silver spoon and on third base, so go f*ck yourself before we fire " +\
 				"you. Be greatful you have a job."
+##
+
+func move_arrows_up():
+	if curr_pos == 0:
+		replay_arrow.text = ""
+		mid_arrow.text = ">>>>>"
+	elif curr_pos == 1:
+		menu_arrow.text = ""
+		mid_arrow.text = "<<<<<"
+	##
+	
+	curr_pos = curr_pos - 1 if curr_pos > 0 else 1
+	
+	if curr_pos == 0:
+		replay_arrow.text = ">>>>>"
+	elif curr_pos == 1:
+		menu_arrow.text = "<<<<<"
+	##
+##
+
+func move_arrows_down():
+	if curr_pos == 0:
+		replay_arrow.text = ""
+		mid_arrow.text = ">>>>>"
+	elif curr_pos == 1:
+		menu_arrow.text = ""
+		mid_arrow.text = "<<<<<"
+	##
+	
+	curr_pos = curr_pos + 1 if curr_pos < 1 else 0
+	
+	if curr_pos == 0:
+		replay_arrow.text = ">>>>>"
+	elif curr_pos == 1:
+		menu_arrow.text = "<<<<<"
+	##
 ##

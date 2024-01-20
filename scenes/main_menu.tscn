@@ -134,6 +134,8 @@ theme_override_constants/margin_bottom = 80
 script = ExtResource("1_60ymw")
 
 [node name="DelayWhilePressedTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

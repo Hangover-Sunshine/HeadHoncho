@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgvu8xvfh7jjd"]
 
 [ext_resource type="Texture2D" uid="uid://r6rh7oi6ghwu" path="res://assets/temp_assets/report_bg.png" id="1_ati2x"]
-[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_pps3j"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_nv32d"]
 [ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_f5lwm"]
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="2_ukk43"]
 [ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="5_omud1"]
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pps3j")
+script = ExtResource("1_nv32d")
 
 [node name="DelayWhilePressedTimer" type="Timer" parent="."]
 wait_time = 0.1
