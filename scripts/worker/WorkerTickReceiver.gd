@@ -27,11 +27,10 @@ var temp_dir:int
 
 var curr_stress:int
 
+var dickheadTempMod:float = 0
+var money_increase_perc:float = 0
 var saved:bool = false
-var saved_temp:int
 var saved_energy:int
-var bosses_nearby:int = 0
-var increase_money:float = 0
 
 #####################
 var maxTempColor:Color
@@ -44,14 +43,12 @@ var energyShieldTickCount:int
 var defaultMoney:int
 var defaultEnergyDecrease:int
 var defaultTempModification:int
-var dickheadTempMod:float
 ######################
 
 func _ready():
 	defaultMoney = get_parent().defaultMoney
 	defaultEnergyDecrease = get_parent().defaultEnergyDecrease
 	defaultTempModification = get_parent().defaultTempModification
-	dickheadTempMod = get_parent().dickheadTempMod
 	maxTempurate = get_parent().maxTempurate
 	maxStress = get_parent().maxStress
 	energyShieldTickCount = get_parent().energyShieldTickCount
@@ -80,13 +77,13 @@ func tick_update_receiver():
 	# give the player money every so often :)
 	if money_processor.get_max() > 0 and money_processor.tick():
 		money_processor.reset_tick_count()
-		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1.0 + increase_money)))
+		SignalBus.emit_signal("give_player_money", floor(defaultMoney * (1.0 + money_increase_perc)))
 	elif money_processor.get_max() == 0:
 		money_processor.reset_tick_count()
 	##
 	
 	# Only modify energy while the caffeine shield is down
-	if energy_shield == false and curr_energy > 0:
+	if energy_shield == false and money_increase_perc == 0 and curr_energy > 0:
 		curr_energy -= defaultEnergyDecrease
 		money_processor.set_max(_get_money_gen_rate())
 	##
@@ -99,7 +96,11 @@ func tick_update_receiver():
 		temp_dir = 1
 		temperature_processor.set_max(4)
 	else:
-		temp_dir = -1
+		if money_increase_perc == 0:
+			temp_dir = -1
+		else:
+			temp_dir = 0
+		##
 		temperature_processor.set_max(8)
 	##
 	
@@ -143,10 +144,6 @@ func tick_update_receiver():
 	##
 ##
 
-func covefe_fed():
-	money_processor.set_max(_get_money_gen_rate())
-##
-
 func _get_stress_rate() -> int:
 	var rate:int = 0
 	temp_color = default_color
@@ -186,4 +183,22 @@ func _get_money_gen_rate() -> int:
 	##
 	
 	return rate
+##
+
+func covefe_fed():
+	money_processor.set_max(_get_money_gen_rate())
+##
+
+func save_stats():
+	if saved:
+		return
+	##
+	saved_energy = curr_energy
+##
+
+func load_stats():
+	if saved == false:
+		return
+	##
+	curr_energy = saved_energy
 ##

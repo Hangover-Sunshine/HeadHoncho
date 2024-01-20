@@ -19,8 +19,6 @@ class_name Worker
 
 @export_group("Stress")
 @export var startingStress:int = 0
-@export var defaultStressIncrease:int = 1
-@export var ticksUntilStressIncrease:int = 6
 @export var maxStress:int = 100
 
 @export_group("General Stats")
@@ -35,27 +33,7 @@ var energy_color:Color = default_color
 var temp_color:Color = default_color
 var curr_color:Color = default_color
 
-var curr_energy:int
-var energy_shield:bool = false
-var shield_up_ticks:int = 0
-
-var ticks_since_last_cash:int
-var money_rate:int
-
-var curr_temp:int
-var temp_ticks:int
-var temp_tick_rate:int
-var temp_dir:int
-
-var curr_stress:int
-var stress_tick_rate:int
-var stress_ticks:int
-
-var saved:bool = false
-var saved_temp:int
-var saved_energy:int
 var bosses_nearby:int = 0
-var increase_money:float = 0
 
 func _ready():
 	$TickReceiver.curr_temp = startingTemp
@@ -72,41 +50,34 @@ func _ready():
 func reset_worker():
 	$TickReceiver.money_rate = 0
 	$TickReceiver.bosses_nearby = 0
-	$TickReceiver.curr_temp = $TickReceiver.saved_temp
-	$TickReceiver.curr_energy = $TickReceiver.saved_energy
+	$TickReceiver.load_stats()
 ##
 
 func boss_arrived():
-	$TickReceiver.bosses_nearby += 1
+	bosses_nearby += 1
+	$TickReceiver.save_stats()
 	
-	if $TickReceiver.saved == false:
-		$TickReceiver.saved = true
-		$TickReceiver.saved_temp = curr_temp
-		$TickReceiver.saved_energy = curr_energy
-	##
-	
-	$TickReceiver.increase_money += 0.2
+	$TickReceiver.increase_money = 0.2 * bosses_nearby
 	$TickReceiver.curr_energy = 100
-	
-	if $TickReceiver.curr_temp < 40:
-		$TickReceiver.curr_temp = 40
-	##
+	$TickReceiver.covefe_fed()
 ##
 
 func boss_gone():
-	$TickReceiver.bosses_nearby -= 1
-	$TickReceiver.increase_money -= 0.2
+	bosses_nearby -= 1
+	$TickReceiver.increase_money = 0.2 * bosses_nearby
+	$TickReceiver.dickheadTempMod = dickheadTempMod * bosses_nearby
 	
 	if bosses_nearby == 0:
-		$TickReceiver.saved = false
-		$TickReceiver.curr_temp = $TickReceiver.saved_temp
-		$TickReceiver.curr_energy = $TickReceiver.saved_energy
-		$TickReceiver.increase_money = 0
+		$TickReceiver.load_stats()
 	##
 ##
 
 func _aoe_heal(amount):
 	$TickReceiver.curr_stress -= amount
+	
+	if $TickReceiver.curr_stress > 0 and $TickReceiver.curr_stress % 4 == 0:
+		$GoodPerformance.emitting = true
+	##
 	
 	if $TickReceiver.curr_stress < 0:
 		$TickReceiver.curr_stress = 0

@@ -32,6 +32,7 @@ func _process(_delta):
 	if tick_receiver.curr_energy > 24:
 		if animation_player.current_animation != "All_Walk":
 			animation_player.play("All_Walk")
+			animation_player.seek(randf_range(0, animation_player.current_animation_length))
 		##
 	else:
 		if animation_player.current_animation != "All_Idle":
