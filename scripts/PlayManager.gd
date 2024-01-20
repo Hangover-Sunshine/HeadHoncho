@@ -7,7 +7,7 @@ extends Node2D
 @export var SECONDS_PER_ROUND:float = 60
 
 @export_group("Dickhead Control")
-@export var dickheadTimerMinMax:Vector2 = Vector2(1, 8)
+@export var dickheadTimerMinMax:Vector2 = Vector2(6, 12)
 
 @export_group("Costs")
 @export var AOE_HEAL_COST:int = 700
@@ -24,6 +24,8 @@ var quarterlyMoneyCounter:int = 0
 var appreciation:int = 100
 var broken_window_count:int = 0
 
+var round_num:int = 1
+
 func _ready():
 	SignalBus.connect("give_player_money", _give_player_money_receiver)
 	SignalBus.connect("round_start", _round_start)
@@ -34,14 +36,10 @@ func _ready():
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
 	
+	dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
+	
 	PLAYER_INFO_UI.set_revenue(0)
 	PLAYER_INFO_UI.set_quota(quota)
-##
-
-func _input(event):
-	if event.is_action_pressed("ui_left"):
-		$DickheadManager.spawn_dickhead()
-	##
 ##
 
 func _on_tick_update_timer_timeout():
@@ -104,6 +102,9 @@ func _round_start(starting:Dictionary):
 	
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
+	dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
+	
+	round_num += 1
 ##
 
 func stop_all_timers():
@@ -126,4 +127,5 @@ func pause_all_timers():
 
 func _on_dickhead_timer_timeout():
 	$DickheadManager.spawn_dickhead()
+	dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
 ##
