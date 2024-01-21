@@ -94,27 +94,26 @@ func player_dies_end():
 	
 	visible = true
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
-				"or some other reason will not be investigated. In fact, before the coroner could " +\
-				"pronounce you dead due to blunt force trauma, [Company] marched in and stapled " +\
-				"'you're fired' to your corpse and your final performance review."
+				"or some other reason, your cause of death was never investigated. In fact, before 
+				the coroner could pronounce you dead due to blunt force trauma, MLM Corp. stapled" +\
+				"a termination letter to your corpse as response due in part your lackluster peformance."
 ##
 
 func player_fired_end():
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "Owing to your terrible management of the company's money, you've been " +\
-				"summarily fired. You were asked to meet The Bosses on a boat, where you were " +\
-				"never heard from again. Your family was not compensated. No one was investiged."
+				"summarily fired. You were asked to meet management on a boat, where you were " +\
+				"never heard from again. Your family was not compensated. No one was investigated."
 ##
 
 func unionization_end():
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
-				"collectivize. This will cost the company greatly. You were arrested by the Bluetonnes " +\
-				"and executed for allowing a UNION to come into existence. Now they'll have to fire " +\
-				"everyone. Read your handbook on 'Why Unions Are Bad [for the company]'" +\
-				"better next time.\nGod bless the US of A, you f*cking commie socialist."
+				"unionize. This cost MLM Corp. greatly and you were immediately let go for" +\
+				"failing to create a healthy and happy work environment. MLM Corp. takes" +\
+				"employee health stress seriously. "
 ##
 
 func survive_end():
