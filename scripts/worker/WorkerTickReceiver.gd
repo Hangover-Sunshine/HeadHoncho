@@ -34,6 +34,8 @@ var money_increase_perc:float = 0
 var saved:bool = false
 var saved_energy:int
 
+var prev_value:int
+
 #####################
 var maxTempColor:Color
 var minEnergyColor:Color
@@ -165,6 +167,14 @@ func tick_update_receiver():
 	character_skeleton.control_display(curr_stress, curr_temp, curr_energy, temp_color, energy_color)
 	
 	stress_processor.set_max(_get_stress_rate())
+	
+	if prev_value == get_parent().effect_bar.value:
+		get_parent().hide_effect_bar()
+	##
+	
+	if get_parent().effect_bar.visible:
+		prev_value = get_parent().effect_bar.value
+	##
 	
 	# Shield tracker --> only enter if the worker has their shield active;
 	#	otherwise, ignore the block

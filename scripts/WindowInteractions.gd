@@ -13,6 +13,7 @@ func _ready():
 
 func _round_start(_roundInfo):
 	glass_shattered = false
+	$EnvGlassTest.visible = true
 ##
 
 func _on_body_entered(body):
