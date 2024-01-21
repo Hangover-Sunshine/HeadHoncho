@@ -25,5 +25,5 @@ damping_max = 100.0
 angle_max = 180.0
 scale_amount_min = 0.1
 scale_amount_max = 0.3
-color = Color(0.403922, 0.627451, 0.686275, 1)
+color = Color(0.403922, 0.627451, 0.686275, 0.588235)
 color_ramp = SubResource("Gradient_e7uoe")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/WindowInteractions.gd" id="1_pmwaq"]
 [ext_resource type="Texture2D" uid="uid://16qaqioc0k4k" path="res://assets/temp_assets/art_test/Env_Glass_Test.png" id="2_8fcw7"]
-[ext_resource type="PackedScene" path="res://prefabs/fx/glass_break.tscn" id="2_s5y62"]
+[ext_resource type="PackedScene" uid="uid://c7jstt7hd0aqd" path="res://prefabs/fx/glass_break.tscn" id="2_s5y62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nb0is"]
 size = Vector2(88, 385)
@@ -15,6 +15,7 @@ script = ExtResource("1_pmwaq")
 [node name="GlassBreak" parent="." instance=ExtResource("2_s5y62")]
 
 [node name="EnvGlassTest" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
 scale = Vector2(1, 8)
 texture = ExtResource("2_8fcw7")
 
