@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=40 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/managers/Level.gd" id="1_mcort"]
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bgvu8xvfh7jjd" path="res://prefabs/pause_menu.tscn" id="32_nlyhd"]
 [ext_resource type="PackedScene" uid="uid://dhgltxv5swoit" path="res://prefabs/player_information.tscn" id="33_y3hi0"]
 [ext_resource type="PackedScene" uid="uid://c768x53t75yj2" path="res://prefabs/game_over_screen.tscn" id="35_rvdem"]
+[ext_resource type="AudioStream" uid="uid://ca67de7ciiiyx" path="res://assets/sound/music/music_skyscrapersamba_loop.mp3" id="38_6ut6o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ukuds"]
 vertices = PackedVector2Array(626, 681, 734, 673, 1290, 671, 1249, 788, 752, 788, 1495, 578, 1649, 576, 1648, 962, 1487, 962, 1247, 1294, 1491, 1200, 1489, 1485, 1272, 155, 1475, 348, -70, 788, 81, 685, 576, 797, 88, 797, -70, 673, 72, 147, -1486, 1478, -1648, 1492, -1645, 1212, -1485, 1196, -1283, 1311, -73, 165, -1474, 333, -1645, 344, -1650, 14, -1291, 164, -595, 1294, -530, 1479, -525, 1679, -829, 1672, -826, 1488, -746, 1301, 612, 159, 726, 154, 577, 1292, 754, 1299, 527, 1487, -72, 1291, 86, 1292, 818, 1490, 825, 1674, 526, 1675, 1651, 1198, 1648, 1492, -744, 790, -608, 677, -596, 785, -617, 160, -748, 675, -749, 174, 143, 1489, 144, 1670, -150, 1664, -141, 1490, 1492, 1673, 1199, 1671, 1195, 1481, -1202, 1488, -1283, 790, -1280, 679, -1480, 965, -1642, 961, -1638, 579, -1481, 581, -1211, 1675, -1484, 1671, 1663, 28, 1657, 343)
@@ -53,7 +54,7 @@ script = ExtResource("1_mcort")
 process_mode = 1
 script = ExtResource("1_rjii0")
 PLAYER_INFO_UI = NodePath("../UILayer/PlayerInformation")
-SECONDS_PER_ROUND = 1.0
+SECONDS_PER_ROUND = 120.0
 
 [node name="StaticEnv" type="Node2D" parent="PlaySpace"]
 
@@ -409,6 +410,12 @@ visible = false
 
 [node name="GameOverScreen" parent="UILayer" instance=ExtResource("35_rvdem")]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("38_6ut6o")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="timeout" from="PlaySpace/Timers/TickUpdateTimer" to="PlaySpace" method="_on_tick_update_timer_timeout"]
 [connection signal="timeout" from="PlaySpace/Timers/QuarterTimer" to="PlaySpace" method="_on_quarter_timer_timeout"]

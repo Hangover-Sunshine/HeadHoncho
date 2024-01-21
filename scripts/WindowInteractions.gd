@@ -20,7 +20,7 @@ func _on_body_entered(body):
 		glass_shattered = true
 		$EnvGlassTest.visible = false
 		SignalBus.emit_signal("window_broken")
-		# play shattering sfx
+		$AudioStreamPlayer2D.play()
 		$GlassBreak.emitting = true
 	##
 	

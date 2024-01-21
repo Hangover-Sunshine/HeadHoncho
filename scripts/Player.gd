@@ -16,6 +16,15 @@ class_name Player
 ##########################################################################
 
 @onready var hands = $CharacterSkeleton/Sprites/Hands
+@onready var audio_player = $AudioStreamPlayer2D
+
+var sounds = {
+	"fall":load("res://assets/sound/sfx/SFX_Fall.wav"),
+	"convo":load("res://assets/sound/sfx/SFX_Convo.wav"),
+	"ac":load("res://assets/sound/sfx/SFX_AC_Loop.wav"),
+	"headswap":load("res://assets/sound/sfx/SFX_Head&Button.wav"),
+	"coffee_worker":load("res://assets/sound/sfx/SFX_Splash2.wav")
+}
 
 var game_done:bool = false
 
@@ -48,6 +57,11 @@ func _process(_delta):
 	if falling and game_done == false:
 		global_position = global_position.lerp(fall_lerp_to, 0.01)
 		
+		if audio_player.playing == false:
+			audio_player.stream = sounds["fall"]
+			audio_player.play()
+		##
+		
 		if $CharacterSkeleton/AnimationPlayer.is_playing() == false and\
 			$CharacterSkeleton.fall_anim_played:
 			game_done = true
@@ -67,16 +81,25 @@ func _input(event):
 		$CharacterSkeleton.set_head(Heads.BLOW_HEAD)
 		$TickReceiver.set_head(Heads.BLOW_HEAD)
 		SignalBus.emit_signal("not_money_bags")
+		
+		audio_player.stream = sounds["headswap"]
+		audio_player.play()
 	##
 	if event.is_action_pressed("coffee_head_hk") and use_head == false:
 		$CharacterSkeleton.set_head(Heads.COVEFE_HEAD)
 		$TickReceiver.set_head(Heads.COVEFE_HEAD)
 		SignalBus.emit_signal("not_money_bags")
+		
+		audio_player.stream = sounds["headswap"]
+		audio_player.play()
 	##
 	if event.is_action_pressed("fuck_head_hk") and use_head == false:
 		$CharacterSkeleton.set_head(Heads.FUCK_HEAD)
 		$TickReceiver.set_head(Heads.FUCK_HEAD)
 		SignalBus.emit_signal("is_money_bags")
+		
+		audio_player.stream = sounds["headswap"]
+		audio_player.play()
 	##
 ##
 

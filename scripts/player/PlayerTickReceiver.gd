@@ -67,6 +67,9 @@ func _coffee_head_process():
 		return
 	##
 	
+	get_parent().audio_player.stream = get_parent().sounds["coffee_worker"]
+	get_parent().audio_player.play()
+	
 	covefe.reset_tick_count()
 	character_skeleton.spill = true
 	
@@ -91,6 +94,10 @@ func _moneybags_head_process():
 	if len(curr_tick_array) > 0:
 		for thing in curr_tick_array:
 			thing.update_effect_bar(moneybags.get_tick_count(), max_ticks)
+		##
+		if get_parent().audio_player.playing == false:
+			get_parent().audio_player.stream = get_parent().sounds["convo"]
+			get_parent().audio_player.play()
 		##
 	else:
 		if effect_bar.visible == false:
@@ -141,6 +148,10 @@ func _tick_update_receiver():
 		##
 		
 		if curr_head == Player.Heads.BLOW_HEAD:
+			if get_parent().audio_player.playing == false:
+				get_parent().audio_player.stream = get_parent().sounds["ac"]
+				get_parent().audio_player.play()
+			##
 			_blow_head_process()
 		##
 		
@@ -155,6 +166,9 @@ func _tick_update_receiver():
 		prev_tick_array = curr_tick_array
 	else:
 		if blowie.get_is_active():
+			if get_parent().audio_player.playing:
+				get_parent().audio_player.stop()
+			##
 			blowie.factory_reset()
 		##
 		
@@ -163,6 +177,9 @@ func _tick_update_receiver():
 		##
 		
 		if moneybags.get_is_active():
+			if get_parent().audio_player.playing:
+				get_parent().audio_player.stop()
+			##
 			moneybags.factory_reset()
 			character_skeleton.aoe_healing_done = false
 		##

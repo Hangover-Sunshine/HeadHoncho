@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://do5kh4libmny"]
+[gd_scene load_steps=6 format=3 uid="uid://do5kh4libmny"]
 
 [ext_resource type="Script" path="res://scripts/WindowInteractions.gd" id="1_pmwaq"]
 [ext_resource type="Texture2D" uid="uid://16qaqioc0k4k" path="res://assets/temp_assets/art_test/Env_Glass_Test.png" id="2_8fcw7"]
-[ext_resource type="PackedScene" uid="uid://c7jstt7hd0aqd" path="res://prefabs/fx/glass_break.tscn" id="2_s5y62"]
+[ext_resource type="PackedScene" path="res://prefabs/fx/glass_break.tscn" id="2_s5y62"]
+[ext_resource type="AudioStream" uid="uid://cgt0nqf21ru0s" path="res://assets/sound/sfx/SFX_Glass.wav" id="4_cjxq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nb0is"]
 size = Vector2(88, 385)
@@ -26,5 +27,8 @@ debug_color = Color(0.772549, 0.2, 0.960784, 0.419608)
 
 [node name="FallPosition" type="Marker2D" parent="."]
 position = Vector2(-120, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cjxq0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
