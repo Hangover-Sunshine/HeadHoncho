@@ -888,7 +888,6 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
 [node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
@@ -923,7 +922,6 @@ text = "Developer - Hangover Sunshine | Music - Scott Buckley"
 horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -1147,6 +1145,7 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="Tips" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
