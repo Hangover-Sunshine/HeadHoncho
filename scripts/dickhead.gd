@@ -75,6 +75,7 @@ func fall():
 
 func set_target(targ_worker):
 	if targ_worker != null:
+		worker_target = targ_worker
 		$TickUpdateReceiver.target = targ_worker
 		nav_agent.target_position = $TickUpdateReceiver.target.global_position
 	else:
@@ -214,4 +215,6 @@ func apply_moneybags_effect():
 
 func set_disgruntled():
 	unkind_leave = true
+	nav_agent.target_position = leave_target
+	bad_performance.emitting = true
 ##
