@@ -112,6 +112,9 @@ func _moneybags_head_process():
 		return
 	##
 	
+	get_parent().audio_player.stream = get_parent().sounds["spend"]
+	get_parent().audio_player.play()
+	
 	moneybags.reset_tick_count()
 	
 	# Notify it's time to apply the effect

@@ -11,6 +11,12 @@ class_name WorkerManager
 @onready var worker = load("res://prefabs/worker.tscn")
 @onready var explosion = load("res://prefabs/fx/explosion.tscn")
 
+@onready var audio_player = $AudioStreamPlayer2D
+
+var sounds = {
+	"explosion":load("res://assets/sound/sfx/SFX_Explosion.wav")
+}
+
 var total_workers_quit:int = 0
 
 # key = id, val = [WorkerObject, num_dickheads] 
@@ -124,6 +130,9 @@ func _worker_quit(worker:Worker):
 	get_parent().add_child(expl_inst)
 	expl_inst.global_position = WORKER_SEATS.get_child(indx).global_position
 	expl_inst.emit()
+	
+	audio_player.stream = sounds["explosion"]
+	audio_player.play()
 	
 	total_workers_quit += 1
 	

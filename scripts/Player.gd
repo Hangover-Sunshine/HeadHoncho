@@ -23,7 +23,8 @@ var sounds = {
 	"convo":load("res://assets/sound/sfx/SFX_Convo.wav"),
 	"ac":load("res://assets/sound/sfx/SFX_AC_Loop.wav"),
 	"headswap":load("res://assets/sound/sfx/SFX_Head&Button.wav"),
-	"coffee_worker":load("res://assets/sound/sfx/SFX_Splash2.wav")
+	"coffee_worker":load("res://assets/sound/sfx/SFX_Splash2.wav"),
+	"spend":load("res://assets/sound/sfx/SFX_SpendCash.wav")
 }
 
 var game_done:bool = false
