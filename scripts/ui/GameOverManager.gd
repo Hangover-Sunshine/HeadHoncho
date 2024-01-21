@@ -92,6 +92,11 @@ func player_dies_end():
 	
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	
+	survive_all_quotas.visible = false
+	fall_out.visible = true
+	unionization.visible = false
+	fired.visible = false
+	
 	visible = true
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
 				"or some other reason, your cause of death was never investigated. In fact, before " +\
@@ -103,6 +108,12 @@ func player_dies_end():
 func player_fired_end():
 	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
+	
+	survive_all_quotas.visible = false
+	fall_out.visible = false
+	unionization.visible = false
+	fired.visible = true
+	
 	visible = true
 	label.text = "Owing to your terrible management of the company's money, you've been " +\
 				"summarily terminated. You were asked to meet management on a boat, where you were " +\
@@ -113,6 +124,12 @@ func unionization_end():
 	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
+	
+	survive_all_quotas.visible = false
+	fall_out.visible = false
+	unionization.visible = true
+	fired.visible = false
+	
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
 				"unionize. This cost MLM Corp. greatly and you were immediately let go for" +\
 				"failing to create a healthy and happy work environment. MLM Corp. takes" +\
@@ -124,6 +141,12 @@ func survive_end():
 	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
+	
+	survive_all_quotas.visible = true
+	fall_out.visible = false
+	unionization.visible = false
+	fired.visible = false
+	
 	label.text = "The Company congratulates you for meeting all quotas in the fiscal year!" +\
 				"MLM Corp. stock has risen 50%; our company is now bringing record breaking profits " +\
 				"because of your contributions. Speaking of which, due to cost cutting measures and a " +\
