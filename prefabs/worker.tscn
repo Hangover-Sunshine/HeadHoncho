@@ -525,3 +525,5 @@ color = Color(1, 1, 1, 0.294118)
 color_ramp = SubResource("Gradient_xapnj")
 anim_speed_min = 2.0
 anim_speed_max = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -95,18 +95,35 @@ func tick_update_receiver():
 		temp_dir = 1
 		temperature_processor.set_max(2)
 		
+		if get_parent().audio_player.stream != get_parent().sounds["fire"]:
+			get_parent().audio_player.stream = get_parent().sounds["fire"]
+		##
+		
+		if get_parent().audio_player.playing == false:
+			get_parent().audio_player.play()
+		##
+		
 		if fireball.is_emitting() == false:
 			fireball.emit()
 		##
 	elif curr_energy > 60:
 		if fireball.is_emitting():
 			fireball.stop_emitting()
+		
+		if get_parent().audio_player.playing and\
+			get_parent().audio_player.stream == get_parent().sounds["fire"]:
+			get_parent().audio_player.stop()
 		##
+		
 		temp_dir = 1
 		temperature_processor.set_max(4)
 	else:
 		if fireball.is_emitting():
 			fireball.stop_emitting()
+		##
+		
+		if get_parent().audio_player.playing:
+			get_parent().audio_player.stop()
 		##
 		
 		if money_increase_perc == 0:

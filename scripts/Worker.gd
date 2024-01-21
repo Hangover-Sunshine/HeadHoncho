@@ -27,6 +27,12 @@ class_name Worker
 #################################################################
 
 @onready var effect_bar = $EffectBar
+@onready var audio_player = $AudioStreamPlayer2D
+
+var sounds = {
+	"fire":load("res://assets/sound/sfx/SFX_Fire.wav"),
+	"snore":null
+}
 
 var default_color:Color = Color.WHITE
 var energy_color:Color = default_color
