@@ -63,20 +63,6 @@ func _worker_quit(worker:Worker):
 	##
 ##
 
-func fall():
-	if $TickUpdateReceiver.falling == false:
-		$CharacterSkeleton/AnimationPlayer.play("Falling")
-		fireball.stop_emitting()
-		$TickUpdateReceiver.falling = true
-	##
-	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
-		SignalBus.emit_signal("dickhead_died")
-		queue_free()
-		return true
-	##
-	return false
-##
-
 func set_target(targ_worker):
 	if targ_worker != null:
 		worker_target = targ_worker

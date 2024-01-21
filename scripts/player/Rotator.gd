@@ -56,7 +56,7 @@ func _facing(curr_facing):
 ##
 
 func _process(_delta):
-	if player.use_head or player.can_be_controlled == false:
+	if player.use_head or player.falling:
 		return
 	##
 	

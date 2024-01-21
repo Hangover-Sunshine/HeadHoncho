@@ -27,6 +27,8 @@ var talking:bool = false
 var spawned_particles:bool = false
 var hire_worker:bool = false
 
+var fall_anim_played:bool = false
+
 func _ready():
 	SignalBus.connect("hire_worker", _hire_worker)
 ##
@@ -47,6 +49,15 @@ func set_head(new_head):
 ##
 
 func _process(delta):
+	if get_parent().falling:
+		if animation_player.current_animation != "Falling" and fall_anim_played == false:
+			animation_player.play("Falling")
+			fall_anim_played = true
+			get_parent().kill_all_particles()
+		##
+		return
+	##
+	
 	if parent.velocity.length_squared() != 0 and animation_player.current_animation != "All_Walk":
 		animation_player.play("All_Walk")
 	##

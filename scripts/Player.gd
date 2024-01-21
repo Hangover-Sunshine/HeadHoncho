@@ -17,15 +17,17 @@ class_name Player
 
 @onready var hands = $CharacterSkeleton/Sprites/Hands
 
+var game_done:bool = false
+
 enum Heads {
 	FUCK_HEAD,		# relax head
 	BLOW_HEAD,		# ac head
 	COVEFE_HEAD		# coffee head
 }
 
-var can_be_controlled:bool = true
-var falling:bool = false
 var use_head:bool = false
+var falling:bool = false
+var fall_lerp_to:Vector2
 
 var worker_in_path = []
 var dickheads_in_path = []
@@ -40,6 +42,18 @@ func _ready():
 	hands.frame_coords = Vector2i(0, skin_color)
 	
 	$EffectBar.visible = false
+##
+
+func _process(_delta):
+	if falling and game_done == false:
+		global_position = global_position.lerp(fall_lerp_to, 0.01)
+		
+		if $CharacterSkeleton/AnimationPlayer.is_playing() == false and\
+			$CharacterSkeleton.fall_anim_played:
+			game_done = true
+			SignalBus.emit_signal("player_jumped_out_window")
+		##
+	##
 ##
 
 func _input(event):
@@ -67,7 +81,7 @@ func _input(event):
 ##
 
 func _physics_process(delta):
-	if can_be_controlled and use_head == false:
+	if falling == false and use_head == false:
 		var dir = Vector2(Input.get_axis("right", "left"), Input.get_axis("up", "down"))
 		velocity = dir * SPEED
 	else:
@@ -111,20 +125,6 @@ func _on_basic_head_area_exited(area):
 	##
 ##
 
-func fall():
-	if falling == false:
-		SignalBus.emit_signal("player_jumped_out_window")
-		$CharacterSkeleton/AnimationPlayer.play("Falling")
-		falling = true
-		can_be_controlled = false
-	##
-	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
-		SignalBus.emit_signal("player_jumped_out_window")
-		return true
-	##
-	return false
-##
-
 func get_list_to_iterate(curr_head) -> Array:
 	if len(dickheads_in_path) > 0:
 		$CharacterSkeleton.talking = true
@@ -146,4 +146,12 @@ func get_list_to_iterate(curr_head) -> Array:
 	$CharacterSkeleton.talking = false
 	$CharacterSkeleton.aoe_healing = true
 	return []
+##
+
+func kill_all_particles():
+	$Revenue.emitting = false
+	$Smoke.stop_emitting()
+	$SpeechBubble.stop_emitting()
+	$Rotator/Blowie.stop_emitting()
+	$Rotator/CovefeSplash.stop_emitting()
 ##

@@ -60,6 +60,7 @@ func _process(_delta):
 	
 	if out_of_reading == false:
 		if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
+			print("here")
 			text_bg.visible = false
 			to_game_menu.visible = true
 			out_of_reading = true
@@ -87,19 +88,14 @@ func _process(_delta):
 ##
 
 func player_dies_end():
-	if first_signal == false:
-		first_signal = true
-		return
-	##
-	
 	in_gameover = true
 	
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	
 	visible = true
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
-				"or some other reason, your cause of death was never investigated. In fact, before 
-				the coroner could pronounce you dead due to blunt force trauma, MLM Corp. stapled" +\
+				"or some other reason, your cause of death was never investigated. In fact, before " +\
+				"the coroner could pronounce you dead due to blunt force trauma, MLM Corp. stapled " +\
 				"a termination letter to your corpse as a response, due in part, to your lackluster" +\
 				"performance post-death."
 ##
