@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bxhoa3vqfceq"]
+[gd_scene load_steps=27 format=3 uid="uid://bxhoa3vqfceq"]
 
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="1_6l7of"]
 [ext_resource type="Script" path="res://scripts/ui/MainMenuIntro.gd" id="1_fixyi"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cselclna2elat" path="res://assets/ui_assets/images/jam_logos/HS_Logo_White.png" id="6_gd0ha"]
 [ext_resource type="Texture2D" uid="uid://hn3mrbdr7v57" path="res://assets/ui_assets/images/guide/Guide_AllIcons.png" id="12_yvdef"]
 [ext_resource type="Texture2D" uid="uid://cf51jltoj1nrx" path="res://assets/ui_assets/images/guide/Thumb.png" id="14_7kmk3"]
+[ext_resource type="AudioStream" uid="uid://cxsjmt2t171ym" path="res://assets/sound/music/music_skyscrapersamba_elevator.mp3" id="16_485dc"]
 
 [sub_resource type="Animation" id="Animation_wdb7a"]
 length = 0.001
@@ -1647,6 +1648,11 @@ reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_yfsxm")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_485dc")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="timeout" from="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/AnimSwapTimer" to="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]
 [connection signal="timeout" from="Hand/BusinessCard/LoadDelayTimer" to="Hand/BusinessCard" method="_on_load_delay_timer_timeout"]
