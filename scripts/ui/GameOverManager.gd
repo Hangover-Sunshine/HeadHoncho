@@ -147,9 +147,9 @@ func unionization_end():
 	$ShowStoryTimer.start()
 	
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
-				"unionize. This cost MLM Corp. greatly and you were immediately let go for" +\
-				"failing to create a healthy and happy work environment. MLM Corp. takes" +\
-				"employee stresss seriously; we are a family, and we cannot have staff" +\
+				"unionize. This cost MLM Corp. greatly and you were immediately let go for " +\
+				"failing to create a healthy and happy work environment. MLM Corp. takes " +\
+				"employee stress seriously; we are a family, and we cannot have staff " +\
 				"who contribute to a toxic work environment."
 ##
 
@@ -168,7 +168,7 @@ func survive_end():
 	label.text = "The Company congratulates you for meeting all quotas in the fiscal year!" +\
 				"MLM Corp. stock has risen 50%; our company is now bringing record breaking profits " +\
 				"because of your contributions. Speaking of which, due to cost cutting measures and a " +\
-				"turbulent economic crisis, our team has to make some cuts and you have been let go." +\
+				"turbulent economic crisis, our team has to make some cuts and you have been let go. " +\
 				"Please expect your paycheck in the next couple of weeks. We do not cash out PTO."
 ##
 
