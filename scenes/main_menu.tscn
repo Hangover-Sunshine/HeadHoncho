@@ -887,7 +887,6 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
 [node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
@@ -922,7 +921,6 @@ text = "Developer - HangoverSunshine | Music - Scott Buckley"
 horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -1311,8 +1309,9 @@ your workers."
 horizontal_alignment = 1
 
 [node name="Settings" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
-theme_override_constants/separation = 600
+theme_override_constants/separation = 150
 
 [node name="LeftBox" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
 layout_mode = 2
@@ -1321,21 +1320,51 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
+[node name="TextureRect6" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
 [node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 20
 text = "▶"
 
+[node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
 [node name="Label2" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 20
 
+[node name="TextureRect2" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
 [node name="Label3" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 20
+
+[node name="TextureRect3" type="TextureRect" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="Label4" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
 layout_mode = 2
@@ -1385,99 +1414,223 @@ theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 30
 text = "Return to Menu"
 
-[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+[node name="Keybinds" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+layout_mode = 2
+
+[node name="Arrows" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds"]
 layout_mode = 2
 alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "▶"
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label2" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label3" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label4" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label5" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="ColorRect6" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Label6" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Arrows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Labels" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme = ExtResource("1_6l7of")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 50
+text = "To cancel, hit escape twice."
+
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(450, 0)
+[node name="Pause" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Pause"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Each worker at a desk makes
-revenue. Make sure to gauge
-their emotions to ensure their
-success.
-"
-horizontal_alignment = 1
+text = "Pause"
 
-[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(450, 0)
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Pause"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Bosses are distracting. They
-will stress your workers out.
-Use one of your heads to get
-rid of them.
-"
-horizontal_alignment = 1
+text = "ESCAPE"
 
-[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(450, 0)
+[node name="Up" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Up"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "If a worker works too hard,
-they will burnout. Use your
-AC Head to blow them back
-to a healthy work speed.
-"
-horizontal_alignment = 1
+text = "Up"
 
-[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Up"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "W"
+
+[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(450, 0)
+[node name="Down" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Down"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Your workers may fall asleep,
-use coffee to wake them up.
-Need them to work, harder?
-Coffee can also help!
-"
-horizontal_alignment = 1
+text = "Down"
 
-[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Down"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "S"
+
+[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
-custom_minimum_size = Vector2(450, 0)
+[node name="Left" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Left"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Your briefcase knows how to
-talk money. Use it to appease
-your bosses, getting rid of
-them safely, and to destress
-your workers."
-horizontal_alignment = 1
+text = "Left"
+
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Left"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "A"
+
+[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Right" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Right"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Right"
+
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Right"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "D"
+
+[node name="ColorRect6" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Head" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Head"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Head"
+
+[node name="CurrKey" type="Label" parent="Hand/BusinessCard/Menu/Settings/Keybinds/Labels/Head"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "SPACE"
 
 [node name="Thumb" type="Sprite2D" parent="Hand"]
 position = Vector2(-500, 1594)

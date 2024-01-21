@@ -1,6 +1,7 @@
 extends Control
 
 var arrows = []
+var settings_arrows = []
 
 var platform = ""
 
@@ -23,6 +24,14 @@ func _ready():
 	
 	for ai in range(len(left)):
 		arrows.append([left[ai]])
+	##
+	
+	left = $Menu/Settings/LeftBox/LArrow.get_children()
+	
+	for ai in range(len(left)):
+		if left[ai] is Label:
+			settings_arrows.append([left[ai]])
+		##
 	##
 ##
 
@@ -56,19 +65,36 @@ func _process(_delta):
 ##
 
 func move_arrows_up():
-	arrows[curr_pos][0].text = ""
-	
-	curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
-	
-	arrows[curr_pos][0].text = "▶"
+	if curr_screen == 0:
+		arrows[curr_pos][0].text = ""
+		curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
+		arrows[curr_pos][0].text = "▶"
+	else:
+		settings_arrows[settings_curr_pos][0].text = ""
+		settings_curr_pos = settings_curr_pos - 1 if settings_curr_pos > 0 else max_pos
+		settings_arrows[settings_curr_pos][0].text = "▶"
+	##
 ##
 
 func move_arrows_down():
-	arrows[curr_pos][0].text = ""
-	
-	curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
-	
-	arrows[curr_pos][0].text = "▶"
+	if curr_screen == 0:
+		arrows[curr_pos][0].text = ""
+		curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
+		arrows[curr_pos][0].text = "▶"
+	else:
+		settings_arrows[settings_curr_pos][0].text = ""
+		settings_curr_pos = settings_curr_pos + 1 if settings_curr_pos < max_pos else 0
+		settings_arrows[settings_curr_pos][0].text = "▶"
+	##
+##
+
+func show_settings():
+	curr_screen = 2
+	$Menu/Settings.visible = true
+##
+
+func hide_settings():
+	$Menu/Settings.visible = true
 ##
 
 func show_tips():
@@ -114,12 +140,43 @@ func main_menu_interactions():
 		if curr_pos == 0:
 			get_tree().change_scene_to_file("res://scenes/level.tscn")
 		elif curr_pos == 1:
-			pass
+			hide_main_menu()
+			show_settings()
+			$DelayWhilePressedTimer.start()
 		elif curr_pos == 2:
 			hide_main_menu()
 			show_tips()
 			$DelayWhilePressedTimer.start()
 		elif curr_pos == 3:
+			get_tree().quit()
+		##
+	##
+##
+
+var settings_curr_pos:int = 0
+
+func settings_interactions():
+	if up_pressed and $DelayWhilePressedTimer.is_stopped():
+		move_arrows_up()
+		$DelayWhilePressedTimer.start()
+	##
+	if down_pressed and $DelayWhilePressedTimer.is_stopped():
+		move_arrows_down()
+		$DelayWhilePressedTimer.start()
+	##
+	
+	if Input.is_action_pressed("head_interaction") and $DelayWhilePressedTimer.is_stopped():
+		if settings_curr_pos == 0:
+			get_tree().change_scene_to_file("res://scenes/level.tscn")
+		elif settings_curr_pos == 1:
+			hide_main_menu()
+			show_settings()
+			$DelayWhilePressedTimer.start()
+		elif settings_curr_pos == 2:
+			hide_main_menu()
+			show_tips()
+			$DelayWhilePressedTimer.start()
+		elif settings_curr_pos == 3:
 			get_tree().quit()
 		##
 	##
