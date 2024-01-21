@@ -27,4 +27,3 @@ debug_color = Color(0.772549, 0.2, 0.960784, 0.419608)
 position = Vector2(-120, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

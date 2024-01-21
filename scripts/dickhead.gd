@@ -30,6 +30,7 @@ var dir_from_player_to_me:Vector2
 var worker_target:Worker
 var leave_target:Vector2
 var curr_target:Vector2
+var fall_lerp_to:Vector2
 
 var blowing_away:bool = false
 
@@ -63,6 +64,7 @@ func _worker_quit(worker:Worker):
 func fall():
 	if $TickUpdateReceiver.falling == false:
 		$CharacterSkeleton/AnimationPlayer.play("Falling")
+		fireball.stop_emitting()
 		$TickUpdateReceiver.falling = true
 	##
 	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
@@ -99,6 +101,18 @@ func _process(_delta):
 	
 	if kind_leave == true and nav_agent.is_navigation_finished():
 		SignalBus.emit_signal("dickhead_left")
+	##
+	
+	if falling:
+		$TickUpdateReceiver.falling = true
+		global_position = global_position.lerp(fall_lerp_to, 0.05)
+		fireball.stop_emitting()
+		
+		if $CharacterSkeleton/AnimationPlayer.is_playing() == false and\
+			$CharacterSkeleton.fall_anim_played:
+			SignalBus.emit_signal("dickhead_died")
+			queue_free()
+		##
 	##
 ##
 
@@ -144,12 +158,14 @@ func _velocity_from_path():
 func show_effect_bar():
 	if blowing_away == false and $TickUpdateReceiver.being_burned == false:
 		effect_bar.visible = true
+		speech_bubble.emit()
 	##
 ##
 
 func hide_effect_bar():
 	effect_bar.value = 0
 	effect_bar.visible = false
+	speech_bubble.stop_emitting()
 ##
 
 func update_effect_bar(curr_val:int, max_val:int):

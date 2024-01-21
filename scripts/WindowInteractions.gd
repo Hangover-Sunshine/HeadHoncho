@@ -7,10 +7,6 @@ extends Area2D
 var bodies_in_zone = []
 var glass_shattered:bool = false
 
-func _ready():
-	pass
-##
-
 func _process(delta):
 	if len(bodies_in_zone) > 0 and glass_shattered == false:
 		glass_shattered = true
@@ -19,46 +15,16 @@ func _process(delta):
 		# play shattering sfx
 		$GlassBreak.emitting = true
 	##
-	
-	var res = []
-	
-	for body in bodies_in_zone:
-		res.append(body.fall())
-		
-		if USE_X:
-			var dist = abs(fall_pos.x) - abs(body.global_position.x)
-			if dist <= 10:
-				body.velocity = Vector2.ZERO
-			##
-		else:
-			var dist = abs(fall_pos.y) - abs(body.global_position.y)
-			if dist <= 10:
-				body.velocity = Vector2.ZERO
-			##
-		##
-		
-		if body is Player:
-			var pos = Vector2($FallPosition.global_position.x, body.global_position.y)
-			body.global_position = lerp(body.global_position, pos, 0.2)
-		##
-	##
-	
-	for r in range(len(res)):
-		if res[r] == true:
-			bodies_in_zone.remove_at(r)
-		##
-	##
 ##
 
 func _on_body_entered(body):
-	if body is Player:
-		bodies_in_zone.append(body)
+	body.falling = true
+	
+	if USE_X:
+		var pos = Vector2($FallPosition.global_position.x, body.global_position.y)
+		body.fall_lerp_to = pos
+	else:
+		var pos = Vector2(body.global_position.x, $FallPosition.global_position.y)
+		body.fall_lerp_to = pos
 	##
-	if body is Dickhead:
-		bodies_in_zone.append(body)
-	##
-##
-
-func _on_body_exited(body):
-	pass # Replace with function body.
 ##

@@ -11,17 +11,25 @@ var skin_color:int = 0
 var head_id:int = 0
 var clothes_id:int = 0
 
+var fall_anim_played:bool = false
+
 func _process(_delta):
-	if get_parent().velocity.length_squared() > 0:
-		if get_parent().blowing_away == true:
-			animation_player.play("All_Idle", -1, 2)
-		elif $"../TickUpdateReceiver".being_burned:
-			animation_player.play("All_Walk", -1, 1.5)
+	if get_parent().falling == false:
+		if get_parent().velocity.length_squared() > 0:
+			if get_parent().blowing_away == true:
+				animation_player.play("All_Idle", -1, 2)
+			elif $"../TickUpdateReceiver".being_burned:
+				animation_player.play("All_Walk", -1, 1.5)
+			else:
+				animation_player.play("All_Walk")
+			##
 		else:
-			animation_player.play("All_Walk")
+			animation_player.play("All_Idle")
 		##
 	else:
-		animation_player.play("All_Idle")
+		if animation_player.current_animation != "Falling" and fall_anim_played == false:
+			animation_player.play("Falling")
+			fall_anim_played = true
 	##
 ##
 
