@@ -211,6 +211,7 @@ func apply_moneybags_effect():
 	##
 	
 	good_performance.emitting = true
+	$CharacterSkeleton.best_boss_face()
 	
 	hide_effect_bar()
 	
