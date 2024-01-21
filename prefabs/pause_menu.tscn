@@ -72,12 +72,6 @@ theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "▶"
 
-[node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_f5lwm")
-theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
-theme_override_font_sizes/font_size = 36
-
 [node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
@@ -101,14 +95,6 @@ theme = ExtResource("2_f5lwm")
 theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "RESUME"
-horizontal_alignment = 1
-
-[node name="Settings" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
-layout_mode = 2
-theme = ExtResource("2_f5lwm")
-theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
-theme_override_font_sizes/font_size = 36
-text = "SETTINGS"
 horizontal_alignment = 1
 
 [node name="QuitMenu" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
@@ -137,12 +123,6 @@ theme = ExtResource("2_f5lwm")
 theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "◀"
-
-[node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("2_f5lwm")
-theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
-theme_override_font_sizes/font_size = 36
 
 [node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
 layout_mode = 2

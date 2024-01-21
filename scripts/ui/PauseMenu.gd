@@ -13,7 +13,7 @@ var platform = ""
 
 # 0 = Resume, 1 = Settings, 2 = Quit to Menu, 3 = Quit Game
 var curr_pos:int = 0
-var max_pos:int = 3
+var max_pos:int = 2
 
 var up_pressed:bool = false
 var down_pressed:bool = false
@@ -83,11 +83,9 @@ func _process(_delta):
 			pause_pressed()
 			game.unpause()
 		elif curr_pos == 1:
-			pass
-		elif curr_pos == 2:
 			get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-		elif curr_pos == 3:
+		elif curr_pos == 2:
 			get_tree().quit()
 		##
 	##
