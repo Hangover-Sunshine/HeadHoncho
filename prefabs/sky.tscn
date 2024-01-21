@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmr1knn1uva5v"]
+[gd_scene load_steps=9 format=3 uid="uid://b6qno40grcrrt"]
 
 [ext_resource type="Texture2D" uid="uid://dad3n67m44arx" path="res://assets/particles/Cloud1.png" id="1_nwjxm"]
 [ext_resource type="Texture2D" uid="uid://ci2k4bqcuf07y" path="res://assets/particles/Cloud2.png" id="2_xhksj"]
@@ -11,7 +11,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("../ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +26,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("../ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,7 +43,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("../ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -60,17 +60,24 @@ _data = {
 "Skybox": SubResource("Animation_7y723")
 }
 
-[node name="Sky" type="StaticBody2D"]
+[node name="Sky" type="Node2D"]
+
+[node name="Sky" type="StaticBody2D" parent="."]
+visible = false
 show_behind_parent = true
 position = Vector2(-3000, -1400)
+collision_layer = 0
+collision_mask = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 6000.0
-offset_bottom = 4000.0
+offset_left = -3000.0
+offset_top = -1400.0
+offset_right = 3000.0
+offset_bottom = 2600.0
 color = Color(0.67451, 0.843137, 0.886275, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(-364, 151)
+position = Vector2(-3364, -1249)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -88,7 +95,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-position = Vector2(-992, 529)
+position = Vector2(-3992, -871)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -106,7 +113,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
-position = Vector2(-365, 906)
+position = Vector2(-3365, -494)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -124,7 +131,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
-position = Vector2(-949, 1305)
+position = Vector2(-3949, -95)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -142,7 +149,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
-position = Vector2(-364, 1654)
+position = Vector2(-3364, 254)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -160,7 +167,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D6" type="CPUParticles2D" parent="."]
-position = Vector2(-992, 2032)
+position = Vector2(-3992, 632)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -178,7 +185,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D7" type="CPUParticles2D" parent="."]
-position = Vector2(-365, 2409)
+position = Vector2(-3365, 1009)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -196,7 +203,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D8" type="CPUParticles2D" parent="."]
-position = Vector2(-949, 2808)
+position = Vector2(-3949, 1408)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -214,7 +221,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D9" type="CPUParticles2D" parent="."]
-position = Vector2(-375, 3106)
+position = Vector2(-3375, 1706)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -232,7 +239,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D10" type="CPUParticles2D" parent="."]
-position = Vector2(-1003, 3484)
+position = Vector2(-4003, 2084)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -250,7 +257,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="CPUParticles2D11" type="CPUParticles2D" parent="."]
-position = Vector2(-376, 3861)
+position = Vector2(-3376, 2461)
 amount = 5
 lifetime = 75.0
 preprocess = 75.0
@@ -268,6 +275,7 @@ scale_amount_max = 3.0
 color = Color(1, 1, 1, 0.784314)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sky")
 libraries = {
 "": SubResource("AnimationLibrary_cu713")
 }

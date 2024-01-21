@@ -18,6 +18,9 @@ extends Node2D
 @onready var tick_timer = $Timers/TickUpdateTimer
 @onready var dickhead_timer = $Timers/DickheadTimer
 @onready var quarter_timer = $Timers/QuarterTimer
+@onready var sky = $StaticEnv/Sky
+
+############################################
 
 var quota:int = 4000
 var quarterlyMoneyCounter:int = 0
@@ -35,6 +38,8 @@ func _ready():
 	
 	tick_timer.start(SECONDS_PER_TICK)
 	quarter_timer.start(SECONDS_PER_ROUND)
+	
+	$StaticEnv/Sky/AnimationPlayer.play("Skybox")
 	
 	#dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
 	dickhead_timer.start(1)
@@ -67,6 +72,8 @@ func _player_died():
 func _on_quarter_timer_timeout():
 	stop_all_timers()
 	
+	$StaticEnv/Sky/AnimationPlayer.stop()
+	
 	var results = SignalBus.roundResults.duplicate()
 	
 	results["money"] = quarterlyMoneyCounter
@@ -97,6 +104,8 @@ func _round_start(starting:Dictionary):
 	quarterlyMoneyCounter = 0
 	quota = starting["quota"]
 	appreciation = starting["appreciation"]
+	
+	$StaticEnv/Sky/AnimationPlayer.play("Skybox")
 	
 	PLAYER_INFO_UI.set_revenue(quarterlyMoneyCounter)
 	PLAYER_INFO_UI.set_quota(quota)

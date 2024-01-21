@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cdpwvt5bh0s45"]
+[gd_scene load_steps=39 format=3 uid="uid://cdpwvt5bh0s45"]
 
 [ext_resource type="Script" path="res://scripts/managers/Level.gd" id="1_mcort"]
 [ext_resource type="Script" path="res://scripts/PlayManager.gd" id="1_rjii0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6uj7jlxvwh0p" path="res://assets/environment/room/Floor.png" id="2_px1y1"]
 [ext_resource type="Script" path="res://scripts/managers/DickheadManager.gd" id="2_tqoev"]
 [ext_resource type="Script" path="res://scripts/managers/WorkerManager.gd" id="2_xmiae"]
+[ext_resource type="PackedScene" uid="uid://b6qno40grcrrt" path="res://prefabs/sky.tscn" id="3_6wwsd"]
 [ext_resource type="PackedScene" uid="uid://vgk3p2kr1llq" path="res://prefabs/worker.tscn" id="3_o004g"]
 [ext_resource type="Texture2D" uid="uid://cgg1pmjoqcah1" path="res://assets/environment/room/Wall.png" id="3_w7dad"]
 [ext_resource type="PackedScene" uid="uid://clr22c4ljd5n0" path="res://prefabs/player.tscn" id="4_2oady"]
@@ -55,6 +56,8 @@ PLAYER_INFO_UI = NodePath("../UILayer/PlayerInformation")
 SECONDS_PER_ROUND = 300.0
 
 [node name="StaticEnv" type="Node2D" parent="Game"]
+
+[node name="Sky" parent="Game/StaticEnv" instance=ExtResource("3_6wwsd")]
 
 [node name="OfficeBG" type="Node2D" parent="Game/StaticEnv"]
 
