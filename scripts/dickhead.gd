@@ -93,12 +93,10 @@ func _process(_delta):
 	##
 	
 	if unkind_leave == true and nav_agent.is_navigation_finished():
-		print(self, " angrily left!")
 		SignalBus.emit_signal("dickhead_removed")
 	##
 	
 	if kind_leave == true and nav_agent.is_navigation_finished():
-		print(self, " happily left!")
 		SignalBus.emit_signal("dickhead_left")
 	##
 ##

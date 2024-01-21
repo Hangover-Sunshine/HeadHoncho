@@ -50,11 +50,15 @@ func hide_icon():
 
 func player_can_interact(flag):
 	can_show = flag
-	effect_bar.visible = flag
-	$HireHB/CollisionShape2D.disabled = !flag
-	if flag == false:
-		$Icon.visible = false
-	elif flag == true and should_show == true:
-		$Icon.visible = true
+	if flag == true and should_show == true:
+		$HireMe.visible = true
+		$HireMe/AnimationPlayer.play("Hover")
+		effect_bar.visible = true
+		$HireHB/CollisionShape2D.disabled = false
+	elif flag == false:
+		$HireMe.visible = false
+		$HireMe/AnimationPlayer.stop()
+		effect_bar.visible = false
+		$HireHB/CollisionShape2D.disabled = true
 	##
 ##
