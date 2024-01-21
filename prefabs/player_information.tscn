@@ -4,52 +4,70 @@
 [ext_resource type="Script" path="res://scripts/ui/RoundInformation.gd" id="1_dr7kd"]
 [ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="2_mtuvy"]
 
-[node name="PlayerInformation" type="HBoxContainer"]
+[node name="PlayerInformation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 32.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 40.0
+color = Color(0.027451, 0.113725, 0.180392, 1)
+
+[node name="PlayerInformation" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 20.0
-offset_bottom = 52.0
+offset_left = 430.0
+offset_right = 1490.0
+offset_bottom = 32.0
 grow_horizontal = 2
 alignment = 1
 script = ExtResource("1_dr7kd")
 
-[node name="RevLabel" type="Label" parent="."]
+[node name="RevLabel" type="Label" parent="PlayerInformation"]
 layout_mode = 2
 theme = ExtResource("1_12xnb")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "REVENUE:"
 
-[node name="RevenueNumber" type="Label" parent="."]
+[node name="RevenueNumber" type="Label" parent="PlayerInformation"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("2_mtuvy")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "$????????"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="QuotaLabel" type="Label" parent="."]
+[node name="QuotaLabel" type="Label" parent="PlayerInformation"]
 layout_mode = 2
 theme = ExtResource("1_12xnb")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "QUOTA:"
 
-[node name="QuotaNumber" type="Label" parent="."]
+[node name="QuotaNumber" type="Label" parent="PlayerInformation"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("2_mtuvy")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "$?????????"
 horizontal_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="WorkersQuitLabel" type="Label" parent="."]
+[node name="WorkersQuitLabel" type="Label" parent="PlayerInformation"]
 layout_mode = 2
 theme = ExtResource("1_12xnb")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "WORKERS QUIT:"
 
-[node name="WQNumber" type="Label" parent="."]
+[node name="WQNumber" type="Label" parent="PlayerInformation"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("2_mtuvy")
+theme_override_colors/font_color = Color(0.878431, 0.94902, 1, 1)
 text = "???"
 horizontal_alignment = 1
