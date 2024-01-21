@@ -1,13 +1,12 @@
 extends VBoxContainer
 
-var on_jam_cards:bool = false
+# 0 = title, 1 = content warning, #2 = GDJ logo, #3 = cards
+var curr_slide:int = 3
+
+var anim_dict:Array = ["Slide1>2", "Slide2>3", "Slide3>4", "Slide4>1"]
 
 func _on_anim_swap_timer_timeout():
-	if on_jam_cards == false:
-		on_jam_cards = true
-		$AnimationPlayer.play("swap_to_cards")
-	else:
-		on_jam_cards = false
-		$AnimationPlayer.play("swap_to_jam_logo")
-	##
+	curr_slide += 1
+	curr_slide = curr_slide % len(anim_dict)
+	$AnimationPlayer.play(anim_dict[curr_slide])
 ##

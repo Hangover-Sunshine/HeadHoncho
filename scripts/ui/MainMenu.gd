@@ -4,9 +4,9 @@ var arrows = []
 
 var platform = ""
 
-# 0 = Resume, 1 = Settings, 2 = Quit Game
+# 0 = Resume, 1 = Settings, 2 = Tips, 3 = Quit Game
 var curr_pos:int = 0
-var max_pos:int = 2
+var max_pos:int = 3
 
 var up_pressed:bool = false
 var down_pressed:bool = false
@@ -53,6 +53,8 @@ func _process(_delta):
 		elif curr_pos == 1:
 			pass
 		elif curr_pos == 2:
+			pass
+		elif curr_pos == 3:
 			get_tree().quit()
 		##
 	##
