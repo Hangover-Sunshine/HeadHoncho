@@ -43,6 +43,8 @@ var falling:bool = false
 var unkind_leave:bool = false
 var kind_leave:bool = false
 
+var can_interact_with:bool = true
+
 func _ready():
 	nav_agent.path_desired_distance = 15
 	nav_agent.target_desired_distance = 5
@@ -157,7 +159,7 @@ func _velocity_from_path():
 ##
 
 func show_effect_bar():
-	if blowing_away == false and $TickUpdateReceiver.being_burned == false:
+	if blowing_away == false and $TickUpdateReceiver.being_burned == false and can_interact_with:
 		effect_bar.visible = true
 		speech_bubble.emit()
 	##
@@ -176,6 +178,10 @@ func update_effect_bar(curr_val:int, max_val:int):
 ##
 
 func apply_blowie_effect():
+	if can_interact_with == false:
+		return
+	##
+	
 	if blowing_away == false:
 		blowing_away = true
 	else:
@@ -183,6 +189,8 @@ func apply_blowie_effect():
 	##
 	
 	bad_performance.emitting = true
+	
+	can_interact_with = false
 	
 	hide_effect_bar()
 	
@@ -204,6 +212,10 @@ func apply_blowie_effect():
 ##
 
 func apply_covefe_effect():
+	if can_interact_with == false:
+		return
+	##
+	
 	if $TickUpdateReceiver.being_burned == false:
 		$TickUpdateReceiver.being_burned = true
 	else:
@@ -211,6 +223,8 @@ func apply_covefe_effect():
 	##
 	
 	bad_performance.emitting = true
+	
+	can_interact_with = false
 	
 	hide_effect_bar()
 	
@@ -221,6 +235,10 @@ func apply_covefe_effect():
 ##
 
 func apply_moneybags_effect():
+	if can_interact_with == false:
+		return
+	##
+	
 	if bullshitted == false:
 		bullshitted = true
 	else:
@@ -231,6 +249,8 @@ func apply_moneybags_effect():
 	$CharacterSkeleton.best_boss_face()
 	
 	hide_effect_bar()
+	
+	can_interact_with = false
 	
 	kind_leave = true
 	curr_target = leave_target
