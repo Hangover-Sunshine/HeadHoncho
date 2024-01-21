@@ -365,22 +365,27 @@ rotation = 3.14159
 [node name="Window7" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(-1353, 1610)
 rotation = 4.71239
+USE_X = false
 
 [node name="Window8" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(-670, 1611)
 rotation = 4.71239
+USE_X = false
 
 [node name="Window9" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(-3, 1610)
 rotation = 4.71239
+USE_X = false
 
 [node name="Window10" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(666, 1610)
 rotation = 4.71239
+USE_X = false
 
 [node name="Window11" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(1338, 1610)
 rotation = 4.71239
+USE_X = false
 
 [node name="Player" parent="Game" instance=ExtResource("4_2oady")]
 z_index = 10

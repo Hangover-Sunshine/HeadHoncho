@@ -103,7 +103,7 @@ func _process(_delta):
 ##
 
 func _physics_process(delta):
-	if falling == false:
+	if $TickUpdateReceiver.falling == false and effect_bar.visible == false:
 		if blowing_away:
 			if velocity.length() < 5:
 				velocity = Vector2.ZERO
@@ -122,6 +122,8 @@ func _physics_process(delta):
 				nav_agent.target_position = get_parent().pick_position()
 			##
 		##
+	else:
+		velocity = Vector2.ZERO
 	##
 	
 	move_and_slide()
@@ -132,6 +134,10 @@ func _velocity_from_path():
 		return Vector2.ZERO
 	##
 
+	if $TickUpdateReceiver.being_burned:
+		return global_position.direction_to(nav_agent.get_next_path_position()) * BURN_SPEED
+	##
+	
 	return global_position.direction_to(nav_agent.get_next_path_position()) * MOVEMENT_SPEED
 ##
 

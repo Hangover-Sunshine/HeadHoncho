@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bpmj6vc1rtboe"]
+[gd_scene load_steps=20 format=3 uid="uid://bpmj6vc1rtboe"]
 
 [ext_resource type="Script" path="res://scripts/Dickhead.gd" id="1_la0yx"]
 [ext_resource type="Script" path="res://scripts/DickheadSpriteControl.gd" id="1_on4yk"]
@@ -277,9 +277,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0jp"]
 size = Vector2(134, 146)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydqxu"]
-size = Vector2(253, 281)
-
 [node name="Dickhead" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 4
@@ -348,16 +345,6 @@ position = Vector2(0, 30.5)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_2e0jp")
 
-[node name="WorkerAnnoyanceZone" type="Area2D" parent="."]
-visible = false
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkerAnnoyanceZone"]
-position = Vector2(0, -17.5)
-shape = SubResource("RectangleShape2D_ydqxu")
-debug_color = Color(1, 0.619608, 0.933333, 0.419608)
-
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_max_distance = 250.0
 navigation_layers = 2
@@ -368,20 +355,15 @@ avoidance_layers = 2
 avoidance_mask = 3
 
 [node name="Angry" parent="." instance=ExtResource("8_8wggv")]
-visible = false
 position = Vector2(34, -104)
 
 [node name="BadPerformance" parent="." instance=ExtResource("9_bmrlj")]
-visible = false
 position = Vector2(0, -80)
 
 [node name="GoodPerformance" parent="." instance=ExtResource("10_klp75")]
-visible = false
 position = Vector2(0, -80)
 
 [node name="SpeechBubble" parent="." instance=ExtResource("11_f8ian")]
-visible = false
 position = Vector2(0, -136)
 
 [node name="Fireball" parent="." instance=ExtResource("12_vm3uw")]
-visible = false
