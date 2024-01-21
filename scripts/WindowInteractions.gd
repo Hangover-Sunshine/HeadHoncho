@@ -15,17 +15,15 @@ func _round_start(_roundInfo):
 	glass_shattered = false
 ##
 
-func _process(delta):
-	if len(bodies_in_zone) > 0 and glass_shattered == false:
+func _on_body_entered(body):
+	if glass_shattered == false:
 		glass_shattered = true
 		$EnvGlassTest.visible = false
 		SignalBus.emit_signal("window_broken")
 		# play shattering sfx
 		$GlassBreak.emitting = true
 	##
-##
-
-func _on_body_entered(body):
+	
 	body.falling = true
 	
 	if USE_X:

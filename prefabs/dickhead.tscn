@@ -282,7 +282,7 @@ z_index = 2
 collision_layer = 4
 collision_mask = 24
 script = ExtResource("1_la0yx")
-BLOW_FORCE = 1100.0
+BLOW_FORCE = 1600.0
 DRAG = 0.05
 
 [node name="PlayerHeadArea" type="Area2D" parent="."]

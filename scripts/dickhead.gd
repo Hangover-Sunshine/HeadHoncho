@@ -18,14 +18,16 @@ class_name Dickhead
 @onready var bad_performance = $BadPerformance
 @onready var good_performance = $GoodPerformance
 @onready var fireball = $Fireball
-
-#############################################################
+@onready var angry = $Angry
 
 @onready var nav_agent = $NavAgent
 @onready var effect_bar = $EffectBar
 
+#############################################################
+
 var player:Player
 var dir_from_player_to_me:Vector2
+var curr_drag:float
 
 var worker_target:Worker
 var leave_target:Vector2
@@ -105,7 +107,7 @@ func _process(_delta):
 	
 	if falling:
 		$TickUpdateReceiver.falling = true
-		global_position = global_position.lerp(fall_lerp_to, 0.05)
+		global_position = global_position.lerp(fall_lerp_to, 0.01)
 		fireball.stop_emitting()
 		
 		if $CharacterSkeleton/AnimationPlayer.is_playing() == false and\
@@ -119,7 +121,7 @@ func _process(_delta):
 func _physics_process(delta):
 	if $TickUpdateReceiver.falling == false and effect_bar.visible == false:
 		if blowing_away:
-			if velocity.length() < 5:
+			if velocity.length() < 10:
 				velocity = Vector2.ZERO
 				collision_mask &= 4
 				collision_mask |= 8
@@ -128,7 +130,8 @@ func _physics_process(delta):
 				blowing_away = false
 			##
 			
-			velocity /= 1 + lerpf(0, DRAG, 0.2)
+			curr_drag = lerpf(curr_drag, DRAG, 0.015)
+			velocity /= 1 + curr_drag
 		else:
 			velocity = _velocity_from_path()
 			

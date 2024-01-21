@@ -42,16 +42,19 @@ func _tick_update():
 			angry.emit()
 		##
 		
-		if !interacting_with_worker() and angry.is_emitting():
-			angry.stop_emitting()
+		if is_interacting_with_player():
+			if angry.is_emitting():
+				angry.stop_emitting()
+			##
+			
+			if arrived:
+				if target != null:
+					target.boss_gone()
+				##
+				arrived = false
+			##
 		##
 		
-		if is_interacting_with_player() and arrived:
-			if target != null:
-				target.boss_gone()
-			##
-			arrived = false
-		##
 		
 		if prev_value == get_parent().effect_bar.value:
 			get_parent().hide_effect_bar()

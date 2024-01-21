@@ -100,7 +100,7 @@ func tick_update_receiver():
 		##
 	elif curr_energy > 60:
 		if fireball.is_emitting():
-			fireball.stop_emit()
+			fireball.stop_emitting()
 		##
 		temp_dir = 1
 		temperature_processor.set_max(4)
