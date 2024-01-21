@@ -157,35 +157,35 @@ func survive_end():
 func move_arrows_up():
 	if curr_pos == 0:
 		replay_arrow.text = ""
-		mid_arrow.text = ">>>>>"
+		mid_arrow.text = "▶"
 	elif curr_pos == 1:
 		menu_arrow.text = ""
-		mid_arrow.text = "<<<<<"
+		mid_arrow.text = "◀"
 	##
 	
 	curr_pos = curr_pos - 1 if curr_pos > 0 else 1
 	
 	if curr_pos == 0:
-		replay_arrow.text = ">>>>>"
+		replay_arrow.text = "▶"
 	elif curr_pos == 1:
-		menu_arrow.text = "<<<<<"
+		menu_arrow.text = "◀"
 	##
 ##
 
 func move_arrows_down():
 	if curr_pos == 0:
 		replay_arrow.text = ""
-		mid_arrow.text = ">>>>>"
+		mid_arrow.text = "▶"
 	elif curr_pos == 1:
 		menu_arrow.text = ""
-		mid_arrow.text = "<<<<<"
+		mid_arrow.text = "◀"
 	##
 	
 	curr_pos = curr_pos + 1 if curr_pos < 1 else 0
 	
 	if curr_pos == 0:
-		replay_arrow.text = ">>>>>"
+		replay_arrow.text = "▶"
 	elif curr_pos == 1:
-		menu_arrow.text = "<<<<<"
+		menu_arrow.text = "◀"
 	##
 ##
