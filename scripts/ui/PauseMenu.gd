@@ -3,6 +3,8 @@ extends Control
 @onready var landing_menu = $MarginContainer/MainPauseMenu/LandingMenu
 @onready var quit_game = $MarginContainer/MainPauseMenu/LandingMenu/MainSettings/QuitGame
 
+@onready var game = $"../.."
+
 var paused:bool = false
 
 var arrows = []
@@ -79,10 +81,11 @@ func _process(_delta):
 	if Input.is_action_pressed("head_interaction"):
 		if curr_pos == 0:
 			pause_pressed()
-			get_parent().get_parent().unpause()
+			game.unpause()
 		elif curr_pos == 1:
 			pass
 		elif curr_pos == 2:
+			get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		elif curr_pos == 3:
 			get_tree().quit()

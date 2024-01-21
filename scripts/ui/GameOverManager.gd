@@ -24,6 +24,8 @@ var out_of_reading:bool = false
 
 var first_signal:bool = false
 
+var in_gameover:bool = false
+
 func _ready():
 	SignalBus.connect("player_jumped_out_window", player_dies_end)
 	SignalBus.connect("player_fired", player_fired_end)
@@ -33,7 +35,7 @@ func _ready():
 ##
 
 func _input(event):
-	if visible == false:
+	if in_gameover == false:
 		return
 	##
 	
@@ -52,7 +54,7 @@ func _input(event):
 ##
 
 func _process(_delta):
-	if visible == false:
+	if in_gameover == false:
 		return
 	##
 	
@@ -90,6 +92,8 @@ func player_dies_end():
 		return
 	##
 	
+	in_gameover = true
+	
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	
 	visible = true
@@ -98,9 +102,10 @@ func player_dies_end():
 				the coroner could pronounce you dead due to blunt force trauma, MLM Corp. stapled" +\
 				"a termination letter to your corpse as a response, due in part, to your lackluster" +\
 				"performance post-death."
-				##
+##
 
 func player_fired_end():
+	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "Owing to your terrible management of the company's money, you've been " +\
@@ -109,6 +114,7 @@ func player_fired_end():
 ##
 
 func unionization_end():
+	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
@@ -119,6 +125,7 @@ func unionization_end():
 ##
 
 func survive_end():
+	in_gameover = true
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "The Company congratulates you for meeting all quotas in the fiscal year!" +\
