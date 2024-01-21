@@ -11,7 +11,6 @@ class_name WorkerManager
 @onready var worker = load("res://prefabs/worker.tscn")
 @onready var explosion = load("res://prefabs/fx/explosion.tscn")
 
-var total_qrtr_workers:int = 0
 var total_workers_quit:int = 0
 
 # key = id, val = [WorkerObject, num_dickheads] 
@@ -37,9 +36,7 @@ func _ready():
 	
 	PLAYER_INFORMATION_UI.set_workers_quit(0)
 	
-	total_qrtr_workers = 2
-	
-	#SignalBus.connect("dickhead_gone", _dickhead_gone)
+	SignalBus.connect("dickhead_gone", _dickhead_gone)
 	
 	SignalBus.connect("worker_quit", _worker_quit)
 	SignalBus.connect("is_money_bags", _is_money_bags)
@@ -137,7 +134,7 @@ func _worker_quit(worker:Worker):
 	##
 ##
 
-func _dickhead_gone(_means:SignalBus.WhyDickheadLeft, worker:Worker):
+func _dickhead_gone(worker:Worker):
 	var indx = workers.find(worker)
 	dickheads_per_worker[indx] -= 1
 ##
