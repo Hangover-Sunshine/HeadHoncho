@@ -822,7 +822,6 @@ _data = {
 }
 
 [node name="MainMenu" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -972,8 +971,7 @@ theme_override_font_sizes/font_size = 30
 text = "1) Cartoon violence
 2) Crude and adult humor
 3) Death and or dying
-4) Themes of suicide
-5) Themes of classism and
+4) Themes of classism and
 hostile work environments
 "
 horizontal_alignment = 1
