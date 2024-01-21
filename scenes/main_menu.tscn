@@ -1649,4 +1649,5 @@ libraries = {
 }
 
 [connection signal="timeout" from="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/AnimSwapTimer" to="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]
+[connection signal="timeout" from="Hand/BusinessCard/LoadDelayTimer" to="Hand/BusinessCard" method="_on_load_delay_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
