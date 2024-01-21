@@ -1,2 +1,2 @@
-# GodotWildJam65
-Repo for the 65th Godot Wild Jam.
+# Head Honcho
+Repo for the 65th Godot Wild Jam: Overload.
