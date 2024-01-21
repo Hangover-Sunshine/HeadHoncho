@@ -36,8 +36,6 @@ var fall_lerp_to:Vector2
 
 var blowing_away:bool = false
 
-var being_burned:bool = false
-
 var bullshitted:bool = false
 
 var falling:bool = false
@@ -133,11 +131,11 @@ func _physics_process(delta):
 			curr_drag = lerpf(curr_drag, DRAG, 0.015)
 			velocity /= 1 + curr_drag
 		else:
-			velocity = _velocity_from_path()
-			
-			if velocity.is_equal_approx(Vector2.ZERO) and being_burned:
+			if nav_agent.is_navigation_finished() and $TickUpdateReceiver.being_burned:
 				nav_agent.target_position = get_parent().pick_position()
 			##
+			
+			velocity = _velocity_from_path()
 		##
 	else:
 		velocity = Vector2.ZERO

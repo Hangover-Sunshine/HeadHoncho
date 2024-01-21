@@ -391,7 +391,6 @@ z_index = 10
 GROUP_DESTRESS = 90
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PlayerInformation" parent="UILayer" instance=ExtResource("33_y3hi0")]
 
