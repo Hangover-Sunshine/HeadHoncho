@@ -8,6 +8,7 @@ class_name DickheadManager
 ##########################################################################
 
 @onready var dickhead = load("res://prefabs/dickhead.tscn")
+@onready var elevator = $"../StaticEnv/Elevator"
 
 var dickheads_killed:int = 0
 var dickheads_satisified:int = 0
@@ -48,6 +49,8 @@ func _round_start(_startInfo):
 ##
 
 func spawn_dickhead():
+	elevator.play_anim()
+	
 	var worker = WORKER_MANAGER.select_worker()
 	
 	if worker == null:
