@@ -13,8 +13,6 @@ extends Control
 @onready var mid_arrow = $ToGameMenu/MidArrow
 @onready var menu_arrow = $ToGameMenu/MenuArrow
 
-@onready var animation_player = $AnimationPlayer
-
 var curr_pos:int = 0
 
 var up_pressed:bool = false
