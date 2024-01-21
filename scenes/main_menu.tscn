@@ -1,11 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxhoa3vqfceq"]
+[gd_scene load_steps=26 format=3 uid="uid://bxhoa3vqfceq"]
 
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="1_6l7of"]
-[ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1_60ymw"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenuIntro.gd" id="1_fixyi"]
 [ext_resource type="Texture2D" uid="uid://dijygevdu4o3t" path="res://assets/ui_assets/images/guide/Palm.png" id="1_upwds"]
 [ext_resource type="Texture2D" uid="uid://c08r3d8p443gq" path="res://assets/ui_assets/images/jam_logos/65-Overload.png" id="1_ynqc4"]
 [ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_7plfq"]
 [ext_resource type="Texture2D" uid="uid://0ib5s1uxvyu8" path="res://assets/ui_assets/images/jam_logos/good-end.png" id="2_v5lc0"]
+[ext_resource type="Script" path="res://scripts/ui/MainMenuController.gd" id="2_wkdu0"]
 [ext_resource type="Texture2D" uid="uid://kppdr81o1sgy" path="res://assets/ui_assets/images/jam_logos/pick-fighter.png" id="3_kx2jy"]
 [ext_resource type="FontFile" uid="uid://b27j73wad8wov" path="res://assets/ui_assets/text/text_title/Title_PatuaOne-Regular.ttf" id="4_ky84w"]
 [ext_resource type="Texture2D" uid="uid://b4mi13bawvmvg" path="res://assets/ui_assets/images/jam_logos/GWJ-Full-Logo-noBG.svg" id="4_lysx3"]
@@ -825,6 +826,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+script = ExtResource("1_fixyi")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -848,6 +850,11 @@ custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+script = ExtResource("2_wkdu0")
+
+[node name="DelayWhilePressedTimer" type="Timer" parent="Hand/BusinessCard"]
+wait_time = 0.1
+one_shot = true
 
 [node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard"]
 show_behind_parent = true
@@ -878,11 +885,6 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
-script = ExtResource("1_60ymw")
-
-[node name="DelayWhilePressedTimer" type="Timer" parent="Hand/BusinessCard/Menu"]
-wait_time = 0.1
-one_shot = true
 
 [node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
 layout_mode = 2
@@ -1313,10 +1315,10 @@ position = Vector2(-500, 1594)
 texture = ExtResource("14_7kmk3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_yfsxm")
 }
 
 [connection signal="timeout" from="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff/AnimSwapTimer" to="Hand/BusinessCard/Menu/HBoxContainer/WildJamStuff" method="_on_anim_swap_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
