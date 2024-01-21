@@ -53,26 +53,20 @@ func _process(_delta):
 ##
 
 func control_display(stress, temp, energy, temp_color, energy_color):
-	if stress >= 40:
-		crunch_face()
-		modulate = default_color.blend(temp_color)
-	elif temp >= 25:
-		if temp > 40:
+	if energy <= 24:
+		if energy <= 10:
+			snooze_face()
+		##
+		modulate = default_color.blend(energy_color)
+	else:
+		if energy >= 75:
+			crunch_face()
+		elif energy >= 60:
 			hot_face()
 		else:
 			neutral_face()
 		##
 		modulate = default_color.blend(temp_color)
-	elif energy < 40:
-		if energy <= 10:
-			snooze_face()
-		else:
-			neutral_face()
-		##
-		modulate = default_color.blend(energy_color)
-	else:
-		modulate = default_color
-		neutral_face()
 	##
 ##
 
