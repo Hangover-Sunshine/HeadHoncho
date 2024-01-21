@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgvu8xvfh7jjd"]
+[gd_scene load_steps=7 format=3 uid="uid://bgvu8xvfh7jjd"]
 
 [ext_resource type="Texture2D" uid="uid://r6rh7oi6ghwu" path="res://assets/temp_assets/report_bg.png" id="1_ati2x"]
 [ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_nv32d"]
 [ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="2_f5lwm"]
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="2_ukk43"]
+[ext_resource type="Texture2D" uid="uid://bncp4knmqmkm7" path="res://assets/ui_assets/images/Clipboard.png" id="3_biwmc"]
 [ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="5_omud1"]
 
 [node name="PauseUI" type="Control"]
@@ -36,18 +37,24 @@ modulate = Color(0, 0, 0, 0.235294)
 layout_mode = 2
 texture = ExtResource("1_ati2x")
 
+[node name="Clipboard" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("3_biwmc")
+stretch_mode = 2
+
 [node name="MainPauseMenu" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/MainPauseMenu"]
 layout_mode = 2
 theme = ExtResource("2_ukk43")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 text = "GAME PAUSED"
 horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/MainPauseMenu"]
-layout_mode = 2
-theme_override_constants/separation = 80
 
 [node name="LandingMenu" type="HBoxContainer" parent="MarginContainer/MainPauseMenu"]
 layout_mode = 2
@@ -61,22 +68,26 @@ theme_override_constants/separation = 25
 [node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
-text = ">>>>>"
+text = "▶"
 
 [node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="Label4" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="MainSettings" type="VBoxContainer" parent="MarginContainer/MainPauseMenu/LandingMenu"]
@@ -87,6 +98,7 @@ alignment = 1
 [node name="Resume" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "RESUME"
 horizontal_alignment = 1
@@ -94,6 +106,7 @@ horizontal_alignment = 1
 [node name="Settings" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "SETTINGS"
 horizontal_alignment = 1
@@ -101,6 +114,7 @@ horizontal_alignment = 1
 [node name="QuitMenu" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "QUIT TO MENU"
 horizontal_alignment = 1
@@ -108,6 +122,7 @@ horizontal_alignment = 1
 [node name="QuitGame" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/MainSettings"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 text = "QUIT GAME"
 horizontal_alignment = 1
@@ -119,22 +134,26 @@ theme_override_constants/separation = 25
 [node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
-text = "<<<<<"
+text = "◀"
 
 [node name="Label2" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="Label3" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="Label4" type="Label" parent="MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 theme_override_font_sizes/font_size = 36
 
 [node name="Settings" type="VBoxContainer" parent="MarginContainer/MainPauseMenu"]
@@ -149,6 +168,7 @@ alignment = 1
 [node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/Settings/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 text = "BGM Level:"
 horizontal_alignment = 1
 
@@ -166,5 +186,6 @@ alignment = 1
 [node name="Label" type="Label" parent="MarginContainer/MainPauseMenu/Settings/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_f5lwm")
+theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 text = "SFX Level:"
 horizontal_alignment = 1
