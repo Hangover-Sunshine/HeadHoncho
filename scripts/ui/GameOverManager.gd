@@ -96,14 +96,15 @@ func player_dies_end():
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
 				"or some other reason, your cause of death was never investigated. In fact, before 
 				the coroner could pronounce you dead due to blunt force trauma, MLM Corp. stapled" +\
-				"a termination letter to your corpse as response due in part your lackluster peformance."
-##
+				"a termination letter to your corpse as a response, due in part, to your lackluster" +\
+				"performance post-death."
+				##
 
 func player_fired_end():
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
 	label.text = "Owing to your terrible management of the company's money, you've been " +\
-				"summarily fired. You were asked to meet management on a boat, where you were " +\
+				"summarily terminated. You were asked to meet management on a boat, where you were " +\
 				"never heard from again. Your family was not compensated. No one was investigated."
 ##
 
@@ -113,17 +114,18 @@ func unionization_end():
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
 				"unionize. This cost MLM Corp. greatly and you were immediately let go for" +\
 				"failing to create a healthy and happy work environment. MLM Corp. takes" +\
-				"employee health stress seriously. "
+				"employee stresss seriously; we are a family, and we cannot have staff" +\
+				"who contribute to a toxic work environment."
 ##
 
 func survive_end():
 	$ToGameMenu/DelayWhilePressedTimer.start()
 	visible = true
-	label.text = "The Company congratulates you for meeting all quotas in the physical year! You've " +\
-				"earned that $0.50 wage increase and $2 'Employee of the Month' frame... " +\
-				"Yes, you might've been the reason the stock prices are now worth 180% more, but you " +\
-				"weren't born with a silver spoon and on third base, so go f*ck yourself before we fire " +\
-				"you. Be greatful you have a job."
+	label.text = "The Company congratulates you for meeting all quotas in the fiscal year!" +\
+				"MLM Corp. stock has risen 50%; our company is now bringing record breaking profits " +\
+				"because of your contributions. Speaking of which, due to cost cutting measures and a " +\
+				"turbulent economic crisis, our team has to make some cuts and you have been let go." +\
+				"Please expect your paycheck in the next couple of weeks. We do not cash out PTO."
 ##
 
 func move_arrows_up():
