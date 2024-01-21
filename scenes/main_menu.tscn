@@ -1312,34 +1312,78 @@ horizontal_alignment = 1
 
 [node name="Settings" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 600
 
-[node name="LeftBar" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+[node name="LeftBox" type="HBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+layout_mode = 2
+
+[node name="LArrow" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings/LeftBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 20
+text = "▶"
+
+[node name="Label2" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Label3" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Label4" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/LArrow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="Labels" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings/LeftBox"]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="SFXLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+[node name="Title" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/Labels"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_fonts/font = ExtResource("4_ky84w")
+theme_override_font_sizes/font_size = 50
+text = "SETTINGS"
+
+[node name="SFXLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/Labels"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 30
 text = "SFX Level"
 
-[node name="BGMLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+[node name="BGMLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/Labels"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 30
 text = "BGM Level"
 
-[node name="Keybinds" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+[node name="Keybinds" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/Labels"]
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
 theme_override_font_sizes/font_size = 30
 text = "Keybinds
 "
+
+[node name="Return" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBox/Labels"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "Return to Menu"
 
 [node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
 layout_mode = 2

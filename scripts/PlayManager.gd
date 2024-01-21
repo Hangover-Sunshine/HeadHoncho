@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var PLAYER_INFO_UI:HBoxContainer
+@export var PLAYER_INFO_UI:Control
 
 @export_group("Timer Control")
 @export var SECONDS_PER_TICK:float = 0.5

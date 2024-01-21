@@ -1,7 +1,7 @@
 extends Node2D
 class_name WorkerManager
 
-@export var PLAYER_INFORMATION_UI:HBoxContainer
+@export var PLAYER_INFORMATION_UI:Control
 @export var WORKER_SEATS:Node
 @export var MAX_DICKHEADS_PER:int = 3
 @export var quitTotalPerQuota = 10
