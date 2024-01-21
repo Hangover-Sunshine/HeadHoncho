@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://djf2momiolphj"]
+
+[ext_resource type="FontFile" uid="uid://cofghw6au5k5l" path="res://assets/ui_assets/text/text_signatures/Yellowtail-Regular.ttf" id="1_caing"]
+
+[resource]
+default_font = ExtResource("1_caing")
+default_font_size = 48

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lvqny4j6c2x4"]
+
+[ext_resource type="FontFile" uid="uid://d0wopbvjtyhfs" path="res://assets/ui_assets/text/text_signatures/ReenieBeanie-Regular.ttf" id="1_javcs"]
+
+[resource]
+default_font = ExtResource("1_javcs")
+default_font_size = 60

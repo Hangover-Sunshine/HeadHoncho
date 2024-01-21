@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqg3xqvokwoxb"]
+[gd_scene load_steps=9 format=3 uid="uid://cqg3xqvokwoxb"]
 
 [ext_resource type="Script" path="res://scripts/ui/QuarterController.gd" id="1_o10lk"]
 [ext_resource type="Texture2D" uid="uid://r6rh7oi6ghwu" path="res://assets/temp_assets/report_bg.png" id="2_f0qgt"]
 [ext_resource type="Theme" uid="uid://cj34deibw0d0u" path="res://assets/themes/ui_text.tres" id="3_5idfy"]
-[ext_resource type="Texture2D" uid="uid://c7d2oehwsnu26" path="res://assets/ui_assets/images/JohnHancock.png" id="3_gr247"]
 [ext_resource type="Theme" uid="uid://lu1fewklpdym" path="res://assets/themes/ui_titles.tres" id="3_vhr8l"]
 [ext_resource type="Theme" uid="uid://daqp782utt6li" path="res://assets/themes/ui_numbers.tres" id="4_51a7d"]
+[ext_resource type="Theme" uid="uid://djf2momiolphj" path="res://assets/themes/ui_signatures.tres" id="6_7meo0"]
+[ext_resource type="Theme" uid="uid://lvqny4j6c2x4" path="res://assets/themes/ui_player_signature.tres" id="7_g3e0x"]
 [ext_resource type="Texture2D" uid="uid://dgx2g1581f23s" path="res://assets/ui_assets/images/MLMCorp_Logo.png" id="7_ynlrd"]
 
 [node name="MarginContainer" type="MarginContainer"]
@@ -252,9 +253,16 @@ theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 text = "ATTENDING SUPERVISOR:"
 
-[node name="BossSignature" type="TextureRect" parent="Background/Report/HBoxContainer"]
+[node name="BossSignature" type="Label" parent="Background/Report/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_gr247")
+theme = ExtResource("6_7meo0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+
+[node name="TextureRect" type="TextureRect" parent="Background/Report/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
 
 [node name="Player" type="Label" parent="Background/Report/HBoxContainer"]
 layout_mode = 2
@@ -262,8 +270,11 @@ theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "MANAGER:"
 
-[node name="YourSignature" type="TextureRect" parent="Background/Report/HBoxContainer"]
+[node name="PlayerSignature" type="Label" parent="Background/Report/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("7_g3e0x")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
 
 [node name="Divider10" type="ColorRect" parent="Background/Report"]
 custom_minimum_size = Vector2(0, 5)
@@ -292,7 +303,7 @@ layout_mode = 2
 theme = ExtResource("3_5idfy")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 18
-text = "Press SPACE to continue to next quota"
+text = "Press SPACE to continue to next quarter"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
@@ -304,3 +315,9 @@ offset_right = 1472.0
 offset_bottom = 656.0
 texture = ExtResource("7_ynlrd")
 expand_mode = 1
+
+[node name="StartDelayTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="StartDelayTimer" to="." method="_on_start_delay_timer_timeout"]
