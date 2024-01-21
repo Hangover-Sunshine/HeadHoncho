@@ -41,8 +41,7 @@ func _ready():
 	
 	$StaticEnv/Sky/AnimationPlayer.play("Skybox")
 	
-	#dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
-	dickhead_timer.start(1)
+	dickhead_timer.start(randi_range(dickheadTimerMinMax.x, dickheadTimerMinMax.y))
 	
 	PLAYER_INFO_UI.set_revenue(0)
 	PLAYER_INFO_UI.set_quota(quota)

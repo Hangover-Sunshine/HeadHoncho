@@ -162,7 +162,7 @@ func get_list_to_iterate(curr_head) -> Array:
 		# if we're either blowie or covefe, don't look at the open seats
 		return []
 	elif len(open_seats_nearby) > 0:
-		$CharacterSkeleton.talking = true
+		$CharacterSkeleton.talking = false
 		$CharacterSkeleton.aoe_healing = false
 		return open_seats_nearby
 	##

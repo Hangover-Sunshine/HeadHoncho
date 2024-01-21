@@ -917,7 +917,7 @@ theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_fonts/font = ExtResource("5_r7n62")
 theme_override_font_sizes/font_size = 30
-text = "Developer - HangoverSunshine | Music - Scott Buckley"
+text = "Developer - Hangover Sunshine | Music - Scott Buckley"
 horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]

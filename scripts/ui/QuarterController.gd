@@ -79,19 +79,26 @@ func _round_over(results:Dictionary):
 	
 	var profit:int = results["money"] - window_cost - settlements
 	
-	var quota =  results["quota"]
+	var quota = results["quota"]
 	
-	quota_number.text = "       $" + Utility.number_to_string_formatter(quota, ",")
+	quota_number.text = "    $" + Utility.number_to_string_formatter(quota, ",")
 	rev_number.text = "  $" + Utility.number_to_string_formatter(results["money"], ",")
-	profit_number.text = "        $" + Utility.number_to_string_formatter(profit, ",")
+	profit_number.text = "    $" + Utility.number_to_string_formatter(profit, ",")
 	
-	new_quota = _grow_quota(quota)
+	if profit > quota:
+		new_quota = _grow_quota_faster(quota, profit - quota)
+	else:
+		new_quota = _grow_quota(quota)
+	##
 	
 	old_appreciation = results["appreciation"]
 	
-	new_appreciation = old_appreciation + \
-						clamp(int(((profit - quota) / float(quota)) * 100),\
-								-BEING_UNDER_MAX, GOING_OVER_MAX)
+	if profit < 0:
+		new_appreciation = old_appreciation - BEING_UNDER_MAX
+	else:
+		var p = float(profit - quota) / float(quota) * 100
+		new_appreciation = old_appreciation + clampi(p, -BEING_UNDER_MAX, GOING_OVER_MAX)
+	##
 	
 	appreciation.value = new_appreciation
 	
@@ -144,6 +151,10 @@ func _on_confirm_pressed():
 	##
 	
 	mouse_filter = Control.MOUSE_FILTER_PASS
+##
+
+func _grow_quota_faster(curr_quota:int, num:int) -> int:
+	return curr_quota + ceili(curr_quota * QUOTA_GROWTH) + ceili(num * 0.25)
 ##
 
 func _grow_quota(curr_quota:int) -> int:
