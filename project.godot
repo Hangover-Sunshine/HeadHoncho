@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Head Honcho"
+config/description="HEAD HONCHO is the office simulator for those who want to rip their head off during a 9 to 5. Except, instead of this severe decapitation killing you, imagine it helping your workers. In this cartoony tycoon, take the role of Accounting Senior Supervisor, Head Honcho, as you manage the everchanging accounting firm of your company, MLM Corp. With the power to wear any common office item as head, lead your team to victory, as you meet each revenue quota throughout a typical fiscal year."
 config/version="1.0"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
