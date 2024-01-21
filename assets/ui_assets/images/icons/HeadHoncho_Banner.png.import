@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b55d2xyfb204p"
-path="res://.godot/imported/HS_DesktopIcon.png-67bb9a0751ab77caddab09ed4faddbb0.ctex"
+uid="uid://bhbfj2wnevclt"
+path="res://.godot/imported/HeadHoncho_Banner.png-e66cc6b90f1a434d63a2a25c0237ec2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui_assets/images/HS_DesktopIcon.png"
-dest_files=["res://.godot/imported/HS_DesktopIcon.png-67bb9a0751ab77caddab09ed4faddbb0.ctex"]
+source_file="res://assets/ui_assets/images/icons/HeadHoncho_Banner.png"
+dest_files=["res://.godot/imported/HeadHoncho_Banner.png-e66cc6b90f1a434d63a2a25c0237ec2d.ctex"]
 
 [params]
 

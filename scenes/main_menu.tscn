@@ -1102,11 +1102,6 @@ theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 20
 text = "▶"
 
-[node name="Label2" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 20
-
 [node name="Label4" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/LArrow"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
@@ -1128,6 +1123,7 @@ theme_override_font_sizes/font_size = 30
 text = "Start"
 
 [node name="Settings" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
