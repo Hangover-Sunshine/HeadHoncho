@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://idpn7138vh6y"]
+[gd_scene load_steps=6 format=3 uid="uid://idpn7138vh6y"]
 
 [ext_resource type="Script" path="res://scripts/managers/SeatManager.gd" id="1_lqlbm"]
 [ext_resource type="Texture2D" uid="uid://cq7ghusepdngi" path="res://icon.svg" id="2_xaqjx"]
 [ext_resource type="Script" path="res://scripts/worker/TickBarComponent.gd" id="3_lvql0"]
+[ext_resource type="PackedScene" uid="uid://b7wvxw25qpdjr" path="res://prefabs/fx/hire_me.tscn" id="4_410ug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw4us"]
 size = Vector2(291, 205)
@@ -22,6 +23,7 @@ shape = SubResource("RectangleShape2D_sw4us")
 debug_color = Color(0.432071, 2.74105e-05, 0.353608, 0.42)
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_xaqjx")
 
 [node name="EffectBar" type="ProgressBar" parent="."]
@@ -35,3 +37,5 @@ show_percentage = false
 
 [node name="HireBarComponent" type="Node" parent="."]
 script = ExtResource("3_lvql0")
+
+[node name="HireMe" parent="." instance=ExtResource("4_410ug")]

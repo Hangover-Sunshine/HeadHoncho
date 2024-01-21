@@ -32,7 +32,8 @@ func apply_moneybags_effect():
 
 func show_icon():
 	if can_show:
-		$Icon.visible = true
+		$HireMe.visible = true
+		$HireMe/AnimationPlayer.play("Hover")
 		$HireHB/CollisionShape2D.disabled = false
 	##
 	should_show = true
@@ -40,7 +41,8 @@ func show_icon():
 
 func hide_icon():
 	if can_show:
-		$Icon.visible = false
+		$HireMe.visible = false
+		$HireMe/AnimationPlayer.stop()
 		$HireHB/CollisionShape2D.disabled = true
 	##
 	should_show = false
