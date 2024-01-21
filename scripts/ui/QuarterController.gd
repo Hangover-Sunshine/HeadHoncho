@@ -40,6 +40,7 @@ var old_appreciation:int
 var quotas_survived:int = 0
 
 var username:String = ""
+var signed:bool = false
 
 var names = [
 	"John Hancock", "Dick Johnson", "Harry Bawls", "Ben Dover", "Mike Hawk", "Connie Lingus",
@@ -59,7 +60,7 @@ func _ready():
 
 func _round_over(results:Dictionary):
 	$Background/Report/HBoxContainer/BossSignature.text = names[randi() % len(names)]
-	
+	signed = false
 	# "money", "quota", "broken_windows", "dickheads_killed", "dickheads_satisfied",
 	# "dickheads_removed", "employees_quit"
 	
@@ -98,7 +99,7 @@ func _round_over(results:Dictionary):
 ##
 
 func _input(event):
-	if visible and event.is_action_pressed("head_interaction"):
+	if visible and signed == false and event.is_action_pressed("head_interaction"):
 		$Background/Report/HBoxContainer/PlayerSignature.set("theme_override_font_sizes/font_size", randi_range(30, 80))
 		
 		var chance = randi() % 100
@@ -108,6 +109,8 @@ func _input(event):
 		else:
 			$Background/Report/HBoxContainer/PlayerSignature.text = "HEAD HONCHO"
 		##
+		
+		signed = true
 		
 		$StartDelayTimer.start()
 	##
@@ -124,6 +127,7 @@ func _on_confirm_pressed():
 	roundStart["appreciation"] = new_appreciation
 	
 	quotas_survived += 1
+	$Background/Report/HBoxContainer/PlayerSignature.text = ""
 	
 	if new_appreciation != 0 and quotas_survived < QUOTAS_TO_SURVIVE:
 		SignalBus.emit_signal("round_start", roundStart)
@@ -139,7 +143,6 @@ func _on_confirm_pressed():
 func _grow_quota(curr_quota:int) -> int:
 	return curr_quota + ceil(curr_quota * QUOTA_GROWTH)
 ##
-
 
 func _on_start_delay_timer_timeout():
 	_on_confirm_pressed()

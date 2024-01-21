@@ -140,9 +140,7 @@ func main_menu_interactions():
 		if curr_pos == 0:
 			get_tree().change_scene_to_file("res://scenes/level.tscn")
 		elif curr_pos == 1:
-			hide_main_menu()
-			show_settings()
-			$DelayWhilePressedTimer.start()
+			pass
 		elif curr_pos == 2:
 			hide_main_menu()
 			show_tips()

@@ -13,6 +13,8 @@ extends Control
 @onready var mid_arrow = $ToGameMenu/MidArrow
 @onready var menu_arrow = $ToGameMenu/MenuArrow
 
+@onready var animation_player = $AnimationPlayer
+
 var curr_pos:int = 0
 
 var up_pressed:bool = false
@@ -26,12 +28,17 @@ var first_signal:bool = false
 
 var in_gameover:bool = false
 
+var fadeIn:bool = false
+
+var clear:Color = Color.from_string("e8ede600", Color.WHITE)
+
 func _ready():
 	SignalBus.connect("player_jumped_out_window", player_dies_end)
 	SignalBus.connect("player_fired", player_fired_end)
 	SignalBus.connect("player_survived", survive_end)
 	SignalBus.connect("too_many_workers_quit", unionization_end)
 	visible = false
+	$TextBG.modulate = clear
 ##
 
 func _input(event):
@@ -59,8 +66,8 @@ func _process(_delta):
 	##
 	
 	if out_of_reading == false:
-		if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
-			print("here")
+		if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped()\
+			and fadeIn:
 			text_bg.visible = false
 			to_game_menu.visible = true
 			out_of_reading = true
@@ -97,6 +104,8 @@ func player_dies_end():
 	unionization.visible = false
 	fired.visible = false
 	
+	$ShowStoryTimer.start()
+	
 	visible = true
 	label.text = "By some chance, you fell out the window; whether it was an accident, on purpose, " +\
 				"or some other reason, your cause of death was never investigated. In fact, before " +\
@@ -114,6 +123,8 @@ func player_fired_end():
 	unionization.visible = false
 	fired.visible = true
 	
+	$ShowStoryTimer.start()
+	
 	visible = true
 	label.text = "Owing to your terrible management of the company's money, you've been " +\
 				"summarily terminated. You were asked to meet management on a boat, where you were " +\
@@ -129,6 +140,8 @@ func unionization_end():
 	fall_out.visible = false
 	unionization.visible = true
 	fired.visible = false
+	
+	$ShowStoryTimer.start()
 	
 	label.text = "You decided to not fire workers when they were showing signs they were going to " +\
 				"unionize. This cost MLM Corp. greatly and you were immediately let go for" +\
@@ -146,6 +159,8 @@ func survive_end():
 	fall_out.visible = false
 	unionization.visible = false
 	fired.visible = false
+	
+	$ShowStoryTimer.start()
 	
 	label.text = "The Company congratulates you for meeting all quotas in the fiscal year!" +\
 				"MLM Corp. stock has risen 50%; our company is now bringing record breaking profits " +\
@@ -187,5 +202,16 @@ func move_arrows_down():
 		replay_arrow.text = "▶"
 	elif curr_pos == 1:
 		menu_arrow.text = "◀"
+	##
+##
+
+func _on_show_story_timer_timeout():
+	$TextBG.modulate = $TextBG.modulate.lerp(Color.WHITE, 0.2)
+	
+	if $TextBG.modulate.a > 0.9:
+		fadeIn = true
+		$TextBG.modulate.a = 1
+	else:
+		$ShowStoryTimer.start(0.05)
 	##
 ##
