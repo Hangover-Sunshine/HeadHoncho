@@ -17,7 +17,7 @@ func _process(delta):
 		$EnvGlassTest.visible = false
 		SignalBus.emit_signal("window_broken")
 		# play shattering sfx
-		# play shattering particles
+		$GlassBreak.emitting = true
 	##
 	
 	var res = []

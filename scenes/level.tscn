@@ -340,7 +340,7 @@ navigation_layers = 2
 z_index = 1
 
 [node name="Window1" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
-z_index = 1
+position = Vector2(-1615, 192)
 
 [node name="Window2" parent="Game/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(-1608, 773)
