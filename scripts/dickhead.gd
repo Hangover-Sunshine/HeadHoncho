@@ -47,6 +47,15 @@ var can_interact_with:bool = true
 
 var done:bool = false
 
+@onready var audio_player = $AudioStreamPlayer2D
+
+var sounds = {
+	"fall":load("res://assets/sound/sfx/SFX_Fall.wav"),
+	"fire":load("res://assets/sound/sfx/SFX_Fire.wav"),
+	"anger":null,
+	"blown_away":null
+}
+
 func _ready():
 	nav_agent.path_desired_distance = 15
 	nav_agent.target_desired_distance = 5
@@ -98,6 +107,14 @@ func _process(_delta):
 		$TickUpdateReceiver.falling = true
 		global_position = global_position.lerp(fall_lerp_to, 0.01)
 		fireball.stop_emitting()
+		
+		if audio_player.stream != sounds["fall"]:
+			audio_player.stream = sounds["fall"]
+		##
+		
+		if audio_player.playing == false:
+			audio_player.play()
+		##
 		
 		if $CharacterSkeleton/AnimationPlayer.is_playing() == false and\
 			$CharacterSkeleton.fall_anim_played:

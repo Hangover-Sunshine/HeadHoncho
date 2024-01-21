@@ -367,3 +367,5 @@ position = Vector2(0, -80)
 position = Vector2(0, -136)
 
 [node name="Fireball" parent="." instance=ExtResource("12_vm3uw")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

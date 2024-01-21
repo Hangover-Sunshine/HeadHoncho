@@ -46,13 +46,6 @@ func _tick_update():
 			if angry.is_emitting():
 				angry.stop_emitting()
 			##
-			
-			#if arrived:
-				#if target != null:
-					#target.boss_gone()
-				###
-				#arrived = false
-			###
 		##
 		
 		
@@ -65,9 +58,21 @@ func _tick_update():
 		##
 		
 		if being_burned:
+			if get_parent().audio_player.stream != get_parent().sounds["fire"]:
+				get_parent().audio_player.stream = get_parent().sounds["fire"]
+			##
+			
+			if get_parent().audio_player.playing == false:
+				get_parent().audio_player.play()
+			##
+			
 			if burn_countdown > 0:
 				burn_countdown -= 1
 			else:
+				if get_parent().audio_player.playing:
+					get_parent().audio_player.stop()
+				##
+				
 				fireball.stop_emitting()
 				being_burned = false
 				get_parent().unkind_leave = true
