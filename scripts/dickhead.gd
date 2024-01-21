@@ -45,6 +45,8 @@ var kind_leave:bool = false
 
 var can_interact_with:bool = true
 
+var done:bool = false
+
 func _ready():
 	nav_agent.path_desired_distance = 15
 	nav_agent.target_desired_distance = 5
@@ -78,17 +80,18 @@ func set_leave(leave_targ):
 ##
 
 func _process(_delta):
-	if unkind_leave == true and curr_target == null:
-		nav_agent.target_position = leave_target
+	if done:
 		return
 	##
 	
 	if unkind_leave == true and nav_agent.is_navigation_finished():
-		SignalBus.emit_signal("dickhead_removed")
+		SignalBus.emit_signal("dickhead_removed", self)
+		done = true
 	##
 	
 	if kind_leave == true and nav_agent.is_navigation_finished():
-		SignalBus.emit_signal("dickhead_left")
+		SignalBus.emit_signal("dickhead_left", self)
+		done = true
 	##
 	
 	if falling:
@@ -179,6 +182,7 @@ func apply_blowie_effect():
 	can_interact_with = false
 	
 	hide_effect_bar()
+	SignalBus.emit_signal("dickhead_gone", worker_target)
 	
 	dir_from_player_to_me = global_position - player.global_position
 	
@@ -208,6 +212,8 @@ func apply_covefe_effect():
 		return
 	##
 	
+	SignalBus.emit_signal("dickhead_gone", worker_target)
+	
 	bad_performance.emitting = true
 	
 	can_interact_with = false
@@ -233,6 +239,7 @@ func apply_moneybags_effect():
 	
 	good_performance.emitting = true
 	$CharacterSkeleton.best_boss_face()
+	SignalBus.emit_signal("dickhead_gone", worker_target)
 	
 	hide_effect_bar()
 	

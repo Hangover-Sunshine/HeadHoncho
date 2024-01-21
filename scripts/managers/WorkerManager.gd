@@ -137,6 +137,7 @@ func _worker_quit(worker:Worker):
 func _dickhead_gone(worker:Worker):
 	var indx = workers.find(worker)
 	dickheads_per_worker[indx] -= 1
+	worker.boss_gone()
 ##
 
 func _is_money_bags():

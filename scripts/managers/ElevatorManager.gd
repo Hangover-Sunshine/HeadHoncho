@@ -12,6 +12,10 @@ func get_timestep() -> float:
 	return animation_player.get_current_animation_position()
 ##
 
+func is_playing():
+	return animation_player.is_playing()
+##
+
 func is_open() -> bool:
 	return animation_player.get_current_animation_position() >= 0.5 and\
 		animation_player.get_current_animation_position() <= 2.0

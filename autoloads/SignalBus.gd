@@ -38,8 +38,8 @@ signal aoe_heal(amount)
 
 # DICKHEAD SIGNALS
 signal dickhead_died
-signal dickhead_removed
-signal dickhead_left
+signal dickhead_removed(dickhead:Dickhead)
+signal dickhead_left(dickhead:Dickhead)
 signal dickhead_gone(worker:Worker)
 signal dickhead_saw_asleep_employee
 signal request_new_target(dickhead:Dickhead)

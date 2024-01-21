@@ -17,6 +17,7 @@ func _round_start(_data):
 
 func _round_over(_data):
 	in_game = false
+	$UILayer/QuarterReview.visible = true
 ##
 
 func _process(delta):

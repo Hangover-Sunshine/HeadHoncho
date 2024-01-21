@@ -47,12 +47,12 @@ func _tick_update():
 				angry.stop_emitting()
 			##
 			
-			if arrived:
-				if target != null:
-					target.boss_gone()
-				##
-				arrived = false
-			##
+			#if arrived:
+				#if target != null:
+					#target.boss_gone()
+				###
+				#arrived = false
+			###
 		##
 		
 		

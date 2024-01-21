@@ -256,12 +256,12 @@ text = "ATTENDING SUPERVISOR:"
 [node name="BossSignature" type="Label" parent="Background/Report/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_7meo0")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 60
 
 [node name="TextureRect" type="TextureRect" parent="Background/Report/HBoxContainer"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
 
 [node name="Player" type="Label" parent="Background/Report/HBoxContainer"]
@@ -273,7 +273,7 @@ text = "MANAGER:"
 [node name="PlayerSignature" type="Label" parent="Background/Report/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_g3e0x")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.847059, 0.137255, 0.176471, 1)
 theme_override_font_sizes/font_size = 60
 
 [node name="Divider10" type="ColorRect" parent="Background/Report"]

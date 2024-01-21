@@ -16,6 +16,8 @@ var dickheads_removed:int = 0
 
 var positions:Array[Vector2]
 
+var queue_to_leave = []
+
 func _ready():
 	SignalBus.connect("dickhead_left", _dickhead_left)
 	SignalBus.connect("dickhead_removed", _dickhead_removed)
@@ -27,6 +29,15 @@ func _ready():
 	
 	for child in children:
 		positions.append(child.global_position)
+	##
+##
+
+func _process(_delta):
+	if elevator.is_playing() and elevator.is_open() and len(queue_to_leave) > 0:
+		for dh in queue_to_leave:
+			dh.queue_free()
+		##
+		queue_to_leave = []
 	##
 ##
 
@@ -63,7 +74,13 @@ func spawn_dickhead():
 	dh_inst.set_target(worker)
 ##
 
-func _dickhead_left():
+func _dickhead_left(dickhead:Dickhead):
+	if elevator.is_playing():
+		dickhead.queue_free()
+	else:
+		queue_to_leave.append(dickhead)
+	##
+	
 	dickheads_satisified += 1
 ##
 
@@ -71,7 +88,13 @@ func _dickhead_died():
 	dickheads_killed += 1
 ##
 
-func _dickhead_removed():
+func _dickhead_removed(dickhead:Dickhead):
+	if elevator.is_playing():
+		dickhead.queue_free()
+	else:
+		queue_to_leave.append(dickhead)
+	##
+	
 	dickheads_removed += 1
 ##
 

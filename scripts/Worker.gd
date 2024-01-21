@@ -48,8 +48,7 @@ func _ready():
 ##
 
 func reset_worker():
-	$TickReceiver.money_rate = 0
-	$TickReceiver.bosses_nearby = 0
+	$TickReceiver.money_increase_perc = 0
 	$TickReceiver.load_stats()
 ##
 
@@ -68,7 +67,8 @@ func boss_gone():
 	$TickReceiver.dickheadTempMod = dickheadTempMod * bosses_nearby
 	
 	if bosses_nearby == 0:
-		$TickReceiver.load_stats()
+		$TickReceiver.load_stats() 
+		$TickReceiver.covefe_fed()
 	##
 ##
 
