@@ -282,6 +282,7 @@ script = ExtResource("3_md431")
 
 [node name="EffectBar" type="ProgressBar" parent="."]
 visible = false
+z_index = 100
 custom_minimum_size = Vector2(150, 0)
 offset_left = -75.0
 offset_top = -160.0

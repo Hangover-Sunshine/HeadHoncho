@@ -36,15 +36,13 @@ func interacting_with_worker():
 
 func _tick_update():
 	if falling == false:
-		if interacting_with_worker() and arrived == false and target != null and\
-			get_parent().blowing_away == false and being_burned == false and bullshitted == false:
-			arrived = true
-			target.boss_arrived()
-			angry.emit()
-		##
-		
-		if arrived and (get_parent().blowing_away or being_burned or bullshitted):
-			target.boss_gone()
+		if target != null:
+			if interacting_with_worker() and arrived == false and\
+				get_parent().blowing_away == false and being_burned == false and bullshitted == false:
+				arrived = true
+				target.boss_arrived()
+				angry.emit()
+			##
 		##
 		
 		if is_interacting_with_player():
@@ -52,7 +50,6 @@ func _tick_update():
 				angry.stop_emitting()
 			##
 		##
-		
 		
 		if prev_value == get_parent().effect_bar.value:
 			get_parent().hide_effect_bar()
