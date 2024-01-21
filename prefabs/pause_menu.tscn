@@ -169,3 +169,5 @@ theme = ExtResource("2_f5lwm")
 theme_override_colors/font_color = Color(0.027451, 0.113725, 0.180392, 1)
 text = "SFX Level:"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

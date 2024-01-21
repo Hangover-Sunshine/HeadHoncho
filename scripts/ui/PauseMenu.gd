@@ -4,6 +4,7 @@ extends Control
 @onready var quit_game = $MarginContainer/MainPauseMenu/LandingMenu/MainSettings/QuitGame
 
 @onready var game = $"../.."
+@onready var audio_player = $AudioStreamPlayer2D
 
 var paused:bool = false
 
@@ -20,6 +21,8 @@ var down_pressed:bool = false
 
 func _ready():
 	platform = OS.get_name()
+	
+	audio_player.stream = load("res://assets/sound/sfx/SFX_Head&Button.wav")
 	
 	var left = $MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer.get_children()
 	var right = $MarginContainer/MainPauseMenu/LandingMenu/VBoxContainer2.get_children()
@@ -79,6 +82,7 @@ func _process(_delta):
 	##
 	
 	if Input.is_action_pressed("head_interaction"):
+		audio_player.play()
 		if curr_pos == 0:
 			pause_pressed()
 			game.unpause()
@@ -92,6 +96,7 @@ func _process(_delta):
 ##
 
 func move_arrows_up():
+	audio_player.play()
 	arrows[curr_pos][0].text = ""
 	arrows[curr_pos][1].text = ""
 	
@@ -102,6 +107,7 @@ func move_arrows_up():
 ##
 
 func move_arrows_down():
+	audio_player.play()
 	arrows[curr_pos][0].text = ""
 	arrows[curr_pos][1].text = ""
 	
