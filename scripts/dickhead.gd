@@ -14,102 +14,56 @@ class_name Dickhead
 
 #############################################################
 
+@onready var speech_bubble = $SpeechBubble
+@onready var bad_performance = $BadPerformance
+@onready var good_performance = $GoodPerformance
+@onready var fireball = $Fireball
+
+#############################################################
+
 @onready var nav_agent = $NavAgent
 @onready var effect_bar = $EffectBar
 
 var player:Player
-
-var annoy_worker:bool = false
-var target:Worker
-var arrived:bool = false
-
-var blowing_away:bool = false
 var dir_from_player_to_me:Vector2
 
+var worker_target:Worker
+var leave_target:Vector2
+var curr_target:Vector2
+
+var blowing_away:bool = false
+
 var being_burned:bool = false
-var burn_countdown:int = 0
 
 var bullshitted:bool = false
 
-var leave_target:Vector2
+var falling:bool = false
+
 var unkind_leave:bool = false
 var kind_leave:bool = false
 
-var falling:bool = false
-
 func _ready():
 	nav_agent.path_desired_distance = 15
-	nav_agent.target_desired_distance = 15
+	nav_agent.target_desired_distance = 5
 	
 	$CharacterSkeleton.generate_character()
 	
-	SignalBus.connect("tick_update", _tick_update)
 	SignalBus.connect("worker_quit", _worker_quit)
 	
 	effect_bar.visible = false
 	effect_bar.value = 0
 ##
 
-func leaving():
-	return unkind_leave or kind_leave
-##
-
-func is_interacting_with_player():
-	return effect_bar.visible
-##
-
 func _worker_quit(worker:Worker):
-	if target == worker:
+	if worker_target == worker:
 		SignalBus.emit_signal("request_new_target", self)
 	##
 ##
 
-func _tick_update():
-	if falling == false:
-		if nav_agent.is_navigation_finished() and !leaving() and !is_interacting_with_player():
-			if arrived == false and target != null:
-				arrived = true
-				target.boss_arrived()
-			##
-		elif is_interacting_with_player() and arrived:
-			if target != null:
-				target.boss_gone()
-			##
-			
-			arrived = false
-		##
-		
-		if unkind_leave == true and target != null and nav_agent.is_navigation_finished():
-			SignalBus.emit_signal("dickhead_removed")
-			#queue_free()
-		##
-		
-		if unkind_leave == true and target == null:
-			nav_agent.target_position = leave_target
-			return
-		##
-		
-		if kind_leave == true and nav_agent.is_navigation_finished():
-			SignalBus.emit_signal("dickhead_left")
-			#queue_free()
-		##
-		
-		if being_burned:
-			if burn_countdown > 0:
-				burn_countdown -= 1
-			else:
-				being_burned = false
-				unkind_leave = true
-				nav_agent.target_position = leave_target
-			##
-		##
-	##
-##
-
 func fall():
-	if falling == false:
+	if $TickUpdateReceiver.falling == false:
 		$CharacterSkeleton/AnimationPlayer.play("Falling")
-		falling = true
+		$TickUpdateReceiver.falling = true
 	##
 	if $CharacterSkeleton/AnimationPlayer.is_playing() == false:
 		SignalBus.emit_signal("dickhead_died")
@@ -121,8 +75,8 @@ func fall():
 
 func set_target(targ_worker):
 	if targ_worker != null:
-		target = targ_worker
-		nav_agent.target_position = target.global_position
+		$TickUpdateReceiver.target = targ_worker
+		nav_agent.target_position = $TickUpdateReceiver.target.global_position
 	else:
 		SignalBus.emit_signal("request_new_target", self)
 	##
@@ -130,6 +84,23 @@ func set_target(targ_worker):
 
 func set_leave(leave_targ):
 	leave_target = leave_targ
+##
+
+func _process(_delta):
+	if unkind_leave == true and curr_target == null:
+		nav_agent.target_position = leave_target
+		return
+	##
+	
+	if unkind_leave == true and nav_agent.is_navigation_finished():
+		print(self, " angrily left!")
+		SignalBus.emit_signal("dickhead_removed")
+	##
+	
+	if kind_leave == true and nav_agent.is_navigation_finished():
+		print(self, " happily left!")
+		SignalBus.emit_signal("dickhead_left")
+	##
 ##
 
 func _physics_process(delta):
@@ -157,10 +128,6 @@ func _physics_process(delta):
 	move_and_slide()
 ##
 
-func _dist_to_target():
-	return global_position.distance_to(target.global_position)
-##
-
 func _velocity_from_path():
 	if nav_agent.is_navigation_finished():
 		return Vector2.ZERO
@@ -170,7 +137,7 @@ func _velocity_from_path():
 ##
 
 func show_effect_bar():
-	if blowing_away == false and being_burned == false:
+	if blowing_away == false and $TickUpdateReceiver.being_burned == false:
 		effect_bar.visible = true
 	##
 ##
@@ -181,7 +148,7 @@ func hide_effect_bar():
 ##
 
 func update_effect_bar(curr_val:int, max_val:int):
-	if blowing_away == false and being_burned == false:
+	if blowing_away == false and $TickUpdateReceiver.being_burned == false:
 		effect_bar.value = clampi((curr_val / float(max_val)) * 100, 0, 100)
 	##
 ##
@@ -192,6 +159,8 @@ func apply_blowie_effect():
 	else:
 		return
 	##
+	
+	bad_performance.emitting = true
 	
 	hide_effect_bar()
 	
@@ -213,15 +182,18 @@ func apply_blowie_effect():
 ##
 
 func apply_covefe_effect():
-	if being_burned == false:
-		being_burned = true
+	if $TickUpdateReceiver.being_burned == false:
+		$TickUpdateReceiver.being_burned = true
 	else:
 		return
 	##
 	
+	bad_performance.emitting = true
+	
 	hide_effect_bar()
 	
-	burn_countdown = randi_range(BURN_COUNTDOWN.x, BURN_COUNTDOWN.y)
+	fireball.emit()
+	$TickUpdateReceiver.burn_countdown = randi_range(BURN_COUNTDOWN.x, BURN_COUNTDOWN.y)
 	
 	nav_agent.target_position = get_parent().pick_position()
 ##
@@ -233,8 +205,15 @@ func apply_moneybags_effect():
 		return
 	##
 	
+	good_performance.emitting = true
+	
 	hide_effect_bar()
 	
 	kind_leave = true
+	curr_target = leave_target
 	nav_agent.target_position = leave_target
+##
+
+func set_disgruntled():
+	unkind_leave = true
 ##

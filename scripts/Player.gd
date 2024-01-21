@@ -81,17 +81,11 @@ func _on_body_entered_area(body):
 	if body is Worker:
 		worker_in_path.append(body)
 	##
-	if body is Dickhead:
-		dickheads_in_path.append(body)
-	##
 ##
 
 func _on_body_exited_area(body):
 	if body is Worker:
 		worker_in_path.remove_at(worker_in_path.find(body))
-	##
-	if body is Dickhead:
-		dickheads_in_path.remove_at(dickheads_in_path.find(body))
 	##
 ##
 
@@ -99,12 +93,21 @@ func _on_basic_head_area_entered(area):
 	if area.is_in_group("seats"):
 		open_seats_nearby.append(area.get_parent())
 	##
+	if area.get_parent() is Dickhead:
+		dickheads_in_path.append(area.get_parent())
+	##
 ##
 
 func _on_basic_head_area_exited(area):
 	var indx = open_seats_nearby.find(area.get_parent())
 	if indx != -1:
 		open_seats_nearby.remove_at(indx)
+	##
+	if area.get_parent() is Dickhead:
+		indx = dickheads_in_path.find(area.get_parent())
+		if indx != -1:
+			dickheads_in_path.remove_at(indx)
+		##
 	##
 ##
 

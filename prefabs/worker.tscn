@@ -263,7 +263,8 @@ metadata/_snap_enabled = true
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ddibx")
-startingEnergy = 0
+startingTemp = 15
+startingStress = 9
 maxStress = 10
 
 [node name="TickReceiver" type="Node" parent="."]

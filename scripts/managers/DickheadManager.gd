@@ -34,7 +34,7 @@ func _request_new_target(dickhead:Dickhead):
 	
 	# if no workers available, dickhead chuffed
 	if worker == null:
-		dickhead.unkind_leave = true
+		dickhead.set_disgruntled()
 		return # stop
 	##
 	
@@ -55,8 +55,8 @@ func spawn_dickhead():
 	##
 	
 	var dh_inst:Dickhead = dickhead.instantiate()
-	dh_inst.player = PLAYER
 	add_child(dh_inst)
+	dh_inst.player = PLAYER
 	dh_inst.set_target(worker)
 ##
 

@@ -1,11 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://bpmj6vc1rtboe"]
+[gd_scene load_steps=21 format=3 uid="uid://bpmj6vc1rtboe"]
 
 [ext_resource type="Script" path="res://scripts/Dickhead.gd" id="1_la0yx"]
 [ext_resource type="Script" path="res://scripts/DickheadSpriteControl.gd" id="1_on4yk"]
+[ext_resource type="Script" path="res://scripts/dickhead/DickheadTickReceiver.gd" id="2_25hlk"]
 [ext_resource type="Texture2D" uid="uid://bgohef4wj2nt" path="res://assets/characters/Dick_Head_Tile.png" id="2_rvxy3"]
 [ext_resource type="Texture2D" uid="uid://dk17ywdmq2fq3" path="res://assets/characters/All_Cloth_Tile.png" id="3_7kpk8"]
 [ext_resource type="Texture2D" uid="uid://b38053ino836s" path="res://assets/characters/All_Hand_Tile.png" id="4_ns0ul"]
-[ext_resource type="Script" path="res://scripts/dickhead/DH_BlowingLogic.gd" id="6_u0rsm"]
+[ext_resource type="PackedScene" uid="uid://c4oc3dryw6fxe" path="res://prefabs/fx/angry.tscn" id="8_8wggv"]
+[ext_resource type="PackedScene" path="res://prefabs/fx/bad_performance.tscn" id="9_bmrlj"]
+[ext_resource type="PackedScene" path="res://prefabs/fx/good_performance.tscn" id="10_klp75"]
+[ext_resource type="PackedScene" uid="uid://bplucsmub3rh" path="res://prefabs/fx/speechbubble.tscn" id="11_f8ian"]
+[ext_resource type="PackedScene" uid="uid://cxr15uonsdsg" path="res://prefabs/fx/fireball.tscn" id="12_vm3uw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxu6h"]
+size = Vector2(142, 202)
 
 [sub_resource type="Animation" id="Animation_c2kgx"]
 resource_name = "All_Idle"
@@ -267,7 +275,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e0jp"]
-size = Vector2(134, 168)
+size = Vector2(134, 146)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydqxu"]
 size = Vector2(253, 281)
@@ -279,6 +287,14 @@ collision_mask = 24
 script = ExtResource("1_la0yx")
 BLOW_FORCE = 1100.0
 DRAG = 0.05
+
+[node name="PlayerHeadArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHeadArea"]
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_rxu6h")
+debug_color = Color(0.768627, 0.435294, 0.262745, 0.419608)
 
 [node name="EffectBar" type="ProgressBar" parent="."]
 visible = false
@@ -293,6 +309,9 @@ mouse_filter = 2
 step = 1.0
 value = 50.0
 show_percentage = false
+
+[node name="TickUpdateReceiver" type="Node" parent="."]
+script = ExtResource("2_25hlk")
 
 [node name="CharacterSkeleton" type="Node2D" parent="."]
 script = ExtResource("1_on4yk")
@@ -325,7 +344,7 @@ texture = ExtResource("4_ns0ul")
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, 30.5)
 scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_2e0jp")
 
@@ -348,5 +367,21 @@ time_horizon_obstacles = 0.5
 avoidance_layers = 2
 avoidance_mask = 3
 
-[node name="BlowingLogic" type="Node2D" parent="."]
-script = ExtResource("6_u0rsm")
+[node name="Angry" parent="." instance=ExtResource("8_8wggv")]
+visible = false
+position = Vector2(34, -104)
+
+[node name="BadPerformance" parent="." instance=ExtResource("9_bmrlj")]
+visible = false
+position = Vector2(0, -80)
+
+[node name="GoodPerformance" parent="." instance=ExtResource("10_klp75")]
+visible = false
+position = Vector2(0, -80)
+
+[node name="SpeechBubble" parent="." instance=ExtResource("11_f8ian")]
+visible = false
+position = Vector2(0, -136)
+
+[node name="Fireball" parent="." instance=ExtResource("12_vm3uw")]
+visible = false

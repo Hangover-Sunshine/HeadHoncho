@@ -106,7 +106,7 @@ func tick_update_receiver():
 		temperature_processor.set_max(4)
 	else:
 		if fireball.is_emitting():
-			fireball.stop_emit()
+			fireball.stop_emitting()
 		##
 		
 		if money_increase_perc == 0:
@@ -139,7 +139,6 @@ func tick_update_receiver():
 		##
 		
 		if curr_stress == maxStress:
-			print("I QUIT!")
 			SignalBus.emit_signal("worker_quit", get_parent())
 			SignalBus.disconnect("tick_update", tick_update_receiver)
 			return
@@ -209,7 +208,6 @@ func save_stats():
 	##
 	saved = true
 	saved_energy = curr_energy
-	speechbubble.emit()
 ##
 
 func load_stats():
@@ -218,5 +216,4 @@ func load_stats():
 	##
 	saved = false
 	curr_energy = saved_energy
-	speechbubble.stop_emitting()
 ##

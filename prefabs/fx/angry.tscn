@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://4gjlnqsxgjle"]
+[gd_scene load_steps=5 format=3 uid="uid://c4oc3dryw6fxe"]
 
+[ext_resource type="Script" path="res://scripts/fx_control/AngryControl.gd" id="1_cxrie"]
 [ext_resource type="Texture2D" uid="uid://ca6uixrmjuw3e" path="res://assets/particles/Angry.png" id="1_hr5p7"]
 
 [sub_resource type="Curve" id="Curve_q6pqm"]
@@ -12,6 +13,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [node name="angry" type="Node2D"]
+script = ExtResource("1_cxrie")
 
 [node name="grrrr" type="CPUParticles2D" parent="."]
 amount = 1
