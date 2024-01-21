@@ -1634,6 +1634,10 @@ text = "SPACE"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Hand/BusinessCard"]
 
+[node name="LoadDelayTimer" type="Timer" parent="Hand/BusinessCard"]
+wait_time = 1.2
+one_shot = true
+
 [node name="Thumb" type="Sprite2D" parent="Hand"]
 position = Vector2(-500, 1594)
 texture = ExtResource("14_7kmk3")
