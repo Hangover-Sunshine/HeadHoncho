@@ -54,7 +54,7 @@ script = ExtResource("1_mcort")
 process_mode = 1
 script = ExtResource("1_rjii0")
 PLAYER_INFO_UI = NodePath("../UILayer/PlayerInformation")
-SECONDS_PER_ROUND = 160.0
+SECONDS_PER_ROUND = 120.0
 
 [node name="StaticEnv" type="Node2D" parent="PlaySpace"]
 
