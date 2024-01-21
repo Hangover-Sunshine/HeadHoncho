@@ -887,6 +887,7 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
 [node name="Credits" type="VBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
@@ -921,6 +922,7 @@ text = "Developer - HangoverSunshine | Music - Scott Buckley"
 horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -1155,7 +1157,6 @@ theme_override_constants/separation = 100
 [node name="WildJamStuff" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("5_kevuc")
 
 [node name="Slide2" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips/WildJamStuff"]
 layout_mode = 2
@@ -1297,6 +1298,131 @@ layout_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Your briefcase knows how to
+talk money. Use it to appease
+your bosses, getting rid of
+them safely, and to destress
+your workers."
+horizontal_alignment = 1
+
+[node name="Settings" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="LeftBar" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="SFXLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "SFX Level"
+
+[node name="BGMLabel" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "BGM Level"
+
+[node name="Keybinds" type="Label" parent="Hand/BusinessCard/Menu/Settings/LeftBar"]
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.890196, 0.945098, 0.996078, 1)
+theme_override_font_sizes/font_size = 30
+text = "Keybinds
+"
+
+[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Settings"]
+layout_mode = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Each worker at a desk makes
+revenue. Make sure to gauge
+their emotions to ensure their
+success.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Bosses are distracting. They
+will stress your workers out.
+Use one of your heads to get
+rid of them.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "If a worker works too hard,
+they will burnout. Use your
+AC Head to blow them back
+to a healthy work speed.
+"
+horizontal_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme = ExtResource("2_7plfq")
+theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
+theme_override_font_sizes/font_size = 30
+text = "Your workers may fall asleep,
+use coffee to wake them up.
+Need them to work, harder?
+Coffee can also help!
+"
+horizontal_alignment = 1
+
+[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Settings/Slide3"]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme = ExtResource("2_7plfq")
