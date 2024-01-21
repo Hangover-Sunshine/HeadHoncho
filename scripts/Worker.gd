@@ -54,8 +54,18 @@ func _ready():
 ##
 
 func reset_worker():
+	bosses_nearby = 0
 	$TickReceiver.money_increase_perc = 0
 	$TickReceiver.load_stats()
+##
+
+func update_money():
+	if bosses_nearby > 0:
+		$TickReceiver.save_stats()
+	else:
+		$TickReceiver.load_stats()
+	##
+	$TickReceiver.money_increase_perc = 0.2 * bosses_nearby
 ##
 
 func boss_arrived():

@@ -13,6 +13,8 @@ extends Control
 @onready var mid_arrow = $ToGameMenu/MidArrow
 @onready var menu_arrow = $ToGameMenu/MenuArrow
 
+@onready var audio_player = $AudioPlayer
+
 var curr_pos:int = 0
 
 var up_pressed:bool = false
@@ -37,6 +39,7 @@ func _ready():
 	SignalBus.connect("too_many_workers_quit", unionization_end)
 	visible = false
 	$TextBG.modulate = clear
+	audio_player.stream = load("res://assets/sound/sfx/SFX_Head&Button.wav")
 ##
 
 func _input(event):
@@ -66,6 +69,7 @@ func _process(_delta):
 	if out_of_reading == false:
 		if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped()\
 			and fadeIn:
+			audio_player.play()
 			text_bg.visible = false
 			to_game_menu.visible = true
 			out_of_reading = true
@@ -84,6 +88,7 @@ func _process(_delta):
 	##
 	
 	if Input.is_action_pressed("head_interaction") and $ToGameMenu/DelayWhilePressedTimer.is_stopped():
+		audio_player.play()
 		if curr_pos == 0:
 			get_tree().change_scene_to_file("res://scenes/level.tscn")
 		elif curr_pos == 1:
@@ -168,6 +173,8 @@ func survive_end():
 ##
 
 func move_arrows_up():
+	audio_player.play()
+	
 	if curr_pos == 0:
 		replay_arrow.text = ""
 		mid_arrow.text = "▶"
@@ -186,6 +193,8 @@ func move_arrows_up():
 ##
 
 func move_arrows_down():
+	audio_player.play()
+	
 	if curr_pos == 0:
 		replay_arrow.text = ""
 		mid_arrow.text = "▶"

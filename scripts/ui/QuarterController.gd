@@ -29,6 +29,8 @@ class_name QuarterController
 
 @onready var appreciation = $Background/Report/Appreciation/ProgressBar
 
+@onready var audio_player = $AudioPlayer
+
 #############################################################
 
 var round_results:Dictionary
@@ -49,6 +51,8 @@ var names = [
 ]
 
 func _ready():
+	audio_player.stream = load("res://assets/sound/sfx/SFX_Head&Button.wav")
+	
 	background.visible = false
 	report.visible = false
 	
@@ -101,6 +105,8 @@ func _round_over(results:Dictionary):
 func _input(event):
 	if visible and signed == false and event.is_action_pressed("head_interaction"):
 		$Background/Report/HBoxContainer/PlayerSignature.set("theme_override_font_sizes/font_size", randi_range(30, 80))
+		
+		audio_player.play()
 		
 		var chance = randi() % 100
 		

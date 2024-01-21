@@ -1,5 +1,11 @@
 extends Control
 
+@onready var audio_player = $AudioStreamPlayer2D
+
+var sounds = {
+	"pop":load("res://assets/sound/sfx/SFX_Head&Button.wav")
+}
+
 var arrows = []
 var settings_arrows = []
 
@@ -18,6 +24,7 @@ var can_control:bool = false
 var curr_screen:int = 0
 
 func _ready():
+	audio_player.stream = sounds["pop"]
 	var left = $Menu/HBoxContainer/MainMenuComponents/Menu/LArrow.get_children()
 	
 	$DelayWhilePressedTimer.start()
@@ -66,6 +73,7 @@ func _process(_delta):
 
 func move_arrows_up():
 	if curr_screen == 0:
+		audio_player.play()
 		arrows[curr_pos][0].text = ""
 		curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
 		arrows[curr_pos][0].text = "▶"
@@ -78,6 +86,7 @@ func move_arrows_up():
 
 func move_arrows_down():
 	if curr_screen == 0:
+		audio_player.play()
 		arrows[curr_pos][0].text = ""
 		curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
 		arrows[curr_pos][0].text = "▶"
@@ -120,6 +129,7 @@ func hide_main_menu():
 
 func tips_interactions():
 	if Input.is_action_pressed("head_interaction") and $DelayWhilePressedTimer.is_stopped():
+		audio_player.play()
 		hide_tips()
 		show_main_menu()
 		$DelayWhilePressedTimer.start()
@@ -138,14 +148,17 @@ func main_menu_interactions():
 	
 	if Input.is_action_pressed("head_interaction") and $DelayWhilePressedTimer.is_stopped():
 		if curr_pos == 0:
-			get_tree().change_scene_to_file("res://scenes/level.tscn")
+			audio_player.play()
+			$LoadDelayTimer.start()
 		elif curr_pos == 1:
 			pass
 		elif curr_pos == 2:
+			audio_player.play()
 			hide_main_menu()
 			show_tips()
 			$DelayWhilePressedTimer.start()
 		elif curr_pos == 3:
+			audio_player.play()
 			get_tree().quit()
 		##
 	##
@@ -178,4 +191,8 @@ func settings_interactions():
 			get_tree().quit()
 		##
 	##
+##
+
+func _on_load_delay_timer_timeout():
+	get_tree().change_scene_to_file("res://scenes/level.tscn")
 ##

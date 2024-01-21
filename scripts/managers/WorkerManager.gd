@@ -51,6 +51,16 @@ func _ready():
 	SignalBus.connect("round_start", _round_start)
 ##
 
+func _process(_delta):
+	#for wi in range(len(workers)):
+		#if dickheads_per_worker[wi] == 0 and workers[wi] != null and workers[wi].bosses_nearby > 0:
+			#workers[wi].bosses_nearby = dickheads_per_worker[wi]
+			#workers[wi].update_money()
+		##
+	##
+	pass
+##
+
 func _round_start(_startInfo):
 	for dh in range(16):
 		if workers[dh] != null:
