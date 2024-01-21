@@ -7,6 +7,14 @@ extends Area2D
 var bodies_in_zone = []
 var glass_shattered:bool = false
 
+func _ready():
+	SignalBus.connect("round_start", _round_start)
+##
+
+func _round_start(_roundInfo):
+	glass_shattered = false
+##
+
 func _process(delta):
 	if len(bodies_in_zone) > 0 and glass_shattered == false:
 		glass_shattered = true
