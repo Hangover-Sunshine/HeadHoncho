@@ -854,7 +854,7 @@ offset_bottom = 1080.0
 script = ExtResource("2_wkdu0")
 
 [node name="DelayWhilePressedTimer" type="Timer" parent="Hand/BusinessCard"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard"]
