@@ -83,6 +83,7 @@ func boss_gone():
 	$TickReceiver.dickheadTempMod = dickheadTempMod * bosses_nearby
 	
 	if bosses_nearby <= 0:
+		bosses_nearby = 0
 		$TickReceiver.curr_energy = 55
 		$TickReceiver.covefe_fed()
 	##
