@@ -149,7 +149,6 @@ func _process(delta):
 ##
 
 func _hire_worker(_area):
-	print("hello?")
 	revenue.buy_worker_setup()
 	speech_bubble.stop_emitting()
 	revenue.emit()

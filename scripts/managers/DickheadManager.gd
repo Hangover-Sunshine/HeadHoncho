@@ -58,7 +58,7 @@ func _round_start(_startInfo):
 		child.queue_free()
 	##
 	
-	# clear the queue
+	# clear the list so we don't try to free again
 	queue_to_leave = []
 ##
 
