@@ -132,22 +132,9 @@ func _tick_update_receiver():
 	if player.use_head:
 		curr_tick_array = player.get_list_to_iterate(curr_head)
 		
-		if curr_tick_array != prev_tick_array:
-			# If curr_tick_array > 0, then we saw someone
-			# If effect_bar is visible, we didn't see someone last tick
-			# >>> Turn it off
-			if len(curr_tick_array) > 0 and effect_bar.visible:
-				effect_bar.visible = false
-				effect_bar.value = 0
-			##
-			
-			for thing in prev_tick_array:
-				thing.hide_effect_bar()
-			##
-			
-			for thing in curr_tick_array:
-				thing.show_effect_bar()
-			##
+		# the dh/worker takes care of clearing itself
+		for thing in curr_tick_array:
+			thing.show_effect_bar()
 		##
 		
 		if curr_head == Player.Heads.BLOW_HEAD:
@@ -195,9 +182,6 @@ func _tick_update_receiver():
 		for thing in curr_tick_array:
 			thing.hide_effect_bar()
 		##
-		
-		curr_tick_array = []
-		prev_tick_array = []
 	##
 ##
 

@@ -57,6 +57,9 @@ func _round_start(_startInfo):
 	for child in get_children():
 		child.queue_free()
 	##
+	
+	# clear the queue
+	queue_to_leave = []
 ##
 
 func spawn_dickhead():

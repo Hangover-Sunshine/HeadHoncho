@@ -46,6 +46,8 @@ var open_seats_nearby = []
 var skin_color:int = 0
 
 func _ready():
+	SignalBus.connect("round_start", _round_start)
+	
 	$CharacterSkeleton.set_head(Heads.BLOW_HEAD)
 	$TickReceiver.set_head(Heads.BLOW_HEAD)
 	
@@ -68,6 +70,13 @@ func _process(_delta):
 			game_done = true
 			SignalBus.emit_signal("player_jumped_out_window")
 		##
+	##
+##
+
+func _round_start(_info):
+	# if not pressing it down when the round starts, turn it off
+	if Input.is_action_pressed("head_interaction") == false:
+		use_head = false
 	##
 ##
 
