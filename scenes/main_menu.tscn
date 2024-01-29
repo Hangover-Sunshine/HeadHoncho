@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://scripts/ui/WildJamAnim.gd" id="5_kevuc"]
 [ext_resource type="FontFile" uid="uid://0ieachuq6edo" path="res://assets/ui_assets/text/text_body/Body_RobotoSerif-SemiBold.ttf" id="5_r7n62"]
 [ext_resource type="Texture2D" uid="uid://cselclna2elat" path="res://assets/ui_assets/images/jam_logos/HS_Logo_White.png" id="6_gd0ha"]
-[ext_resource type="Texture2D" uid="uid://hn3mrbdr7v57" path="res://assets/ui_assets/images/guide/Guide_AllIcons.png" id="12_yvdef"]
 [ext_resource type="Texture2D" uid="uid://cf51jltoj1nrx" path="res://assets/ui_assets/images/guide/Thumb.png" id="14_7kmk3"]
+[ext_resource type="Texture2D" uid="uid://o31nuqeoj4wo" path="res://assets/ui_assets/images/guide/ControlsGuide.png" id="14_v4st5"]
 [ext_resource type="AudioStream" uid="uid://cxsjmt2t171ym" path="res://assets/sound/music/music_skyscrapersamba_elevator.mp3" id="16_485dc"]
 
 [sub_resource type="Animation" id="Animation_wdb7a"]
@@ -901,7 +901,7 @@ layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Version 1.0"
+text = "Version 1.1: Post-Jam Update"
 
 [node name="Music2" type="Label" parent="Hand/BusinessCard/Menu/Credits"]
 layout_mode = 2
@@ -1135,7 +1135,7 @@ layout_mode = 2
 theme = ExtResource("2_7plfq")
 theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
 theme_override_font_sizes/font_size = 30
-text = "Tips"
+text = "Help"
 
 [node name="Quit" type="Label" parent="Hand/BusinessCard/Menu/HBoxContainer/MainMenuComponents/Menu/Labels"]
 layout_mode = 2
@@ -1207,103 +1207,9 @@ vertical_alignment = 2
 [node name="TextureRect" type="TextureRect" parent="Hand/BusinessCard/Menu/Tips"]
 custom_minimum_size = Vector2(0, 1080)
 layout_mode = 2
-texture = ExtResource("12_yvdef")
-expand_mode = 3
-stretch_mode = 3
-
-[node name="Slide3" type="VBoxContainer" parent="Hand/BusinessCard/Menu/Tips"]
-layout_mode = 2
-alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 30
-text = "Each worker at a desk makes
-revenue. Make sure to gauge
-their emotions to ensure their
-success.
-"
-horizontal_alignment = 1
-
-[node name="ColorRect2" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary2" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 30
-text = "Bosses are distracting. They
-will stress your workers out.
-Use one of your heads to get
-rid of them.
-"
-horizontal_alignment = 1
-
-[node name="ColorRect3" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary4" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 30
-text = "If a worker works too hard,
-they will burnout. Use your
-AC Head to blow them back
-to a healthy work speed.
-"
-horizontal_alignment = 1
-
-[node name="ColorRect4" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary5" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 30
-text = "Your workers may fall asleep,
-use coffee to wake them up.
-Need them to work, harder?
-Coffee can also help!
-"
-horizontal_alignment = 1
-
-[node name="ColorRect5" type="ColorRect" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-color = Color(1, 1, 1, 0)
-
-[node name="Summary6" type="Label" parent="Hand/BusinessCard/Menu/Tips/Slide3"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-theme = ExtResource("2_7plfq")
-theme_override_colors/font_color = Color(0.0235294, 0.105882, 0.223529, 1)
-theme_override_font_sizes/font_size = 30
-text = "Your briefcase knows how to
-talk money. Use it to appease
-your bosses, getting rid of
-them safely, and to destress
-your workers."
-horizontal_alignment = 1
+texture = ExtResource("14_v4st5")
+expand_mode = 2
+stretch_mode = 2
 
 [node name="Settings" type="HBoxContainer" parent="Hand/BusinessCard/Menu"]
 visible = false
