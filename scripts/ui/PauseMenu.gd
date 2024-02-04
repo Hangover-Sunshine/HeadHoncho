@@ -35,8 +35,8 @@ func _ready():
 	
 	# hide quit game on web -- doesn't really make sense
 	if platform == "Web":
-		quit_game.visible = false
-		max_pos = 2
+		quit_game.text = ""
+		max_pos = 1
 	##
 ##
 
@@ -44,8 +44,8 @@ func pause_pressed():
 	arrows[curr_pos][0].text = ""
 	arrows[curr_pos][1].text = ""
 	curr_pos = 0
-	arrows[curr_pos][0].text = "▶"
-	arrows[curr_pos][1].text = "◀"
+	arrows[curr_pos][0].text = ">"
+	arrows[curr_pos][1].text = "<"
 ##
 
 func _input(event):
@@ -102,8 +102,8 @@ func move_arrows_up():
 	
 	curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
 	
-	arrows[curr_pos][0].text = "▶"
-	arrows[curr_pos][1].text = "◀"
+	arrows[curr_pos][0].text = ">"
+	arrows[curr_pos][1].text = "<"
 ##
 
 func move_arrows_down():
@@ -113,6 +113,6 @@ func move_arrows_down():
 	
 	curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
 	
-	arrows[curr_pos][0].text = "▶"
-	arrows[curr_pos][1].text = "◀"
+	arrows[curr_pos][0].text = ">"
+	arrows[curr_pos][1].text = "<"
 ##
