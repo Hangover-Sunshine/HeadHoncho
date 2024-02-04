@@ -33,12 +33,9 @@ func _ready():
 		arrows.append([left[ai]])
 	##
 	
-	left = $Menu/Settings/LeftBox/LArrow.get_children()
-	
-	for ai in range(len(left)):
-		if left[ai] is Label:
-			settings_arrows.append([left[ai]])
-		##
+	if OS.get_name() == "Web":
+		max_pos = 1
+		$Menu/HBoxContainer/MainMenuComponents/Menu/Labels/Quit.visible = false
 	##
 ##
 
@@ -76,11 +73,11 @@ func move_arrows_up():
 		audio_player.play()
 		arrows[curr_pos][0].text = ""
 		curr_pos = curr_pos - 1 if curr_pos > 0 else max_pos
-		arrows[curr_pos][0].text = "▶"
+		arrows[curr_pos][0].text = ">"
 	else:
 		settings_arrows[settings_curr_pos][0].text = ""
 		settings_curr_pos = settings_curr_pos - 1 if settings_curr_pos > 0 else max_pos
-		settings_arrows[settings_curr_pos][0].text = "▶"
+		settings_arrows[settings_curr_pos][0].text = ">"
 	##
 ##
 
@@ -89,11 +86,11 @@ func move_arrows_down():
 		audio_player.play()
 		arrows[curr_pos][0].text = ""
 		curr_pos = curr_pos + 1 if curr_pos < max_pos else 0
-		arrows[curr_pos][0].text = "▶"
+		arrows[curr_pos][0].text = ">"
 	else:
 		settings_arrows[settings_curr_pos][0].text = ""
 		settings_curr_pos = settings_curr_pos + 1 if settings_curr_pos < max_pos else 0
-		settings_arrows[settings_curr_pos][0].text = "▶"
+		settings_arrows[settings_curr_pos][0].text = ">"
 	##
 ##
 
