@@ -66,6 +66,10 @@ func _process(_delta):
 			pass
 		##
 	##
+	
+	if $"../../AudioStreamPlayer".playing == false and $RestartMusicTimer.is_stopped():
+		$RestartMusicTimer.start(5)
+	##
 ##
 
 func move_arrows_up():
@@ -190,4 +194,9 @@ func settings_interactions():
 
 func _on_load_delay_timer_timeout():
 	get_tree().change_scene_to_file("res://scenes/level.tscn")
+##
+
+
+func _on_restart_music_timer_timeout():
+	$"../../AudioStreamPlayer".play()
 ##
