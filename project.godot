@@ -15,8 +15,8 @@ config/description="HEAD HONCHO is the office simulator for those who want to ri
 config/version="1.0"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.0235294, 0.105882, 0.223529, 1)
-boot_splash/image="res://assets/ui_assets/images/icons/HeadHoncho_Banner.png"
+boot_splash/bg_color=Color(0.0784314, 0.0784314, 0.0784314, 1)
+boot_splash/show_image=false
 config/icon="res://assets/ui_assets/images/icons/HS_DesktopIcon.png"
 config/windows_native_icon="res://assets/ui_assets/images/icons/icon.ico"
 

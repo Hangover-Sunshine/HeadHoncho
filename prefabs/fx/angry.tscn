@@ -3,14 +3,12 @@
 [ext_resource type="Script" path="res://scripts/fx_control/AngryControl.gd" id="1_cxrie"]
 [ext_resource type="Texture2D" uid="uid://ca6uixrmjuw3e" path="res://assets/particles/Angry.png" id="1_hr5p7"]
 
-[sub_resource type="Curve" id="Curve_q6pqm"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
+[sub_resource type="Curve" id="Curve_4k57j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.505618, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.63801, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_vgj3g"]
-offsets = PackedFloat32Array(0, 0.1, 0.6, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-metadata/_snap_enabled = true
+[sub_resource type="Gradient" id="Gradient_qxdkj"]
+colors = PackedColorArray(0.917647, 0.298039, 0.384314, 1, 0.776471, 0.219608, 0.211765, 1)
 
 [node name="angry" type="Node2D"]
 script = ExtResource("1_cxrie")
@@ -31,26 +29,5 @@ angular_velocity_min = -20.0
 angular_velocity_max = 20.0
 damping_min = 10.0
 damping_max = 10.0
-scale_amount_curve = SubResource("Curve_q6pqm")
-color = Color(0.384314, 0.0823529, 0.0862745, 0.917647)
-color_ramp = SubResource("Gradient_vgj3g")
-
-[node name="grrrr2" type="CPUParticles2D" parent="."]
-amount = 1
-lifetime = 2.1
-preprocess = 6.6
-speed_scale = 1.5
-local_coords = true
-texture = ExtResource("1_hr5p7")
-direction = Vector2(0, -1)
-spread = 10.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-angular_velocity_min = -20.0
-angular_velocity_max = 20.0
-damping_min = 10.0
-damping_max = 10.0
-scale_amount_curve = SubResource("Curve_q6pqm")
-color = Color(0.866667, 0.278431, 0.27451, 0.917647)
-color_ramp = SubResource("Gradient_vgj3g")
+scale_amount_curve = SubResource("Curve_4k57j")
+color_initial_ramp = SubResource("Gradient_qxdkj")

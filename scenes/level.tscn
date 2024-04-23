@@ -346,7 +346,7 @@ navigation_layers = 2
 z_index = 1
 
 [node name="Window1" parent="PlaySpace/Windows" instance=ExtResource("22_xk8uw")]
-position = Vector2(-1615, 192)
+position = Vector2(-1608, 192)
 
 [node name="Window2" parent="PlaySpace/Windows" instance=ExtResource("22_xk8uw")]
 position = Vector2(-1608, 773)

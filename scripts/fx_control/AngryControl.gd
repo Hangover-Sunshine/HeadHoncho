@@ -5,7 +5,6 @@ extends Node2D
 
 func _ready():
 	grrrr.emitting = false
-	grrrr_2.emitting = false
 ##
 
 func is_emitting():
@@ -14,10 +13,8 @@ func is_emitting():
 
 func emit():
 	grrrr.emitting = true
-	grrrr_2.emitting = true
 ##
 
 func stop_emitting():
 	grrrr.emitting = false
-	grrrr_2.emitting = false
 ##
