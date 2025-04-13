@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cj34deibw0d0u"]
-
-[ext_resource type="FontFile" uid="uid://0ieachuq6edo" path="res://assets/ui_assets/text/text_body/Body_RobotoSerif-SemiBold.ttf" id="1_qnj8r"]
-
-[resource]
-default_font = ExtResource("1_qnj8r")
-default_font_size = 26

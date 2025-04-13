@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcnd7583qrr7a"]
+
+[ext_resource type="Script" uid="uid://73h7tgmabwrn" path="res://scripts/system/game_scene.gd" id="1_onqr8"]
+[ext_resource type="PackedScene" uid="uid://cvws2phcvy2lr" path="res://scenes/menus/hub_pause.tscn" id="1_w5aja"]
+
+[node name="GameScene" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_onqr8")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+layer = 127
+visible = false
+
+[node name="HubPause" parent="PauseLayer" instance=ExtResource("1_w5aja")]
+
+[connection signal="unpause_button_pressed" from="PauseLayer/HubPause" to="." method="pause_unpause"]
