@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://co75fn6jk84w5"]
+
+[ext_resource type="Script" uid="uid://dpjbb7afl7awd" path="res://scripts/game/gameplay_manager.gd" id="1_tidyb"]
+[ext_resource type="PackedScene" uid="uid://cdxyycqn3po6v" path="res://prefabs/entities/player.tscn" id="2_vej8y"]
+
+[node name="OfficeScene" type="Node2D"]
+script = ExtResource("1_tidyb")
+TimePerRound = 16.0
+
+[node name="GameplayTimer" type="Timer" parent="."]
+wait_time = 24.0
+one_shot = true
+
+[node name="TickTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_vej8y")]
+position = Vector2(938, 381)
+
+[connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

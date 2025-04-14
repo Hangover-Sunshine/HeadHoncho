@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwaykrfp0tfvv"]
+
+[ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
+size = Vector2(83, 82)
+
+[node name="Dickhead" type="CharacterBody2D"]
+
+[node name="CharacterSmoll" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_uclen")
+region_enabled = true
+region_rect = Rect2(96, 96, 96, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_uclen")
