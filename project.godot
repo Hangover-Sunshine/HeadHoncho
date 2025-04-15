@@ -97,6 +97,14 @@ primary={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Worker"
+2d_physics/layer_3="Dickhead"
+2d_physics/layer_4="EffectArea"
+2d_physics/layer_5="AoEArea"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

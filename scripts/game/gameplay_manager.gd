@@ -15,20 +15,38 @@ var costs:float = 0
 var workers:Array = []
 
 func _ready():
+	%TickTimer.start()
+	#$GameplayTimer.start()
+	
+	# TODO: Not this
+	for child in get_children():
+		if child is Worker:
+			workers.append(child)
+		##
+	##
 	pass
 ##
 
 func _on_gameplay_timer_timeout():
+	%TickTimer.stop()
 	print("Round over!")
 ##
 
 func _on_tick_timer_timeout():
 	print("Tick!")
 	
+	var affected = %Player.get_affecting_body()
+	
 	# Get the amount of money being generated
 	for worker in workers:
-		pass
+		revenue += worker.get_current_contribution()
+		if worker == affected:
+			worker.increase_energy(%Player.EnergyIncreasePerTick)
+		##
+		worker.change_energy()
 	##
+	
+	print(revenue)
 	
 	%TickTimer.start(TimePerTick)
 ##

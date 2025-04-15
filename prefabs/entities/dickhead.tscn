@@ -6,6 +6,8 @@
 size = Vector2(83, 82)
 
 [node name="Dickhead" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CharacterSmoll" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
