@@ -23,13 +23,5 @@ position = Vector2(938, 381)
 [node name="Worker" parent="." instance=ExtResource("3_ntavv")]
 position = Vector2(462, 342)
 
-[node name="Node" type="Node" parent="."]
-
-[node name="Worker2" parent="Node" instance=ExtResource("3_ntavv")]
-position = Vector2(462, 528)
-
-[node name="Worker3" parent="Node" instance=ExtResource("3_ntavv")]
-position = Vector2(460, 723)
-
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs37lequcem47"]
+
+[ext_resource type="Texture2D" uid="uid://i65nrg24xwhh" path="res://assets/temporary/Environment_Prototype2.png" id="1_b4k44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4k44"]
+size = Vector2(90, 90)
+
+[node name="Seat" type="Area2D"]
+
+[node name="EnvironmentPrototype2" type="Sprite2D" parent="."]
+texture = ExtResource("1_b4k44")
+region_enabled = true
+region_rect = Rect2(0, 0, 96, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b4k44")

@@ -36,17 +36,34 @@ func _on_tick_timer_timeout():
 	print("Tick!")
 	
 	var affected = %Player.get_affecting_body()
+	var head = %Player.get_current_head()
 	
 	# Get the amount of money being generated
 	for worker in workers:
+		if worker.is_quitting():
+			continue
+		##
 		revenue += worker.get_current_contribution()
 		if worker == affected:
-			worker.increase_energy(%Player.EnergyIncreasePerTick)
+			if head == 0:
+				worker.increase_energy(%Player.EnergyIncreasePerTick)
+			elif head == 1:
+				worker.cooloff(%Player.EnergyDecreasePerTick)
+			##
 		##
 		worker.change_energy()
 	##
 	
-	print(revenue)
-	
 	%TickTimer.start(TimePerTick)
+##
+
+func _worker_quits(worker:Worker):
+	# TODO: play death anim
+	worker.queue_free()
+	
+	# 1) Remove the worker
+	var index = workers.find(worker)
+	workers.remove_at(index)
+	
+	# 2) Reopen the seat
 ##
