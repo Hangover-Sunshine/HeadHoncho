@@ -1,4 +1,5 @@
 extends Sprite2D
 
 func _ready():
-	$".".frame = 0 + (2*randi() % 2)
+	$".".frame = $".".frame + 2*(randi() % 2)
+	print($".".frame)

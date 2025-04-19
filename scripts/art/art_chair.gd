@@ -1,4 +1,4 @@
 extends Node2D
 
 func _ready():
-	$PropChair.frame = randi() % 6
+	$PropChair.frame = randi() % 5

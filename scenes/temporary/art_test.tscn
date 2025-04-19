@@ -85,3 +85,57 @@ position = Vector2(708, 727)
 
 [node name="ArtWorker6" parent="." instance=ExtResource("3_56xnr")]
 position = Vector2(439, 720)
+
+[node name="ArtWorker7" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(869, 496)
+
+[node name="ArtWorker8" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1144, 501)
+
+[node name="ArtWorker9" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1438, 499)
+
+[node name="ArtWorker10" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1438, 813)
+
+[node name="ArtWorker11" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1140, 825)
+
+[node name="ArtWorker12" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(871, 818)
+
+[node name="ArtWorker13" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(308, 626)
+
+[node name="ArtWorker14" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(583, 631)
+
+[node name="ArtWorker15" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(877, 629)
+
+[node name="ArtWorker16" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(877, 943)
+
+[node name="ArtWorker17" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(579, 955)
+
+[node name="ArtWorker18" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(310, 948)
+
+[node name="ArtWorker19" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1154, 638)
+
+[node name="ArtWorker20" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1429, 643)
+
+[node name="ArtWorker21" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1723, 641)
+
+[node name="ArtWorker22" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1723, 955)
+
+[node name="ArtWorker23" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1425, 967)
+
+[node name="ArtWorker24" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1156, 960)
