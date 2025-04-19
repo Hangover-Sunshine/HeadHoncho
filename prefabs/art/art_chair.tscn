@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtp71posx82st"]
+
+[ext_resource type="Texture2D" uid="uid://dktnpwhxs53ni" path="res://assets/environment/prop/Prop_Chair.png" id="1_h5idn"]
+[ext_resource type="Script" uid="uid://bbokhqgkol4u0" path="res://scripts/art/art_chair.gd" id="1_tisxk"]
+
+[node name="ArtChair" type="Node2D"]
+script = ExtResource("1_tisxk")
+
+[node name="PropChair" type="Sprite2D" parent="."]
+texture = ExtResource("1_h5idn")
+hframes = 5

@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://lajp42tbhbs3"]
+
+[ext_resource type="PackedScene" uid="uid://dtp71posx82st" path="res://prefabs/art/art_chair.tscn" id="1_8arxf"]
+[ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
+[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="3_56xnr"]
+
+[node name="ArtTest" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ArtChair" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(437, 256)
+
+[node name="PropDesk" type="Sprite2D" parent="Node2D"]
+position = Vector2(439, 331)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair2" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(438, 390)
+
+[node name="ArtChair3" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(714, 258)
+
+[node name="PropDesk2" type="Sprite2D" parent="Node2D"]
+position = Vector2(716, 333)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair4" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(715, 392)
+
+[node name="ArtChair5" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(1003, 254)
+
+[node name="PropDesk3" type="Sprite2D" parent="Node2D"]
+position = Vector2(1005, 329)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair6" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(1004, 388)
+
+[node name="ArtChair7" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(713, 598)
+
+[node name="PropDesk4" type="Sprite2D" parent="Node2D"]
+position = Vector2(715, 673)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair8" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(714, 732)
+
+[node name="ArtChair9" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(1005, 583)
+
+[node name="PropDesk5" type="Sprite2D" parent="Node2D"]
+position = Vector2(1007, 658)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair10" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(1006, 717)
+
+[node name="ArtChair11" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(435, 589)
+
+[node name="PropDesk6" type="Sprite2D" parent="Node2D"]
+position = Vector2(437, 664)
+texture = ExtResource("2_g0uno")
+
+[node name="ArtChair12" parent="Node2D" instance=ExtResource("1_8arxf")]
+position = Vector2(436, 723)
+
+[node name="ArtWorker" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(437, 398)
+
+[node name="ArtWorker2" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(712, 403)
+
+[node name="ArtWorker3" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1006, 401)
+
+[node name="ArtWorker4" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(1006, 715)
+
+[node name="ArtWorker5" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(708, 727)
+
+[node name="ArtWorker6" parent="." instance=ExtResource("3_56xnr")]
+position = Vector2(439, 720)
