@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhohj3bg54cas"]
+[gd_scene load_steps=18 format=3 uid="uid://bhohj3bg54cas"]
 
+[ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://prefabs/art/head.gd" id="1_xinbw"]
 [ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="1_xq35q"]
 [ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="2_7fffw"]
 [ext_resource type="Texture2D" uid="uid://crdk4htfm60ay" path="res://assets/characters/Char_Hair_Ext3.png" id="3_xinbw"]
@@ -12,19 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="10_jsrow"]
 [ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://prefabs/art/cloth.gd" id="11_7fffw"]
 [ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="11_b1bih"]
-
-[sub_resource type="Gradient" id="Gradient_7fffw"]
-offsets = PackedFloat32Array(0, 0.837662)
-colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xinbw"]
-gradient = SubResource("Gradient_7fffw")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.9, 0.1)
-metadata/_snap_enabled = true
 
 [sub_resource type="Animation" id="Animation_xq35q"]
 resource_name = "Idle"
@@ -124,23 +112,9 @@ _data = {
 
 [node name="Skeleton" type="Node2D" parent="."]
 
-[node name="Vignette" type="TextureRect" parent="Skeleton"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -66.0
-offset_right = 48.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(64, 64)
-texture = SubResource("GradientTexture2D_xinbw")
-
 [node name="Head" type="Node2D" parent="Skeleton"]
 position = Vector2(0, -63)
+script = ExtResource("1_xinbw")
 
 [node name="Hair" type="Node2D" parent="Skeleton/Head"]
 
