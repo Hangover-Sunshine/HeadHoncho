@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://ojcv087ocmn1"]
+
+[ext_resource type="Script" uid="uid://b7wdf3v7p4y1q" path="res://prefabs/art/art_pc.gd" id="1_8jl3o"]
+[ext_resource type="Texture2D" uid="uid://bsnyqu48gud05" path="res://assets/characters/pc/PC_Blowie.png" id="3_0yuee"]
+[ext_resource type="Texture2D" uid="uid://bv1vaxcd3ues5" path="res://assets/characters/pc/PC_Coffee1.png" id="4_84wyi"]
+[ext_resource type="Texture2D" uid="uid://brednwmyspxw8" path="res://assets/characters/pc/PC_Coffee2.png" id="5_xc2lb"]
+[ext_resource type="Texture2D" uid="uid://dorebh0l7ef5j" path="res://assets/characters/pc/PC_Money.png" id="6_wptvl"]
+[ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="12_fdkk2"]
+[ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="14_qt1mu"]
+
+[sub_resource type="Animation" id="Animation_xq35q"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.975, 1.025), Vector2(1.025, 0.975), Vector2(0.975, 1.025), Vector2(1.025, 0.975), Vector2(0.975, 1.025)]
+}
+
+[sub_resource type="Animation" id="Animation_7fffw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xinbw"]
+resource_name = "Walk"
+length = 1.5
+loop_mode = 1
+step = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.75, 1.125, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, 0.0, -0.261799, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.75, 1.125, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.95, 1.05), Vector2(1.05, 0.9), Vector2(0.95, 1.05), Vector2(1.05, 0.9), Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7fffw"]
+_data = {
+&"Idle": SubResource("Animation_xq35q"),
+&"RESET": SubResource("Animation_7fffw"),
+&"Walk": SubResource("Animation_xinbw")
+}
+
+[node name="ArtPlayer" type="Node2D"]
+script = ExtResource("1_8jl3o")
+
+[node name="Skeleton" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Skeleton"]
+texture = ExtResource("12_fdkk2")
+hframes = 2
+vframes = 2
+
+[node name="Head" type="Node2D" parent="Skeleton"]
+position = Vector2(0, -63)
+
+[node name="Fan" type="Sprite2D" parent="Skeleton/Head"]
+position = Vector2(0, -6)
+texture = ExtResource("3_0yuee")
+hframes = 2
+
+[node name="Coffee" type="Sprite2D" parent="Skeleton/Head"]
+visible = false
+position = Vector2(0, -4)
+texture = ExtResource("4_84wyi")
+
+[node name="Pot" type="Sprite2D" parent="Skeleton/Head/Coffee"]
+position = Vector2(3, 10)
+texture = ExtResource("5_xc2lb")
+
+[node name="Briefcase" type="Sprite2D" parent="Skeleton/Head"]
+visible = false
+position = Vector2(0, 12)
+texture = ExtResource("6_wptvl")
+hframes = 2
+
+[node name="Hands" type="Sprite2D" parent="Skeleton"]
+position = Vector2(1, -34)
+texture = ExtResource("14_qt1mu")
+vframes = 3
+
+[node name="AP_Motion" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7fffw")
+}
+autoplay = "Idle"

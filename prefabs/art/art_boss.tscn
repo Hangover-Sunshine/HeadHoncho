@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bg0lns7q8x7eh"]
 
-[ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://prefabs/art/art_boss.gd" id="1_kr3h0"]
+[ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://scripts/art/character_viz/art_boss.gd" id="1_kr3h0"]
 [ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="2_lcyu6"]
 [ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="3_tv73v"]
 [ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="4_nkk7l"]
