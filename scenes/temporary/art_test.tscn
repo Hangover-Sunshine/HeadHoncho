@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=5 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="PackedScene" uid="uid://dtp71posx82st" path="res://prefabs/art/art_chair.tscn" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
 [ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="3_56xnr"]
+[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/art_boss.tscn" id="4_wanhr"]
 
 [node name="ArtTest" type="Node2D"]
 
@@ -68,74 +69,102 @@ texture = ExtResource("2_g0uno")
 [node name="ArtChair12" parent="Node2D" instance=ExtResource("1_8arxf")]
 position = Vector2(436, 723)
 
-[node name="ArtWorker" parent="." instance=ExtResource("3_56xnr")]
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="ArtWorker8" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(438, 262)
+
+[node name="ArtWorker9" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(715, 261)
+
+[node name="ArtWorker10" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(1009, 265)
+
+[node name="ArtWorker11" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(435, 588)
+
+[node name="ArtWorker12" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(712, 587)
+
+[node name="ArtWorker13" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(1006, 591)
+
+[node name="ArtWorker" parent="Node2D2" instance=ExtResource("3_56xnr")]
 position = Vector2(437, 398)
 
-[node name="ArtWorker2" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(712, 403)
+[node name="ArtWorker2" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(714, 397)
 
-[node name="ArtWorker3" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1006, 401)
+[node name="ArtWorker3" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(1008, 401)
 
-[node name="ArtWorker4" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1006, 715)
+[node name="ArtWorker4" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(1009, 723)
 
-[node name="ArtWorker5" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(708, 727)
+[node name="ArtWorker5" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(715, 749)
 
-[node name="ArtWorker6" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(439, 720)
+[node name="ArtWorker7" parent="Node2D2" instance=ExtResource("3_56xnr")]
+position = Vector2(435, 740)
 
-[node name="ArtWorker7" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(869, 496)
+[node name="Node2D3" type="Node2D" parent="."]
 
-[node name="ArtWorker8" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1144, 501)
+[node name="ArtBoss" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(287, 532)
 
-[node name="ArtWorker9" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1438, 499)
+[node name="ArtBoss2" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(288, 355)
 
-[node name="ArtWorker10" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1438, 813)
+[node name="ArtBoss3" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(288, 187)
 
-[node name="ArtWorker11" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1140, 825)
+[node name="ArtBoss4" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(582, 178)
 
-[node name="ArtWorker12" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(871, 818)
+[node name="ArtBoss5" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(578, 354)
 
-[node name="ArtWorker13" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(308, 626)
+[node name="ArtBoss6" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(578, 527)
 
-[node name="ArtWorker14" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(583, 631)
+[node name="ArtBoss7" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(573, 707)
 
-[node name="ArtWorker15" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(877, 629)
+[node name="ArtBoss8" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(286, 704)
 
-[node name="ArtWorker16" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(877, 943)
+[node name="ArtBoss9" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(281, 893)
 
-[node name="ArtWorker17" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(579, 955)
+[node name="ArtBoss10" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(568, 884)
 
-[node name="ArtWorker18" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(310, 948)
+[node name="ArtBoss11" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(871, 897)
 
-[node name="ArtWorker19" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1154, 638)
+[node name="ArtBoss12" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(863, 704)
 
-[node name="ArtWorker20" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1429, 643)
+[node name="ArtBoss13" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(862, 542)
 
-[node name="ArtWorker21" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1723, 641)
+[node name="ArtBoss14" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(859, 350)
 
-[node name="ArtWorker22" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1723, 955)
+[node name="ArtBoss15" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(860, 174)
 
-[node name="ArtWorker23" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1425, 967)
+[node name="ArtBoss16" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(1166, 178)
 
-[node name="ArtWorker24" parent="." instance=ExtResource("3_56xnr")]
-position = Vector2(1156, 960)
+[node name="ArtBoss17" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(1170, 362)
+
+[node name="ArtBoss18" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(1173, 534)
+
+[node name="ArtBoss19" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(1180, 704)
+
+[node name="ArtBoss20" parent="Node2D3" instance=ExtResource("4_wanhr")]
+position = Vector2(1176, 898)

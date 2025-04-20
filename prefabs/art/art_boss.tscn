@@ -1,19 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhohj3bg54cas"]
+[gd_scene load_steps=19 format=3 uid="uid://bg0lns7q8x7eh"]
 
-[ext_resource type="Script" uid="uid://djn4aaa6d7ra2" path="res://prefabs/art/art_worker.gd" id="1_th0b4"]
-[ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="1_xinbw"]
-[ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="1_xq35q"]
-[ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="2_7fffw"]
-[ext_resource type="Texture2D" uid="uid://crdk4htfm60ay" path="res://assets/characters/Char_Hair_Ext3.png" id="3_xinbw"]
-[ext_resource type="Texture2D" uid="uid://cc2o7xq2e18wr" path="res://assets/characters/Char_Heads_Ginger.png" id="4_th0b4"]
-[ext_resource type="Texture2D" uid="uid://l7h58cqdha5r" path="res://assets/characters/Char_Face_Ginger.png" id="5_xj6sq"]
-[ext_resource type="Texture2D" uid="uid://jdr2s3mfth4i" path="res://assets/characters/Char_Heads_Berry.png" id="6_wj2jq"]
-[ext_resource type="Texture2D" uid="uid://wfyfl5q6s6qi" path="res://assets/characters/Char_Face_Berry.png" id="7_tveqa"]
-[ext_resource type="Texture2D" uid="uid://qp6ahx0anslo" path="res://assets/characters/Char_Heads_Cocoa.png" id="8_nfafl"]
-[ext_resource type="Texture2D" uid="uid://cnst7rebunwp0" path="res://assets/characters/Char_Face_Cocoa.png" id="9_1a2eb"]
-[ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="10_jsrow"]
-[ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://scripts/art/character_viz/cloth.gd" id="11_7fffw"]
-[ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="11_b1bih"]
+[ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://prefabs/art/art_boss.gd" id="1_kr3h0"]
+[ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="2_lcyu6"]
+[ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="3_tv73v"]
+[ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="4_nkk7l"]
+[ext_resource type="Texture2D" uid="uid://crdk4htfm60ay" path="res://assets/characters/Char_Hair_Ext3.png" id="5_m6xqa"]
+[ext_resource type="Texture2D" uid="uid://cc2o7xq2e18wr" path="res://assets/characters/Char_Heads_Ginger.png" id="6_nb2ts"]
+[ext_resource type="Texture2D" uid="uid://l7h58cqdha5r" path="res://assets/characters/Char_Face_Ginger.png" id="7_01ayp"]
+[ext_resource type="Texture2D" uid="uid://jdr2s3mfth4i" path="res://assets/characters/Char_Heads_Berry.png" id="8_ksrpf"]
+[ext_resource type="Texture2D" uid="uid://wfyfl5q6s6qi" path="res://assets/characters/Char_Face_Berry.png" id="9_awyxv"]
+[ext_resource type="Texture2D" uid="uid://qp6ahx0anslo" path="res://assets/characters/Char_Heads_Cocoa.png" id="10_5f3in"]
+[ext_resource type="Texture2D" uid="uid://cnst7rebunwp0" path="res://assets/characters/Char_Face_Cocoa.png" id="11_dmake"]
+[ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="12_kbv7u"]
+[ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://scripts/art/character_viz/cloth.gd" id="13_nj770"]
+[ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="14_svg6o"]
 
 [sub_resource type="Animation" id="Animation_xq35q"]
 resource_name = "Idle"
@@ -109,79 +109,83 @@ _data = {
 &"Walk": SubResource("Animation_xinbw")
 }
 
-[node name="ArtWorker" type="Node2D"]
-script = ExtResource("1_th0b4")
+[node name="ArtBoss" type="Node2D"]
+script = ExtResource("1_kr3h0")
 
 [node name="Skeleton" type="Node2D" parent="."]
 
 [node name="Head" type="Node2D" parent="Skeleton"]
 position = Vector2(0, -63)
-script = ExtResource("1_xinbw")
+script = ExtResource("2_lcyu6")
 
 [node name="Hair" type="Node2D" parent="Skeleton/Head"]
 
 [node name="Ext1" type="Sprite2D" parent="Skeleton/Head/Hair"]
 visible = false
 position = Vector2(0, 14)
-texture = ExtResource("1_xq35q")
+texture = ExtResource("3_tv73v")
 hframes = 3
 
 [node name="Ext2" type="Sprite2D" parent="Skeleton/Head/Hair"]
 visible = false
 position = Vector2(0, 11)
-texture = ExtResource("2_7fffw")
+texture = ExtResource("4_nkk7l")
 hframes = 3
 
 [node name="Ext3" type="Sprite2D" parent="Skeleton/Head/Hair"]
 visible = false
 position = Vector2(0, 13)
-texture = ExtResource("3_xinbw")
+texture = ExtResource("5_m6xqa")
 hframes = 3
 
 [node name="Ginger" type="Sprite2D" parent="Skeleton/Head"]
-texture = ExtResource("4_th0b4")
+texture = ExtResource("6_nb2ts")
 hframes = 4
 vframes = 2
 
 [node name="Face" type="Sprite2D" parent="Skeleton/Head/Ginger"]
 position = Vector2(0, 7)
-texture = ExtResource("5_xj6sq")
+texture = ExtResource("7_01ayp")
 hframes = 5
 vframes = 2
+frame = 5
 
 [node name="Berry" type="Sprite2D" parent="Skeleton/Head"]
 visible = false
-texture = ExtResource("6_wj2jq")
+texture = ExtResource("8_ksrpf")
 hframes = 4
 vframes = 2
 
 [node name="Face" type="Sprite2D" parent="Skeleton/Head/Berry"]
 position = Vector2(0, 7)
-texture = ExtResource("7_tveqa")
+texture = ExtResource("9_awyxv")
 hframes = 5
 vframes = 2
+frame = 5
 
 [node name="Cocoa" type="Sprite2D" parent="Skeleton/Head"]
 visible = false
-texture = ExtResource("8_nfafl")
+texture = ExtResource("10_5f3in")
 hframes = 4
 vframes = 2
 
 [node name="Face" type="Sprite2D" parent="Skeleton/Head/Cocoa"]
 position = Vector2(0, 7)
-texture = ExtResource("9_1a2eb")
+texture = ExtResource("11_dmake")
 hframes = 5
 vframes = 2
+frame = 5
 
 [node name="Body" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("10_jsrow")
+texture = ExtResource("12_kbv7u")
 hframes = 2
 vframes = 2
-script = ExtResource("11_7fffw")
+frame = 1
+script = ExtResource("13_nj770")
 
 [node name="Hands" type="Sprite2D" parent="Skeleton"]
 position = Vector2(1, -34)
-texture = ExtResource("11_b1bih")
+texture = ExtResource("14_svg6o")
 vframes = 3
 
 [node name="AP_Motion" type="AnimationPlayer" parent="."]
