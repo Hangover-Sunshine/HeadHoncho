@@ -27,12 +27,14 @@ shape = SubResource("RectangleShape2D_n42l2")
 [node name="SingleTargetArea" type="Area2D" parent="Pivot"]
 position = Vector2(-78, 0)
 collision_layer = 0
-collision_mask = 6
+collision_mask = 54
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/SingleTargetArea"]
 position = Vector2(-5, 0)
 shape = SubResource("RectangleShape2D_ebhuq")
 debug_color = Color(0.203875, 0.640684, 0, 0.42)
 
+[connection signal="area_entered" from="Pivot/SingleTargetArea" to="." method="_on_single_target_area_entered"]
+[connection signal="area_exited" from="Pivot/SingleTargetArea" to="." method="_on_single_target_area_exited"]
 [connection signal="body_entered" from="Pivot/SingleTargetArea" to="." method="_on_single_target_area_body_entered"]
 [connection signal="body_exited" from="Pivot/SingleTargetArea" to="." method="_on_single_target_area_body_exited"]

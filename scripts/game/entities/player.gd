@@ -1,11 +1,19 @@
 extends CharacterBody2D
+class_name Player
 
 @export var MoveSpeed:float = 250
 @export var PenaltyWhileAbilityActive:float = 0.75
 @export_range(0, 15) var EnergyIncreasePerTick:float = 2
 @export_range(-15, 0) var EnergyDecreasePerTick:float = -2
 
-var _curr_head:int = 0
+enum PlayerHead {
+	COFFEE,
+	FAN,
+	BRIEF_CASE,
+	FUCKHEAD
+}
+
+var _curr_head:PlayerHead = PlayerHead.COFFEE
 var _use_head:bool = false
 var _selected_body
 
@@ -18,10 +26,13 @@ func _input(event):
 	##
 	
 	if event.is_action_pressed("coffee"):
-		_curr_head = 0
+		_curr_head = PlayerHead.COFFEE
 	##
 	if event.is_action_pressed("fan"):
-		_curr_head = 1
+		_curr_head = PlayerHead.FAN
+	##
+	if event.is_action_pressed("brief_case"):
+		_curr_head = PlayerHead.BRIEF_CASE
 	##
 ##
 
@@ -68,4 +79,14 @@ func get_affecting_body():
 
 func get_current_head():
 	return _curr_head
+##
+
+func _on_single_target_area_entered(area):
+	_selected_body = area
+##
+
+func _on_single_target_area_exited(area):
+	if _selected_body == area:
+		_selected_body = null
+	##
 ##

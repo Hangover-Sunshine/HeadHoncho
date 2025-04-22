@@ -7,6 +7,7 @@
 size = Vector2(81, 87)
 
 [node name="Worker" type="StaticBody2D"]
+z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mp4gn")

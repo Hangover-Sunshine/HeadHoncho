@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://co75fn6jk84w5"]
+[gd_scene load_steps=5 format=3 uid="uid://co75fn6jk84w5"]
 
 [ext_resource type="Script" uid="uid://dpjbb7afl7awd" path="res://scripts/game/gameplay_manager.gd" id="1_tidyb"]
 [ext_resource type="PackedScene" uid="uid://cdxyycqn3po6v" path="res://prefabs/entities/player.tscn" id="2_vej8y"]
 [ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="3_ntavv"]
+[ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="4_g6xq7"]
 
 [node name="OfficeScene" type="Node2D"]
 script = ExtResource("1_tidyb")
@@ -16,12 +17,66 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 1.5
 
+[node name="ShortTickTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
 [node name="Player" parent="." instance=ExtResource("2_vej8y")]
 unique_name_in_owner = true
 position = Vector2(938, 381)
 
+[node name="Seats" type="Node" parent="."]
+
+[node name="Seat" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(215, 394)
+
+[node name="Seat2" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(467, 394)
+
+[node name="Seat3" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(719, 394)
+
+[node name="Seat4" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(971, 394)
+
+[node name="Seat5" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(215, 516)
+
+[node name="Seat6" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(467, 516)
+
+[node name="Seat7" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(719, 516)
+
+[node name="Seat8" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(971, 516)
+
+[node name="Seat9" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(215, 763)
+
+[node name="Seat10" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(467, 763)
+
+[node name="Seat11" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(719, 763)
+
+[node name="Seat12" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(971, 763)
+
+[node name="Seat13" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(215, 877)
+
+[node name="Seat14" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(467, 877)
+
+[node name="Seat15" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(719, 877)
+
+[node name="Seat16" parent="Seats" instance=ExtResource("4_g6xq7")]
+position = Vector2(971, 877)
+
 [node name="Worker" parent="." instance=ExtResource("3_ntavv")]
-position = Vector2(462, 342)
+position = Vector2(215, 394)
 
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

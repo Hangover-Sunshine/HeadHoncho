@@ -26,7 +26,9 @@ func _check_health():
 		if _overheating and _cooling_down == false:
 			_temperature = min(100, _temperature + TemperatureIncreasePerTick)
 			if _temperature >= 100:
+				# TODO: Quit animation
 				worker_quits.emit(self)
+				queue_free() # << Replace this
 			##
 		##
 		_cooling_down = false
