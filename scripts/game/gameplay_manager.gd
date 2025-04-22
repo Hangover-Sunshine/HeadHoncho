@@ -28,7 +28,7 @@ func _ready():
 	##
 	
 	var id = 0
-	for child in get_children():
+	for child in %WorkerRepository.get_children():
 		if child is Worker:
 			child.worker_quits.connect(_worker_quits)
 			workers.append(child)
@@ -75,7 +75,7 @@ func _on_tick_timer_timeout():
 		var seatID:int = seats.find(affected)
 		if seats[seatID].IsOpen:
 			var newWorker = WORKER.instantiate()
-			add_child(newWorker)
+			%WorkerRepository.add_child(newWorker)
 			newWorker.worker_quits.connect(_worker_quits)
 			newWorker.global_position = seats[seatID].global_position
 			workers[seatID] = newWorker
