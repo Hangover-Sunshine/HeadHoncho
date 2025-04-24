@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=8 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="Texture2D" uid="uid://de02gnxgr15ro" path="res://assets/environment/prop/Env_Tilesheet.png" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
 [ext_resource type="PackedScene" uid="uid://dtp71posx82st" path="res://prefabs/art/art_chair.tscn" id="2_mipim"]
 [ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="3_56xnr"]
+[ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/art_elevator.tscn" id="5_mipim"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uno"]
 texture = ExtResource("1_8arxf")
@@ -176,10 +177,5 @@ position = Vector2(0, 64)
 
 [node name="ArtWorker8" parent="Bot/Desk_Top_Out_Rite/Bot" instance=ExtResource("3_56xnr")]
 
-[node name="Elevator" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(128, 128)
-offset_left = 896.0
-offset_top = 64.0
-offset_right = 1024.0
-offset_bottom = 192.0
-pivot_offset = Vector2(64, 64)
+[node name="Elevator" parent="." instance=ExtResource("5_mipim")]
+position = Vector2(960, 128)
