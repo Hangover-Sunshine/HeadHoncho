@@ -188,4 +188,3 @@ vframes = 3
 libraries = {
 &"": SubResource("AnimationLibrary_7fffw")
 }
-autoplay = "Idle"

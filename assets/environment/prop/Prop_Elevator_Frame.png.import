@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjigxqnybq5q8"
-path="res://.godot/imported/Prop_Elevator_Back.png-30e5c06fd6f3af8a74efa7009e5d3d64.ctex"
+uid="uid://d2rog7ns7y6hy"
+path="res://.godot/imported/Prop_Elevator_Frame.png-eb16d9b3b11ca0a798721ac47f735230.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/art/Prop_Elevator_Back.png"
-dest_files=["res://.godot/imported/Prop_Elevator_Back.png-30e5c06fd6f3af8a74efa7009e5d3d64.ctex"]
+source_file="res://assets/environment/prop/Prop_Elevator_Frame.png"
+dest_files=["res://.godot/imported/Prop_Elevator_Frame.png-eb16d9b3b11ca0a798721ac47f735230.ctex"]
 
 [params]
 

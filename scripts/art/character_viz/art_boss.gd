@@ -7,8 +7,6 @@ extends Node2D
 ##
 func _ready():
 	assign_face()
-	be_meh()
-	go_idle()
 
 func assign_face():
 	if $Skeleton/Head/Ginger.visible == true and \
