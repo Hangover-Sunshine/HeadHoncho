@@ -13,15 +13,29 @@ var _overheating:bool = false
 var _energy_level:float = 50
 var _multiplier:float = 1
 var _energy_change:float
+var _is_stressed:bool = false
+
+func _ready():
+	$ArtWorker.be_meh()
+##
 
 func _check_health():
 	if _energy_level <= 0:
-		_multiplier = 0
+		if _multiplier != 0:
+			$ArtWorker.be_asleep()
+			_multiplier = 0
+		##
 		_energy_level = 0
 	elif _energy_level < 33:
-		_multiplier = 0.5
+		if _multiplier != 0.5:
+			$ArtWorker.be_happy()
+			_multiplier = 0.5
+		##
 	elif _energy_level < 66:
-		_multiplier = 1
+		if _multiplier != 1:
+			$ArtWorker.be_meh()
+			_multiplier = 1
+		##
 	else:
 		if _overheating and _cooling_down == false:
 			_temperature = min(100, _temperature + TemperatureIncreasePerTick)
@@ -31,6 +45,15 @@ func _check_health():
 				queue_free() # << Replace this
 			##
 		##
+		
+		if _temperature < 51 and _is_stressed == false:
+			_is_stressed = true
+			$ArtWorker.be_stressed()
+		elif _temperature > 50 and _is_stressed:
+			_is_stressed = false
+			$ArtWorker.be_onfire()
+		##
+		
 		_cooling_down = false
 		_overheating = true
 		_multiplier = 2

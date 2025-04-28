@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8a7it7c2os1h"]
+[gd_scene load_steps=5 format=3 uid="uid://c8a7it7c2os1h"]
 
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_8cspb"]
 [ext_resource type="Script" uid="uid://btg8p8u276vcc" path="res://scripts/game/entities/worker.gd" id="1_mp4gn"]
+[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="2_le7tm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cspb"]
-size = Vector2(81, 87)
+size = Vector2(81, 88)
 
 [node name="Worker" type="StaticBody2D"]
 z_index = 1
@@ -12,12 +13,15 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mp4gn")
 
+[node name="ArtWorker" parent="." instance=ExtResource("2_le7tm")]
+
 [node name="CharacterSmoll" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0.784314, 0, 1)
 texture = ExtResource("1_8cspb")
 region_enabled = true
 region_rect = Rect2(96, 0, 96, 96)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0.5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_8cspb")

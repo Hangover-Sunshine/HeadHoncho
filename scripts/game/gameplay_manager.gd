@@ -17,6 +17,8 @@ var costs:float = 0
 var workers:Array = []
 # All current seats in the scene
 var seats:Array[Seat] = []
+# Open workers
+var open_seats:Array[int] = []
 
 func _ready():
 	%TickTimer.start()
@@ -33,6 +35,7 @@ func _ready():
 			child.worker_quits.connect(_worker_quits)
 			workers.append(child)
 			seats[id].disable_seat()
+			open_seats.push_back(id)
 			id += 1
 		##
 	##
@@ -40,6 +43,8 @@ func _ready():
 	for i in range($Seats.get_child_count() - len(workers)):
 		workers.append(null)
 	##
+	
+	$Elevator.connect("dickhead_created", _dickhead_created)
 ##
 
 func _on_gameplay_timer_timeout():
@@ -52,6 +57,11 @@ func _on_tick_timer_timeout():
 	
 	var affected = %Player.get_affecting_body()
 	var head = %Player.get_current_head()
+	
+	# Only attempt to spawn if we have it open
+	if len(open_seats) > 0:
+		$Elevator.open_door()
+	##
 	
 	# TODO: Dickhead management first
 	
@@ -92,4 +102,12 @@ func _worker_quits(worker:Worker):
 	
 	# Renable the seat for the player to hire a new motor
 	seats[index].enable_seat()
+	open_seats.remove_at(open_seats.find(index))
+##
+
+func _dickhead_created(dickhead):
+	%DickheadSuppository.add_child(dickhead)
+	var rindx:int = randi() % len(open_seats)
+	dickhead.set_goal_position(seats[rindx].get_standing_pos(), open_seats[rindx])
+	open_seats.remove_at(rindx)
 ##

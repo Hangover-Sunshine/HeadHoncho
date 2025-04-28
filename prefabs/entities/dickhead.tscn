@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwaykrfp0tfvv"]
+[gd_scene load_steps=6 format=3 uid="uid://dwaykrfp0tfvv"]
 
+[ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
+[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/art_boss.tscn" id="1_wgy7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m50rt"]
+size = Vector2(171, 172)
+
 [node name="Dickhead" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_m50rt")
+MovementSpeed = 50.0
+
+[node name="ArtBoss" parent="." instance=ExtResource("1_wgy7s")]
 
 [node name="CharacterSmoll" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 texture = ExtResource("1_uclen")
 region_enabled = true
@@ -20,3 +30,13 @@ position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_uclen")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="StressArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StressArea"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_m50rt")
+disabled = true
+debug_color = Color(0.990502, 0, 0.277534, 0.42)

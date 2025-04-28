@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://co75fn6jk84w5"]
+[gd_scene load_steps=8 format=3 uid="uid://co75fn6jk84w5"]
 
 [ext_resource type="Script" uid="uid://dpjbb7afl7awd" path="res://scripts/game/gameplay_manager.gd" id="1_tidyb"]
 [ext_resource type="PackedScene" uid="uid://cdxyycqn3po6v" path="res://prefabs/entities/player.tscn" id="2_vej8y"]
 [ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="3_ntavv"]
 [ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="4_g6xq7"]
 [ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/dickhead_controller.gd" id="5_6dbhj"]
+[ext_resource type="PackedScene" uid="uid://ggvmk2b8x7bg" path="res://prefabs/entities/elevator.tscn" id="6_duno8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_g6xq7"]
 vertices = PackedVector2Array(792.328, 586, 1036.86, 697.656, 784, 698.719, 538.141, 697.672, 281.188, 694.359, 646.922, 586, 901, 579.078, 1045.27, 577.922, 393.523, 702.328, 1040.13, 940.828, 1835.98, 1033.05, 64.0703, 1042.94, 900, 943.172, 784, 942.18, 652.953, 939.82, 405.5, 951.617, 534.883, 943.391, 1835.01, 148.969, 1038.74, 334.078, 70.9219, 145.023, 901, 332.906, 783.672, 321.742, 539.211, 332.094, 649.078, 325.258, 533.789, 586, 402.078, 586, 276.82, 939.273, 399.906, 330.906, 284.133, 331.906, 144.867, 333.078, 148.133, 585.273, 147, 702.602, 900, 702.344, 280.867, 581.742, 147, 935.727, 654.039, 702.273)
@@ -102,9 +103,8 @@ position = Vector2(215, 394)
 unique_name_in_owner = true
 script = ExtResource("5_6dbhj")
 
-[node name="DickheadSpawnLoc" type="Marker2D" parent="."]
-position = Vector2(1182, 182)
-gizmo_extents = 50.0
+[node name="Elevator" parent="." instance=ExtResource("6_duno8")]
+position = Vector2(1182, 76)
 
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

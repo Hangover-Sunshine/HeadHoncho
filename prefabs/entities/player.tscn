@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdxyycqn3po6v"]
+[gd_scene load_steps=6 format=3 uid="uid://cdxyycqn3po6v"]
 
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_0on4b"]
 [ext_resource type="Script" uid="uid://dtp7bkj1twncd" path="res://scripts/game/entities/player.gd" id="1_n42l2"]
+[ext_resource type="PackedScene" uid="uid://ojcv087ocmn1" path="res://prefabs/art/art_pc.tscn" id="2_ebhuq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n42l2"]
 size = Vector2(83, 81)
@@ -13,7 +14,10 @@ size = Vector2(80, 80)
 script = ExtResource("1_n42l2")
 EnergyIncreasePerTick = 5.0
 
+[node name="ArtPlayer" parent="." instance=ExtResource("2_ebhuq")]
+
 [node name="CharacterSmoll" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0.74902, 1, 1)
 texture = ExtResource("1_0on4b")
 region_enabled = true

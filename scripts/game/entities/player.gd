@@ -16,6 +16,12 @@ enum PlayerHead {
 var _curr_head:PlayerHead = PlayerHead.COFFEE
 var _use_head:bool = false
 var _selected_body
+var _is_walking:bool = false
+
+func _ready():
+	$ArtPlayer.go_idle()
+	$ArtPlayer.equip_coffee()
+##
 
 func _input(event):
 	if event.is_action_pressed("primary"):
@@ -27,12 +33,15 @@ func _input(event):
 	
 	if event.is_action_pressed("coffee"):
 		_curr_head = PlayerHead.COFFEE
+		$ArtPlayer.equip_coffee()
 	##
 	if event.is_action_pressed("fan"):
 		_curr_head = PlayerHead.FAN
+		$ArtPlayer.equip_fan()
 	##
 	if event.is_action_pressed("brief_case"):
 		_curr_head = PlayerHead.BRIEF_CASE
+		$ArtPlayer.equip_briefcase()
 	##
 ##
 
@@ -54,6 +63,14 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("right"):
 		velocity += Vector2(1, 0)
 		$Pivot.rotation_degrees = 180
+	##
+	
+	if velocity.length_squared() != 0 and _is_walking == false:
+		$ArtPlayer.go_walk()
+		_is_walking = true
+	elif velocity.length_squared() == 0 and _is_walking:
+		$ArtPlayer.go_idle()
+		_is_walking = false
 	##
 	
 	velocity = velocity.normalized() * MoveSpeed * (PenaltyWhileAbilityActive if _use_head else 1)
