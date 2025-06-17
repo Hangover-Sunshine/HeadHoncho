@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://canniosme5hlc"]
+
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="1_4eexi"]
+[ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="2_sp1f4"]
+
+[sub_resource type="Curve" id="Curve_kfhni"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.3596), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_sr7x8"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[node name="FX_Fire" type="Node2D"]
+
+[node name="CPU_FX_Fire" type="CPUParticles2D" parent="."]
+amount = 100
+texture = ExtResource("1_4eexi")
+lifetime = 1.1
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 30.0
+damping_curve = SubResource("Curve_kfhni")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_sr7x8")
+color_ramp = ExtResource("2_sp1f4")

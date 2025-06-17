@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=15 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="Texture2D" uid="uid://de02gnxgr15ro" path="res://assets/environment/Env_Tilesheet.png" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
-[ext_resource type="PackedScene" uid="uid://dtp71posx82st" path="res://prefabs/art/art_chair.tscn" id="2_mipim"]
-[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="3_56xnr"]
-[ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/art_elevator.tscn" id="5_mipim"]
+[ext_resource type="PackedScene" uid="uid://dtp71posx82st" path="res://prefabs/art/props/art_chair.tscn" id="2_mipim"]
+[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/actors/art_worker.tscn" id="3_56xnr"]
+[ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/props/art_elevator.tscn" id="5_mipim"]
+[ext_resource type="Texture2D" uid="uid://c1ce1op42ry8" path="res://assets/resurrect-64-32x.png" id="6_timvn"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="7_kfhni"]
+[ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="8_68hxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uno"]
 texture = ExtResource("1_8arxf")
@@ -35,6 +38,23 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_56xnr"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_g0uno")
+
+[sub_resource type="Curve" id="Curve_exmm6"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_sr7x8"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kfhni"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.3596), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_kfhni"]
+colors = PackedColorArray(0.607843, 0.670588, 0.698039, 1, 0.192157, 0.211765, 0.219608, 1)
 
 [node name="ArtTest" type="Node2D"]
 
@@ -182,7 +202,13 @@ position = Vector2(0, 64)
 [node name="Elevator" parent="Scene" instance=ExtResource("5_mipim")]
 position = Vector2(960, 128)
 
+[node name="Resurrect-64-32x" type="Sprite2D" parent="."]
+position = Vector2(960, 573)
+scale = Vector2(1, 2.40625)
+texture = ExtResource("6_timvn")
+
 [node name="GUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -193,3 +219,80 @@ custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+
+[node name="FX_Explosion" type="Node2D" parent="."]
+
+[node name="CPU_FX_Explosion" type="CPUParticles2D" parent="FX_Explosion"]
+emitting = false
+amount = 50
+texture = ExtResource("7_kfhni")
+lifetime = 1.1
+one_shot = true
+explosiveness = 0.65
+randomness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_exmm6")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_sr7x8")
+color_ramp = ExtResource("8_68hxo")
+
+[node name="FX_Fire" type="Node2D" parent="."]
+visible = false
+
+[node name="CPU_FX_Fire" type="CPUParticles2D" parent="FX_Fire"]
+amount = 100
+texture = ExtResource("7_kfhni")
+lifetime = 1.1
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 30.0
+damping_curve = SubResource("Curve_kfhni")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_sr7x8")
+color_ramp = ExtResource("8_68hxo")
+
+[node name="FX_Smoke" type="Node2D" parent="."]
+visible = false
+
+[node name="CPU_FX_Smoke" type="CPUParticles2D" parent="FX_Smoke"]
+amount = 50
+texture = ExtResource("7_kfhni")
+lifetime = 1.1
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 175.0
+damping_min = 15.0
+damping_max = 30.0
+damping_curve = SubResource("Curve_kfhni")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_sr7x8")
+color_ramp = SubResource("Gradient_kfhni")
