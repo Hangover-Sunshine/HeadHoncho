@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_8cspb"]
 [ext_resource type="Script" uid="uid://btg8p8u276vcc" path="res://scripts/game/entities/worker.gd" id="1_mp4gn"]
-[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/art_worker.tscn" id="2_le7tm"]
+[ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/actors/art_worker.tscn" id="2_le7tm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cspb"]
 size = Vector2(81, 88)

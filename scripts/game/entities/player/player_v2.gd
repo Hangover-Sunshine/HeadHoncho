@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name PlayerV2
 
 @export var MoveSpeed:float = 250
 @export var PenaltyWhileAbilityActive:float = 0.75
@@ -9,14 +9,16 @@ class_name Player
 enum PlayerHead {
 	COFFEE,
 	FAN,
-	BRIEF_CASE,
-	FUCKHEAD
+	BRIEF_CASE
 }
 
 var _curr_head:PlayerHead = PlayerHead.COFFEE
 var _use_head:bool = false
 var _selected_body
 var _is_walking:bool = false
+
+var _entities_in_range:Array = []
+var _seats_selected:Array[Seat] = []
 
 func _ready():
 	$ArtPlayer.go_idle()
@@ -33,14 +35,20 @@ func _input(event):
 	
 	if event.is_action_pressed("coffee"):
 		_curr_head = PlayerHead.COFFEE
+		$LargeTargetArea/CollisionShape2D.disabled = false
+		$SmallTargetArea/CollisionShape2D.disabled = true
 		$ArtPlayer.equip_coffee()
 	##
 	if event.is_action_pressed("fan"):
 		_curr_head = PlayerHead.FAN
+		$LargeTargetArea/CollisionShape2D.disabled = false
+		$SmallTargetArea/CollisionShape2D.disabled = true
 		$ArtPlayer.equip_fan()
 	##
 	if event.is_action_pressed("brief_case"):
 		_curr_head = PlayerHead.BRIEF_CASE
+		$LargeTargetArea/CollisionShape2D.disabled = true
+		$SmallTargetArea/CollisionShape2D.disabled = false
 		$ArtPlayer.equip_briefcase()
 	##
 ##
@@ -50,19 +58,15 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("up"):
 		velocity += Vector2(0, -1)
-		$Pivot.rotation_degrees = 90
 	##
 	if Input.is_action_pressed("down"):
 		velocity += Vector2(0, 1)
-		$Pivot.rotation_degrees = 270
 	##
 	if Input.is_action_pressed("left"):
 		velocity += Vector2(-1, 0)
-		$Pivot.rotation_degrees = 0
 	##
 	if Input.is_action_pressed("right"):
 		velocity += Vector2(1, 0)
-		$Pivot.rotation_degrees = 180
 	##
 	
 	if velocity.length_squared() != 0 and _is_walking == false:
@@ -77,21 +81,18 @@ func _physics_process(_delta):
 	move_and_slide()
 ##
 
-func _on_single_target_area_body_entered(body):
-	_selected_body = body
-##
-
-func _on_single_target_area_body_exited(body):
-	if _selected_body == body:
-		_selected_body = null
-	##
-##
-
-func get_affecting_body():
+func get_affected_bodies():
 	if _use_head:
-		return _selected_body
+		return _entities_in_range
 	##
-	return null
+	return []
+##
+
+func get_affected_seats():
+	if _use_head:
+		return _seats_selected
+	##
+	return []
 ##
 
 func get_current_head():
@@ -99,11 +100,19 @@ func get_current_head():
 ##
 
 func _on_single_target_area_entered(area):
-	_selected_body = area
+	if area is Seat:
+		_seats_selected.append(area)
+	else:
+		_entities_in_range.append(area)
+	##
 ##
 
 func _on_single_target_area_exited(area):
-	if _selected_body == area:
-		_selected_body = null
+	if area is Seat:
+		var indx = _seats_selected.find(area)
+		_seats_selected.remove_at(indx)
+	else:
+		var indx = _entities_in_range.find(area)
+		_entities_in_range.remove_at(indx)
 	##
 ##

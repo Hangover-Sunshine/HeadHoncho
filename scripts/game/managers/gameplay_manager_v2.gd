@@ -55,9 +55,10 @@ func _on_gameplay_timer_timeout():
 func _on_tick_timer_timeout():
 	print("Tick!")
 	
-	var affected = %Player.get_affecting_body()
+	#var affected = %Player.get_affecting_body()
+	var aff_seats = %Player.get_affected_seats()
+	var aff_bodies = %Player.get_affected_bodies()
 	var head = %Player.get_current_head()
-	print(head == Player.PlayerHead.BRIEF_CASE)
 	
 	# Only attempt to spawn if we have it open
 	if len(open_seats) > 0:
@@ -72,7 +73,7 @@ func _on_tick_timer_timeout():
 			continue
 		##
 		revenue += worker.get_current_contribution()
-		if worker == affected:
+		if worker in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
 				worker.increase_energy(%Player.EnergyIncreasePerTick)
 			elif head == Player.PlayerHead.FAN:
@@ -82,15 +83,17 @@ func _on_tick_timer_timeout():
 		worker.change_energy()
 	##
 	
-	if affected is Seat and head == Player.PlayerHead.BRIEF_CASE:
-		var seatID:int = seats.find(affected)
-		if seats[seatID].IsOpen:
-			var newWorker = WORKER.instantiate()
-			%WorkerRepository.add_child(newWorker)
-			newWorker.worker_quits.connect(_worker_quits)
-			newWorker.global_position = seats[seatID].global_position
-			workers[seatID] = newWorker
-			seats[seatID].disable_seat()
+	if head == Player.PlayerHead.BRIEF_CASE:
+		for afs in aff_seats:
+			var seatID:int = seats.find(afs)
+			if seats[seatID].IsOpen:
+				var newWorker = WORKER.instantiate()
+				%WorkerRepository.add_child(newWorker)
+				newWorker.worker_quits.connect(_worker_quits)
+				newWorker.global_position = afs.global_position
+				workers[seatID] = newWorker
+				afs.disable_seat()
+			##
 		##
 	##
 	

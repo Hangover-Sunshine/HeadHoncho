@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx1ke3hxybgc5"]
+
+[ext_resource type="Script" uid="uid://bfknjfb21spxf" path="res://scripts/game/entities/player/player_v2.gd" id="1_nitys"]
+[ext_resource type="PackedScene" uid="uid://ojcv087ocmn1" path="res://prefabs/art/actors/art_pc.tscn" id="2_aeyvq"]
+[ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="3_ndxww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n42l2"]
+size = Vector2(83, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebhuq"]
+size = Vector2(250, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nitys"]
+size = Vector2(139, 175)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_nitys")
+
+[node name="ArtPlayer" parent="." instance=ExtResource("2_aeyvq")]
+
+[node name="CharacterSmoll" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0.74902, 1, 1)
+texture = ExtResource("3_ndxww")
+region_enabled = true
+region_rect = Rect2(288, 96, 96, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n42l2")
+
+[node name="LargeTargetArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 54
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LargeTargetArea"]
+position = Vector2(0, -35)
+shape = SubResource("RectangleShape2D_ebhuq")
+debug_color = Color(0.203875, 0.640684, 0, 0.42)
+
+[node name="SmallTargetArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 54
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallTargetArea"]
+position = Vector2(-1.5, -15.5)
+shape = SubResource("RectangleShape2D_nitys")
+disabled = true
+debug_color = Color(0.56403, 0.395029, 0.996377, 0.42)
+
+[connection signal="area_entered" from="LargeTargetArea" to="." method="_on_single_target_area_entered"]
+[connection signal="area_exited" from="LargeTargetArea" to="." method="_on_single_target_area_exited"]
+[connection signal="body_entered" from="LargeTargetArea" to="." method="_on_single_target_body_entered"]
+[connection signal="body_exited" from="LargeTargetArea" to="." method="_on_single_target_body_exited"]
+[connection signal="area_entered" from="SmallTargetArea" to="." method="_on_single_target_area_entered"]
+[connection signal="area_exited" from="SmallTargetArea" to="." method="_on_single_target_area_exited"]
+[connection signal="body_entered" from="SmallTargetArea" to="." method="_on_single_target_area_entered"]
+[connection signal="body_exited" from="SmallTargetArea" to="." method="_on_single_target_area_exited"]

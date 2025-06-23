@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://co75fn6jk84w5"]
+[gd_scene load_steps=8 format=3 uid="uid://mww876lhrveh"]
 
-[ext_resource type="Script" uid="uid://dpjbb7afl7awd" path="res://scripts/game/gameplay_manager.gd" id="1_tidyb"]
-[ext_resource type="PackedScene" uid="uid://cdxyycqn3po6v" path="res://prefabs/entities/player/player_all_square.tscn" id="2_vej8y"]
-[ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="3_ntavv"]
-[ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="4_g6xq7"]
-[ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/dickhead_controller.gd" id="5_6dbhj"]
-[ext_resource type="PackedScene" uid="uid://ggvmk2b8x7bg" path="res://prefabs/entities/elevator.tscn" id="6_duno8"]
+[ext_resource type="Script" uid="uid://dicd1sabp7cnb" path="res://scripts/game/managers/gameplay_manager_v2.gd" id="1_actp7"]
+[ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="3_ef4st"]
+[ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="4_ecp6i"]
+[ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/dickhead_controller.gd" id="5_2uth1"]
+[ext_resource type="PackedScene" uid="uid://ggvmk2b8x7bg" path="res://prefabs/entities/elevator.tscn" id="6_y554v"]
+[ext_resource type="PackedScene" uid="uid://bx1ke3hxybgc5" path="res://prefabs/entities/player/player_b-s_square.tscn" id="7_iq3mp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_g6xq7"]
 vertices = PackedVector2Array(792.328, 586, 1036.86, 697.656, 784, 698.719, 538.141, 697.672, 281.188, 694.359, 646.922, 586, 901, 579.078, 1045.27, 577.922, 393.523, 702.328, 1040.13, 940.828, 1884.1, 1048.93, 10.9609, 1037.06, 900, 943.172, 784, 942.18, 652.953, 939.82, 405.5, 951.617, 534.883, 943.391, 1893.89, 147, 1038.74, 334.078, 8.03125, 147, 901, 332.906, 783.672, 321.742, 539.211, 332.094, 649.078, 325.258, 533.789, 586, 402.078, 586, 276.82, 939.273, 399.906, 330.906, 284.133, 331.906, 144.867, 333.078, 148.133, 585.273, 147, 702.602, 900, 702.344, 280.867, 581.742, 147, 935.727, 654.039, 702.273)
@@ -13,8 +13,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 137, 1904, 137, 1894, 1059, 1, 1047), PackedVector2Array(155, 343, 158, 575, 271, 572, 274, 342), PackedVector2Array(410, 341, 412, 576, 524, 576, 529, 342), PackedVector2Array(659, 335, 657, 576, 782, 576, 774, 332), PackedVector2Array(911, 343, 911, 569, 1035, 568, 1029, 344), PackedVector2Array(157, 712, 157, 926, 267, 929, 271, 705), PackedVector2Array(404, 712, 415, 941, 525, 934, 528, 708), PackedVector2Array(664, 712, 663, 930, 774, 932, 774, 709), PackedVector2Array(910, 712, 910, 933, 1030, 931, 1027, 708)])
 
 [node name="OfficeScene" type="Node2D"]
-script = ExtResource("1_tidyb")
-TimePerRound = 16.0
+script = ExtResource("1_actp7")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_g6xq7")
@@ -31,79 +30,79 @@ wait_time = 1.5
 unique_name_in_owner = true
 wait_time = 0.5
 
-[node name="Player" parent="." instance=ExtResource("2_vej8y")]
+[node name="Player" parent="." instance=ExtResource("7_iq3mp")]
 unique_name_in_owner = true
-position = Vector2(651, 255)
+position = Vector2(692, 242)
 
 [node name="Seats" type="Node" parent="."]
 
-[node name="Seat" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(215, 394)
 
-[node name="Seat2" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat2" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(467, 394)
 
-[node name="Seat3" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat3" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(719, 394)
 
-[node name="Seat4" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat4" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(971, 394)
 
-[node name="Seat5" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat5" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(215, 516)
 rotation = 3.14159
 
-[node name="Seat6" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat6" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(467, 516)
 rotation = 3.14159
 
-[node name="Seat7" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat7" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(719, 516)
 rotation = 3.14159
 
-[node name="Seat8" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat8" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(971, 516)
 rotation = 3.14159
 
-[node name="Seat9" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat9" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(215, 763)
 
-[node name="Seat10" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat10" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(467, 763)
 
-[node name="Seat11" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat11" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(719, 763)
 
-[node name="Seat12" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat12" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(971, 763)
 
-[node name="Seat13" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat13" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(215, 877)
 rotation = 3.14159
 
-[node name="Seat14" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat14" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(467, 877)
 rotation = 3.14159
 
-[node name="Seat15" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat15" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(719, 877)
 rotation = 3.14159
 
-[node name="Seat16" parent="Seats" instance=ExtResource("4_g6xq7")]
+[node name="Seat16" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(971, 877)
 rotation = 3.14159
 
 [node name="WorkerRepository" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Worker" parent="WorkerRepository" instance=ExtResource("3_ntavv")]
+[node name="Worker" parent="WorkerRepository" instance=ExtResource("4_ecp6i")]
 position = Vector2(215, 394)
 
 [node name="DickheadSuppository" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5_6dbhj")
+script = ExtResource("5_2uth1")
 
-[node name="Elevator" parent="." instance=ExtResource("6_duno8")]
+[node name="Elevator" parent="." instance=ExtResource("6_y554v")]
 position = Vector2(1182, 76)
 
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]

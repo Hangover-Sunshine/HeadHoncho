@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdxyycqn3po6v"]
+
+[ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_0on4b"]
+[ext_resource type="Script" uid="uid://dtp7bkj1twncd" path="res://scripts/game/entities/player/player.gd" id="1_n42l2"]
+[ext_resource type="PackedScene" uid="uid://ojcv087ocmn1" path="res://prefabs/art/actors/art_pc.tscn" id="2_ebhuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n42l2"]
+size = Vector2(83, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebhuq"]
+size = Vector2(250, 240)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_n42l2")
+
+[node name="ArtPlayer" parent="." instance=ExtResource("2_ebhuq")]
+
+[node name="CharacterSmoll" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0.74902, 1, 1)
+texture = ExtResource("1_0on4b")
+region_enabled = true
+region_rect = Rect2(288, 96, 96, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n42l2")
+
+[node name="SingleTarget" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 54
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SingleTarget"]
+position = Vector2(0, -35)
+shape = SubResource("RectangleShape2D_ebhuq")
+debug_color = Color(0.203875, 0.640684, 0, 0.42)
+
+[connection signal="area_entered" from="SingleTarget" to="." method="_on_single_target_area_entered"]
+[connection signal="area_exited" from="SingleTarget" to="." method="_on_single_target_area_exited"]
+[connection signal="body_entered" from="SingleTarget" to="." method="_on_single_target_area_body_entered"]
+[connection signal="body_exited" from="SingleTarget" to="." method="_on_single_target_area_body_exited"]

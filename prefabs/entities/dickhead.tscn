@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
-[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/art_boss.tscn" id="1_wgy7s"]
+[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/actors/art_boss.tscn" id="1_wgy7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
@@ -14,7 +14,7 @@ size = Vector2(171, 172)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_m50rt")
-MovementSpeed = 50.0
+MovementSpeed = 75.0
 
 [node name="ArtBoss" parent="." instance=ExtResource("1_wgy7s")]
 
