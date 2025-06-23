@@ -106,12 +106,20 @@ func _worker_quits(worker:Worker):
 	
 	# Renable the seat for the player to hire a new motor
 	seats[index].enable_seat()
-	open_seats.remove_at(open_seats.find(index))
+	var indx = open_seats.find(index)
+	if indx > -1:
+		open_seats.remove_at(indx)
+	##
 ##
 
 func _dickhead_created(dickhead):
 	%DickheadSuppository.add_child(dickhead)
 	var rindx:int = randi() % len(open_seats)
-	dickhead.set_goal_position(seats[rindx].get_standing_pos(), open_seats[rindx])
+	dickhead.go_to_elevator.connect(_exit_level)
+	dickhead.set_goal_position(seats[rindx].get_standing_pos())
 	open_seats.remove_at(rindx)
+##
+
+func _exit_level(dickhead:Dickhead):
+	dickhead.set_goal_position($Elevator.get_elevator_wait_pos())
 ##

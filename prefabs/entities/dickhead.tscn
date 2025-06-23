@@ -40,3 +40,9 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_m50rt")
 disabled = true
 debug_color = Color(0.990502, 0, 0.277534, 0.42)
+
+[node name="ExitTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="StressArea" to="." method="_on_stress_area_body_entered"]

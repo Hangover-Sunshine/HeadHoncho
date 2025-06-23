@@ -13,6 +13,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedIn
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 137, 1904, 137, 1894, 1059, 1, 1047), PackedVector2Array(155, 343, 158, 575, 271, 572, 274, 342), PackedVector2Array(410, 341, 412, 576, 524, 576, 529, 342), PackedVector2Array(659, 335, 657, 576, 782, 576, 774, 332), PackedVector2Array(911, 343, 911, 569, 1035, 568, 1029, 344), PackedVector2Array(157, 712, 157, 926, 267, 929, 271, 705), PackedVector2Array(404, 712, 415, 941, 525, 934, 528, 708), PackedVector2Array(664, 712, 663, 930, 774, 932, 774, 709), PackedVector2Array(910, 712, 910, 933, 1030, 931, 1027, 708)])
 
 [node name="OfficeScene" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_actp7")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

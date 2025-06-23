@@ -14,6 +14,7 @@ var _energy_level:float = 50
 var _multiplier:float = 1
 var _energy_change:float
 var _is_stressed:bool = false
+var _is_affected_by_dickhead:bool = false
 
 func _ready():
 	$ArtWorker.be_meh()
@@ -38,7 +39,11 @@ func _check_health():
 		##
 	else:
 		if _overheating and _cooling_down == false:
-			_temperature = min(100, _temperature + TemperatureIncreasePerTick)
+			_temperature = min(100, _temperature + (
+					TemperatureIncreasePerTick  *
+						(1.0 if _is_affected_by_dickhead == false else 1.25)
+				)
+			)
 			if _temperature >= 100:
 				# TODO: Quit animation
 				worker_quits.emit(self)
@@ -65,15 +70,23 @@ func _check_health():
 ##
 
 func get_current_contribution():
-	return BaseMoneyContribution * _multiplier
+	return BaseMoneyContribution * (
+		_multiplier * (1.0 if _is_affected_by_dickhead == false else 0.75)
+	)
 ##
 
 func increase_energy(amnt:float):
-	_energy_change = amnt
+	if _is_affected_by_dickhead == false:
+		_energy_change = amnt
+	##
 ##
 
 func change_energy():
-	_energy_level += _energy_change
+	if _is_affected_by_dickhead:
+		_energy_level += 100 #-_energy_change * 1.5
+	else:
+		_energy_level += _energy_change
+	##
 	
 	if _overheating and _energy_level < 66:
 		_energy_level = 66
@@ -83,17 +96,35 @@ func change_energy():
 		_energy_level = 100
 	##
 	
+	if _energy_level < 0:
+		_energy_level = 0
+	##
+	
 	_energy_change = EnergyDecreasePerTick
 	
 	_check_health()
+	
+	print(">> Energy: ", _energy_level, " <<")
+	print(">> Temp:   ", _temperature, " <<")
 ##
 
 func cooloff(decrease:float):
-	_overheating = false
-	_cooling_down = true
-	_energy_change = decrease
+	if _is_affected_by_dickhead == false:
+		_overheating = false
+		_cooling_down = true
+		_energy_change = decrease
+	##
 ##
 
 func is_quitting():
 	return _temperature >= 100
+##
+
+func affected_by_dickhead():
+	_is_affected_by_dickhead = true
+	if _energy_level < 25:
+		_energy_level = 25
+	##
+	# Force the energy to be it's usual value
+	_energy_change = EnergyDecreasePerTick
 ##

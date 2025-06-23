@@ -45,3 +45,10 @@ func _on_door_control_timer_timeout():
 		$Elevator.close()
 	##
 ##
+
+func get_elevator_wait_pos():
+	var basePos = $SpawnPos.global_position
+	basePos.x += randf_range(-10, 10)
+	basePos.y += randf_range(-5, 5)
+	return basePos
+##
