@@ -200,9 +200,13 @@ position = Vector2(0, 64)
 [node name="ArtWorker8" parent="Scene/Bot/Desk_Top_Out_Rite/Bot" instance=ExtResource("3_56xnr")]
 
 [node name="Elevator" parent="Scene" instance=ExtResource("5_mipim")]
-position = Vector2(960, 128)
+position = Vector2(552, 128)
+
+[node name="Elevator2" parent="Scene" instance=ExtResource("5_mipim")]
+position = Vector2(1368, 128)
 
 [node name="Resurrect-64-32x" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(960, 573)
 scale = Vector2(1, 2.40625)
 texture = ExtResource("6_timvn")

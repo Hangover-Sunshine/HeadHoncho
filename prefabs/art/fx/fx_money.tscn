@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkhw41gwaiowa"]
+
+[ext_resource type="Texture2D" uid="uid://cppjdjy5nvx3" path="res://assets/particle/Bill.png" id="1_nr1dc"]
+
+[sub_resource type="Curve" id="Curve_exmm6"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_sr7x8"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[node name="FX_Money" type="Node2D"]
+
+[node name="CPU_FX_Money" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("1_nr1dc")
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_exmm6")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_sr7x8")
