@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=16 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="Texture2D" uid="uid://de02gnxgr15ro" path="res://assets/environment/Env_Tilesheet.png" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c1ce1op42ry8" path="res://assets/resurrect-64-32x.png" id="6_timvn"]
 [ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="7_kfhni"]
 [ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="8_68hxo"]
+[ext_resource type="PackedScene" uid="uid://bnyc6upi5fa0u" path="res://prefabs/art/fx/fx_sleep.tscn" id="9_68hxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uno"]
 texture = ExtResource("1_8arxf")
@@ -206,7 +207,6 @@ position = Vector2(552, 128)
 position = Vector2(1368, 128)
 
 [node name="Resurrect-64-32x" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(960, 573)
 scale = Vector2(1, 2.40625)
 texture = ExtResource("6_timvn")
@@ -225,6 +225,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="FX_Explosion" type="Node2D" parent="."]
+visible = false
 
 [node name="CPU_FX_Explosion" type="CPUParticles2D" parent="FX_Explosion"]
 emitting = false
@@ -249,10 +250,13 @@ scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_sr7x8")
 color_ramp = ExtResource("8_68hxo")
 
+[node name="FX_Sleep" parent="." instance=ExtResource("9_68hxo")]
+
 [node name="FX_Fire" type="Node2D" parent="."]
 visible = false
 
 [node name="CPU_FX_Fire" type="CPUParticles2D" parent="FX_Fire"]
+visible = false
 amount = 100
 texture = ExtResource("7_kfhni")
 lifetime = 1.1

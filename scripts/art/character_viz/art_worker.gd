@@ -63,4 +63,7 @@ func be_onfire():
 	$AP_Motion.play("Idle")
 	$AP_Motion.seek(random_time)
 	$AP_Motion.speed_scale = 2
+
+func go_explode():
+	$AP_Motion.play("Fall")
 #

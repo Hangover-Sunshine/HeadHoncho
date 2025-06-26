@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bg0lns7q8x7eh"]
+[gd_scene load_steps=20 format=3 uid="uid://bg0lns7q8x7eh"]
 
 [ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://scripts/art/character_viz/art_boss.gd" id="1_kr3h0"]
 [ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="2_lcyu6"]
@@ -14,6 +14,23 @@
 [ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="12_kbv7u"]
 [ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://scripts/art/character_viz/cloth.gd" id="13_nj770"]
 [ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="14_svg6o"]
+
+[sub_resource type="Animation" id="Animation_0ex6h"]
+resource_name = "Fall"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xq35q"]
 resource_name = "Idle"
@@ -104,6 +121,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7fffw"]
 _data = {
+&"Fall": SubResource("Animation_0ex6h"),
 &"Idle": SubResource("Animation_xq35q"),
 &"RESET": SubResource("Animation_7fffw"),
 &"Walk": SubResource("Animation_xinbw")

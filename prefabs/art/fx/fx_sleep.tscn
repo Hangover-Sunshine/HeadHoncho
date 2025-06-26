@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnyc6upi5fa0u"]
+
+[ext_resource type="Texture2D" uid="uid://3ddgtjo3haji" path="res://assets/particle/Zee.png" id="1_d6emt"]
+
+[sub_resource type="Curve" id="Curve_exmm6"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_68hxo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.238636, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.52007, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_exmm6"]
+colors = PackedColorArray(0.917647, 0.678431, 0.929412, 1, 0.560784, 0.827451, 1, 1)
+
+[node name="FX_Sleep" type="Node2D"]
+visible = false
+
+[node name="CPU_FX_Sleep" type="CPUParticles2D" parent="."]
+amount = 5
+texture = ExtResource("1_d6emt")
+speed_scale = 0.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(48, 48)
+spread = 180.0
+gravity = Vector2(0, -50)
+damping_curve = SubResource("Curve_exmm6")
+angle_min = -15.0
+angle_max = 15.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_68hxo")
+color_initial_ramp = SubResource("Gradient_exmm6")
