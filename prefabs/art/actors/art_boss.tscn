@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bg0lns7q8x7eh"]
+[gd_scene load_steps=24 format=3 uid="uid://bg0lns7q8x7eh"]
 
 [ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://scripts/art/character_viz/art_boss.gd" id="1_kr3h0"]
 [ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="2_lcyu6"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="2_xy104"]
 [ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="3_tv73v"]
+[ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="3_ukt1n"]
 [ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="4_nkk7l"]
 [ext_resource type="Texture2D" uid="uid://crdk4htfm60ay" path="res://assets/characters/Char_Hair_Ext3.png" id="5_m6xqa"]
 [ext_resource type="Texture2D" uid="uid://cc2o7xq2e18wr" path="res://assets/characters/Char_Heads_Ginger.png" id="6_nb2ts"]
@@ -14,6 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="12_kbv7u"]
 [ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://scripts/art/character_viz/cloth.gd" id="13_nj770"]
 [ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="14_svg6o"]
+
+[sub_resource type="Curve" id="Curve_0xh72"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.3596), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_jvlyo"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_0ex6h"]
 resource_name = "Fall"
@@ -129,6 +140,33 @@ _data = {
 
 [node name="ArtBoss" type="Node2D"]
 script = ExtResource("1_kr3h0")
+
+[node name="FX_Back" type="Node2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="CPU_FX_Fire" type="CPUParticles2D" parent="FX_Back"]
+emitting = false
+amount = 100
+texture = ExtResource("2_xy104")
+lifetime = 0.8
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 30.0
+damping_curve = SubResource("Curve_0xh72")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_jvlyo")
+color_ramp = ExtResource("3_ukt1n")
 
 [node name="Skeleton" type="Node2D" parent="."]
 

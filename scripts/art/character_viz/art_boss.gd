@@ -42,19 +42,20 @@ func go_fall():
 	$AP_Motion.play("Fall")
 #
 
-## Changes face of character depending on state.
-func be_asleep():
-	face.frame = 5
+## Changes face of character depending on state / activates some 
+##func be_asleep(): 
+	##face.frame = 5
 
-func be_happy():
+func be_happy():  ##  trigger when briefcased
 	face.frame = 6
 	
-func be_meh():
+func be_meh():  ## neutral state, trigger back to if needed
 	face.frame = 7
 
-func be_stressed():
+func be_blowned(): ## trigger when blown by fan
 	face.frame = 8
 
-func be_onfire():
+func be_onfire(): ## trigger when given coffee
 	face.frame = 9
+	$FX_Back/CPU_FX_Fire.emitting = true
 #

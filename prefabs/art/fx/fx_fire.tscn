@@ -17,7 +17,7 @@ point_count = 2
 [node name="CPU_FX_Fire" type="CPUParticles2D" parent="."]
 amount = 100
 texture = ExtResource("1_4eexi")
-lifetime = 1.1
+lifetime = 0.8
 randomness = 1.0
 draw_order = 1
 emission_shape = 1

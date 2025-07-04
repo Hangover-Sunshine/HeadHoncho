@@ -1,12 +1,407 @@
-[gd_scene load_steps=13 format=3 uid="uid://ojcv087ocmn1"]
+[gd_scene load_steps=49 format=3 uid="uid://ojcv087ocmn1"]
 
 [ext_resource type="Script" uid="uid://b7wdf3v7p4y1q" path="res://scripts/art/character_viz/art_pc.gd" id="1_8jl3o"]
 [ext_resource type="Texture2D" uid="uid://bsnyqu48gud05" path="res://assets/characters/pc/PC_Blowie.png" id="3_0yuee"]
 [ext_resource type="Texture2D" uid="uid://bv1vaxcd3ues5" path="res://assets/characters/pc/PC_Coffee1.png" id="4_84wyi"]
+[ext_resource type="Texture2D" uid="uid://dvg5oc3axuiqe" path="res://assets/particle/Circle1.png" id="5_halqx"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="5_imybb"]
 [ext_resource type="Texture2D" uid="uid://brednwmyspxw8" path="res://assets/characters/pc/PC_Coffee2.png" id="5_xc2lb"]
 [ext_resource type="Texture2D" uid="uid://dorebh0l7ef5j" path="res://assets/characters/pc/PC_Money.png" id="6_wptvl"]
+[ext_resource type="Texture2D" uid="uid://cppjdjy5nvx3" path="res://assets/particle/Bill.png" id="9_ugxqi"]
 [ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="12_fdkk2"]
 [ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="14_qt1mu"]
+
+[sub_resource type="Animation" id="Animation_321gs"]
+resource_name = "Blow"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qkgnv"]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ty7oq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gln7h"]
+_data = {
+&"Blow": SubResource("Animation_321gs"),
+&"Idle": SubResource("Animation_qkgnv"),
+&"RESET": SubResource("Animation_ty7oq")
+}
+
+[sub_resource type="Curve" id="Curve_ty7oq"]
+_data = [Vector2(0, 0), 0.0, 5.4382, 0, 0, Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ugxqi"]
+offsets = PackedFloat32Array(0.233333, 0.606667)
+colors = PackedColorArray(0.780392, 0.862745, 0.815686, 1, 1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_ugxqi"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(1, 12.3596), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_wdebn"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fwvpa"]
+colors = PackedColorArray(0.607843, 0.670588, 0.698039, 1, 0.192157, 0.211765, 0.219608, 1)
+
+[sub_resource type="Curve" id="Curve_imybb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.46068, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_wdebn"]
+resource_name = "Brew"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPU_FX_Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Covfefe:emission_rect_extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8.75, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Covfefe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_imybb"]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPU_FX_Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Covfefe:emission_rect_extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Covfefe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_ugxqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPU_FX_Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Covfefe:emission_rect_extents")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Covfefe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdebn"]
+_data = {
+&"Brew": SubResource("Animation_wdebn"),
+&"Idle": SubResource("Animation_imybb"),
+&"RESET": SubResource("Animation_ugxqi")
+}
+
+[sub_resource type="Animation" id="Animation_gln7h"]
+resource_name = "Idle"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cuckm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jw2gl"]
+resource_name = "Shake"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuckm"]
+_data = {
+&"Idle": SubResource("Animation_gln7h"),
+&"RESET": SubResource("Animation_cuckm"),
+&"Shake": SubResource("Animation_jw2gl")
+}
+
+[sub_resource type="Animation" id="Animation_pueor"]
+resource_name = "Open"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_uec1q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uec1q"]
+_data = {
+&"Open": SubResource("Animation_pueor"),
+&"RESET": SubResource("Animation_uec1q")
+}
+
+[sub_resource type="Curve" id="Curve_qkgnv"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_321gs"]
+offsets = PackedFloat32Array(0.666667, 1)
+colors = PackedColorArray(0.588235, 0.423529, 0.423529, 1, 0.180392, 0.133333, 0.184314, 1)
+
+[sub_resource type="Curve" id="Curve_cuckm"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 7.86517), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wdebn"]
+offsets = PackedFloat32Array(0.713333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.780392, 0.862745, 0.815686, 1)
+
+[sub_resource type="Curve" id="Curve_fwvpa"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tpqxg"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_321gs"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 80.3371, 57.8047, 0, 0, Vector2(1, 13.4831), -5.99251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gln7h"]
+_data = [Vector2(0.647727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11985, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cuckm"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.670588, 0.580392, 0.478431, 1, 0.607843, 0.670588, 0.698039, 1, 0.498039, 0.439216, 0.541176, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
 
 [sub_resource type="Animation" id="Animation_0yuee"]
 resource_name = "Fall"
@@ -15,7 +410,7 @@ step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton:scale")
+tracks/0/path = NodePath("PC/Skeleton:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +428,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/path = NodePath("PC/Skeleton:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +440,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/path = NodePath("PC/Skeleton:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -60,7 +455,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/path = NodePath("PC/Skeleton:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +467,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/path = NodePath("PC/Skeleton:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,7 +485,7 @@ step = 0.375
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton:rotation")
+tracks/0/path = NodePath("PC/Skeleton:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +497,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton:scale")
+tracks/1/path = NodePath("PC/Skeleton:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,45 +515,340 @@ _data = {
 &"Walk": SubResource("Animation_xinbw")
 }
 
+[sub_resource type="Animation" id="Animation_fwvpa"]
+resource_name = "Charge"
+length = 1.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_head"
+}, {
+"args": [],
+"method": &"idle_head"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_aoe"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"open_briefcase"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tpqxg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkgnv"]
+_data = {
+&"Charge": SubResource("Animation_fwvpa"),
+&"RESET": SubResource("Animation_tpqxg")
+}
+
 [node name="ArtPlayer" type="Node2D"]
 script = ExtResource("1_8jl3o")
 
-[node name="Skeleton" type="Node2D" parent="."]
+[node name="PC" type="Node2D" parent="."]
 
-[node name="Body" type="Sprite2D" parent="Skeleton"]
+[node name="Skeleton" type="Node2D" parent="PC"]
+
+[node name="Body" type="Sprite2D" parent="PC/Skeleton"]
 texture = ExtResource("12_fdkk2")
 hframes = 2
 vframes = 2
 
-[node name="Head" type="Node2D" parent="Skeleton"]
+[node name="Head" type="Node2D" parent="PC/Skeleton"]
 position = Vector2(0, -63)
 
-[node name="Fan" type="Sprite2D" parent="Skeleton/Head"]
+[node name="Fan" type="Sprite2D" parent="PC/Skeleton/Head"]
 position = Vector2(0, -6)
 texture = ExtResource("3_0yuee")
 hframes = 2
 
-[node name="Coffee" type="Sprite2D" parent="Skeleton/Head"]
+[node name="AP_Fan" type="AnimationPlayer" parent="PC/Skeleton/Head/Fan"]
+libraries = {
+&"": SubResource("AnimationLibrary_gln7h")
+}
+
+[node name="CPU_FX_Charge_Wind" type="CPUParticles2D" parent="PC/Skeleton/Head/Fan"]
+emitting = false
+amount = 25
+texture = ExtResource("5_halqx")
+speed_scale = 1.5
+randomness = 0.5
+emission_shape = 2
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+scale_amount_curve = SubResource("Curve_ty7oq")
+color_ramp = SubResource("Gradient_ugxqi")
+
+[node name="Coffee" type="Sprite2D" parent="PC/Skeleton/Head"]
 visible = false
 position = Vector2(0, -4)
 texture = ExtResource("4_84wyi")
 
-[node name="Pot" type="Sprite2D" parent="Skeleton/Head/Coffee"]
+[node name="CPU_FX_Smoke" type="CPUParticles2D" parent="PC/Skeleton/Head/Coffee"]
+show_behind_parent = true
+position = Vector2(0, -2)
+emitting = false
+amount = 15
+texture = ExtResource("5_imybb")
+lifetime = 0.6
+speed_scale = 0.4
+randomness = 1.0
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 175.0
+damping_min = 15.0
+damping_max = 30.0
+damping_curve = SubResource("Curve_ugxqi")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_wdebn")
+color_ramp = SubResource("Gradient_fwvpa")
+
+[node name="Covfefe" type="CPUParticles2D" parent="PC/Skeleton/Head/Coffee"]
+position = Vector2(0, 15)
+amount = 50
+texture = ExtResource("5_halqx")
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_imybb")
+color = Color(0.588235, 0.423529, 0.423529, 1)
+
+[node name="Pot" type="Sprite2D" parent="PC/Skeleton/Head/Coffee"]
 position = Vector2(3, 10)
 texture = ExtResource("5_xc2lb")
 
-[node name="Briefcase" type="Sprite2D" parent="Skeleton/Head"]
+[node name="AP_Coffee" type="AnimationPlayer" parent="PC/Skeleton/Head/Coffee"]
+libraries = {
+&"": SubResource("AnimationLibrary_wdebn")
+}
+
+[node name="Briefcase" type="Sprite2D" parent="PC/Skeleton/Head"]
 visible = false
 position = Vector2(0, 12)
 texture = ExtResource("6_wptvl")
 hframes = 2
 
-[node name="Hands" type="Sprite2D" parent="Skeleton"]
+[node name="AP_Briefcase" type="AnimationPlayer" parent="PC/Skeleton/Head/Briefcase"]
+libraries = {
+&"": SubResource("AnimationLibrary_cuckm")
+}
+
+[node name="AP_Briefcase2" type="AnimationPlayer" parent="PC/Skeleton/Head/Briefcase"]
+libraries = {
+&"": SubResource("AnimationLibrary_uec1q")
+}
+
+[node name="Hands" type="Sprite2D" parent="PC/Skeleton"]
 position = Vector2(1, -34)
 texture = ExtResource("14_qt1mu")
 vframes = 3
 
+[node name="FX_Fore" type="Node2D" parent="."]
+
+[node name="CPU_FX_Coffee" type="CPUParticles2D" parent="FX_Fore"]
+position = Vector2(0, -67)
+emitting = false
+amount = 50
+texture = ExtResource("5_imybb")
+lifetime = 1.1
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.8
+randomness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_qkgnv")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ty7oq")
+color_ramp = SubResource("Gradient_321gs")
+
+[node name="CPU_FX_Blow" type="CPUParticles2D" parent="FX_Fore"]
+position = Vector2(0, -67)
+emitting = false
+amount = 100
+texture = ExtResource("5_imybb")
+lifetime = 1.5
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.8
+randomness = 0.75
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 125.0
+initial_velocity_max = 130.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_cuckm")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.1
+scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_ty7oq")
+color_ramp = SubResource("Gradient_wdebn")
+
+[node name="CPU_FX_Money" type="CPUParticles2D" parent="FX_Fore"]
+show_behind_parent = true
+position = Vector2(0, -55)
+emitting = false
+amount = 10
+texture = ExtResource("9_ugxqi")
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_fwvpa")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_tpqxg")
+
+[node name="CPU_FX_Coins" type="CPUParticles2D" parent="FX_Fore"]
+show_behind_parent = true
+position = Vector2(0, -55)
+emitting = false
+amount = 15
+texture = ExtResource("5_halqx")
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 190.0
+initial_velocity_max = 200.0
+damping_min = 15.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_321gs")
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_gln7h")
+color_initial_ramp = SubResource("Gradient_cuckm")
+
 [node name="AP_Motion" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_7fffw")
+}
+
+[node name="AP_Charge" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PC/Skeleton")
+libraries = {
+&"": SubResource("AnimationLibrary_qkgnv")
 }
