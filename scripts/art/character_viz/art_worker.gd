@@ -100,3 +100,11 @@ func go_explode():
 	$FX_Fore/CPU_FX_Explosion.emitting = true
 	$AP_Motion.play("Fall")
 #
+
+## GUI - On hover visibility
+func _on_mc_hover_mouse_entered():
+	$GUI/MC_Hover/VBox_MC.visible = true
+
+func _on_mc_hover_mouse_exited():
+	$GUI/MC_Hover/VBox_MC.visible = false
+#

@@ -460,3 +460,98 @@ color_ramp = ExtResource("16_h4k8i")
 libraries = {
 &"": SubResource("AnimationLibrary_7fffw")
 }
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -120.0
+offset_right = 95.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MC_Hover" type="MarginContainer" parent="GUI"]
+clip_contents = true
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 200.0
+
+[node name="VBox_MC" type="VBoxContainer" parent="GUI/MC_Hover"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBox_Top_GUI" type="HBoxContainer" parent="GUI/MC_Hover/VBox_MC"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI"]
+layout_mode = 2
+text = " John Doe"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_5i3bm")
+expand_mode = 2
+
+[node name="Label2" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI/HBoxContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="Label3" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI/HBoxContainer"]
+layout_mode = 2
+text = "1.0 "
+
+[node name="Bar_Temp" type="ProgressBar" parent="GUI/MC_Hover/VBox_MC"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+show_percentage = false
+
+[node name="HBox_Top_GUI2" type="HBoxContainer" parent="GUI/MC_Hover/VBox_MC"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2"]
+layout_mode = 2
+text = " John Doe"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_5i3bm")
+expand_mode = 2
+
+[node name="Label2" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2/HBoxContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="Label3" type="Label" parent="GUI/MC_Hover/VBox_MC/HBox_Top_GUI2/HBoxContainer"]
+layout_mode = 2
+text = "1.0 "
+
+[connection signal="mouse_entered" from="GUI/MC_Hover" to="." method="_on_mc_hover_mouse_entered"]
+[connection signal="mouse_exited" from="GUI/MC_Hover" to="." method="_on_mc_hover_mouse_exited"]
