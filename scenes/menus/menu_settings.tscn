@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqxt4qvvqx5lj"]
 
 [ext_resource type="Script" uid="uid://d0shucgq413f7" path="res://scripts/menus/menu_settings.gd" id="1_1ptlj"]
-[ext_resource type="Texture2D" uid="uid://c3rkgo18l3esc" path="res://assets/particle/Checkbox_Full.png" id="1_qe0ko"]
-[ext_resource type="Texture2D" uid="uid://b6o6d4lvr77ql" path="res://assets/particle/Checkbox_Empty.png" id="2_62cxx"]
+[ext_resource type="Texture2D" uid="uid://c3rkgo18l3esc" path="res://assets/particle/pack/Checkbox_Full.png" id="1_qe0ko"]
+[ext_resource type="Texture2D" uid="uid://b6o6d4lvr77ql" path="res://assets/particle/pack/Checkbox_Empty.png" id="2_62cxx"]
 
 [node name="MenuSettings" type="Control"]
 layout_mode = 3

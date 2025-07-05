@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bracsyosxduaq" path="res://scripts/art/character_viz/art_boss.gd" id="1_kr3h0"]
 [ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="2_lcyu6"]
-[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="2_xy104"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/pack/Circle2.png" id="2_xy104"]
 [ext_resource type="Texture2D" uid="uid://dh4m6m8ldkr4" path="res://assets/characters/Char_Hair_Ext1.png" id="3_tv73v"]
 [ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="3_ukt1n"]
 [ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="4_nkk7l"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bv4lrywxxtqf"]
 
-[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="1_715cl"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/pack/Circle2.png" id="1_715cl"]
 [ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="2_akfpk"]
 
 [sub_resource type="Curve" id="Curve_exmm6"]

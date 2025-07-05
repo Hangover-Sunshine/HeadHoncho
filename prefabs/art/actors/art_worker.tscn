@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bhohj3bg54cas"]
+[gd_scene load_steps=39 format=3 uid="uid://bhohj3bg54cas"]
 
 [ext_resource type="Script" uid="uid://djn4aaa6d7ra2" path="res://scripts/art/character_viz/art_worker.gd" id="1_th0b4"]
 [ext_resource type="Script" uid="uid://ior6eqbnsnr4" path="res://scripts/art/character_viz/head.gd" id="1_xinbw"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b3ft3an64ox2x" path="res://assets/characters/Char_Hair_Ext2.png" id="2_7fffw"]
 [ext_resource type="Texture2D" uid="uid://crdk4htfm60ay" path="res://assets/characters/Char_Hair_Ext3.png" id="3_xinbw"]
 [ext_resource type="Texture2D" uid="uid://cc2o7xq2e18wr" path="res://assets/characters/Char_Heads_Ginger.png" id="4_th0b4"]
-[ext_resource type="Texture2D" uid="uid://dvg5oc3axuiqe" path="res://assets/particle/Circle1.png" id="5_h4k8i"]
+[ext_resource type="Texture2D" uid="uid://dvg5oc3axuiqe" path="res://assets/particle/pack/Circle1.png" id="5_h4k8i"]
 [ext_resource type="Texture2D" uid="uid://l7h58cqdha5r" path="res://assets/characters/Char_Face_Ginger.png" id="5_xj6sq"]
 [ext_resource type="Texture2D" uid="uid://jdr2s3mfth4i" path="res://assets/characters/Char_Heads_Berry.png" id="6_wj2jq"]
 [ext_resource type="Texture2D" uid="uid://wfyfl5q6s6qi" path="res://assets/characters/Char_Face_Berry.png" id="7_tveqa"]
@@ -15,10 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://guk4yubnhbut" path="res://assets/characters/Char_Cloth.png" id="10_jsrow"]
 [ext_resource type="Script" uid="uid://bsr5ufs1tjrlk" path="res://scripts/art/character_viz/cloth.gd" id="11_7fffw"]
 [ext_resource type="Texture2D" uid="uid://lubm2lrbblne" path="res://assets/characters/Char_Hands.png" id="11_b1bih"]
-[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/Circle2.png" id="15_bb2cg"]
+[ext_resource type="Texture2D" uid="uid://dskj1c8u7w667" path="res://assets/particle/pack/Circle2.png" id="15_bb2cg"]
 [ext_resource type="Gradient" uid="uid://svsp2ao8nxsc" path="res://assets/graphs/fire_ramp.tres" id="16_h4k8i"]
 [ext_resource type="Texture2D" uid="uid://cppjdjy5nvx3" path="res://assets/particle/Bill.png" id="17_5i3bm"]
-[ext_resource type="Texture2D" uid="uid://3ddgtjo3haji" path="res://assets/particle/Zee.png" id="18_ih8l1"]
+[ext_resource type="Texture2D" uid="uid://3ddgtjo3haji" path="res://assets/particle/pack/Zee.png" id="18_ih8l1"]
+[ext_resource type="Texture2D" uid="uid://y1estxoqh3id" path="res://assets/particle/Prog_Inner.png" id="21_8gkpo"]
 
 [sub_resource type="Curve" id="Curve_inxqf"]
 _limits = [0.0, 100.0, 0.0, 1.0]
@@ -477,6 +478,27 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="MC_AOE" type="MarginContainer" parent="GUI"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 200.0
+
+[node name="VBox_MC" type="VBoxContainer" parent="GUI/MC_AOE"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBox_MC" type="HBoxContainer" parent="GUI/MC_AOE/VBox_MC"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GUI/MC_AOE/VBox_MC/HBox_MC"]
+visible = false
+layout_mode = 2
+value = 49.0
+fill_mode = 4
+texture_progress = ExtResource("21_8gkpo")
+tint_progress = Color(0.137255, 0.564706, 0.388235, 0.721569)
+
 [node name="MC_Hover" type="MarginContainer" parent="GUI"]
 clip_contents = true
 layout_mode = 0
@@ -484,7 +506,6 @@ offset_right = 190.0
 offset_bottom = 200.0
 
 [node name="VBox_MC" type="VBoxContainer" parent="GUI/MC_Hover"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 0
 

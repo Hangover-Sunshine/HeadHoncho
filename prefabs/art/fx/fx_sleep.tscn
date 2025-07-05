@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnyc6upi5fa0u"]
 
-[ext_resource type="Texture2D" uid="uid://3ddgtjo3haji" path="res://assets/particle/Zee.png" id="1_d6emt"]
+[ext_resource type="Texture2D" uid="uid://3ddgtjo3haji" path="res://assets/particle/pack/Zee.png" id="1_d6emt"]
 
 [sub_resource type="Curve" id="Curve_exmm6"]
 _limits = [0.0, 100.0, 0.0, 1.0]

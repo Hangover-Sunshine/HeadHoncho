@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://p6rcqo7jdo2r"]
 
 [ext_resource type="Script" uid="uid://dmgw8h71ye010" path="res://scripts/menus/menu_disclaimer.gd" id="1_dqqjv"]
-[ext_resource type="Texture2D" uid="uid://xjwsl17rjyl3" path="res://assets/particle/Heart.png" id="1_yf63x"]
+[ext_resource type="Texture2D" uid="uid://xjwsl17rjyl3" path="res://assets/particle/pack/Heart.png" id="1_yf63x"]
 
 [sub_resource type="Animation" id="Animation_ps85c"]
 resource_name = "Flash"
