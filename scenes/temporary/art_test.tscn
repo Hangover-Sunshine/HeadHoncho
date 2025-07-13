@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=13 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="Texture2D" uid="uid://de02gnxgr15ro" path="res://assets/environment/Env_Tilesheet.png" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bhohj3bg54cas" path="res://prefabs/art/actors/art_worker.tscn" id="3_56xnr"]
 [ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/props/art_elevator.tscn" id="5_mipim"]
 [ext_resource type="Texture2D" uid="uid://c1ce1op42ry8" path="res://assets/resurrect-64-32x.png" id="6_timvn"]
+[ext_resource type="Texture2D" uid="uid://0dflxpc1ltl0" path="res://assets/particle/HB_TM.png" id="7_exmm6"]
 [ext_resource type="PackedScene" uid="uid://ojcv087ocmn1" path="res://prefabs/art/actors/art_pc.tscn" id="7_fpe3w"]
+[ext_resource type="FontFile" uid="uid://d35kt2t73woom" path="res://assets/fonts/roboto/Roboto-Bold.ttf" id="7_kfhni"]
+[ext_resource type="Texture2D" uid="uid://bry0gvlw3pdsv" path="res://assets/particle/HB_PR.png" id="8_sr7x8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0uno"]
 texture = ExtResource("1_8arxf")
@@ -193,17 +196,114 @@ scale = Vector2(1, 2.40625)
 texture = ExtResource("6_timvn")
 
 [node name="GUI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="MC_All" type="MarginContainer" parent="GUI"]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="VBox_All" type="VBoxContainer" parent="GUI/MC_All"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBox_Top" type="HBoxContainer" parent="GUI/MC_All/VBox_All"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Empty_Left" type="HBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="HBox_Center" type="HBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="L_FiscalYear" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = "F##"
+horizontal_alignment = 1
+
+[node name="L_Quarter" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = "Q#"
+horizontal_alignment = 1
+
+[node name="L_Divider1" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = " • "
+horizontal_alignment = 1
+
+[node name="TR_Morale" type="TextureRect" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+texture = ExtResource("7_exmm6")
+expand_mode = 2
+
+[node name="VBox_Morale" type="VBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+alignment = 1
+
+[node name="PB_Morale" type="ProgressBar" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center/VBox_Morale"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+value = 50.0
+show_percentage = false
+
+[node name="TR_PR" type="TextureRect" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+texture = ExtResource("8_sr7x8")
+expand_mode = 2
+
+[node name="VBox_PR" type="VBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+alignment = 1
+
+[node name="PB_PR" type="ProgressBar" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center/VBox_PR"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+value = 50.0
+show_percentage = false
+
+[node name="Empty_Center" type="HBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="L_Revenue" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = "$$$"
+horizontal_alignment = 1
+
+[node name="L_Divider2" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = " • "
+horizontal_alignment = 1
+
+[node name="L_TimeRemaining" type="Label" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_kfhni")
+theme_override_font_sizes/font_size = 44
+text = "MM:SS:mm"
+horizontal_alignment = 1
+
+[node name="Empty_Right" type="HBoxContainer" parent="GUI/MC_All/VBox_All/HBox_Top"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
 
 [node name="ArtPlayer" parent="." instance=ExtResource("7_fpe3w")]
 position = Vector2(543, 329)
