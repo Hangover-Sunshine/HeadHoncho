@@ -84,8 +84,10 @@ func increase_energy(amnt:float):
 func change_energy():
 	if _is_affected_by_dickhead:
 		_energy_level += 100 #-_energy_change * 1.5
+		$ArtWorker.set_temperature(100)
 	else:
 		_energy_level += _energy_change
+		$ArtWorker.add_to_temperature(_energy_change)
 	##
 	
 	if _overheating and _energy_level < 66:
@@ -104,8 +106,11 @@ func change_energy():
 	
 	_check_health()
 	
-	print(">> Energy: ", _energy_level, " <<")
-	print(">> Temp:   ", _temperature, " <<")
+	if _is_affected_by_dickhead:
+		$ArtWorker.set_multiplier(_multiplier * 0.75)
+	else:
+		$ArtWorker.set_multiplier(_multiplier)
+	##
 ##
 
 func cooloff(decrease:float):

@@ -149,6 +149,18 @@ func _on_pb_temp_value_changed(value):
 		#$GUI/PB_Juice/FX_PB_Temp.color = Color8(174,35,52,255)
 #
 
+func add_to_temperature(temp):
+	$GUI/MC_Hover/VBox_MC/PB_Temp.value += temp
+##
+
+func set_temperature(temp):
+	$GUI/MC_Hover/VBox_MC/PB_Temp.value = temp
+##
+
+func set_multiplier(multi):
+	$GUI/MC_Hover/VBox_MC/HBox_Top_GUI/HBoxContainer/L_Mult_Value.text = str(multi)
+##
+
 func _input(event):
 	if Input.is_action_just_pressed("test"):
 		$GUI/MC_Hover/VBox_MC/PB_Temp.value += 1
