@@ -13,6 +13,8 @@ var revenue:float = 0
 # Add to this with: hiring, bonuses, pizza parties
 var costs:float = 0
 
+# All current dickheads in the scene
+var dickheads:Array = []
 # All current workers in the scene
 var workers:Array = []
 # All current seats in the scene
@@ -65,7 +67,19 @@ func _on_tick_timer_timeout():
 		$Elevator.open_door()
 	##
 	
-	# TODO: Dickhead management first
+	for dickhead in dickheads:
+		if dickhead in aff_bodies:
+			if head == Player.PlayerHead.COFFEE:
+				#dickhead.stop_moving()
+				#dickhead.run_burn(_get_random_position(dickhead.global_position))
+				print("burn!")
+			elif head == Player.PlayerHead.FAN:
+				print("blow!") # blow 'em
+			else:
+				print("convince!") # convince them to leave nicely
+			##
+		##
+	##
 	
 	# Get the amount of money being generated
 	for worker in workers:
@@ -118,8 +132,23 @@ func _dickhead_created(dickhead):
 	dickhead.go_to_elevator.connect(_exit_level)
 	dickhead.set_goal_position(seats[rindx].get_standing_pos())
 	open_seats.remove_at(rindx)
+	dickheads.append(dickhead)
 ##
 
 func _exit_level(dickhead:Dickhead):
-	dickhead.set_goal_position($Elevator.get_elevator_wait_pos())
+	dickhead.set_goal_position($Elevator2.get_elevator_wait_pos())
+##
+
+func _get_random_position(old_pos:Vector2):
+	var new_pos = NavigationServer2D.region_get_random_point(
+															$NavigationRegion2D.get_rid(),
+															1, false)
+	
+	while old_pos.distance_to(new_pos) < 10:
+		new_pos = NavigationServer2D.region_get_random_point(
+															$NavigationRegion2D.get_rid(),
+															1, false)
+	##
+	
+	return new_pos
 ##

@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwaykrfp0tfvv"]
+[gd_scene load_steps=11 format=3 uid="uid://dwaykrfp0tfvv"]
 
 [ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
 [ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/actors/art_boss.tscn" id="1_wgy7s"]
+[ext_resource type="Script" uid="uid://5ey4crd1ywre" path="res://scripts/game/managers/dickhead_sm/dickhead_state_machine.gd" id="4_mslvi"]
+[ext_resource type="Script" uid="uid://dxtajutxt0uvx" path="res://scripts/game/managers/dickhead_sm/walk_state.gd" id="5_ayjbb"]
+[ext_resource type="Script" uid="uid://cwp4ywr7aav0h" path="res://scripts/game/managers/dickhead_sm/pester_state.gd" id="6_kuopb"]
+[ext_resource type="Script" uid="uid://cwl7nugh3n4t3" path="res://scripts/game/managers/dickhead_sm/leave_state.gd" id="7_asxc1"]
+[ext_resource type="Script" uid="uid://dv73kuir7k2yg" path="res://scripts/system/state_machine/state.gd" id="7_h1kfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
@@ -32,7 +37,7 @@ shape = SubResource("RectangleShape2D_uclen")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="StressArea" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StressArea"]
@@ -44,5 +49,31 @@ debug_color = Color(0.990502, 0, 0.277534, 0.42)
 [node name="ExitTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_mslvi")
+
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle_State", "Pester_State")]
+script = ExtResource("5_ayjbb")
+Idle_State = NodePath("../LeaveState")
+Pester_State = NodePath("../PesterState")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
+
+[node name="PesterState" type="Node" parent="StateMachine" node_paths=PackedStringArray("StressArea")]
+script = ExtResource("6_kuopb")
+StressArea = NodePath("../../StressArea/CollisionShape2D")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
+
+[node name="LeaveState" type="Node" parent="StateMachine"]
+script = ExtResource("7_asxc1")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
+
+[node name="RunState" type="Node" parent="StateMachine"]
+script = ExtResource("7_h1kfr")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
+
+[node name="DoNothingState" type="Node" parent="StateMachine"]
+script = ExtResource("7_h1kfr")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [connection signal="body_entered" from="StressArea" to="." method="_on_stress_area_body_entered"]

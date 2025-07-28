@@ -38,6 +38,14 @@ func go_walk():
 	$AP_Motion.seek(random_time)
 	$AP_Motion.speed_scale = 1
 
+func go_run():
+	var anim_length = $AP_Motion.get_animation("Walk").length
+	var random_time = randf() * anim_length 
+	$AP_Motion.play("Walk")
+	$AP_Motion.seek(random_time)
+	$AP_Motion.speed_scale = 1.5
+##
+
 func go_fall():
 	$AP_Motion.play("Fall")
 #

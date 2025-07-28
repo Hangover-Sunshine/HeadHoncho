@@ -1,8 +1,11 @@
 extends Node2D
 
 signal dickhead_created(dickhead)
+signal dickhead_can_leave()
 
 const DICKHEAD = preload("res://prefabs/entities/dickhead.tscn")
+
+@export var LeavingElevator:bool = false
 
 @export var DickheadSpawnDelay:int = 6
 @export var DickheadSpawnDelayMin:int = 4
@@ -36,11 +39,15 @@ func open_door():
 
 func _on_door_control_timer_timeout():
 	if _door_open:
-		_door_open = false
-		var dickhead = DICKHEAD.instantiate()
-		dickhead.global_position = $SpawnPos.global_position
-		emit_signal("dickhead_created", dickhead)
-		$DoorControlTimer.start(0.15)
+		if LeavingElevator == false:
+			_door_open = false
+			var dickhead = DICKHEAD.instantiate()
+			dickhead.global_position = $SpawnPos.global_position
+			emit_signal("dickhead_created", dickhead)
+			$DoorControlTimer.start(0.15)
+		else:
+			emit_signal("dickhead_can_leave")
+		##
 	else:
 		$Elevator.close()
 	##

@@ -11,7 +11,7 @@ size = Vector2(83, 81)
 size = Vector2(250, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nitys"]
-size = Vector2(139, 175)
+size = Vector2(171, 185)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_nitys")
@@ -42,7 +42,7 @@ collision_layer = 0
 collision_mask = 54
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SmallTargetArea"]
-position = Vector2(-1.5, -15.5)
+position = Vector2(0.5, -20.5)
 shape = SubResource("RectangleShape2D_nitys")
 disabled = true
 debug_color = Color(0.56403, 0.395029, 0.996377, 0.42)
@@ -53,5 +53,5 @@ debug_color = Color(0.56403, 0.395029, 0.996377, 0.42)
 [connection signal="body_exited" from="LargeTargetArea" to="." method="_on_single_target_body_exited"]
 [connection signal="area_entered" from="SmallTargetArea" to="." method="_on_single_target_area_entered"]
 [connection signal="area_exited" from="SmallTargetArea" to="." method="_on_single_target_area_exited"]
-[connection signal="body_entered" from="SmallTargetArea" to="." method="_on_single_target_area_entered"]
-[connection signal="body_exited" from="SmallTargetArea" to="." method="_on_single_target_area_exited"]
+[connection signal="body_entered" from="SmallTargetArea" to="." method="_on_single_target_body_entered"]
+[connection signal="body_exited" from="SmallTargetArea" to="." method="_on_single_target_body_exited"]

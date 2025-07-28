@@ -100,19 +100,19 @@ func get_current_head():
 ##
 
 func _on_single_target_area_entered(area):
-	if area is Seat:
-		_seats_selected.append(area)
-	else:
-		_entities_in_range.append(area)
-	##
+	_seats_selected.append(area)
+##
+
+func _on_single_target_body_entered(body):
+	_entities_in_range.append(body)
 ##
 
 func _on_single_target_area_exited(area):
-	if area is Seat:
-		var indx = _seats_selected.find(area)
-		_seats_selected.remove_at(indx)
-	else:
-		var indx = _entities_in_range.find(area)
-		_entities_in_range.remove_at(indx)
-	##
+	var indx = _seats_selected.find(area)
+	_seats_selected.remove_at(indx)
+##
+
+func _on_single_target_body_exited(body):
+	var indx = _entities_in_range.find(body)
+	_entities_in_range.remove_at(indx)
 ##
