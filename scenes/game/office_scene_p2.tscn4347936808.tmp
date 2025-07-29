@@ -16,11 +16,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 137, 1904, 137, 189
 process_mode = 1
 script = ExtResource("1_actp7")
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
-start_position = Vector2(-61, 2)
-end_position = Vector2(108, 1)
-
-[node name="OfficeSpace" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_g6xq7")
 
 [node name="GameplayTimer" type="Timer" parent="."]

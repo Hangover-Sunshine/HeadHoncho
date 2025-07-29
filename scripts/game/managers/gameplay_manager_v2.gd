@@ -13,8 +13,8 @@ var revenue:float = 0
 # Add to this with: hiring, bonuses, pizza parties
 var costs:float = 0
 
-# All current dickheads in the scene
-var dickheads:Array = []
+# All current managers in the scene
+var managers:Array = []
 # All current workers in the scene
 var workers:Array = []
 # All current seats in the scene
@@ -51,7 +51,18 @@ func _ready():
 	##
 	
 	$Elevator.connect("dickhead_created", _dickhead_created)
-	$Elevator2.connect("elevator_door_open", _dickheads_leave)
+	$Elevator2.connect("elevator_door_open", _managers_leave)
+##
+
+func _process(_delta):
+	var aff_bodies = %Player.get_affected_bodies()
+	if len(aff_bodies) > 0:
+		for body in aff_bodies:
+			if body in managers and body.is_doing_nothing() == false and body.leaving_opinion == 0:
+				body.stop_doing_stuff()
+			##
+		##
+	##
 ##
 
 func _on_gameplay_timer_timeout():
@@ -68,8 +79,8 @@ func _on_tick_timer_timeout():
 	var head = %Player.get_current_head()
 	
 	# Only attempt to spawn if we have it open
-	#if len(open_seats) > 0:
-		#$Elevator.open_door()
+	if len(open_seats) > 0:
+		$Elevator.open_door()
 	##
 	
 	if len(waiting_to_leave) > 0:
@@ -81,17 +92,24 @@ func _on_tick_timer_timeout():
 		elevator_called = false
 	##
 	
-	for dickhead in dickheads:
-		if dickhead in aff_bodies:
+	for manager in managers:
+		if manager in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
-				#dickhead.stop_moving()
-				#dickhead.run_burn(_get_random_position(dickhead.global_position))
-				print("burn!")
+				manager.run_burn(_get_random_position(manager.global_position))
+				manager.leaving_opinion = -2
 			elif head == Player.PlayerHead.FAN:
 				print("blow!") # blow 'em
+				manager.leaving_opinion = -2
 			else:
-				print("convince!") # convince them to leave nicely
+				_exit_level(manager)
+				manager.leaving_opinion = 2
 			##
+			
+			open_seats.append(manager.selected_worker)
+		##
+		
+		if manager.is_doing_nothing() and manager not in aff_bodies:
+			manager.revert()
 		##
 	##
 	
@@ -143,31 +161,33 @@ func _worker_quits(worker:Worker):
 	##
 ##
 
-func _dickhead_created(dickhead):
-	%DickheadSuppository.add_child(dickhead)
-	dickhead.connect("awaiting_leaving", add_dickhead)
-	dickhead.connect("not_awaiting_anymore", remove_dickhead)
+func _dickhead_created(manager):
+	%DickheadSuppository.add_child(manager)
+	manager.connect("awaiting_leaving", add_dickhead)
+	manager.connect("not_awaiting_anymore", remove_dickhead)
+	manager.connect("needs_new_burning_point", _generate_new_point)
 	var rindx:int = randi() % len(open_seats)
-	dickhead.go_to_elevator.connect(_exit_level)
-	dickhead.set_goal_position(seats[open_seats[rindx]].get_standing_pos())
+	manager.go_to_elevator.connect(_exit_level)
+	manager.selected_worker = open_seats[rindx]
+	manager.set_goal_position(seats[open_seats[rindx]].get_standing_pos())
 	open_seats.remove_at(rindx)
-	dickheads.append(dickhead)
+	managers.append(manager)
 ##
 
-func _exit_level(dickhead:Dickhead):
-	dickhead.set_goal_position($Elevator2.get_elevator_wait_pos())
+func _exit_level(manager:Dickhead):
+	manager.set_goal_position($Elevator2.get_elevator_wait_pos(), true)
 ##
 
 func _get_random_position(old_pos:Vector2):
 	var new_pos = NavigationServer2D.region_get_random_point(
-					$NavigationRegion2D.get_rid(),
+					$OfficeSpace.get_rid(),
 					1,
 					false
 	)
 	
 	while old_pos.distance_to(new_pos) < 10:
 		new_pos = NavigationServer2D.region_get_random_point(
-					$NavigationRegion2D.get_rid(),
+					$OfficeSpace.get_rid(),
 					1,
 					false
 		)
@@ -186,7 +206,7 @@ func remove_dickhead(dickhead:Dickhead):
 	waiting_to_leave.remove_at(id)
 ##
 
-func _dickheads_leave():
+func _managers_leave():
 	var ids_to_clean:Array[int] = []
 	
 	var then = Time.get_ticks_usec()
@@ -197,11 +217,16 @@ func _dickheads_leave():
 		for i in range(rand_amnt):
 			var picked = waiting_to_leave.pick_random()
 			
-			dickheads.remove_at(dickheads.find(picked))
+			managers.remove_at(managers.find(picked))
 			waiting_to_leave.remove_at(waiting_to_leave.find(picked))
 			picked.queue_free()
 		##
 		
 		await get_tree().create_timer(0.08).timeout
 	##
+##
+
+func _generate_new_point(manager:Dickhead):
+	var new_pos = _get_random_position(manager.global_position)
+	manager.run_burn(new_pos)
 ##

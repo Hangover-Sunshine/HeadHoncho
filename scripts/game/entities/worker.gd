@@ -63,10 +63,6 @@ func _check_health():
 		_overheating = true
 		_multiplier = 2
 	##
-	
-	#if _energy_level < 66:
-		#_temperature = max(0, _temperature - TemperatureIncreasePerTick)
-	##
 ##
 
 func get_current_contribution():
@@ -124,7 +120,6 @@ func cooloff(decrease:float):
 func payoff(decrease:float):
 	if _is_affected_by_manager == false:
 		_temperature += decrease
-		print(_temperature)
 	##
 ##
 

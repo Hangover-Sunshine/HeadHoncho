@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwaykrfp0tfvv"]
+[gd_scene load_steps=12 format=3 uid="uid://dwaykrfp0tfvv"]
 
 [ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://dxtajutxt0uvx" path="res://scripts/game/managers/dickhead_sm/walk_state.gd" id="5_ayjbb"]
 [ext_resource type="Script" uid="uid://cwp4ywr7aav0h" path="res://scripts/game/managers/dickhead_sm/pester_state.gd" id="6_kuopb"]
 [ext_resource type="Script" uid="uid://cwl7nugh3n4t3" path="res://scripts/game/managers/dickhead_sm/leave_state.gd" id="7_asxc1"]
-[ext_resource type="Script" uid="uid://dv73kuir7k2yg" path="res://scripts/system/state_machine/state.gd" id="7_h1kfr"]
+[ext_resource type="Script" uid="uid://bm84hsh6qvo7u" path="res://scripts/game/managers/dickhead_sm/run_state.gd" id="8_fx3ew"]
+[ext_resource type="Script" uid="uid://d3lm5gd848u8t" path="res://scripts/game/managers/dickhead_sm/do_nothing_state.gd" id="9_fx3ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
@@ -17,7 +18,7 @@ size = Vector2(171, 172)
 
 [node name="Dickhead" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("1_m50rt")
 MovementSpeed = 75.0
 
@@ -69,11 +70,18 @@ script = ExtResource("7_asxc1")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [node name="RunState" type="Node" parent="StateMachine"]
-script = ExtResource("7_h1kfr")
+script = ExtResource("8_fx3ew")
+BurnTimerTime = 16.0
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
-[node name="DoNothingState" type="Node" parent="StateMachine"]
-script = ExtResource("7_h1kfr")
+[node name="BurnTimer" type="Timer" parent="StateMachine/RunState"]
+wait_time = 4.0
+one_shot = true
+
+[node name="DoNothingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("StressAreaCollider")]
+script = ExtResource("9_fx3ew")
+StressAreaCollider = NodePath("../../StressArea/CollisionShape2D")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [connection signal="body_entered" from="StressArea" to="." method="_on_stress_area_body_entered"]
+[connection signal="timeout" from="StateMachine/RunState/BurnTimer" to="StateMachine/RunState" method="_on_burn_timer_timeout"]

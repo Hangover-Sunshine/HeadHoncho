@@ -67,3 +67,7 @@ func be_onfire(): ## trigger when given coffee
 	face.frame = 9
 	$FX_Back/CPU_FX_Fire.emitting = true
 #
+
+func stop_fire(): ## trigger when given coffee
+	$FX_Back/CPU_FX_Fire.emitting = false
+#
