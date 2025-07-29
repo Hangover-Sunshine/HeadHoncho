@@ -68,8 +68,8 @@ func _on_tick_timer_timeout():
 	var head = %Player.get_current_head()
 	
 	# Only attempt to spawn if we have it open
-	if len(open_seats) > 0:
-		$Elevator.open_door()
+	#if len(open_seats) > 0:
+		#$Elevator.open_door()
 	##
 	
 	if len(waiting_to_leave) > 0:
@@ -106,6 +106,8 @@ func _on_tick_timer_timeout():
 				worker.increase_energy(%Player.EnergyIncreasePerTick)
 			elif head == Player.PlayerHead.FAN:
 				worker.cooloff(%Player.EnergyDecreasePerTick)
+			elif head == Player.PlayerHead.BRIEF_CASE:
+				worker.payoff(%Player.TempDecreasePerTick)
 			##
 		##
 		worker.change_energy()
@@ -158,13 +160,17 @@ func _exit_level(dickhead:Dickhead):
 
 func _get_random_position(old_pos:Vector2):
 	var new_pos = NavigationServer2D.region_get_random_point(
-															$NavigationRegion2D.get_rid(),
-															1, false)
+					$NavigationRegion2D.get_rid(),
+					1,
+					false
+	)
 	
 	while old_pos.distance_to(new_pos) < 10:
 		new_pos = NavigationServer2D.region_get_random_point(
-															$NavigationRegion2D.get_rid(),
-															1, false)
+					$NavigationRegion2D.get_rid(),
+					1,
+					false
+		)
 	##
 	
 	return new_pos

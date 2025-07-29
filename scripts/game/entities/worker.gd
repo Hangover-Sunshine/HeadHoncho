@@ -7,14 +7,14 @@ signal worker_quits(worker:Worker)
 @export var EnergyDecreasePerTick:float = -2
 @export var TemperatureIncreasePerTick:float = 2
 
-var _temperature:float = 0
+var _temperature:float = 60
 var _cooling_down:bool = false
 var _overheating:bool = false
 var _energy_level:float = 50
 var _multiplier:float = 1
 var _energy_change:float
 var _is_stressed:bool = false
-var _is_affected_by_dickhead:bool = false
+var _is_affected_by_manager:bool = false
 
 func _ready():
 	$ArtWorker.be_meh()
@@ -41,7 +41,7 @@ func _check_health():
 		if _overheating and _cooling_down == false:
 			_temperature = min(100, _temperature + (
 					TemperatureIncreasePerTick  *
-						(1.0 if _is_affected_by_dickhead == false else 1.25)
+						(1.0 if _is_affected_by_manager == false else 1.25)
 				)
 			)
 			if _temperature >= 100:
@@ -64,25 +64,25 @@ func _check_health():
 		_multiplier = 2
 	##
 	
-	if _energy_level < 66:
-		_temperature = max(0, _temperature - TemperatureIncreasePerTick)
+	#if _energy_level < 66:
+		#_temperature = max(0, _temperature - TemperatureIncreasePerTick)
 	##
 ##
 
 func get_current_contribution():
 	return BaseMoneyContribution * (
-		_multiplier * (1.0 if _is_affected_by_dickhead == false else 0.75)
+		_multiplier * (1.0 if _is_affected_by_manager == false else 0.75)
 	)
 ##
 
 func increase_energy(amnt:float):
-	if _is_affected_by_dickhead == false:
+	if _is_affected_by_manager == false:
 		_energy_change = amnt
 	##
 ##
 
 func change_energy():
-	if _is_affected_by_dickhead:
+	if _is_affected_by_manager:
 		_energy_level += 100 #-_energy_change * 1.5
 		$ArtWorker.set_temperature(100)
 	else:
@@ -106,7 +106,7 @@ func change_energy():
 	
 	_check_health()
 	
-	if _is_affected_by_dickhead:
+	if _is_affected_by_manager:
 		$ArtWorker.set_multiplier(_multiplier * 0.75)
 	else:
 		$ArtWorker.set_multiplier(_multiplier)
@@ -114,10 +114,17 @@ func change_energy():
 ##
 
 func cooloff(decrease:float):
-	if _is_affected_by_dickhead == false:
+	if _is_affected_by_manager == false:
 		_overheating = false
 		_cooling_down = true
 		_energy_change = decrease
+	##
+##
+
+func payoff(decrease:float):
+	if _is_affected_by_manager == false:
+		_temperature += decrease
+		print(_temperature)
 	##
 ##
 
@@ -126,7 +133,7 @@ func is_quitting():
 ##
 
 func affected_by_dickhead():
-	_is_affected_by_dickhead = true
+	_is_affected_by_manager = true
 	if _energy_level < 25:
 		_energy_level = 25
 	##

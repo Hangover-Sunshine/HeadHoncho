@@ -5,6 +5,7 @@ class_name PlayerV2
 @export var PenaltyWhileAbilityActive:float = 0.75
 @export_range(0, 15) var EnergyIncreasePerTick:float = 2
 @export_range(-15, 0) var EnergyDecreasePerTick:float = -2
+@export_range(-15, 0) var TempDecreasePerTick:float = -2
 
 enum PlayerHead {
 	COFFEE,
