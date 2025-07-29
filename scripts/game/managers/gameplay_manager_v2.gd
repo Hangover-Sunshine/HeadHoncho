@@ -21,6 +21,10 @@ var workers:Array = []
 var seats:Array[Seat] = []
 # Open workers
 var open_seats:Array[int] = []
+# Pot to leave
+var waiting_to_leave:Array[Dickhead]
+
+var elevator_called:bool = false
 
 func _ready():
 	%TickTimer.start()
@@ -47,6 +51,7 @@ func _ready():
 	##
 	
 	$Elevator.connect("dickhead_created", _dickhead_created)
+	$Elevator2.connect("elevator_door_open", _dickheads_leave)
 ##
 
 func _on_gameplay_timer_timeout():
@@ -65,6 +70,15 @@ func _on_tick_timer_timeout():
 	# Only attempt to spawn if we have it open
 	if len(open_seats) > 0:
 		$Elevator.open_door()
+	##
+	
+	if len(waiting_to_leave) > 0:
+		elevator_called = true
+	##
+	
+	if elevator_called:
+		$Elevator2.open_door()
+		elevator_called = false
 	##
 	
 	for dickhead in dickheads:
@@ -106,6 +120,7 @@ func _on_tick_timer_timeout():
 				newWorker.worker_quits.connect(_worker_quits)
 				newWorker.global_position = afs.global_position
 				workers[seatID] = newWorker
+				open_seats.push_back(seatID)
 				afs.disable_seat()
 			##
 		##
@@ -128,9 +143,11 @@ func _worker_quits(worker:Worker):
 
 func _dickhead_created(dickhead):
 	%DickheadSuppository.add_child(dickhead)
+	dickhead.connect("awaiting_leaving", add_dickhead)
+	dickhead.connect("not_awaiting_anymore", remove_dickhead)
 	var rindx:int = randi() % len(open_seats)
 	dickhead.go_to_elevator.connect(_exit_level)
-	dickhead.set_goal_position(seats[rindx].get_standing_pos())
+	dickhead.set_goal_position(seats[open_seats[rindx]].get_standing_pos())
 	open_seats.remove_at(rindx)
 	dickheads.append(dickhead)
 ##
@@ -151,4 +168,34 @@ func _get_random_position(old_pos:Vector2):
 	##
 	
 	return new_pos
+##
+
+func add_dickhead(dickhead:Dickhead):
+	waiting_to_leave.push_back(dickhead)
+	elevator_called = true
+##
+
+func remove_dickhead(dickhead:Dickhead):
+	var id = waiting_to_leave.find(dickhead)
+	waiting_to_leave.remove_at(id)
+##
+
+func _dickheads_leave():
+	var ids_to_clean:Array[int] = []
+	
+	var then = Time.get_ticks_usec()
+	
+	while then - Time.get_ticks_usec() < 0.18 and len(waiting_to_leave) > 0:
+		var rand_amnt = randi_range(1, 2) if len(waiting_to_leave) > 2 else 1
+		
+		for i in range(rand_amnt):
+			var picked = waiting_to_leave.pick_random()
+			
+			dickheads.remove_at(dickheads.find(picked))
+			waiting_to_leave.remove_at(waiting_to_leave.find(picked))
+			picked.queue_free()
+		##
+		
+		await get_tree().create_timer(0.08).timeout
+	##
 ##

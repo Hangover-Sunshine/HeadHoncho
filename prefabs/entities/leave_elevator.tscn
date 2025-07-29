@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvu53yyoutgpn"]
+
+[ext_resource type="Script" uid="uid://bpcwx5wetq6vw" path="res://scripts/game/entities/leave_elevator.gd" id="1_o4yvx"]
+[ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/props/art_elevator.tscn" id="2_5emdw"]
+
+[node name="Elevator" type="Node2D"]
+script = ExtResource("1_o4yvx")
+
+[node name="Elevator" parent="." instance=ExtResource("2_5emdw")]
+
+[node name="SpawnPos" type="Marker2D" parent="."]
+position = Vector2(0, 111)
+gizmo_extents = 50.0
+
+[node name="DoorControlTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DoorControlTimer" to="." method="_on_door_control_timer_timeout"]

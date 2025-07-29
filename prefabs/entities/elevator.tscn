@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ggvmk2b8x7bg"]
 
-[ext_resource type="Script" uid="uid://8tvyiqgn4qg3" path="res://scripts/game/entities/elevator.gd" id="1_h3duj"]
+[ext_resource type="Script" uid="uid://8tvyiqgn4qg3" path="res://scripts/game/entities/spawn_elevator.gd" id="1_h3duj"]
 [ext_resource type="PackedScene" uid="uid://bg3q611li7rx5" path="res://prefabs/art/props/art_elevator.tscn" id="1_lqe15"]
 
 [node name="Elevator" type="Node2D"]
