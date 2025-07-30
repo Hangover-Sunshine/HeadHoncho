@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwaykrfp0tfvv"]
+[gd_scene load_steps=13 format=3 uid="uid://dwaykrfp0tfvv"]
 
 [ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
 [ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cwl7nugh3n4t3" path="res://scripts/game/managers/dickhead_sm/leave_state.gd" id="7_asxc1"]
 [ext_resource type="Script" uid="uid://bm84hsh6qvo7u" path="res://scripts/game/managers/dickhead_sm/run_state.gd" id="8_fx3ew"]
 [ext_resource type="Script" uid="uid://d3lm5gd848u8t" path="res://scripts/game/managers/dickhead_sm/do_nothing_state.gd" id="9_fx3ew"]
+[ext_resource type="Script" uid="uid://dlyo0ihdcwugd" path="res://scripts/game/managers/dickhead_sm/get_blown_state.gd" id="10_h3lw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
@@ -83,5 +84,10 @@ script = ExtResource("9_fx3ew")
 StressAreaCollider = NodePath("../../StressArea/CollisionShape2D")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
+[node name="GetBlownState" type="Node" parent="StateMachine"]
+script = ExtResource("10_h3lw0")
+metadata/_custom_type_script = "uid://dv73kuir7k2yg"
+
+[connection signal="falling_finished" from="ArtBoss" to="." method="_on_art_boss_falling_finished"]
 [connection signal="body_entered" from="StressArea" to="." method="_on_stress_area_body_entered"]
 [connection signal="timeout" from="StateMachine/RunState/BurnTimer" to="StateMachine/RunState" method="_on_burn_timer_timeout"]

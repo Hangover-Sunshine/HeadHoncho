@@ -7,6 +7,10 @@ const WORKER = preload("res://prefabs/entities/worker.tscn")
 @export var TimePerRound:float = 180
 @export var TimePerTick:float = 1.5
 
+@export var LeaveAfterBadThing:float = -4
+@export var FallOutWindow:float = -2
+@export var LeaveAfterGoodThing:float = 2
+
 # Add to this with every tick
 var revenue:float = 0
 
@@ -93,16 +97,31 @@ func _on_tick_timer_timeout():
 	##
 	
 	for manager in managers:
+		if manager == null:
+			continue # ignore, we need to clean up
+		##
+		
 		if manager in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
 				manager.run_burn(_get_random_position(manager.global_position))
-				manager.leaving_opinion = -2
+				manager.leaving_opinion = LeaveAfterBadThing
 			elif head == Player.PlayerHead.FAN:
-				print("blow!") # blow 'em
-				manager.leaving_opinion = -2
+				var move = Vector2(
+					1 * sign(
+						%Player.global_position.
+							direction_to(manager.global_position).normalized().x
+						),
+					0
+				)
+				
+				manager.get_blown(
+					move * %Player.BlowPower
+				)
+				
+				manager.leaving_opinion = LeaveAfterBadThing
 			else:
 				_exit_level(manager)
-				manager.leaving_opinion = 2
+				manager.leaving_opinion = LeaveAfterGoodThing
 			##
 			
 			open_seats.append(manager.selected_worker)
@@ -196,13 +215,13 @@ func _get_random_position(old_pos:Vector2):
 	return new_pos
 ##
 
-func add_dickhead(dickhead:Dickhead):
-	waiting_to_leave.push_back(dickhead)
+func add_dickhead(manager:Dickhead):
+	waiting_to_leave.push_back(manager)
 	elevator_called = true
 ##
 
-func remove_dickhead(dickhead:Dickhead):
-	var id = waiting_to_leave.find(dickhead)
+func remove_dickhead(manager:Dickhead):
+	var id = waiting_to_leave.find(manager)
 	waiting_to_leave.remove_at(id)
 ##
 

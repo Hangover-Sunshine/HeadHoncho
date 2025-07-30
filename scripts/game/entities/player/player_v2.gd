@@ -3,6 +3,7 @@ class_name PlayerV2
 
 @export var MoveSpeed:float = 250
 @export var PenaltyWhileAbilityActive:float = 0.75
+@export var BlowPower:float = 500
 @export_range(0, 15) var EnergyIncreasePerTick:float = 2
 @export_range(-15, 0) var EnergyDecreasePerTick:float = -2
 @export_range(-15, 0) var TempDecreasePerTick:float = -2

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Dickhead
 
-signal dickhead_removed(pr_impact:float, worker_id:int)
+signal dickhead_removed(pr_impact:float)
 signal go_to_elevator(dickhead:Dickhead)
 signal needs_new_burning_point(dickhead:Dickhead)
 signal awaiting_leaving(dickhead:Dickhead)
@@ -14,7 +14,7 @@ signal not_awaiting_anymore(dickhead:Dickhead)
 @onready var state_machine = $StateMachine
 
 var selected_worker:int = -1
-var leaving_opinion:int = 0
+var leaving_opinion:float = 0
 
 var _is_walking:bool = false
 var _leaving:bool = false
@@ -28,6 +28,7 @@ func _ready():
 	$StateMachine/RunState.nav_agent = navigation_agent
 	$StateMachine/RunState.manager = self
 	$StateMachine/LeaveState.manager = self
+	$StateMachine/GetBlownState.manager = self
 	navigation_agent.velocity_computed.connect(_on_velocity_computed)
 ##
 
@@ -67,6 +68,9 @@ func _physics_process(delta):
 	
 	if state_machine.CurrState is WalkState or state_machine.CurrState is RunState:
 		_on_velocity_computed(state_machine.CurrState.velocity)
+	elif state_machine.CurrState is GetBlownState:
+		velocity = state_machine.CurrState.velocity
+		move_and_slide()
 	##
 ##
 
@@ -102,4 +106,21 @@ func stop_burning():
 	$ArtBoss.go_idle()
 	state_machine.change_state($StateMachine/DoNothingState)
 	go_to_elevator.emit(self)
+##
+
+func get_blown(init_vel):
+	$ArtBoss.be_blowned()
+	state_machine.change_state($StateMachine/GetBlownState)
+	state_machine.CurrState.velocity = init_vel
+##
+
+func start_falling():
+	$ArtBoss.go_fall()
+	state_machine.change_state($StateMachine/GetBlownState)
+	state_machine.CurrState.velocity = Vector2(sign(velocity.x) * 200, 0)
+##
+
+func _on_art_boss_falling_finished():
+	dickhead_removed.emit(leaving_opinion)
+	queue_free()
 ##

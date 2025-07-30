@@ -4,6 +4,8 @@ extends Node2D
 @onready var face
 #
 
+signal falling_finished
+
 ##
 func _ready():
 	assign_face()
@@ -49,6 +51,10 @@ func go_run():
 func go_fall():
 	$AP_Motion.play("Fall")
 #
+
+func fall_finished():
+	falling_finished.emit()
+##
 
 ## Changes face of character depending on state / activates some 
 ##func be_asleep(): 
