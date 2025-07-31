@@ -16,10 +16,13 @@ signal not_awaiting_anymore(dickhead:Dickhead)
 var selected_worker:int = -1
 var leaving_opinion:float = 0
 
+var _target:Vector2
 var _is_walking:bool = false
 var _leaving:bool = false
 var _stop_pathing:bool = false
 var _is_burning:bool = false
+
+var _running_out_of_window:bool = false
 
 func _ready():
 	$ArtBoss.be_happy()
@@ -40,13 +43,19 @@ func set_goal_position(pos, is_leaving:bool = false):
 	state_machine.CurrState.set_navigation_target(pos)
 ##
 
-func run_burn(pos):
+func run_burn(pos, run_to_pos:bool):
 	if state_machine.CurrState != $StateMachine/RunState:
 		$ArtBoss.go_run()
 		$ArtBoss.be_onfire()
 		state_machine.change_state($StateMachine/RunState)
 	##
-	navigation_agent.target_position = pos
+	
+	if run_to_pos:
+		state_machine.CurrState.target = pos
+		state_machine.CurrState.run_out = true
+	else:
+		navigation_agent.target_position = pos
+	##
 ##
 
 func stop_doing_stuff():

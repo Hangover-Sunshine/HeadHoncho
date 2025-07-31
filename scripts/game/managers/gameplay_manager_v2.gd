@@ -103,7 +103,8 @@ func _on_tick_timer_timeout():
 		
 		if manager in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
-				manager.run_burn(_get_random_position(manager.global_position))
+				var new_pos = _get_random_position(manager.global_position)
+				manager.run_burn(new_pos[0], new_pos[1] >= 0)
 				manager.leaving_opinion = LeaveAfterBadThing
 			elif head == Player.PlayerHead.FAN:
 				var move = Vector2(
@@ -204,15 +205,38 @@ func _get_random_position(old_pos:Vector2):
 					false
 	)
 	
-	while old_pos.distance_to(new_pos) < 10:
-		new_pos = NavigationServer2D.region_get_random_point(
-					$OfficeSpace.get_rid(),
-					1,
-					false
-		)
+	var rand = randi() % 100
+	var distances = [
+		$FallingArea/Marker2D.global_position.distance_to(old_pos),
+		$FallingArea/Marker2D2.global_position.distance_to(old_pos),
+		$FallingArea/Marker2D3.global_position.distance_to(old_pos)
+	]
+	
+	var shortest_dist = distances.min()
+	var sdi = distances.find(shortest_dist)
+	
+	if shortest_dist < 250 and rand > 20:
+		match sdi:
+			0:
+				new_pos = $FallingArea/Marker2D.global_position
+			1:
+				new_pos = $FallingArea/Marker2D2.global_position
+			2:
+				new_pos = $FallingArea/Marker2D3.global_position
+			##
+		##
+	else:
+		sdi = -1
+		while old_pos.distance_to(new_pos) < 10:
+			new_pos = NavigationServer2D.region_get_random_point(
+						$OfficeSpace.get_rid(),
+						1,
+						false
+			)
+		##
 	##
 	
-	return new_pos
+	return [new_pos, sdi]
 ##
 
 func add_dickhead(manager:Dickhead):
@@ -247,5 +271,5 @@ func _managers_leave():
 
 func _generate_new_point(manager:Dickhead):
 	var new_pos = _get_random_position(manager.global_position)
-	manager.run_burn(new_pos)
+	manager.run_burn(new_pos[0], new_pos[1] >= 0)
 ##
