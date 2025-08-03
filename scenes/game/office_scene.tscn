@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cdxyycqn3po6v" path="res://prefabs/entities/player/player_all_square.tscn" id="2_vej8y"]
 [ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="3_ntavv"]
 [ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="4_g6xq7"]
-[ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/dickhead_controller.gd" id="5_6dbhj"]
+[ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/manager_manager.gd" id="5_6dbhj"]
 [ext_resource type="PackedScene" uid="uid://ggvmk2b8x7bg" path="res://prefabs/entities/elevator.tscn" id="6_duno8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_g6xq7"]

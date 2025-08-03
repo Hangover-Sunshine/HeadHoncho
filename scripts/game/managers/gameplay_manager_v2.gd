@@ -18,7 +18,7 @@ var revenue:float = 0
 var costs:float = 0
 
 # All current managers in the scene
-var managers:Array = []
+#var managers:Array = []
 # All current workers in the scene
 var workers:Array = []
 # All current seats in the scene
@@ -26,7 +26,7 @@ var seats:Array[Seat] = []
 # Open workers
 var open_seats:Array[int] = []
 # Pot to leave
-var waiting_to_leave:Array[Dickhead]
+#var waiting_to_leave:Array[Dickhead]
 
 var elevator_called:bool = false
 
@@ -54,8 +54,8 @@ func _ready():
 		workers.append(null)
 	##
 	
-	$Elevator.connect("dickhead_created", _dickhead_created)
-	$Elevator2.connect("elevator_door_open", _managers_leave)
+	$Elevator.connect("dickhead_created", manager_created)
+	$Elevator2.connect("elevator_door_open", $ManagerRepository.managers_leave)
 	
 	%Player.connect("player_is_falling", _player_is_falling)
 	%Player.connect("player_dead", _player_dead)
@@ -65,7 +65,8 @@ func _process(_delta):
 	var aff_bodies = %Player.get_affected_bodies()
 	if len(aff_bodies) > 0:
 		for body in aff_bodies:
-			if body in managers and body.is_doing_nothing() == false and body.leaving_opinion == 0:
+			if body in $ManagerRepository.managers and body.is_doing_nothing() == false\
+				and body.leaving_opinion == 0:
 				body.stop_doing_stuff()
 			##
 		##
@@ -80,7 +81,6 @@ func _on_gameplay_timer_timeout():
 func _on_tick_timer_timeout():
 	print("Tick!")
 	
-	#var affected = %Player.get_affecting_body()
 	var aff_seats = %Player.get_affected_seats()
 	var aff_bodies = %Player.get_affected_bodies()
 	var head = %Player.get_current_head()
@@ -90,7 +90,7 @@ func _on_tick_timer_timeout():
 		$Elevator.open_door()
 	##
 	
-	if len(waiting_to_leave) > 0:
+	if len($ManagerRepository.waiting_to_leave) > 0:
 		elevator_called = true
 	##
 	
@@ -99,14 +99,14 @@ func _on_tick_timer_timeout():
 		elevator_called = false
 	##
 	
-	for manager in managers:
+	for manager in $ManagerRepository.managers:
 		if manager == null:
 			continue # ignore, we need to clean up
 		##
 		
 		if manager in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
-				var new_pos = _get_random_position(manager.global_position)
+				var new_pos = $ManagerRepository.get_random_position(manager.global_position)
 				manager.run_burn(new_pos[0], new_pos[1] >= 0)
 				manager.leaving_opinion = LeaveAfterBadThing
 			elif head == Player.PlayerHead.FAN:
@@ -124,7 +124,7 @@ func _on_tick_timer_timeout():
 				
 				manager.leaving_opinion = LeaveAfterBadThing
 			else:
-				_exit_level(manager)
+				$ManagerRepository.exit_level(manager)
 				manager.leaving_opinion = LeaveAfterGoodThing
 			##
 			
@@ -184,97 +184,11 @@ func _worker_quits(worker:Worker):
 	##
 ##
 
-func _dickhead_created(manager):
-	%DickheadSuppository.add_child(manager)
-	manager.connect("awaiting_leaving", add_dickhead)
-	manager.connect("not_awaiting_anymore", remove_dickhead)
-	manager.connect("needs_new_burning_point", _generate_new_point)
+func manager_created(manager):
 	var rindx:int = randi() % len(open_seats)
-	manager.go_to_elevator.connect(_exit_level)
-	manager.selected_worker = open_seats[rindx]
-	manager.set_goal_position(seats[open_seats[rindx]].get_standing_pos())
+	var worker:int = open_seats[rindx]
+	$ManagerRepository.manager_created(manager, worker, seats[worker].get_standing_pos())
 	open_seats.remove_at(rindx)
-	managers.append(manager)
-##
-
-func _exit_level(manager:Dickhead):
-	manager.set_goal_position($Elevator2.get_elevator_wait_pos(), true)
-##
-
-func _get_random_position(old_pos:Vector2):
-	var new_pos = NavigationServer2D.region_get_random_point(
-					$OfficeSpace.get_rid(),
-					1,
-					false
-	)
-	
-	var rand = randi() % 100
-	var distances = [
-		$FallingArea/Marker2D.global_position.distance_to(old_pos),
-		$FallingArea/Marker2D2.global_position.distance_to(old_pos),
-		$FallingArea/Marker2D3.global_position.distance_to(old_pos)
-	]
-	
-	var shortest_dist = distances.min()
-	var sdi = distances.find(shortest_dist)
-	
-	if shortest_dist < 250 and rand > 20:
-		match sdi:
-			0:
-				new_pos = $FallingArea/Marker2D.global_position
-			1:
-				new_pos = $FallingArea/Marker2D2.global_position
-			2:
-				new_pos = $FallingArea/Marker2D3.global_position
-			##
-		##
-	else:
-		sdi = -1
-		while old_pos.distance_to(new_pos) < 10:
-			new_pos = NavigationServer2D.region_get_random_point(
-						$OfficeSpace.get_rid(),
-						1,
-						false
-			)
-		##
-	##
-	
-	return [new_pos, sdi]
-##
-
-func add_dickhead(manager:Dickhead):
-	waiting_to_leave.push_back(manager)
-	elevator_called = true
-##
-
-func remove_dickhead(manager:Dickhead):
-	var id = waiting_to_leave.find(manager)
-	waiting_to_leave.remove_at(id)
-##
-
-func _managers_leave():
-	var ids_to_clean:Array[int] = []
-	
-	var then = Time.get_ticks_usec()
-	
-	while then - Time.get_ticks_usec() < 0.18 and len(waiting_to_leave) > 0:
-		var rand_amnt = randi_range(1, 2) if len(waiting_to_leave) > 2 else 1
-		
-		for i in range(rand_amnt):
-			var picked = waiting_to_leave.pick_random()
-			
-			managers.remove_at(managers.find(picked))
-			waiting_to_leave.remove_at(waiting_to_leave.find(picked))
-			picked.queue_free()
-		##
-		
-		await get_tree().create_timer(0.08).timeout
-	##
-##
-
-func _generate_new_point(manager:Dickhead):
-	var new_pos = _get_random_position(manager.global_position)
-	manager.run_burn(new_pos[0], new_pos[1] >= 0)
 ##
 
 func _player_dead():

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://mww876lhrveh"]
+[gd_scene load_steps=12 format=3 uid="uid://mww876lhrveh"]
 
 [ext_resource type="Script" uid="uid://dicd1sabp7cnb" path="res://scripts/game/managers/gameplay_manager_v2.gd" id="1_actp7"]
 [ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="3_ef4st"]
+[ext_resource type="Script" uid="uid://cwd35mi2oda5r" path="res://scripts/game/worker_manager.gd" id="4_2uth1"]
 [ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="4_ecp6i"]
+[ext_resource type="Script" uid="uid://d1hq6a8vxbhs4" path="res://scripts/game/manager_manager.gd" id="5_ef4st"]
 [ext_resource type="PackedScene" uid="uid://ggvmk2b8x7bg" path="res://prefabs/entities/elevator.tscn" id="6_y554v"]
 [ext_resource type="Script" uid="uid://kdxkhvfepq01" path="res://scripts/game/falling_area.gd" id="7_ecp6i"]
 [ext_resource type="PackedScene" uid="uid://bvu53yyoutgpn" path="res://prefabs/entities/leave_elevator.tscn" id="7_ef4st"]
@@ -100,12 +102,16 @@ rotation = 3.14159
 
 [node name="WorkerRepository" type="Node" parent="."]
 unique_name_in_owner = true
+script = ExtResource("4_2uth1")
 
 [node name="Worker" parent="WorkerRepository" instance=ExtResource("4_ecp6i")]
 position = Vector2(215, 394)
 
-[node name="DickheadSuppository" type="Node" parent="."]
+[node name="ManagerRepository" type="Node" parent="." node_paths=PackedStringArray("OfficePathingArea", "LeaveVator")]
 unique_name_in_owner = true
+script = ExtResource("5_ef4st")
+OfficePathingArea = NodePath("../OfficeSpace")
+LeaveVator = NodePath("../Elevator2")
 
 [node name="Elevator" parent="." instance=ExtResource("6_y554v")]
 position = Vector2(1172, 76)
@@ -135,5 +141,5 @@ gizmo_extents = 50.0
 
 [connection signal="timeout" from="GameplayTimer" to="." method="_on_gameplay_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
-[connection signal="timeout" from="TickTimer" to="DickheadSuppository" method="_on_tick_timer_timeout"]
+[connection signal="timeout" from="TickTimer" to="ManagerRepository" method="_on_tick_timer_timeout"]
 [connection signal="body_entered" from="FallingArea" to="FallingArea" method="_on_body_entered"]
