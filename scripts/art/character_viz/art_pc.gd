@@ -52,7 +52,11 @@ func go_walk():
 
 func go_fall():
 	$AP_Motion.play("Fall")
-#
+##
+
+func is_falling_finished():
+	return $AP_Motion.is_playing() == false
+##
 
 ## Head animations; 0 = fan, 1 = cafe, 2 = brief
 func activate_head():

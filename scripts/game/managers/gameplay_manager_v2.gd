@@ -56,6 +56,9 @@ func _ready():
 	
 	$Elevator.connect("dickhead_created", _dickhead_created)
 	$Elevator2.connect("elevator_door_open", _managers_leave)
+	
+	%Player.connect("player_is_falling", _player_is_falling)
+	%Player.connect("player_dead", _player_dead)
 ##
 
 func _process(_delta):
@@ -272,4 +275,12 @@ func _managers_leave():
 func _generate_new_point(manager:Dickhead):
 	var new_pos = _get_random_position(manager.global_position)
 	manager.run_burn(new_pos[0], new_pos[1] >= 0)
+##
+
+func _player_dead():
+	pass
+##
+
+func _player_is_falling():
+	%TickTimer.stop()
 ##

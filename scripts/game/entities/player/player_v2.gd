@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name PlayerV2
 
+signal player_is_falling
+signal player_dead
+
 @export var MoveSpeed:float = 250
 @export var PenaltyWhileAbilityActive:float = 0.75
 @export var BlowPower:float = 500
@@ -18,6 +21,8 @@ var _curr_head:PlayerHead = PlayerHead.COFFEE
 var _use_head:bool = false
 var _selected_body
 var _is_walking:bool = false
+var _is_falling:bool = false
+var _finished:bool = false
 
 var _entities_in_range:Array = []
 var _seats_selected:Array[Seat] = []
@@ -28,6 +33,10 @@ func _ready():
 ##
 
 func _input(event):
+	if _is_falling:
+		return
+	##
+	
 	if event.is_action_pressed("primary"):
 		_use_head = true
 	##
@@ -56,6 +65,14 @@ func _input(event):
 ##
 
 func _physics_process(_delta):
+	if _is_falling:
+		if $ArtPlayer.is_falling_finished() and !_finished:
+			player_dead.emit()
+			_finished = true
+		##
+		return
+	##
+	
 	velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("up"):
@@ -99,6 +116,12 @@ func get_affected_seats():
 
 func get_current_head():
 	return _curr_head
+##
+
+func is_falling():
+	$ArtPlayer.go_fall()
+	_is_falling = true
+	player_is_falling.emit()
 ##
 
 func _on_single_target_area_entered(area):
