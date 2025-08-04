@@ -2,7 +2,7 @@ extends State
 class_name LeaveState
 # Waiting by the elevator to be whisked away.
 
-var manager:Dickhead
+var manager:Manager
 
 func enter_state(_prev_state:State):
 	manager.emit_signal("awaiting_leaving", manager)

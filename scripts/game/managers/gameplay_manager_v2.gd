@@ -23,7 +23,7 @@ func _ready():
 	%TickTimer.start()
 	#$GameplayTimer.start()
 	
-	$Elevator.connect("dickhead_created", manager_created)
+	$Elevator.connect("manager_created", manager_created)
 	$Elevator2.connect("elevator_door_open", %ManagerRepository.managers_leave)
 	
 	%Player.connect("player_is_falling", _player_is_falling)

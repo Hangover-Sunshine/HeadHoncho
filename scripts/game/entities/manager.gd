@@ -1,11 +1,11 @@
 extends CharacterBody2D
-class_name Dickhead
+class_name Manager
 
-signal dickhead_removed(pr_impact:float)
-signal go_to_elevator(dickhead:Dickhead)
-signal needs_new_burning_point(dickhead:Dickhead)
-signal awaiting_leaving(dickhead:Dickhead)
-signal not_awaiting_anymore(dickhead:Dickhead)
+signal manager_removed(pr_impact:float)
+signal go_to_elevator(manager:Manager)
+signal needs_new_burning_point(manager:Manager)
+signal awaiting_leaving(manager:Manager)
+signal not_awaiting_anymore(manager:Manager)
 
 @export var MovementSpeed:float = 5.0
 @export var RunSpeed:float = 10.0
@@ -130,6 +130,6 @@ func start_falling():
 ##
 
 func _on_art_boss_falling_finished():
-	dickhead_removed.emit(leaving_opinion)
+	manager_removed.emit(leaving_opinion)
 	queue_free()
 ##

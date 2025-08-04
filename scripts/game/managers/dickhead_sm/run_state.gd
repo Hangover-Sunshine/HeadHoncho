@@ -4,7 +4,7 @@ class_name RunState
 @export var RunSpeed:float = 150
 @export var BurnTimerTime:float = 4.0
 
-var manager:Dickhead
+var manager:Manager
 var nav_agent:NavigationAgent2D
 var velocity:Vector2
 

@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=3 uid="uid://dwaykrfp0tfvv"]
 
-[ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/dickhead.gd" id="1_m50rt"]
-[ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="1_uclen"]
-[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/actors/art_boss.tscn" id="1_wgy7s"]
-[ext_resource type="Script" uid="uid://5ey4crd1ywre" path="res://scripts/game/managers/dickhead_sm/dickhead_state_machine.gd" id="4_mslvi"]
-[ext_resource type="Script" uid="uid://dxtajutxt0uvx" path="res://scripts/game/managers/dickhead_sm/walk_state.gd" id="5_ayjbb"]
-[ext_resource type="Script" uid="uid://cwp4ywr7aav0h" path="res://scripts/game/managers/dickhead_sm/pester_state.gd" id="6_kuopb"]
-[ext_resource type="Script" uid="uid://cwl7nugh3n4t3" path="res://scripts/game/managers/dickhead_sm/leave_state.gd" id="7_asxc1"]
-[ext_resource type="Script" uid="uid://bm84hsh6qvo7u" path="res://scripts/game/managers/dickhead_sm/run_state.gd" id="8_fx3ew"]
-[ext_resource type="Script" uid="uid://d3lm5gd848u8t" path="res://scripts/game/managers/dickhead_sm/do_nothing_state.gd" id="9_fx3ew"]
-[ext_resource type="Script" uid="uid://dlyo0ihdcwugd" path="res://scripts/game/managers/dickhead_sm/get_blown_state.gd" id="10_h3lw0"]
+[ext_resource type="Script" uid="uid://dgjweb8yl0c7k" path="res://scripts/game/entities/manager.gd" id="1_lfnoj"]
+[ext_resource type="PackedScene" uid="uid://bg0lns7q8x7eh" path="res://prefabs/art/actors/art_boss.tscn" id="2_nb77q"]
+[ext_resource type="Texture2D" uid="uid://btequsvovppnf" path="res://assets/temporary/Character_Smoll.png" id="3_nsmps"]
+[ext_resource type="Script" uid="uid://5ey4crd1ywre" path="res://scripts/game/managers/dickhead_sm/dickhead_state_machine.gd" id="4_2tqv5"]
+[ext_resource type="Script" uid="uid://dxtajutxt0uvx" path="res://scripts/game/managers/dickhead_sm/walk_state.gd" id="5_gdgka"]
+[ext_resource type="Script" uid="uid://cwp4ywr7aav0h" path="res://scripts/game/managers/dickhead_sm/pester_state.gd" id="6_yy0q6"]
+[ext_resource type="Script" uid="uid://cwl7nugh3n4t3" path="res://scripts/game/managers/dickhead_sm/leave_state.gd" id="7_k4d38"]
+[ext_resource type="Script" uid="uid://bm84hsh6qvo7u" path="res://scripts/game/managers/dickhead_sm/run_state.gd" id="8_juo44"]
+[ext_resource type="Script" uid="uid://d3lm5gd848u8t" path="res://scripts/game/managers/dickhead_sm/do_nothing_state.gd" id="9_115r1"]
+[ext_resource type="Script" uid="uid://dlyo0ihdcwugd" path="res://scripts/game/managers/dickhead_sm/get_blown_state.gd" id="10_1wlp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uclen"]
 size = Vector2(83, 82)
@@ -17,18 +17,18 @@ size = Vector2(83, 82)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m50rt"]
 size = Vector2(171, 172)
 
-[node name="Dickhead" type="CharacterBody2D"]
+[node name="Manager" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_m50rt")
+script = ExtResource("1_lfnoj")
 MovementSpeed = 75.0
 
-[node name="ArtBoss" parent="." instance=ExtResource("1_wgy7s")]
+[node name="ArtBoss" parent="." instance=ExtResource("2_nb77q")]
 
 [node name="CharacterSmoll" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("1_uclen")
+texture = ExtResource("3_nsmps")
 region_enabled = true
 region_rect = Rect2(96, 96, 96, 96)
 
@@ -53,25 +53,25 @@ wait_time = 1.5
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("4_mslvi")
+script = ExtResource("4_2tqv5")
 
 [node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Idle_State", "Pester_State")]
-script = ExtResource("5_ayjbb")
+script = ExtResource("5_gdgka")
 Idle_State = NodePath("../LeaveState")
 Pester_State = NodePath("../PesterState")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [node name="PesterState" type="Node" parent="StateMachine" node_paths=PackedStringArray("StressArea")]
-script = ExtResource("6_kuopb")
+script = ExtResource("6_yy0q6")
 StressArea = NodePath("../../StressArea/CollisionShape2D")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [node name="LeaveState" type="Node" parent="StateMachine"]
-script = ExtResource("7_asxc1")
+script = ExtResource("7_k4d38")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [node name="RunState" type="Node" parent="StateMachine"]
-script = ExtResource("8_fx3ew")
+script = ExtResource("8_juo44")
 BurnTimerTime = 16.0
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
@@ -80,12 +80,12 @@ wait_time = 4.0
 one_shot = true
 
 [node name="DoNothingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("StressAreaCollider")]
-script = ExtResource("9_fx3ew")
+script = ExtResource("9_115r1")
 StressAreaCollider = NodePath("../../StressArea/CollisionShape2D")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [node name="GetBlownState" type="Node" parent="StateMachine"]
-script = ExtResource("10_h3lw0")
+script = ExtResource("10_1wlp3")
 metadata/_custom_type_script = "uid://dv73kuir7k2yg"
 
 [connection signal="falling_finished" from="ArtBoss" to="." method="_on_art_boss_falling_finished"]

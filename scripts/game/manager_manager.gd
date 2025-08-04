@@ -9,7 +9,7 @@ signal elevator_called
 # All current managers in the scene
 var managers:Array = []
 # Pot to leave
-var waiting_to_leave:Array[Dickhead]
+var waiting_to_leave:Array[Manager]
 
 func manager_created(manager, worker:int, pester_position:Vector2):
 	self.add_child(manager)
@@ -22,7 +22,7 @@ func manager_created(manager, worker:int, pester_position:Vector2):
 	managers.append(manager)
 ##
 
-func exit_level(manager:Dickhead):
+func exit_level(manager:Manager):
 	manager.set_goal_position(LeaveVator.get_elevator_wait_pos(), true)
 ##
 
@@ -67,12 +67,12 @@ func get_random_position(old_pos:Vector2):
 	return [new_pos, sdi]
 ##
 
-func add_manager(manager:Dickhead):
+func add_manager(manager:Manager):
 	waiting_to_leave.push_back(manager)
 	elevator_called.emit()
 ##
 
-func remove_manager(manager:Dickhead):
+func remove_manager(manager:Manager):
 	var id = waiting_to_leave.find(manager)
 	waiting_to_leave.remove_at(id)
 ##
@@ -97,7 +97,7 @@ func managers_leave():
 	##
 ##
 
-func _generate_new_point(manager:Dickhead):
+func _generate_new_point(manager:Manager):
 	var new_pos = get_random_position(manager.global_position)
 	manager.run_burn(new_pos[0], new_pos[1] >= 0)
 ##

@@ -4,7 +4,7 @@ class_name GetBlownState
 @export var DRAG:float = 200.0
 @export var DragDelay:float = 0.05
 
-var manager:Dickhead
+var manager:Manager
 var velocity:Vector2
 var curr_drag:float
 
