@@ -17,45 +17,14 @@ var revenue:float = 0
 # Add to this with: hiring, bonuses, pizza parties
 var costs:float = 0
 
-# All current managers in the scene
-#var managers:Array = []
-# All current workers in the scene
-var workers:Array = []
-# All current seats in the scene
-var seats:Array[Seat] = []
-# Open workers
-var open_seats:Array[int] = []
-# Pot to leave
-#var waiting_to_leave:Array[Dickhead]
-
 var elevator_called:bool = false
 
 func _ready():
 	%TickTimer.start()
 	#$GameplayTimer.start()
 	
-	# Get all the seats.
-	for child in $Seats.get_children():
-		seats.push_back(child)
-	##
-	
-	var id = 0
-	for child in %WorkerRepository.get_children():
-		if child is Worker:
-			child.worker_quits.connect(_worker_quits)
-			workers.append(child)
-			seats[id].disable_seat()
-			open_seats.push_back(id)
-			id += 1
-		##
-	##
-	
-	for i in range($Seats.get_child_count() - len(workers)):
-		workers.append(null)
-	##
-	
 	$Elevator.connect("dickhead_created", manager_created)
-	$Elevator2.connect("elevator_door_open", $ManagerRepository.managers_leave)
+	$Elevator2.connect("elevator_door_open", %ManagerRepository.managers_leave)
 	
 	%Player.connect("player_is_falling", _player_is_falling)
 	%Player.connect("player_dead", _player_dead)
@@ -65,7 +34,7 @@ func _process(_delta):
 	var aff_bodies = %Player.get_affected_bodies()
 	if len(aff_bodies) > 0:
 		for body in aff_bodies:
-			if body in $ManagerRepository.managers and body.is_doing_nothing() == false\
+			if body in %ManagerRepository.managers and body.is_doing_nothing() == false\
 				and body.leaving_opinion == 0:
 				body.stop_doing_stuff()
 			##
@@ -86,11 +55,11 @@ func _on_tick_timer_timeout():
 	var head = %Player.get_current_head()
 	
 	# Only attempt to spawn if we have it open
-	if len(open_seats) > 0:
+	if len(%WorkerRepository.not_pestered_workers) > 0:
 		$Elevator.open_door()
 	##
 	
-	if len($ManagerRepository.waiting_to_leave) > 0:
+	if len(%ManagerRepository.waiting_to_leave) > 0:
 		elevator_called = true
 	##
 	
@@ -99,14 +68,14 @@ func _on_tick_timer_timeout():
 		elevator_called = false
 	##
 	
-	for manager in $ManagerRepository.managers:
+	for manager in %ManagerRepository.managers:
 		if manager == null:
 			continue # ignore, we need to clean up
 		##
 		
 		if manager in aff_bodies:
 			if head == Player.PlayerHead.COFFEE:
-				var new_pos = $ManagerRepository.get_random_position(manager.global_position)
+				var new_pos = %ManagerRepository.get_random_position(manager.global_position)
 				manager.run_burn(new_pos[0], new_pos[1] >= 0)
 				manager.leaving_opinion = LeaveAfterBadThing
 			elif head == Player.PlayerHead.FAN:
@@ -124,11 +93,14 @@ func _on_tick_timer_timeout():
 				
 				manager.leaving_opinion = LeaveAfterBadThing
 			else:
-				$ManagerRepository.exit_level(manager)
+				%ManagerRepository.exit_level(manager)
 				manager.leaving_opinion = LeaveAfterGoodThing
 			##
 			
-			open_seats.append(manager.selected_worker)
+			if manager.selected_worker > 0:
+				%WorkerRepository.worker_unpestered(manager.selected_worker)
+				manager.selected_worker = -1
+			##
 		##
 		
 		if manager.is_doing_nothing() and manager not in aff_bodies:
@@ -137,7 +109,7 @@ func _on_tick_timer_timeout():
 	##
 	
 	# Get the amount of money being generated
-	for worker in workers:
+	for worker in %WorkerRepository.workers:
 		if worker == null or worker.is_quitting():
 			continue
 		##
@@ -156,15 +128,10 @@ func _on_tick_timer_timeout():
 	
 	if head == Player.PlayerHead.BRIEF_CASE:
 		for afs in aff_seats:
-			var seatID:int = seats.find(afs)
-			if seats[seatID].IsOpen:
-				var newWorker = WORKER.instantiate()
-				%WorkerRepository.add_child(newWorker)
-				newWorker.worker_quits.connect(_worker_quits)
-				newWorker.global_position = afs.global_position
-				workers[seatID] = newWorker
-				open_seats.push_back(seatID)
-				afs.disable_seat()
+			var seatID:int = %Seats.get_seat_id(afs)
+			if %Seats.is_seat_available_id(seatID):
+				%WorkerRepository.create_worker(seatID, afs.global_position)
+				%Seats.disable_seat(seatID)
 			##
 		##
 	##
@@ -172,23 +139,12 @@ func _on_tick_timer_timeout():
 	%TickTimer.start(TimePerTick)
 ##
 
-func _worker_quits(worker:Worker):
-	var index = workers.find(worker)
-	workers[index] = null
-	
-	# Renable the seat for the player to hire a new motor
-	seats[index].enable_seat()
-	var indx = open_seats.find(index)
-	if indx > -1:
-		open_seats.remove_at(indx)
-	##
-##
-
 func manager_created(manager):
-	var rindx:int = randi() % len(open_seats)
-	var worker:int = open_seats[rindx]
-	$ManagerRepository.manager_created(manager, worker, seats[worker].get_standing_pos())
-	open_seats.remove_at(rindx)
+	var rand_worker:int = %WorkerRepository.get_rand_unpestered_worker()
+	$ManagerRepository.manager_created(manager,
+										rand_worker,
+										%Seats.get_standing_position(rand_worker)
+									)
 ##
 
 func _player_dead():

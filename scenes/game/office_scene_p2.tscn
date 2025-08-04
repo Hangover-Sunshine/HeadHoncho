@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://mww876lhrveh"]
+[gd_scene load_steps=13 format=3 uid="uid://mww876lhrveh"]
 
 [ext_resource type="Script" uid="uid://dicd1sabp7cnb" path="res://scripts/game/managers/gameplay_manager_v2.gd" id="1_actp7"]
+[ext_resource type="Script" uid="uid://dxqdiiavtteh4" path="res://scripts/game/seat_manager.gd" id="3_2uth1"]
 [ext_resource type="PackedScene" uid="uid://cs37lequcem47" path="res://prefabs/entities/seat.tscn" id="3_ef4st"]
 [ext_resource type="Script" uid="uid://cwd35mi2oda5r" path="res://scripts/game/worker_manager.gd" id="4_2uth1"]
 [ext_resource type="PackedScene" uid="uid://c8a7it7c2os1h" path="res://prefabs/entities/worker.tscn" id="4_ecp6i"]
@@ -43,6 +44,8 @@ position = Vector2(692, 242)
 BlowPower = 1000.0
 
 [node name="Seats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_2uth1")
 
 [node name="Seat" parent="Seats" instance=ExtResource("3_ef4st")]
 position = Vector2(215, 394)
