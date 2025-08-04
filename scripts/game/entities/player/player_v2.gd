@@ -73,6 +73,12 @@ func _physics_process(_delta):
 		return
 	##
 	
+	if _use_head:
+		$ArtPlayer.activate_head()
+	else:
+		$ArtPlayer.idle_head()
+	##
+	
 	velocity = Vector2.ZERO
 	
 	if Input.is_action_pressed("up"):

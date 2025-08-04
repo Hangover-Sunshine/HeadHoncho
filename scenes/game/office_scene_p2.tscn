@@ -117,7 +117,6 @@ OfficePathingArea = NodePath("../OfficeSpace")
 LeaveVator = NodePath("../Elevator2")
 
 [node name="Elevator" parent="." instance=ExtResource("6_y554v")]
-process_mode = 4
 position = Vector2(1172, 76)
 
 [node name="Elevator2" parent="." instance=ExtResource("7_ef4st")]
