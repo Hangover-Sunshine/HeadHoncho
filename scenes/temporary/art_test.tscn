@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://lajp42tbhbs3"]
+[gd_scene load_steps=19 format=3 uid="uid://lajp42tbhbs3"]
 
 [ext_resource type="Texture2D" uid="uid://de02gnxgr15ro" path="res://assets/environment/Env_Tilesheet.png" id="1_8arxf"]
 [ext_resource type="Texture2D" uid="uid://13bi3pvu2cvn" path="res://assets/environment/prop/Prop_Desk.png" id="2_g0uno"]
@@ -40,6 +40,68 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_56xnr"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_g0uno")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exmm6"]
+bg_color = Color(0.298039, 0.243137, 0.141176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr7x8"]
+bg_color = Color(0.984314, 0.72549, 0.329412, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_jb6fq"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_exmm6")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_sr7x8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fim5e"]
+bg_color = Color(0.0431373, 0.368627, 0.396078, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ft8qj"]
+bg_color = Color(0.188235, 0.882353, 0.72549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_h70tx"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_fim5e")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ft8qj")
 
 [node name="ArtTest" type="Node2D"]
 
@@ -258,6 +320,7 @@ alignment = 1
 [node name="PB_Morale" type="ProgressBar" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center/VBox_Morale"]
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
+theme = SubResource("Theme_jb6fq")
 value = 50.0
 show_percentage = false
 
@@ -273,6 +336,7 @@ alignment = 1
 [node name="PB_PR" type="ProgressBar" parent="GUI/MC_All/VBox_All/HBox_Top/HBox_Center/VBox_PR"]
 custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
+theme = SubResource("Theme_h70tx")
 value = 50.0
 show_percentage = false
 
